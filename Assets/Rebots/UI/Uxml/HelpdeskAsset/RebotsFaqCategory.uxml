@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="width: 100%; min-height: 160px; min-width: auto; margin-bottom: 20px; padding-left: 2px; padding-right: 2px; padding-top: 2px; padding-bottom: 12px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/BoxRoundSmall.png?fileID=21300000&amp;guid=4128ef4419de0be41ab4a13b8d319144&amp;type=3#BoxRoundSmall&apos;); background-color: rgba(255, 255, 255, 0);">
+        <ui:VisualElement style="min-height: 51px; padding-left: 16px; padding-right: 16px; padding-top: 10px; padding-bottom: 10px; border-bottom-width: 1px; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188);">
+            <ui:Label text="Faq Category Label" display-tooltip-when-elided="true" name="rebots-category-label" class="rebots-label__bold24 rebots-font-color__theme" />
+        </ui:VisualElement>
+        <ui:VisualElement name="rebots-lower-category-container" style="flex-grow: 1; margin-top: 18px; margin-bottom: 18px; padding-left: 16px; padding-right: 16px;" />
+        <ui:VisualElement style="flex-direction: row; align-items: center; justify-content: flex-end; height: 58px; min-height: 58px; max-height: 58px; padding-left: 20px; padding-right: 20px; padding-top: 10px; padding-bottom: 10px;">
+            <ui:Button display-tooltip-when-elided="true" name="rebots-category-button" style="flex-direction: row; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
+                <ui:VisualElement class="rebots-sprite-color__theme-opacity" style="width: 38px; height: 38px; min-width: 38px; min-height: 38px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/ViewMore.png?fileID=21300000&amp;guid=574737e805470a04d9c5c130fa4a75da&amp;type=3#ViewMore&apos;); background-color: rgba(255, 255, 255, 0);" />
+                <ui:Label text="View More" display-tooltip-when-elided="true" name="rebots-view-more" class="rebots-label__bold14 rebots-font-color__black" style="margin-left: -28px; margin-right: 5px;" />
+                <ui:VisualElement style="width: 9px; height: 100%; min-width: 9px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/ViewMoreArrow.png?fileID=21300000&amp;guid=c383a0db3c03f7042ad7340c26b9fb1f&amp;type=3#ViewMoreArrow&apos;); -unity-background-scale-mode: scale-to-fit; background-color: rgba(255, 255, 255, 0); -unity-background-image-tint-color: rgb(0, 0, 0);" />
+            </ui:Button>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

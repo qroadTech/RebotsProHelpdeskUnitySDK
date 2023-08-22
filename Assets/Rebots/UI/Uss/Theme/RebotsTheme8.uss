@@ -1,0 +1,22 @@
+.rebots-font-color__theme {	
+	color: rgb(232, 62, 140);
+}	
+	
+.rebots-background-color__theme {	
+	background-color: rgb(232, 62, 140);
+}	
+	
+.rebots-border-color__theme-opacity {	
+	border-left-color: rgb(253, 236, 244);
+	border-right-color: rgb(253, 236, 244);
+	border-top-color: rgb(253, 236, 244);
+	border-bottom-color: rgb(253, 236, 244);
+}	
+	
+.rebots-sprite-color__theme-opacity {	
+	-unity-background-image-tint-color: rgb(253, 236, 244);
+}	
+	
+.rebots-sprite-color__theme {	
+	-unity-background-image-tint-color: rgb(232, 62, 140);
+}	

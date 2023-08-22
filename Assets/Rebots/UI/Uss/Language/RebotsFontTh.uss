@@ -1,0 +1,246 @@
+.rebots-label__black40 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Black');
+    -unity-font-definition: none;
+    font-size: 40px;
+    white-space: normal;
+    -unity-text-align: middle-left;
+}
+
+.rebots-label__black36 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Black');
+    -unity-font-definition: none;
+    font-size: 36px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__black28 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Black');
+    -unity-font-definition: none;
+    font-size: 28px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__black24 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Black');
+    -unity-font-definition: none;
+    font-size: 24px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__black20 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Black');
+    -unity-font-definition: none;
+    font-size: 20px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__black16 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Black');
+    -unity-font-definition: none;
+    font-size: 16px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__black14 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Black');
+    -unity-font-definition: none;
+    font-size: 14px;
+    -unity-text-align: middle-center;
+}
+
+.rebots-label__bold36 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+    font-size: 36px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+    -unity-font-style: bold;
+}
+
+.rebots-label__bold26 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-style: bold;
+    font-size: 26px;
+    -unity-text-align: middle-left;
+    -unity-font-definition: none;
+    white-space: normal;
+}
+
+.rebots-label__bold24 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+    -unity-font-style: bold;
+    font-size: 24px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__bold20 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+    font-size: 20px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__bold18 {
+    font-size: 18px;
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+    -unity-font-style: bold;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__bold16 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+    -unity-font-style: bold;
+    font-size: 16px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__bold14 {
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+    -unity-font-style: bold;
+    font-size: 14px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__bold11 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+    -unity-font-style: bold;
+    -unity-text-align: lower-left;
+    white-space: normal;
+    font-size: 11px;
+}
+
+.rebots-label__regular20 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+    font-size: 20px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__regular18 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+    font-size: 18px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__regular16 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+    font-size: 16px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__regular14 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+    font-size: 14px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__regular12 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-menu-foldout .unity-toggle .unity-label {
+    -unity-font: resource('Rebots/NotoSansThai-Black');
+    -unity-font-definition: none;
+}

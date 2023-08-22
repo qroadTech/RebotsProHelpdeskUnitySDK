@@ -1,0 +1,203 @@
+.rebots-font-color__black {
+    color: rgb(34, 34, 34);
+}
+
+.rebots-font-color__dakr-grey {
+    color: rgb(85, 85, 85);
+}
+
+.rebots-font-color__grey {
+    color: rgb(188, 188, 188);
+}
+
+.rebots-font-color__white {
+    color: rgb(255, 255, 255);
+}
+
+.rebots-font-color__red {
+    color: rgb(215, 5, 18);
+}
+
+.rebots-font-en__black {
+    -unity-font-definition: none;
+    -unity-font: resource('Rebots/NotoSans-Black');
+}
+
+.rebots-font-en__regular {
+    -unity-font: resource('Rebots/NotoSans-Regular');
+    -unity-font-definition: none;
+}
+
+.rebots-font-kr__black {
+    -unity-font-definition: none;
+    -unity-font: resource('Rebots/NotoSansKR-Black');
+}
+
+.rebots-font-kr__regular {
+    -unity-font-definition: none;
+    -unity-font: resource('Rebots/NotoSansKR-Regular');
+}
+
+.rebots-font-ja__black {
+    -unity-font: resource('Rebots/NotoSansJP-Black');
+    -unity-font-definition: none;
+}
+
+.rebots-font-ja__regular {
+    -unity-font: resource('Rebots/NotoSansJP-Regular');
+    -unity-font-definition: none;
+}
+
+.rebots-font-cn__black {
+    -unity-font: resource('Rebots/NotoSansSC-Regular');
+    -unity-font-definition: none;
+}
+
+.rebots-font-cn__regular {
+    -unity-font: resource('Rebots/NotoSansSC-Regular');
+    -unity-font-definition: none;
+}
+
+.rebots-font-tw__black {
+    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font-definition: none;
+}
+
+.rebots-font-tw__regular {
+    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font-definition: none;
+}
+
+.rebots-font-th__black {
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+}
+
+.rebots-font-th__regular {
+    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font-definition: none;
+}
+
+.rebots-language-label__black20 {
+    font-size: 20px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-language-label__bold20 {
+    -unity-font-style: bold;
+    font-size: 20px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-background-color__grey {
+    background-color: rgb(188, 188, 188);
+}
+
+.rebots-search-field .unity-text-field__input {
+    height: 100%;
+    min-height: 100%;
+    -unity-text-align: middle-left;
+    -unity-font: resource('Rebots/NotoSansKR-Regular');
+    -unity-font-definition: none;
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    white-space: nowrap;
+    padding-right: 30px;
+}
+
+.rebots-menu-foldout .unity-toggle {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-top: 9px;
+    padding-bottom: 9px;
+    border-left-color: rgba(255, 255, 255, 0.15);
+    border-right-color: rgba(255, 255, 255, 0.15);
+    border-top-color: rgba(255, 255, 255, 0.15);
+    border-bottom-color: rgba(255, 255, 255, 0.15);
+    border-bottom-width: 1px;
+}
+
+.rebots-menu-foldout .unity-toggle .unity-toggle__input {
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.rebots-menu-foldout .unity-toggle__checkmark {
+    display: flex;
+    flex-shrink: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-image: url('project://database/Assets/UI/Textures/Rebots/AccordionOpen.png?fileID=21300000&guid=2f0447ffd6a84f149b5f58e7fda1a676&type=3#AccordionOpen');
+    width: 14px;
+    min-width: 14px;
+    -unity-background-scale-mode: scale-to-fit;
+    height: 100%;
+    min-height: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-slice-left: 0;
+    -unity-slice-top: 0;
+    -unity-slice-right: 0;
+    -unity-slice-bottom: 0;
+}
+
+.rebots-menu-foldout .unity-toggle__input:checked .unity-toggle__checkmark {
+    display: flex;
+    flex-shrink: 0;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    background-image: url('project://database/Assets/UI/Textures/Rebots/AccordionClose.png?fileID=21300000&guid=86ee4d297fbedd24da2b015b33ca593b&type=3#AccordionClose');
+    width: 14px;
+    min-width: 14px;
+    -unity-background-scale-mode: scale-to-fit;
+    height: 100%;
+    min-height: 100%;
+    background-color: rgba(255, 255, 255, 0);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.rebots-menu-foldout .unity-toggle .unity-label {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 16px;
+    -unity-font-style: normal;
+    -unity-text-align: middle-left;
+    color: rgb(255, 255, 255);
+    flex-grow: 1;
+    white-space: normal;
+}
+
+.unity-foldout__content {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}

@@ -1,0 +1,21 @@
+.unity-label {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.unity-base-dropdown {
+    height: 150px;
+    min-height: 150px;
+}
+
+.unity-base-dropdown__item {
+    -unity-font-definition: none;
+    -unity-font: resource('Rebots/NotoSansKR-Regular');
+    font-size: 20px;
+    -unity-text-align: middle-left;
+    color: rgb(0, 0, 0);
+    height: 55px;
+    min-height: 55px;
+}

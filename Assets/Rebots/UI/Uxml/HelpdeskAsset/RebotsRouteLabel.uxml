@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Label text="Category &gt; " display-tooltip-when-elided="true" name="rebots-route-label" class="rebots-label__regular14 rebots-font-color__black" />
+</ui:UXML>

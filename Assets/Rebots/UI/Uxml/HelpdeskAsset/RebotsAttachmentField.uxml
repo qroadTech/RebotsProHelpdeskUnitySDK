@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="padding-bottom: 25px; width: 100%;">
+        <ui:VisualElement style="justify-content: flex-start; min-height: 22px; align-items: center; flex-direction: row;">
+            <ui:Label text="Ticket Attachment Field" display-tooltip-when-elided="true" name="rebots-field-label" class="rebots-label__black16 rebots-font-color__black" />
+            <ui:Label text="(Required Field)" display-tooltip-when-elided="true" name="rebots-required" class="rebots-label__bold11 rebots-font-color__red" style="margin-left: 8px;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="margin-top: 8px; flex-direction: row; align-items: center;">
+            <ui:Button display-tooltip-when-elided="true" name="rebots-choose-file-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 15px; padding-right: 15px; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/FilesFieldButton.png?fileID=21300000&amp;guid=3c3430f3c49ca2644b511c444d1190e5&amp;type=3#FilesFieldButton&apos;); background-color: rgba(255, 255, 255, 0); height: 35px; min-height: 35px; flex-direction: row; align-items: center;">
+                <ui:Label text="Choose File" display-tooltip-when-elided="true" name="rebots-choose-file-button-label" class="rebots-label__bold16 rebots-font-color__black" />
+            </ui:Button>
+            <ui:VisualElement name="rebots-no-file-container" style="margin-left: 10px;">
+                <ui:Label text="No file chosen" display-tooltip-when-elided="true" name="rebots-no-file" class="rebots-label__regular16 rebots-font-color__grey" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="rebots-file-list-container" style="width: 100%; min-width: 100%;" />
+    </ui:VisualElement>
+</ui:UXML>

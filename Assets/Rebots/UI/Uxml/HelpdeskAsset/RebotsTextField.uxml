@@ -1,0 +1,12 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Uss/Rebots/RebotsTextField.uss?fileID=7433441132597879392&amp;guid=21ef80398afc0df48bd217ff889d9ae6&amp;type=3#RebotsTextField" />
+    <ui:VisualElement style="padding-bottom: 25px;">
+        <ui:VisualElement style="justify-content: flex-start; min-height: 22px; align-items: center; flex-direction: row;">
+            <ui:Label text="Ticket Text Field" display-tooltip-when-elided="true" name="rebots-field-label" class="rebots-label__black16 rebots-font-color__black" />
+            <ui:Label text="(Required Field)" display-tooltip-when-elided="true" name="rebots-required" class="rebots-label__bold11 rebots-font-color__red" style="margin-left: 8px;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="margin-top: 3px;">
+            <ui:TextField picking-mode="Ignore" name="rebots-text-field" style="width: 100%; height: 35px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

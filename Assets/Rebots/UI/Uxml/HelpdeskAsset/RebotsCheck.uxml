@@ -1,0 +1,8 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Uss/Rebots/RebotsCheck.uss?fileID=7433441132597879392&amp;guid=78870ca7678c8054680fc21e08e77e78&amp;type=3#RebotsCheck" />
+    <ui:Toggle name="rebots-check" class="rebots-check" style="width: 100%; min-height: 26px; margin-left: 0; margin-right: 0; margin-top: 4px; margin-bottom: 4px; align-items: center;">
+        <ui:VisualElement style="flex-grow: 1; justify-content: center; padding-left: 10px;">
+            <ui:Label text="Check Label" display-tooltip-when-elided="true" name="rebots-button-label" class="rebots-label__regular16 rebots-font-color__dakr-grey" />
+        </ui:VisualElement>
+    </ui:Toggle>
+</ui:UXML>

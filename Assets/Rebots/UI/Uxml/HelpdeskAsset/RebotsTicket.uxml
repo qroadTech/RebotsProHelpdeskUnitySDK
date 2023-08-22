@@ -1,0 +1,18 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-direction: row; justify-content: space-between; align-items: flex-start; width: 100%; height: auto; min-height: auto; max-height: none; margin-top: 10px; border-bottom-width: 1px; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188); padding-bottom: 10px;">
+        <ui:Button display-tooltip-when-elided="true" name="rebots-ticket-button" style="flex-direction: row; align-items: flex-start; justify-content: space-between; min-width: auto; min-height: auto; width: 100%; height: 100%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
+            <ui:VisualElement style="height: 60px; justify-content: space-between; min-height: 60%; padding-top: 5px; padding-bottom: 5px;">
+                <ui:VisualElement style="flex-direction: row; justify-content: flex-start; align-items: center;">
+                    <ui:Label text="No." display-tooltip-when-elided="true" class="rebots-font-color__dakr-grey rebots-label__bold14" />
+                    <ui:Label text="Ticket No" display-tooltip-when-elided="true" name="rebots-ticket-no-label" class="rebots-font-color__dakr-grey rebots-label__bold14" />
+                    <ui:VisualElement style="height: 100%; width: 1px; background-color: rgb(34, 34, 34); margin-left: 10px; margin-right: 10px;" />
+                    <ui:Label text="Ticket Category Label" display-tooltip-when-elided="true" name="rebots-ticket-category-label" class="rebots-font-color__grey rebots-label__bold14" />
+                </ui:VisualElement>
+                <ui:Label text="Ticket Contents Preview Label" display-tooltip-when-elided="true" name="rebots-ticket-preview-label" class="rebots-label__regular14 rebots-font-color__dakr-grey" />
+            </ui:VisualElement>
+            <ui:VisualElement name="rebots-ticket-state-container" style="width: 100px; min-width: auto; height: 60px; min-height: 60px; align-items: center; justify-content: center; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 10px; display: flex;">
+                <ui:Label text="State Label" display-tooltip-when-elided="true" name="rebots-ticket-state-label" class="rebots-label__regular14 rebots-font-color__white" />
+            </ui:VisualElement>
+        </ui:Button>
+    </ui:VisualElement>
+</ui:UXML>

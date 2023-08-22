@@ -1,0 +1,36 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Uss/Rebots/RebotsCheck.uss?fileID=7433441132597879392&amp;guid=78870ca7678c8054680fc21e08e77e78&amp;type=3#RebotsCheck" />
+    <ui:VisualElement style="padding-bottom: 25px;">
+        <ui:VisualElement style="justify-content: flex-start; min-height: 22px; flex-direction: row; align-items: center;">
+            <ui:Label text="Privacy Information Policy" display-tooltip-when-elided="true" name="rebots-privacy-policy" class="rebots-label__black16 rebots-font-color__black" />
+            <ui:Label text="(Required Field)" display-tooltip-when-elided="true" name="rebots-required" class="rebots-label__bold11 rebots-font-color__red" style="margin-left: 8px;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="margin-top: 9px;">
+            <ui:VisualElement name="rebots-privacy-text-container" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; width: 100%; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; max-height: 145px; display: flex; min-height: 145px; height: 145px;">
+                <ui:ScrollView style="display: flex;">
+                    <ui:Label text="This Privacy Policy (the &quot;Policy&quot;) explains the way of treatment of the information which is provided or collected in the websites on which this Policy is posted. In addition the Policy also explains the information which is provided or " display-tooltip-when-elided="true" name="rebots-privacy-text-label" class="rebots-label__regular14 rebots-font-color__black" style="-unity-text-align: upper-left;" />
+                </ui:ScrollView>
+            </ui:VisualElement>
+            <ui:VisualElement name="rebots-privacy-link-container" style="padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; width: 100%; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; max-height: 165px; min-height: 165px; height: 165px; justify-content: center; display: flex;">
+                <ui:VisualElement style="align-items: center;">
+                    <ui:VisualElement class="rebots-background-color__theme" style="align-items: center; justify-content: space-around; width: 52px; height: 52px; border-top-left-radius: 26px; border-bottom-left-radius: 26px; border-top-right-radius: 26px; border-bottom-right-radius: 26px;">
+                        <ui:VisualElement style="width: 25px; height: 28px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/Document.png?fileID=21300000&amp;guid=ad23dd3584d14504eb3db9446aa1ae85&amp;type=3#Document&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement style="align-items: center; justify-content: center; margin-top: 10px; margin-bottom: 10px;">
+                        <ui:Label text="Privacy Policy" display-tooltip-when-elided="true" name="rebots-privacy-link-title-label" class="rebots-font-color__black rebots-label__bold16" style="min-height: 22px;" />
+                    </ui:VisualElement>
+                    <ui:Button display-tooltip-when-elided="true" name="rebots-privacy-link-button" style="min-width: 250px; min-height: 36px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgba(255, 255, 255, 0); align-items: center; justify-content: center; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-left-color: rgb(34, 34, 34); border-right-color: rgb(34, 34, 34); border-top-color: rgb(34, 34, 34); border-bottom-color: rgb(34, 34, 34);">
+                        <ui:Label text="Go to page " display-tooltip-when-elided="true" name="rebots-privacy-link-label" class="rebots-label__regular14 rebots-font-color__black" />
+                    </ui:Button>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement style="margin-top: 6px;">
+            <ui:Toggle name="rebots-privacy-check" class="rebots-check" style="width: 100%; min-height: 26px; margin-left: 0; margin-right: 0; margin-top: 4px; margin-bottom: 4px; align-items: center;">
+                <ui:VisualElement style="flex-grow: 1; justify-content: center; padding-left: 10px;">
+                    <ui:Label text="I agree to the collection of personal information." display-tooltip-when-elided="true" name="rebots-i-agree" class="rebots-font-color__dakr-grey rebots-label__regular14" />
+                </ui:VisualElement>
+            </ui:Toggle>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

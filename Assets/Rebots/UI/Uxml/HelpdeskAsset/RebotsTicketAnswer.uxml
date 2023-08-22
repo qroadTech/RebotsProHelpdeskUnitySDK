@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="border-bottom-width: 1px; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188); padding-top: 10px; padding-bottom: 10px;">
+        <ui:Label text="0000.00.00" display-tooltip-when-elided="true" name="rebots-sub-label" class="rebots-label__regualr14 rebots-font-color__dakr-grey" style="margin-bottom: 8px;" />
+        <ui:Label text="문의에 관한 응대가 모두 완료되었습니다문의에 관한 응대가 모두 완료되었습니다문의에 관한 응대가 모두 완료되었습니다문의에 관한 응대가 모두 완료되었습니다문의에 관한 응대가 모두 완료되었습니다문의에 관한 응대가 모두 완료되었습니다" display-tooltip-when-elided="true" name="rebots-content-label" class="rebots-label__regular14 rebots-font-color__black" />
+    </ui:VisualElement>
+</ui:UXML>

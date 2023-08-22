@@ -1,0 +1,15 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Uss/Rebots/RebotsEventBanner.uss?fileID=7433441132597879392&amp;guid=8c70b3502d67d634489c700bfe8a8836&amp;type=3#RebotsEventBanner" />
+    <ui:VisualElement style="width: 100%; height: 100%; align-items: center; justify-content: center;">
+        <ui:VisualElement style="width: 80%; height: 80%; justify-content: space-between;">
+            <ui:VisualElement style="flex-direction: row-reverse; background-color: rgb(255, 255, 255); height: 70px; align-items: center; padding-left: 10px; padding-right: 10px; flex-shrink: 0;">
+                <ui:Button display-tooltip-when-elided="true" name="rebots-banner-close-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px; width: 60px; height: 60px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
+                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/SideMenuClose.png?fileID=21300000&amp;guid=f2bb81093d91ab7468b6b071960688c1&amp;type=3#SideMenuClose&apos;); width: 100%; height: 100%; -unity-background-image-tint-color: rgb(0, 0, 0); -unity-background-scale-mode: scale-to-fit;" />
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:VisualElement style="flex-grow: 1; flex-shrink: 0;">
+                <ui:ScrollView vertical-scroller-visibility="Hidden" horizontal-scroller-visibility="AlwaysVisible" name="rebots-banner-scrollview" mode="Horizontal" style="width: 100%; height: 100%;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
