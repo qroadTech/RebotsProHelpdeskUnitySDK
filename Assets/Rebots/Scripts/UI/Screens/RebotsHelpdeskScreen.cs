@@ -121,7 +121,6 @@ namespace Rebots.HelpDesk
 
             rebotsSettingManager.LoadFaqRecommendList(rebotsPageUI.OnFaqRecommendUpdated);
             rebotsSettingManager.LoadFaqCategoryList(rebotsPageUI.OnFaqCategoriesUpdated, false);
-            rebotsLayoutUI.SetTicketButtonAction();
 
             AddPageState(RebotsPageType.Main, RebotsPageName.Main);
             ShowPage(RebotsPageType.Main, RebotsPageName.Main);
@@ -144,7 +143,6 @@ namespace Rebots.HelpDesk
 
             this.m_faq = faq;
             rebotsSettingManager.LoadFaq(rebotsPageUI.OnFaqUpdated, m_faq.id);
-            rebotsLayoutUI.SetTicketButtonAction();
 
             AddPageState(RebotsPageType.Category, RebotsPageName.FaqDetail, faq);
             ShowPage(RebotsPageType.Category, RebotsPageName.FaqDetail);
@@ -157,7 +155,6 @@ namespace Rebots.HelpDesk
 
             this.m_SearchString = searchStr;
             rebotsSettingManager.LoadFaqSearchList(rebotsPageUI.OnFaqSearchUpdated, searchStr, page.Value);
-            rebotsLayoutUI.SetTicketButtonAction();
 
             AddPageState(RebotsPageType.Search, RebotsPageName.SearchResult, searchStr);
             ShowPage(RebotsPageType.Search, RebotsPageName.SearchResult);
@@ -170,7 +167,6 @@ namespace Rebots.HelpDesk
 
             this.m_Category = category;
             rebotsSettingManager.LoadFaqCategory(rebotsPageUI.OnSubCategoryUpdated, m_Category.id);
-            rebotsLayoutUI.SetTicketButtonAction();
 
             AddPageState(RebotsPageType.Category, RebotsPageName.FaqSubCategory, category);
             ShowPage(RebotsPageType.Category, RebotsPageName.FaqSubCategory);
@@ -465,18 +461,6 @@ namespace Rebots.HelpDesk
             else
             {
                 ShowCsSubCategory(category);
-            }
-        }
-
-        public void ClickTicketCreate(Category category = null)
-        {
-            if (category != null && category.useField)
-            {
-                ShowTicketCreate(category);
-            }
-            else
-            {
-                ShowCsCategory();
             }
         }
 
