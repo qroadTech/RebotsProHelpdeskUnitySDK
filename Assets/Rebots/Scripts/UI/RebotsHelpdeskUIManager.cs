@@ -9,7 +9,6 @@ namespace Rebots.HelpDesk
     {
         [Header("Screens")]
         [SerializeField] RebotsHelpdeskScreen m_RebotsHelpdeskScreen;
-        [SerializeField] RebotsBannerScreen m_RebotsBannerScreen;
 
         List<RebotsModalScreen> m_AllModalScreens = new List<RebotsModalScreen>();
 
@@ -20,30 +19,22 @@ namespace Rebots.HelpDesk
         {
             m_UIDocument = GetComponent<UIDocument>();
 
-            RebotsBannerScreen.rebotsBannerShow += RebotsBannerShow;
-
             SetupModalScreens();
         }
 
         void OnDisable()
         {
-            RebotsBannerScreen.rebotsBannerShow -= RebotsBannerShow;
         }
 
         void Start()
         {
             Time.timeScale = 1f;
-
-            //m_RebotsBannerScreen?.CheckEventBanner();
         }
 
         void SetupModalScreens()
         {
             if (m_RebotsHelpdeskScreen != null)
                 m_AllModalScreens.Add(m_RebotsHelpdeskScreen);
-
-            if (m_RebotsBannerScreen != null)
-                m_AllModalScreens.Add(m_RebotsBannerScreen);
         }
 
         void ShowModalScreen(RebotsModalScreen modalScreen)
@@ -64,11 +55,6 @@ namespace Rebots.HelpDesk
         public void RebotsHelpdeskShow()
         {
             ShowModalScreen(m_RebotsHelpdeskScreen);
-        }
-
-        public void RebotsBannerShow()
-        {
-            ShowModalScreen(m_RebotsBannerScreen);
         }
     }
 }

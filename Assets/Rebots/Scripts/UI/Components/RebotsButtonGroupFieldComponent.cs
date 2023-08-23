@@ -1,5 +1,4 @@
 ﻿using HelpDesk.Sdk.Common.Objects;
-using HelpDesk.Sdk.Common.Objects.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

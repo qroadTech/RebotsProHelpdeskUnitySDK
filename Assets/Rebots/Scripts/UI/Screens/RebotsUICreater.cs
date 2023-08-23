@@ -1,5 +1,4 @@
-﻿using HelpDesk.Sdk.Common.Objects.Enums;
-using HelpDesk.Sdk.Common.Objects;
+﻿using HelpDesk.Sdk.Common.Objects;
 using System;
 using UnityEngine;
 using UnityEngine.UIElements;
