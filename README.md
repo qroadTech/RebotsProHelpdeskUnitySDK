@@ -1,4 +1,4 @@
-# RebotsProHelpdeskUnitySDK
+# RebotsProHelpdeskUnitySDK (KR)
 
 <code>Assets/Scenes/Rebots.Unity</code> 파일로 테스트 할 수 있습니다.
 
@@ -30,3 +30,37 @@
 
 ##### 4. 헬프데스크 호출 메서드
   - <code>RebotsHelpdeskUIManager.cs</code> 파일의 <code>RebotsHelpdeskShow();</code>.
+
+---
+# RebotsProHelpdeskUnitySDK (EN)
+
+You can test with <code>Assets/Scenes/Rebots.Unity</code> file.
+
+##### Prefab for Helpdesk use
+  - <code>Assets/Prefabs/Rebots/Rebots.prefab</code>
+  - <code>Assets/Prefabs/Rebots/RebotsSettingManager.prefab</code>
+
+## Rebots Pro Unity SDK – Helpdesk setup help
+
+##### 1. Settings for using the Helpdesk UI
+  - <code>Assets/Prefabs/Rebots/Rebots.prefab</code> :
+    - Select <code>HelpdeskScreen - GameObject</code> from the **Hierarchy** panel.
+    - Inside the **Inspector** panel, assign the <code>RebotsSettingManager - GameObject</code> to the <code>Rebots Manager</code> property.
+
+##### 2. Helpdesk Initailize Setting (Running in 'Awake' of Unity lifecycle)
+  - <code>Assets/Prefabs/Rebots/RebotsSettingManager.prefab</code> :
+    - The **Inspector** panel requires the <code>RebotsSettingManager.cs</code> file.
+    - Inside the **Inspector** panel, assign the property.
+    - <code>Project Public Name</code> - *Information set in Rebots Pro Workspace.*
+    - <code>Project Main Key</code> - *Information set in Rebots Pro Workspace.*
+    - <code>Rebots Translation File</code> - *Requires the <code>Assets/Rebots/Localization/rebots_translation_utf.csv</code> file.*
+    - <code>Helpdesk Language</code> - *Information set in Rebots Pro Workspace.*
+  - Click the <code>Check Language Available</code> button to check the helpdesk connection in the console log.
+
+##### 3. User Initialize Setting (Running in 'Start' of Unity lifecycle)
+  - <code>Assets/Prefabs/Rebots/RebotsSettingManager.prefab</code> :
+    - The **Inspector** panel requires the <code>RebotsParameterDataManager.cs</code> file.
+    - Assign the User(player) value inside the <code>RebotsParameterDataManager.cs</code> file <code>SetParameterData()</code>. - *An example value is currently assigned.*
+
+##### 4. Helpdesk call method
+  - <code>RebotsHelpdeskShow();</code> in the <code>RebotsHelpdeskUIManager.cs</code> file.
