@@ -84,7 +84,6 @@ namespace Rebots.HelpDesk
             {
                 NativeGallery.Permission permission = NativeGallery.GetMixedMediaFromGallery((path) =>
                 {
-                    Debug.Log(path);
                     if (path != null)
                     {
                         SetAttachmentFile(path);

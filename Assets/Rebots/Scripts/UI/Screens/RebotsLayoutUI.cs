@@ -142,7 +142,7 @@ namespace Rebots.HelpDesk
             m_MenuMyTicketButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ShowMyTicket());
             m_SearchInputButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ClickSearch());
             m_ExitButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ClosePanel());
-            m_TicketButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ClickTicketCreate());
+            m_TicketButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ShowCsCategory());
         }
         #endregion
 
@@ -315,11 +315,6 @@ namespace Rebots.HelpDesk
                 helpdeskScreen.rebotsUICreater.CreateLanguage(item, lanuageText, helpdeskScreen.ClickLanguage, out languageUIElement);
                 m_LanguageList.Add(languageUIElement);
             }            
-        }
-
-        public void SetTicketButtonAction(Category category = null)
-        {
-            m_TicketButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ClickTicketCreate(category));
         }
 
         #region Layout Data API Callback
