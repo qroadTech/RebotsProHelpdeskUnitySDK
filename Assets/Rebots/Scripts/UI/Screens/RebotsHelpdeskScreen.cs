@@ -2,8 +2,6 @@
 using UnityEngine.UIElements;
 using UnityEngine;
 using HelpDesk.Sdk.Common.Objects;
-using HelpDesk.Sdk.Common.Objects.Enums;
-using HelpDesk.Sdk.Common.Objects.Ticket;
 using System.IO;
 using System;
 
@@ -20,6 +18,7 @@ namespace Rebots.HelpDesk
         public RebotsPageUI rebotsPageUI;
         public RebotsUICreater rebotsUICreater;
 
+        #region - - - Theme Style Sheet - - - 
         [Header("Rebots Theme Style Sheet")]
         [SerializeField] public StyleSheet theme1;
         [SerializeField] public StyleSheet theme2;
@@ -37,7 +36,9 @@ namespace Rebots.HelpDesk
         [SerializeField] public StyleSheet theme14;
         [SerializeField] public StyleSheet theme15;
         [SerializeField] public StyleSheet theme16;
+        #endregion
 
+        #region - - - Language Font Style Sheet - - - 
         [Header("Rebots Language Font Style Sheet")]
         [SerializeField] public StyleSheet fontEn;
         [SerializeField] public StyleSheet fontKr;
@@ -45,6 +46,7 @@ namespace Rebots.HelpDesk
         [SerializeField] public StyleSheet fontCn;
         [SerializeField] public StyleSheet fontTw;
         [SerializeField] public StyleSheet fontTh;
+        #endregion
 
         #region - - - Helpdesk UI Element - - - 
         public VisualElement m_HelpdeskScreen;

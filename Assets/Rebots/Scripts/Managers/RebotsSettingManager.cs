@@ -1,6 +1,4 @@
 ﻿using HelpDesk.Sdk.Common.Objects;
-using HelpDesk.Sdk.Common.Objects.Enums;
-using HelpDesk.Sdk.Common.Objects.Ticket;
 using HelpDesk.Sdk.Common.Protocols.Responses;
 using HelpDesk.Sdk.Library.Configuration;
 using HelpDesk.Sdk.Unity.Library.Events;

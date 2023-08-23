@@ -1,5 +1,4 @@
 ﻿using HelpDesk.Sdk.Common.Objects;
-using HelpDesk.Sdk.Common.Objects.Enums;
 using HelpDesk.Sdk.Common.Protocols.Responses;
 using Newtonsoft.Json;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-using HelpDesk.Sdk.Common.Objects.Enums;
+using HelpDesk.Sdk.Common.Objects;
 using UnityEditor;
 using UnityEngine;
 
@@ -12,12 +12,12 @@ namespace Rebots.HelpDesk
             RebotsSettingManager helpdeskScript = (RebotsSettingManager)target;
             if (helpdeskScript != null)
             {
-                helpdeskScript.ProjectPublicName = EditorGUILayout.TextField("Rebots Project Public Name", helpdeskScript.ProjectPublicName);
-                helpdeskScript.ProjectMainKey = EditorGUILayout.TextField("Rebots Project Main Key", helpdeskScript.ProjectMainKey);
+                helpdeskScript.ProjectPublicName = EditorGUILayout.TextField("Project Public Name", helpdeskScript.ProjectPublicName);
+                helpdeskScript.ProjectMainKey = EditorGUILayout.TextField("Project Main Key", helpdeskScript.ProjectMainKey);
 
                 helpdeskScript.translationFile = (TextAsset)EditorGUILayout.ObjectField("Rebots Translation File", helpdeskScript.translationFile, typeof(TextAsset), true);
 
-                helpdeskScript.HelpdeskLanguage = (RebotsLanguage)EditorGUILayout.EnumPopup("Rebots Helpdesk Language", helpdeskScript.HelpdeskLanguage);
+                helpdeskScript.HelpdeskLanguage = (RebotsLanguage)EditorGUILayout.EnumPopup("Helpdesk Language", helpdeskScript.HelpdeskLanguage);
 
                 if (GUILayout.Button("Check Language Available"))
                 {
