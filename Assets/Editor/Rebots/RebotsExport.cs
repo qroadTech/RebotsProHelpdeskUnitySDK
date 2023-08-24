@@ -28,9 +28,6 @@ public class RebotsExport : MonoBehaviour
         exportedPackageAssetList.Add("Assets/Rebots");
         exportedPackageAssetList.Add("Assets/Sample");
 
-        //exportedPackageAssetList.Add("Assets/Prefabs/Rebots/Rebots.prefab");
-        //exportedPackageAssetList.Add("Assets/Prefabs/Rebots/RebotsSettingManager.prefab");
-
         AssetDatabase.ExportPackage(exportedPackageAssetList.ToArray(), "RebotsSDK.unitypackage",
             ExportPackageOptions.Recurse | ExportPackageOptions.IncludeDependencies);
     }
