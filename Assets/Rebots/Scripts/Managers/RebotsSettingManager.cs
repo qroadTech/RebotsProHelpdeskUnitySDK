@@ -57,13 +57,13 @@ namespace Rebots.HelpDesk
 
         void Awake()
         {
-            projectInitialized = false;
-
             RebotsHelpdeskInitailize();
         }
 
-        public void RebotsHelpdeskInitailize(string? publicName = "", string? mainKey = "")
+        public void RebotsHelpdeskInitailize(string? publicName = "", string? mainKey = "", string? apiUri = "", string? apiStatisticsUri = "")
         {
+            projectInitialized = false;
+
             localizationManager = new RebotsLocalizationManager(translationFile);
 
             if (!string.IsNullOrEmpty(publicName))
@@ -89,6 +89,16 @@ namespace Rebots.HelpDesk
                 /// This configuration set project public name. You must fill this. 
                 /// If you don't it will casue <see cref="ArgumentNullException"/>.
                 .UseProjectPublicName(ProjectPublicName);
+
+            if (!string.IsNullOrEmpty(apiUri))
+            {
+                builder.UseApiUri(apiUri);
+            }
+
+            if (!string.IsNullOrEmpty(apiStatisticsUri))
+            {
+                builder.UseStatisticsApiUri(apiStatisticsUri);
+            }
 
             /// configuration object can be constant.
             helpdeskConfig = new Configurations(builder);
@@ -455,6 +465,13 @@ namespace Rebots.HelpDesk
             /// StartCoroutine(IndicatorOff);
             Debug.Log("RebotsProMax HelpDeskSdk REST API call was finished.");
         }
+
+        #region Initialize state
+        public bool InitializeState()
+        {
+            return projectInitialized;
+        }
+        #endregion
 
         #region CustomCertificateHandler
         public class CustomCertificateHandler : CertificateHandler
