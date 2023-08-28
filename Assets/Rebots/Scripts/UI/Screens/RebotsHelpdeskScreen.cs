@@ -529,7 +529,10 @@ namespace Rebots.HelpDesk
                     var component = item.Value as RebotsAttachmentFieldComponent;
                     var fieldValue = component.GetFieldValue();
 
-                    ticketInputFields.AddAttachment(fieldValue.content as FileStream);
+                    foreach (var value in fieldValue)
+                    {
+                        ticketInputFields.AddAttachment(value.content as FileStream);
+                    }
                 }
             }
             ticketInputFields.Data = ticketAddFieldDic;

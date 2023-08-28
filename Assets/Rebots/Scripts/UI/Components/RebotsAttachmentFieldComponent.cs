@@ -136,7 +136,11 @@ namespace Rebots.HelpDesk
                     m_FileList.Add(fileUIElement);
 
                     m_NoFileContainer.style.display = DisplayStyle.None;
-                    m_ChooseFileButton.SetEnabled(false);
+
+                    if (m_attachments.Count > 2 && m_FileList.childCount > 2)
+                    {
+                        m_ChooseFileButton.SetEnabled(false);
+                    }
                 }
             }
         }
@@ -145,12 +149,16 @@ namespace Rebots.HelpDesk
         {
             m_attachments.Remove(attachmentInfo);
             m_FileList.Remove(fileUIElement);
-            m_ChooseFileButton.SetEnabled(true);
+
+            if (m_attachments.Count < 3 && m_FileList.childCount < 3)
+            {
+                m_ChooseFileButton.SetEnabled(true);
+            }
         }
 
-        public RebotsTicketAttachment GetFieldValue()
+        public List<RebotsTicketAttachment> GetFieldValue()
         {
-            return m_attachments.FirstOrDefault();
+            return m_attachments;
         }
     }
 }
