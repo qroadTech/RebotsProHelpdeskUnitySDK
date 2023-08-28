@@ -33,7 +33,7 @@ Transform:
   - {fileID: 6512093749399021}
   - {fileID: 6512093571915444}
   m_Father: {fileID: 6512093179079526}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6512091703982552
 MonoBehaviour:
@@ -155,6 +155,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 17423691883398418}
   - {fileID: 6512091703982555}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -188,6 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RebotsHelpdeskScreen: {fileID: 6512091703982552}
+  m_RebotsBannerScreen: {fileID: 0}
 --- !u!1 &6512093571915442
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,3 +305,52 @@ MonoBehaviour:
   m_RebotsHelpdeskUIManager: {fileID: 552945275181414245}
   m_Document: {fileID: 6512093179079527}
   helpdeskScreen: {fileID: 6512091703982552}
+--- !u!1 &2242639866391864291
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 17423691883398418}
+  - component: {fileID: 1487581472455094443}
+  m_Layer: 0
+  m_Name: BannerScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &17423691883398418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2242639866391864291}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6512093179079526}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1487581472455094443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2242639866391864291}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446dca2a924462e4c980684ca8760aef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ScreenName: RebotsBannerScreen
+  m_RebotsHelpdeskUIManager: {fileID: 552945275181414245}
+  m_Document: {fileID: 6512093179079527}
+  rebotsSettingManager: {fileID: 0}
+  BannerAsset: {fileID: 9197481963319205126, guid: d8d7095c6442f2d4db67e252f4ce103c, type: 3}

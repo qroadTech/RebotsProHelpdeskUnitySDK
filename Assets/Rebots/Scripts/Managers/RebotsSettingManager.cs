@@ -368,7 +368,7 @@ namespace Rebots.HelpDesk
                 /// <see cref="HelpdeskUserInitializeResponse"/>
                 Language = localizationManager.language
             };
-            var evt = new UnityEvent<HelpdeskUserInitializeResponse>();
+            var evt = new UnityEvent<HelpdeskUserInitializeResponse>(); 
             evt.AddListener(OnUserInitializeSuccessed);
             var initializer = new UnityRebotsProMaxUserInitializer(
                 user, helpdeskConfig, helpdeskEvents, evt);

@@ -25,6 +25,15 @@ namespace Rebots.HelpDesk
                 ParameterData.UserName));
         }
 
+        public void PublicCallUserInitialize()
+        {
+            StartCoroutine(this.rebotsSettingManager.HelpdeskUserInitialize(
+                ParameterData.UserAuthKey,
+                ParameterData.UserEmail,
+                ParameterData.UserName));
+        }
+
+
         public void SetParameterData()
         {
             ParameterData = new();
