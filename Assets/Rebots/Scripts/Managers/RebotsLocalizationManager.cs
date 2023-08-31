@@ -11,7 +11,7 @@ namespace Rebots.HelpDesk
     {
         [HideInInspector]
         public string language;
-        string defaultLanguage = "en";
+        string defaultLanguage = "ko";
         int? defaultLanguageIndex;
 
         public Dictionary<string, string> translationDic = new();
@@ -31,34 +31,7 @@ namespace Rebots.HelpDesk
 
         public void SetAvailableLanguage(string langCode)
         {
-            RebotsLanguage langValue = RebotsLanguage.None;
-            switch (langCode)
-            {
-                case "ko":
-                    langValue = RebotsLanguage.Korean;
-                    break;
-                case "en":
-                    langValue = RebotsLanguage.English;
-                    break;
-                case "es":
-                    langValue = RebotsLanguage.Spanish;
-                    break;
-                case "ja":
-                    langValue = RebotsLanguage.Japanese;
-                    break;
-                case "zh-cn":
-                    langValue = RebotsLanguage.SimplifiedChinese;
-                    break;
-                case "zh-tw":
-                    langValue = RebotsLanguage.TraditionalChinese;
-                    break;
-                case "id":
-                    langValue = RebotsLanguage.Indonesian;
-                    break;
-                case "th":
-                    langValue = RebotsLanguage.Thai;
-                    break;
-            }
+            RebotsLanguage langValue = RebotsLanguageUtility.StringToEnum(langCode);
 
             if (langValue != RebotsLanguage.None)
             {
@@ -78,6 +51,23 @@ namespace Rebots.HelpDesk
             foreach (var item in settingLanguages)
             {
                 if (item.languageValue == selectLanguage)
+                {
+                    item.isCurrent = true;
+                    language = item.languageCode;
+                }
+                else
+                {
+                    item.isCurrent = false;
+                }
+            }
+            return language;
+        }
+
+        public string SetLanguage(string selectLanguage)
+        {
+            foreach (var item in settingLanguages)
+            {
+                if (item.languageCode == selectLanguage)
                 {
                     item.isCurrent = true;
                     language = item.languageCode;

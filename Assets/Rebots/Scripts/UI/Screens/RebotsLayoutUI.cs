@@ -146,7 +146,7 @@ namespace Rebots.HelpDesk
         }
         #endregion
 
-        #region Run in 'Start' call
+        #region Set before show screen
         public void SetTranslationText()
         {
             localizationManager = helpdeskScreen.rebotsSettingManager.localizationManager;
@@ -166,7 +166,6 @@ namespace Rebots.HelpDesk
             m_TermsLabel.text = localizationManager.translationDic[RebotsUIStaticString.TermsLabel];
             m_CookieLabel.text = localizationManager.translationDic[RebotsUIStaticString.CookieLabel];
         }
-        #endregion
 
         public void SetHelpdeskData(HelpdeskSetting helpdeskSetting)
         {
@@ -316,8 +315,9 @@ namespace Rebots.HelpDesk
                 m_LanguageList.Add(languageUIElement);
             }            
         }
+        #endregion
 
-        #region Layout Data API Callback
+        #region Set callback data after API
         public void OnFaqMenuUpdated(HelpdeskFaqCategoriesResponse response)
         {
             var faqCategories = response.items;
@@ -327,7 +327,7 @@ namespace Rebots.HelpDesk
                 {
                     TemplateContainer menuUIElement = null;
                     helpdeskScreen.rebotsUICreater
-                        .CreateCategory<Category>(item, RebotsCategoryAssetType.menu, helpdeskScreen.ClickFaqCategory, out menuUIElement);
+                        .CreateCategory<Category>(item, RebotsCategoryAssetType.Menu, helpdeskScreen.ClickFaqCategory, out menuUIElement);
                     m_MenuFaqCategoryList.Add(menuUIElement);
                 }
             }                     
@@ -343,7 +343,7 @@ namespace Rebots.HelpDesk
                 {
                     TemplateContainer menuUIElement = null;
                     helpdeskScreen.rebotsUICreater
-                        .CreateCategory<Category>(item, RebotsCategoryAssetType.menu, helpdeskScreen.ClickCsCategory, out menuUIElement);
+                        .CreateCategory<Category>(item, RebotsCategoryAssetType.Menu, helpdeskScreen.ClickCsCategory, out menuUIElement);
                     m_MenuCsCategoryList.Add(menuUIElement);
                 }
             }

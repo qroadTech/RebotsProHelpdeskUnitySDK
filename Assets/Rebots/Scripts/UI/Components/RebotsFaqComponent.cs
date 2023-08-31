@@ -71,13 +71,13 @@ namespace Rebots.HelpDesk
                 faqTitleStr += "...";
             }
 
-            if (faqType == RebotsFaqAssetType.popular)
+            if (faqType == RebotsFaqAssetType.Popular)
             {
                 m_FaqLikeCountLabel.text = m_Faq.likeCount.ToString();
                 m_FaqTitleLabel.text = faqTitleStr;
             }
 
-            if (faqType == RebotsFaqAssetType.search)
+            if (faqType == RebotsFaqAssetType.Search)
             {
                 var searchHtml = "<u>" + searchStr + "</u>";
                 faqTitleStr = faqTitleStr.Replace(searchStr, searchHtml);

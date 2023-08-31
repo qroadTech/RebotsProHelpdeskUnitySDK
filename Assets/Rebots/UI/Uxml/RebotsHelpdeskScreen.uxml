@@ -1,24 +1,23 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:Template name="RebotsPopularFaq" src="project://database/Assets/UI/Uxml/Rebots/RebotsPopularFaq.uxml?fileID=9197481963319205126&amp;guid=ceee0968772d7eb4a9d615d465266170&amp;type=3#RebotsPopularFaq" />
-    <ui:Template name="RebotsFaqCategory" src="project://database/Assets/UI/Uxml/Rebots/RebotsFaqCategory.uxml?fileID=9197481963319205126&amp;guid=fa44eaa3eb7f4454892eead3276863a4&amp;type=3#RebotsFaqCategory" />
-    <Style src="project://database/Assets/UI/Uss/Rebots/RebotsScrollViewScreen.uss?fileID=7433441132597879392&amp;guid=9407434687e1057419f486af0bbbab07&amp;type=3#RebotsScrollViewScreen" />
-    <Style src="project://database/Assets/UI/Uss/Rebots/RebotsCommon.uss?fileID=7433441132597879392&amp;guid=0ce8fc6f13fcf2d4b8f1f0fdcb5ed037&amp;type=3#RebotsCommon" />
-    <Style src="project://database/Assets/UI/Uss/Rebots/LanguageFont/RebotsFontEn.uss?fileID=7433441132597879392&amp;guid=5e1ad9dcd6cd72449a77863ffc31aa7d&amp;type=3#RebotsFontEn" />
-    <Style src="project://database/Assets/UI/Uss/Rebots/Theme/RebotsTheme1.uss?fileID=7433441132597879392&amp;guid=a1078b398694e964e832661d402eb4ad&amp;type=3#RebotsTheme1" />
+    <ui:Template name="RebotsFaqCategory" src="project://database/Assets/Rebots/UI/Uxml/HelpdeskAsset/RebotsFaqCategory.uxml?fileID=9197481963319205126&amp;guid=fa44eaa3eb7f4454892eead3276863a4&amp;type=3#RebotsFaqCategory" />
+    <Style src="project://database/Assets/Rebots/UI/Uss/RebotsHelpdeskScreen.uss?fileID=7433441132597879392&amp;guid=9407434687e1057419f486af0bbbab07&amp;type=3#RebotsHelpdeskScreen" />
+    <Style src="project://database/Assets/Rebots/UI/Uss/RebotsCommon.uss?fileID=7433441132597879392&amp;guid=0ce8fc6f13fcf2d4b8f1f0fdcb5ed037&amp;type=3#RebotsCommon" />
+    <Style src="project://database/Assets/Rebots/UI/Uss/Language/RebotsFontEn.uss?fileID=7433441132597879392&amp;guid=5e1ad9dcd6cd72449a77863ffc31aa7d&amp;type=3#RebotsFontEn" />
+    <Style src="project://database/Assets/Rebots/UI/Uss/Theme/RebotsTheme1.uss?fileID=7433441132597879392&amp;guid=a1078b398694e964e832661d402eb4ad&amp;type=3#RebotsTheme1" />
     <ui:VisualElement name="rebots-helpdesk-screen" style="scale: 2 2; width: 50%; height: 50%; transform-origin: left top;">
         <ui:VisualElement name="rebots-helpdesk-layout" style="height: 100%; background-color: rgb(255, 255, 255);">
             <ui:VisualElement style="height: 100%;">
-                <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="rebots-scrollview" style="height: 100%; margin-top: 62px;">
+                <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="rebots-scrollview" class="rebots-helpdesk-scrollview" style="height: 100%; margin-top: 62px;">
                     <ui:VisualElement name="rebots-title-container" class="rebots-background-color__theme" style="width: 100%; display: none;">
                         <ui:VisualElement name="rebots-image-title-background" style="width: 100%; height: 300px; max-height: 300px; min-height: 300px; background-image: none; -unity-background-scale-mode: scale-and-crop; padding-left: 23px; padding-right: 23px; justify-content: space-around; flex-shrink: 0; display: flex; padding-bottom: 62px; align-items: center;">
                             <ui:Label text="Welcome to Rebots Pro Help Desk" display-tooltip-when-elided="true" name="rebots-helpdesk-label" class="rebots-label__black28 rebots-font-color__white" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="rebots-page-container">
-                        <ui:VisualElement name="rebots-route-container" style="margin-top: 15px; margin-bottom: 5px; min-height: 35px; align-items: center; flex-direction: row; margin-left: 16px; margin-right: 16px; display: none; flex-wrap: wrap;">
-                            <ui:VisualElement style="width: 70px; max-width: 70px; min-width: 70px; flex-direction: row; align-items: center; flex-shrink: 0; height: 100%; min-height: 100%;">
-                                <ui:Button display-tooltip-when-elided="true" name="rebots-back-button" style="width: 50px; min-width: 40px; height: 30px; min-height: 30px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(255, 255, 255);">
-                                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/BackButton.png?fileID=21300000&amp;guid=409bbc29e8e1c184d817d410b0cbd9fd&amp;type=3#BackButton&apos;); -unity-background-scale-mode: scale-to-fit; width: 19px; height: 100%; min-height: 100%; min-width: 19px;" />
+                        <ui:VisualElement name="rebots-route-container" style="margin-top: 15px; margin-bottom: 5px; min-height: 35px; align-items: center; flex-direction: row; margin-left: 16px; margin-right: 16px; display: flex; flex-wrap: wrap;">
+                            <ui:VisualElement style="width: 70px; max-width: 70px; min-width: 70px; flex-direction: row; align-items: flex-start; flex-shrink: 0; height: 100%; min-height: 100%;">
+                                <ui:Button display-tooltip-when-elided="true" name="rebots-back-button" style="width: 50px; min-width: 40px; height: 35px; min-height: 35px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(255, 255, 255);">
+                                    <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BackButton.png?fileID=21300000&amp;guid=409bbc29e8e1c184d817d410b0cbd9fd&amp;type=3#BackButton&apos;); -unity-background-scale-mode: scale-to-fit; width: 19px; height: 100%; min-height: 100%; min-width: 19px;" />
                                 </ui:Button>
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-route-label-container" style="flex-direction: row; align-items: center; flex-wrap: wrap; flex-grow: 1; margin-top: 5px; margin-bottom: 5px;" />
@@ -37,9 +36,7 @@
                             </ui:VisualElement>
                             <ui:VisualElement style="height: auto; max-height: none; min-height: auto;">
                                 <ui:ScrollView mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="flex-grow: 1;">
-                                    <ui:VisualElement name="rebots-faq-list-container" style="flex-direction: row; height: 100%; margin-left: 6px; margin-right: 6px;">
-                                        <ui:Instance template="RebotsPopularFaq" name="RebotsPopularFaq" />
-                                    </ui:VisualElement>
+                                    <ui:VisualElement name="rebots-faq-list-container" style="flex-direction: row; height: 100%; margin-left: 6px; margin-right: 6px;" />
                                 </ui:ScrollView>
                             </ui:VisualElement>
                         </ui:VisualElement>
@@ -93,9 +90,9 @@
                                 <ui:VisualElement style="width: 100%; height: 1px; background-color: rgb(188, 188, 188);" />
                             </ui:VisualElement>
                         </ui:VisualElement>
-                        <ui:VisualElement name="rebots-sibling-category-container" style="width: 100%; height: 60px; max-height: none; min-height: 60px; margin-left: 16px; margin-right: 16px; display: none;">
+                        <ui:VisualElement name="rebots-sibling-category-container" style="width: 100%; height: auto; max-height: none; min-height: auto; margin-left: 0; margin-right: 0; display: none; margin-top: 0; margin-bottom: 0; padding-left: 16px; padding-right: 16px;">
                             <ui:ScrollView mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="width: 100%; height: 100%;">
-                                <ui:VisualElement name="rebots-sibling-category-list-container" style="width: 100%; min-width: 100%; flex-direction: row; border-bottom-width: 1px; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188); background-color: rgb(255, 255, 255);" />
+                                <ui:VisualElement name="rebots-sibling-category-list-container" style="flex-direction: row; width: 100%; min-width: 100%;" />
                             </ui:ScrollView>
                         </ui:VisualElement>
                         <ui:VisualElement name="rebots-title-category-container" style="justify-content: space-around; min-height: 33px; margin-top: 40px; margin-bottom: 10px; margin-left: 16px; margin-right: 16px; display: none;">
@@ -104,19 +101,19 @@
                         <ui:VisualElement name="rebots-sub-category-container" style="margin-left: 16px; margin-right: 16px; display: none;">
                             <ui:VisualElement name="rebots-sub-category-list-container" style="flex-shrink: 0; margin-top: 20px; margin-bottom: 20px;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="rebots-faq-container" style="margin-top: 10px; margin-bottom: 20px; margin-left: 16px; display: none;">
+                        <ui:VisualElement name="rebots-faq-container" style="margin-top: 10px; margin-bottom: 20px; margin-left: 16px; display: flex; margin-right: 16px;">
                             <ui:VisualElement name="rebots-faq-detail-container" style="margin-bottom: 35px;" />
                             <ui:VisualElement style="align-items: center; justify-content: space-between; margin-top: 30px; margin-bottom: 30px;">
                                 <ui:VisualElement style="margin-bottom: 30px; padding-top: 10px; padding-bottom: 10px;">
                                     <ui:Label text="Was this helpful?" display-tooltip-when-elided="true" name="rebots-was-it-helpful" class="rebots-label__bold18 rebots-font-color__black" />
                                 </ui:VisualElement>
                                 <ui:VisualElement style="flex-direction: row;">
-                                    <ui:Button display-tooltip-when-elided="true" name="rebots-helpful-yes-button" style="flex-direction: row; align-items: center; justify-content: center; width: 121px; min-width: 121px; height: 54px; min-height: 54px; margin-left: 2px; margin-right: 2px; margin-top: 0; margin-bottom: 0; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/BoxRoundLarge.png?fileID=21300000&amp;guid=11a43c6206d43fd439b1a1520a024219&amp;type=3#BoxRoundLarge&apos;); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
-                                        <ui:VisualElement style="width: 28px; height: 20px; min-width: 28px; min-height: 20px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/FaqLikeButton.png?fileID=21300000&amp;guid=6d6398237444cdf47b5886a4684cd17f&amp;type=3#FaqLikeButton&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                                    <ui:Button display-tooltip-when-elided="true" name="rebots-helpful-yes-button" style="flex-direction: row; align-items: center; justify-content: center; width: 121px; min-width: 121px; height: 54px; min-height: 54px; margin-left: 2px; margin-right: 2px; margin-top: 0; margin-bottom: 0; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BoxRoundLarge.png?fileID=21300000&amp;guid=11a43c6206d43fd439b1a1520a024219&amp;type=3#BoxRoundLarge&apos;); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
+                                        <ui:VisualElement style="width: 28px; height: 20px; min-width: 28px; min-height: 20px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/FaqLikeButton.png?fileID=21300000&amp;guid=6d6398237444cdf47b5886a4684cd17f&amp;type=3#FaqLikeButton&apos;); -unity-background-scale-mode: scale-to-fit;" />
                                         <ui:Label text="Yes" display-tooltip-when-elided="true" name="rebots-yes" class="rebots-label__bold18 rebots-font-color__black" style="margin-left: 10px;" />
                                     </ui:Button>
-                                    <ui:Button display-tooltip-when-elided="true" name="rebots-helpful-no-button" style="flex-direction: row; align-items: center; justify-content: center; width: 121px; min-width: 121px; height: 54px; min-height: 54px; margin-left: 2px; margin-right: 2px; margin-top: 0; margin-bottom: 0; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/BoxRoundLarge.png?fileID=21300000&amp;guid=11a43c6206d43fd439b1a1520a024219&amp;type=3#BoxRoundLarge&apos;); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
-                                        <ui:VisualElement style="width: 16px; height: 18px; min-width: 16px; min-height: 18px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/FaqHateButton.png?fileID=21300000&amp;guid=9054f690dab42e2468be6f6d702531c0&amp;type=3#FaqHateButton&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                                    <ui:Button display-tooltip-when-elided="true" name="rebots-helpful-no-button" style="flex-direction: row; align-items: center; justify-content: center; width: 121px; min-width: 121px; height: 54px; min-height: 54px; margin-left: 2px; margin-right: 2px; margin-top: 0; margin-bottom: 0; padding-left: 3px; padding-right: 3px; padding-top: 3px; padding-bottom: 3px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BoxRoundLarge.png?fileID=21300000&amp;guid=11a43c6206d43fd439b1a1520a024219&amp;type=3#BoxRoundLarge&apos;); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
+                                        <ui:VisualElement style="width: 16px; height: 18px; min-width: 16px; min-height: 18px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/FaqHateButton.png?fileID=21300000&amp;guid=9054f690dab42e2468be6f6d702531c0&amp;type=3#FaqHateButton&apos;); -unity-background-scale-mode: scale-to-fit;" />
                                         <ui:Label text="No" display-tooltip-when-elided="true" name="rebots-no" class="rebots-label__bold18 rebots-font-color__black" style="margin-left: 10px;" />
                                     </ui:Button>
                                 </ui:VisualElement>
@@ -131,9 +128,9 @@
                             </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="rebots-ticket-success-container" style="flex-shrink: 0; flex-grow: 1; justify-content: space-around; margin-left: 15px; margin-right: 15px; display: none;">
-                            <ui:VisualElement style="align-items: center; width: 100%; margin-top: 150px; margin-bottom: 110px; padding-left: 20px; padding-right: 20px; padding-top: 50px; padding-bottom: 50px; min-width: auto; min-height: auto; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/BoxRoundSmall.png?fileID=21300000&amp;guid=4128ef4419de0be41ab4a13b8d319144&amp;type=3#BoxRoundSmall&apos;);">
+                            <ui:VisualElement style="align-items: center; width: 100%; margin-top: 150px; margin-bottom: 110px; padding-left: 20px; padding-right: 20px; padding-top: 50px; padding-bottom: 50px; min-width: auto; min-height: auto; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BoxRoundSmall.png?fileID=21300000&amp;guid=4128ef4419de0be41ab4a13b8d319144&amp;type=3#BoxRoundSmall&apos;);">
                                 <ui:VisualElement name="rebots-ticket-button-icon" class="rebots-background-color__theme" style="align-items: center; justify-content: space-around; width: 52px; height: 52px; border-top-left-radius: 26px; border-bottom-left-radius: 26px; border-top-right-radius: 26px; border-bottom-right-radius: 26px;">
-                                    <ui:VisualElement style="width: 32px; height: 32px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/TicketButton.png?fileID=21300000&amp;guid=35b68ee606916fa43bd15283b18bb5a4&amp;type=3#TicketButton&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                                    <ui:VisualElement style="width: 32px; height: 32px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/TicketButton.png?fileID=21300000&amp;guid=35b68ee606916fa43bd15283b18bb5a4&amp;type=3#TicketButton&apos;); -unity-background-scale-mode: scale-to-fit;" />
                                 </ui:VisualElement>
                                 <ui:VisualElement style="align-items: center; justify-content: center; margin-top: 25px; margin-bottom: 25px;">
                                     <ui:Label text="Your inquiry has been received." display-tooltip-when-elided="true" name="rebots-been-received" class="rebots-label__black16 rebots-font-color__black" style="min-height: 22px;" />
@@ -167,9 +164,9 @@
                     <ui:VisualElement name="rebots-ticket-button-container" style="margin-left: 23px; margin-right: 23px; margin-top: 45px; margin-bottom: 30px; align-items: center; display: none;">
                         <ui:Label text="Need more help?" display-tooltip-when-elided="true" name="rebots-need-more" class="rebots-label__black24 rebots-font-color__black" />
                         <ui:VisualElement style="width: 100%; min-height: 180px; margin-top: 22px;">
-                            <ui:Button display-tooltip-when-elided="true" name="rebots-ticket-button" style="align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 23px; padding-right: 23px; padding-top: 13px; padding-bottom: 13px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/BoxRoundLarge.png?fileID=21300000&amp;guid=11a43c6206d43fd439b1a1520a024219&amp;type=3#BoxRoundLarge&apos;); background-color: rgb(255, 255, 255); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;">
+                            <ui:Button display-tooltip-when-elided="true" name="rebots-ticket-button" style="align-items: center; justify-content: space-between; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 23px; padding-right: 23px; padding-top: 13px; padding-bottom: 13px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BoxRoundLarge.png?fileID=21300000&amp;guid=11a43c6206d43fd439b1a1520a024219&amp;type=3#BoxRoundLarge&apos;); background-color: rgb(255, 255, 255); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;">
                                 <ui:VisualElement name="rebots-ticket-button-icon" class="rebots-background-color__theme" style="align-items: center; justify-content: space-around; width: 52px; height: 52px; border-top-left-radius: 26px; border-bottom-left-radius: 26px; border-top-right-radius: 26px; border-bottom-right-radius: 26px;">
-                                    <ui:VisualElement style="width: 32px; height: 32px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/TicketButton.png?fileID=21300000&amp;guid=35b68ee606916fa43bd15283b18bb5a4&amp;type=3#TicketButton&apos;);" />
+                                    <ui:VisualElement style="width: 32px; height: 32px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/TicketButton.png?fileID=21300000&amp;guid=35b68ee606916fa43bd15283b18bb5a4&amp;type=3#TicketButton&apos;);" />
                                 </ui:VisualElement>
                                 <ui:Label text="Submit A Ticket" display-tooltip-when-elided="true" name="rebots-submit-ticket" class="rebots-label__bold18 rebots-font-color__black" style="margin-top: 10px;" />
                                 <ui:Label text="Send us a message with your issue, and we&apos;ll get back to you as soon as we can." display-tooltip-when-elided="true" name="rebots-send-us" class="rebots-label__regular16 rebots-font-color__black" style="margin-top: 10px; -unity-text-align: middle-center;" />
@@ -195,7 +192,7 @@
                                 </ui:VisualElement>
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-copyright-container" style="margin-bottom: 10px; padding-left: 30px; padding-right: 30px; padding-top: 10px; align-items: center; border-top-width: 1px; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188);">
-                                <ui:Label text="Copyright(C) 2023 Rebots Pro ALL RIGHTS RESERVED" display-tooltip-when-elided="true" name="rebots-copyright-label" class="rebots-label__regular14 rebots-font-color__black" />
+                                <ui:Label text="Copyright(C) 2023 Rebots Pro ALL RIGHTS RESERVED" display-tooltip-when-elided="true" name="rebots-copyright-label" class="rebots-label__regular14 rebots-font-color__black" style="-unity-text-align: middle-center;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
@@ -204,27 +201,27 @@
             </ui:VisualElement>
             <ui:VisualElement name="rebots-top-container" class="rebots-background-color__theme" style="position: absolute; width: 100%; height: 62px; min-height: 62px; max-height: 62px; flex-direction: row; display: flex;">
                 <ui:VisualElement style="width: 74px; max-width: 74px; min-width: 74px; height: 100%; padding-left: 16px; padding-right: 16px; padding-top: 16px; padding-bottom: 16px;">
-                    <ui:Button display-tooltip-when-elided="true" name="rebots-menu-open-button" style="width: 42px; height: 30px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/SideMenuOpen.png?fileID=21300000&amp;guid=dbc64d4996bc63940ae14530844c7bbd&amp;type=3#SideMenuOpen&apos;); background-color: rgba(255, 255, 255, 0); -unity-background-scale-mode: scale-to-fit;" />
+                    <ui:Button display-tooltip-when-elided="true" name="rebots-menu-open-button" style="width: 42px; height: 30px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/SideMenuOpen.png?fileID=21300000&amp;guid=dbc64d4996bc63940ae14530844c7bbd&amp;type=3#SideMenuOpen&apos;); background-color: rgba(255, 255, 255, 0); -unity-background-scale-mode: scale-to-fit;" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1; align-items: flex-start; justify-content: space-around; margin-left: 16px; margin-right: 16px; margin-top: 16px; margin-bottom: 16px;">
                     <ui:Label text="Helpdesk" display-tooltip-when-elided="true" name="rebots-helpdesk-label" class="rebots-label__regular20 rebots-font-color__white" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-direction: row; justify-content: space-between; width: 100px; height: 100%; max-width: 100px; min-width: 100px; padding-left: 15px; padding-right: 15px; padding-top: 15px; padding-bottom: 15px;">
                     <ui:Button display-tooltip-when-elided="true" name="rebots-search-button" style="width: 30px; height: 30px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgba(255, 255, 255, 0); border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; align-items: center; justify-content: space-around;">
-                        <ui:VisualElement style="width: 16px; height: 16px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/SearchButton.png?fileID=21300000&amp;guid=c2dcffd927ac4b745823b5c400bdfd2c&amp;type=3#SearchButton&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255);" />
+                        <ui:VisualElement style="width: 16px; height: 16px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/SearchButton.png?fileID=21300000&amp;guid=c2dcffd927ac4b745823b5c400bdfd2c&amp;type=3#SearchButton&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255);" />
                     </ui:Button>
                     <ui:Button display-tooltip-when-elided="true" name="rebots-language-button" style="width: 30px; height: 30px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgba(255, 255, 255, 0); border-top-left-radius: 15px; border-bottom-left-radius: 15px; border-top-right-radius: 15px; border-bottom-right-radius: 15px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; align-items: center; justify-content: space-around;">
-                        <ui:VisualElement style="width: 18px; height: 18px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/LanguageButton.png?fileID=21300000&amp;guid=f683051cf24030f419cd447044929f4f&amp;type=3#LanguageButton&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255);" />
+                        <ui:VisualElement style="width: 18px; height: 18px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/LanguageButton.png?fileID=21300000&amp;guid=f683051cf24030f419cd447044929f4f&amp;type=3#LanguageButton&apos;); -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255);" />
                     </ui:Button>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="rebots-search-container" class="rebots-background-color__theme" style="position: absolute; top: 62px; width: 100%; padding-left: 32px; padding-right: 32px; padding-top: 30px; padding-bottom: 30px; display: flex;">
+            <ui:VisualElement name="rebots-search-container" class="rebots-background-color__theme" style="position: absolute; top: 62px; width: 100%; padding-left: 32px; padding-right: 32px; padding-top: 30px; padding-bottom: 30px; display: none;">
                 <ui:Label text="Want Quick Responses? Look Up a Query in Our FAQs." display-tooltip-when-elided="true" name="rebots-search-caption" class="rebots-label__bold20 rebots-font-color__white" style="margin-bottom: 16px;" />
                 <ui:VisualElement style="height: 40px; min-height: 40px; max-height: 40px; width: 100%; min-width: 100%; max-width: none; background-color: rgb(255, 255, 255); border-top-left-radius: 20px; border-bottom-left-radius: 20px; border-top-right-radius: 20px; border-bottom-right-radius: 20px; flex-direction: row; align-items: center; padding-left: 22px; padding-right: 22px;">
                     <ui:TextField picking-mode="Ignore" value="filler text" text="filler text" name="rebots-search-field" class="rebots-search-field" style="flex-grow: 1; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
                     <ui:VisualElement style="width: 30px; height: 100%; min-width: 30px; min-height: 100%; position: absolute; left: auto; right: 22px;">
                         <ui:Button display-tooltip-when-elided="true" name="rebots-search-button" style="width: 100%; height: 100%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px; background-color: rgba(255, 255, 255, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0); min-width: auto; min-height: auto;">
-                            <ui:VisualElement style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/SearchButton.png?fileID=21300000&amp;guid=c2dcffd927ac4b745823b5c400bdfd2c&amp;type=3#SearchButton&apos;); -unity-background-image-tint-color: rgb(188, 188, 188); -unity-background-scale-mode: scale-to-fit;" />
+                            <ui:VisualElement style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/SearchButton.png?fileID=21300000&amp;guid=c2dcffd927ac4b745823b5c400bdfd2c&amp;type=3#SearchButton&apos;); -unity-background-image-tint-color: rgb(188, 188, 188); -unity-background-scale-mode: scale-to-fit;" />
                         </ui:Button>
                     </ui:VisualElement>
                 </ui:VisualElement>
@@ -237,7 +234,7 @@
                                 <ui:Label text="한국어" display-tooltip-when-elided="true" name="rebots-language-label" class="rebots-font-color__white rebots-font-kr__regular rebots-language-label__bold20" />
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-language-check-container" style="margin-left: 10px; display: none;">
-                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
                             </ui:VisualElement>
                         </ui:Button>
                     </ui:VisualElement>
@@ -247,7 +244,7 @@
                                 <ui:Label text="English" display-tooltip-when-elided="true" name="rebots-language-label" class="rebots-font-color__white rebots-font-en__regular rebots-language-label__bold20" />
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-language-check-container" style="margin-left: 10px; display: none;">
-                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
                             </ui:VisualElement>
                         </ui:Button>
                     </ui:VisualElement>
@@ -257,7 +254,7 @@
                                 <ui:Label text="Español" display-tooltip-when-elided="true" name="rebots-language-label" class="rebots-font-color__white rebots-font-en__regular rebots-language-label__bold20" />
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-language-check-container" style="margin-left: 10px; display: none;">
-                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
                             </ui:VisualElement>
                         </ui:Button>
                     </ui:VisualElement>
@@ -267,7 +264,7 @@
                                 <ui:Label text="日本語" display-tooltip-when-elided="true" name="rebots-language-label" class="rebots-font-color__white rebots-language-label__bold20 rebots-font-ja__regular" />
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-language-check-container" style="margin-left: 10px; display: none;">
-                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
                             </ui:VisualElement>
                         </ui:Button>
                     </ui:VisualElement>
@@ -277,7 +274,7 @@
                                 <ui:Label text="中文 (简体中文)" display-tooltip-when-elided="true" name="rebots-language-label" class="rebots-font-color__white rebots-language-label__bold20 rebots-font-cn__regular" />
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-language-check-container" style="margin-left: 10px; display: none;">
-                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
                             </ui:VisualElement>
                         </ui:Button>
                     </ui:VisualElement>
@@ -287,7 +284,7 @@
                                 <ui:Label text="中文 (繁体中文)" display-tooltip-when-elided="true" name="rebots-language-label" class="rebots-font-color__white rebots-language-label__bold20 rebots-font-tw__regular" />
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-language-check-container" style="margin-left: 10px; display: none;">
-                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
                             </ui:VisualElement>
                         </ui:Button>
                     </ui:VisualElement>
@@ -297,7 +294,7 @@
                                 <ui:Label text="Bahasa Indonesia" display-tooltip-when-elided="true" name="rebots-language-label" class="rebots-font-color__white rebots-font-en__regular rebots-language-label__bold20" />
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-language-check-container" style="margin-left: 10px; display: none;">
-                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
                             </ui:VisualElement>
                         </ui:Button>
                     </ui:VisualElement>
@@ -307,7 +304,7 @@
                                 <ui:Label text="ภาษาไทย" display-tooltip-when-elided="true" name="rebots-language-label" class="rebots-font-color__white rebots-language-label__bold20 rebots-font-th__regular" />
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-language-check-container" style="margin-left: 10px; display: none;">
-                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
                             </ui:VisualElement>
                         </ui:Button>
                     </ui:VisualElement>
@@ -316,7 +313,7 @@
             <ui:VisualElement name="rebots-menu-container" class="rebots-background-color__theme" style="position: absolute; flex-shrink: 0; flex-grow: 1; height: 100%; min-width: 295px; max-width: 391px; min-height: 100%; padding-left: 20px; padding-right: 20px; padding-top: 0; padding-bottom: 0; display: none;">
                 <ui:VisualElement style="height: 62px; min-height: 62px; flex-direction: row; align-items: center;">
                     <ui:Button display-tooltip-when-elided="true" name="rebots-menu-close-button" style="width: 22px; height: 22px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgba(255, 255, 255, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; align-items: center; justify-content: space-around;">
-                        <ui:VisualElement style="width: 12px; height: 12px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/SideMenuClose.png?fileID=21300000&amp;guid=f2bb81093d91ab7468b6b071960688c1&amp;type=3#SideMenuClose&apos;); -unity-background-scale-mode: scale-to-fit;" />
+                        <ui:VisualElement style="width: 12px; height: 12px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/SideMenuClose.png?fileID=21300000&amp;guid=f2bb81093d91ab7468b6b071960688c1&amp;type=3#SideMenuClose&apos;); -unity-background-scale-mode: scale-to-fit;" />
                     </ui:Button>
                 </ui:VisualElement>
                 <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="margin-bottom: 30px;">
@@ -343,7 +340,7 @@
                     </ui:VisualElement>
                     <ui:VisualElement style="width: 100%; height: 45px; min-height: 45px; margin-bottom: 30px;">
                         <ui:Button display-tooltip-when-elided="true" name="rebots-exit-button" style="flex-direction: row; align-items: center; height: 100%; min-height: 100%; min-width: auto; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
-                            <ui:VisualElement style="width: 19px; min-width: 19px; height: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/ExitButton.png?fileID=21300000&amp;guid=abc4a508e4518754d88cc42e1a5de53d&amp;type=3#ExitButton&apos;); -unity-background-scale-mode: scale-to-fit; margin-right: 5px;" />
+                            <ui:VisualElement style="width: 19px; min-width: 19px; height: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/ExitButton.png?fileID=21300000&amp;guid=abc4a508e4518754d88cc42e1a5de53d&amp;type=3#ExitButton&apos;); -unity-background-scale-mode: scale-to-fit; margin-right: 5px;" />
                             <ui:Label text="Exit" display-tooltip-when-elided="true" name="rebots-exit" class="rebots-label__bold16 rebots-font-color__white" />
                         </ui:Button>
                     </ui:VisualElement>

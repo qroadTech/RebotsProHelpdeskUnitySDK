@@ -4,6 +4,7 @@ using UnityEngine;
 using HelpDesk.Sdk.Common.Objects;
 using System.IO;
 using System;
+using System.Collections;
 
 namespace Rebots.HelpDesk
 {
@@ -19,7 +20,7 @@ namespace Rebots.HelpDesk
         public RebotsUICreater rebotsUICreater;
 
         #region - - - Theme Style Sheet - - - 
-        [Header("Rebots Theme Style Sheet")]
+        [Header("Rebots Theme StyleSheet")]
         [SerializeField] public StyleSheet theme1;
         [SerializeField] public StyleSheet theme2;
         [SerializeField] public StyleSheet theme3;
@@ -39,7 +40,7 @@ namespace Rebots.HelpDesk
         #endregion
 
         #region - - - Language Font Style Sheet - - - 
-        [Header("Rebots Language Font Style Sheet")]
+        [Header("Rebots Language Font StyleSheet")]
         [SerializeField] public StyleSheet fontEn;
         [SerializeField] public StyleSheet fontKr;
         [SerializeField] public StyleSheet fontJa;
@@ -53,22 +54,13 @@ namespace Rebots.HelpDesk
         #endregion
 
         public Category m_Category { get; private set; }
-
-        public Faq m_faq { get; private set; }
+        public Faq m_Faq { get; private set; }
         public string m_SearchString { get; private set; }
+        public Dictionary<TicketCategoryInputField, object> m_FieldDic { get; private set; }
 
-        public Dictionary<TicketCategoryInputField, object> m_fieldDic = new Dictionary<TicketCategoryInputField, object>();
+        private List<RebotsPageRecord> pageRecords = new();
 
-        private List<RebotsPageRecord> pageRecords = new List<RebotsPageRecord>();
-
-        void OnEnable()
-        {
-        }
-
-        void OnDisable()
-        {
-        }
-
+        #region Run in 'Awake' call
         protected override void SetVisualElements()
         {
             base.SetVisualElements();
@@ -80,7 +72,9 @@ namespace Rebots.HelpDesk
         {
 
         }
+        #endregion
 
+        #region Show screen
         public override void ShowScreen()
         {
             rebotsPageUI.SetParameterData(rebotsParameterDataManager.ParameterData);
@@ -92,12 +86,6 @@ namespace Rebots.HelpDesk
             m_Screen.BringToFront();
         }
 
-        public void ClosePanel()
-        {
-            HideScreen();
-        }
-
-        #region Page Show
         public void SetLayout()
         {
             rebotsLayoutUI.SetTranslationText();
@@ -105,6 +93,7 @@ namespace Rebots.HelpDesk
             rebotsLayoutUI.SetHelpdeskData(rebotsSettingManager.helpdeskSetting);
 
             rebotsPageUI.SetTranslationText();
+            rebotsPageUI.SetHelpdeskData(rebotsSettingManager.helpdeskSetting);
             rebotsPageUI.SetPrivacyData(rebotsSettingManager.ticketPrivacySetting);
 
             ClearLayoutData();
@@ -112,8 +101,17 @@ namespace Rebots.HelpDesk
             rebotsSettingManager.LoadFaqCategoryList(rebotsLayoutUI.OnFaqMenuUpdated, true);
             rebotsSettingManager.LoadCsCategoryList(rebotsLayoutUI.OnCsMenuUpdated, true);
         }
+        #endregion
 
-        public void ShowMain(bool isOpen)
+        #region Close screen
+        public void ClosePanel()
+        {
+            HideScreen();
+        }
+        #endregion
+
+        #region Show page
+        public void ShowMain(bool isOpen, bool isLanguageChange = false)
         {
             HidePage(RebotsPageType.Main);
             this.pageRecords = isOpen ? new List<RebotsPageRecord>() : this.pageRecords;
@@ -124,7 +122,7 @@ namespace Rebots.HelpDesk
 
             AddPageState(RebotsPageType.Main, RebotsPageName.Main);
             ShowPage(RebotsPageType.Main, RebotsPageName.Main);
-        }
+        }                                                  
         
         public void ShowCsCategory()
         {
@@ -141,8 +139,8 @@ namespace Rebots.HelpDesk
             HidePage(RebotsPageType.Category);
             ClearData(RebotsPageType.Category, RebotsPageName.FaqDetail);
 
-            this.m_faq = faq;
-            rebotsSettingManager.LoadFaq(rebotsPageUI.OnFaqUpdated, m_faq.id);
+            this.m_Faq = faq;
+            rebotsSettingManager.LoadFaq(rebotsPageUI.OnFaqUpdated, m_Faq.id);
 
             AddPageState(RebotsPageType.Category, RebotsPageName.FaqDetail, faq);
             ShowPage(RebotsPageType.Category, RebotsPageName.FaqDetail);
@@ -189,7 +187,7 @@ namespace Rebots.HelpDesk
             HidePage(RebotsPageType.Ticket);
             ClearData(RebotsPageType.Ticket, RebotsPageName.TicketCreate);
 
-            this.m_fieldDic = new Dictionary<TicketCategoryInputField, object>();
+            this.m_FieldDic = new Dictionary<TicketCategoryInputField, object>();
             this.m_Category = category;
             rebotsSettingManager.LoadCsCategoryFieldList(rebotsPageUI.OnCsCategoryFieldsUpdated, m_Category.id);
 
@@ -445,11 +443,9 @@ namespace Rebots.HelpDesk
         #region Click Action
         public void ClickLanguage(RebotsLanguageInfo language)
         {
-            rebotsSettingManager.localizationManager.SetLanguage(language.languageValue);
-            rebotsSettingManager.localizationManager.ReadData(language.languageCode);
-            
-            SetLayout();
-            ShowMain(true);
+            rebotsSettingManager.HelpdeskInitialize(language.languageCode);
+
+            StartCoroutine(LanguageInitialize());
         }
 
         public void ClickCsCategory(Category category)
@@ -489,10 +485,10 @@ namespace Rebots.HelpDesk
             var ticketInputFields = new DictionaryTicketInputFormData();
             var ticketAddFieldDic = new Dictionary<string, string>();
             ticketInputFields.SelectedCategory = m_Category;
-            foreach (var item in m_fieldDic)
+            foreach (var item in m_FieldDic)
             {
                 var field = item.Key;
-                if (field.fieldType == RebotsInputFieldType.text || field.fieldType == RebotsInputFieldType.textarea)
+                if (field.fieldType == RebotsInputFieldType.Text || field.fieldType == RebotsInputFieldType.Textarea)
                 {
                     var component = item.Value as RebotsTextFieldComponent;
                     var fieldValue = component.GetFieldValue();
@@ -510,21 +506,21 @@ namespace Rebots.HelpDesk
                         ticketAddFieldDic.Add(field.text, fieldValue);
                     }
                 }
-                else if (field.fieldType == RebotsInputFieldType.dropdown)
+                else if (field.fieldType == RebotsInputFieldType.Dropdown)
                 {
                     var component = item.Value as RebotsDropdownFieldComponent;
                     var fieldValue = component.GetFieldValue();
 
                     ticketAddFieldDic.Add(field.text, fieldValue);
                 }
-                else if (field.fieldType == RebotsInputFieldType.checkbox || field.fieldType == RebotsInputFieldType.radiobutton)
+                else if (field.fieldType == RebotsInputFieldType.Checkbox || field.fieldType == RebotsInputFieldType.Radiobutton)
                 {
                     var component = item.Value as RebotsButtonGroupFieldComponent;
                     var fieldValue = component.GetFieldValue();
 
                     ticketAddFieldDic.Add(field.text, fieldValue);
                 }
-                else if (field.fieldType == RebotsInputFieldType.file)
+                else if (field.fieldType == RebotsInputFieldType.File)
                 {
                     var component = item.Value as RebotsAttachmentFieldComponent;
                     var fieldValue = component.GetFieldValue();
@@ -548,7 +544,7 @@ namespace Rebots.HelpDesk
         #endregion
 
         #region Page Recording Controller 
-        public void AddPageState(RebotsPageType type, RebotsPageName name, object parameter = null)
+        private void AddPageState(RebotsPageType type, RebotsPageName name, object parameter = null)
         {
             pageRecords.Add(new RebotsPageRecord()
             {
@@ -558,7 +554,7 @@ namespace Rebots.HelpDesk
             });
         }
 
-        public void ChangePage(bool isGoBack, bool isLanguageChange)
+        public void ChangePage(bool isGoBack)
         {
             if (isGoBack)
             {
@@ -579,11 +575,6 @@ namespace Rebots.HelpDesk
                 pageRecords.Remove(BackPage);
             }
             pageRecords.Remove(CurrentPage);
-
-            if (isLanguageChange)
-            {
-                SetLayout();
-            }
 
             switch (ReloadPage.PageName)
             {
@@ -622,6 +613,39 @@ namespace Rebots.HelpDesk
                 default:
                     ShowMain(false);
                     break;
+            }
+        }
+        #endregion
+
+        #region (public) Add m_FieldDic
+        public void AddFieldDic(TicketCategoryInputField field, object fieldUIComponent)
+        {
+            m_FieldDic.Add(field, fieldUIComponent);
+        }
+        #endregion
+
+        #region (private) Language Initialize
+        private IEnumerator LanguageInitialize()
+        {
+            int sec = 1;
+
+            while (!rebotsSettingManager.InitializeState())
+            {
+                yield return new WaitForSeconds(1f);
+                if (++sec > 4)
+                {
+                    break;
+                }
+            }
+
+            if (rebotsSettingManager.InitializeState())
+            {
+                SetLayout();
+                ShowMain(true);
+            }
+            else
+            {
+                ClosePanel();
             }
         }
         #endregion

@@ -74,8 +74,10 @@ namespace Rebots.HelpDesk
         #endregion
 
         private RebotsLocalizationManager localizationManager;
-        private PrivacySetting m_ticketPrivacySetting;
-        private Dictionary<string, string> m_parameterDic = new Dictionary<string, string>();
+
+        public PrivacySetting m_TicketPrivacySetting { get; private set; }
+        public string m_Theme { get; private set; }
+        public Dictionary<string, string> m_ParameterDic { get; private set; }
 
         #region Run in 'Awake' call
         protected override void SetVisualElements()
@@ -143,13 +145,13 @@ namespace Rebots.HelpDesk
 
         protected override void RegisterButtonCallbacks()
         {
-            m_BackButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ChangePage(true, false));
+            m_BackButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ChangePage(true));
             m_TicketSubmitButton?.RegisterCallback<ClickEvent>(helpdeskScreen.ClickTicketSubmit);
             m_TicketSuccessMainButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ShowMain(false));
         }
         #endregion
 
-        #region Run in 'Start' call
+        #region Set before show page
         public void SetTranslationText()
         {
             localizationManager = helpdeskScreen.rebotsSettingManager.localizationManager;
@@ -167,19 +169,25 @@ namespace Rebots.HelpDesk
             m_TicketThankYouLabel.text = localizationManager.translationDic[RebotsUIStaticString.TicketThankYouLabel];
             m_TicketReturnMainLabel.text = localizationManager.translationDic[RebotsUIStaticString.TicketReturnMainLabel];
         }
-        #endregion
+
+        public void SetHelpdeskData(HelpdeskSetting helpdeskSetting)
+        {
+            m_Theme = helpdeskSetting.theme;
+        }
 
         public void SetPrivacyData(PrivacySetting ticketPrivacySetting)
         {
-            m_ticketPrivacySetting = ticketPrivacySetting;
+            m_TicketPrivacySetting = ticketPrivacySetting;
         }
 
         public void SetParameterData(RebotsParameterData parameterData)
         {
-            m_parameterDic = parameterData.parameters;
+            m_ParameterDic = new Dictionary<string, string>();
+            m_ParameterDic = parameterData.parameters;
         }
+        #endregion
 
-        #region Page Data API Callback
+        #region Set callback data after API
         public void OnFaqRecommendUpdated(HelpdeskFaqListResponse response)
         {
             var faqs = response.faqs;
@@ -189,7 +197,7 @@ namespace Rebots.HelpDesk
                 foreach (var item in faqs)
                 {
                     TemplateContainer faqUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateFaq(item, RebotsFaqAssetType.popular, null, helpdeskScreen.ClickFaq, out faqUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateFaq(item, RebotsFaqAssetType.Popular, null, helpdeskScreen.ClickFaq, out faqUIElement);
 
                     var m_WasHelpfulLabel = faqUIElement.Q<Label>(RebotsUIStaticString.FaqWasHelpfulLabel);
                     m_WasHelpfulLabel.text = localizationManager.translationDic[RebotsUIStaticString.FaqWasHelpfulLabel];
@@ -219,7 +227,7 @@ namespace Rebots.HelpDesk
                 foreach (var item in faqs)
                 {
                     TemplateContainer faqUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateFaq(item, RebotsFaqAssetType.search, search, helpdeskScreen.ClickFaq, out faqUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateFaq(item, RebotsFaqAssetType.Search, search, helpdeskScreen.ClickFaq, out faqUIElement);
                     m_SearchFaqList.Add(faqUIElement);
                 }
             }
@@ -233,7 +241,7 @@ namespace Rebots.HelpDesk
                 foreach (var item in faqCategories)
                 {
                     TemplateContainer categoryUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.faq, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Faq, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
 
                     var m_ViewMoreLabel = categoryUIElement.Q<Label>(RebotsUIStaticString.ViewMoreLabel);
                     m_ViewMoreLabel.text = localizationManager.translationDic[RebotsUIStaticString.ViewMoreLabel];
@@ -250,7 +258,7 @@ namespace Rebots.HelpDesk
                             foreach (var sub in subCategories.Take(5))
                             {
                                 TemplateContainer subUIElement = null;
-                                helpdeskScreen.rebotsUICreater.CreateCategory<Category>(sub, RebotsCategoryAssetType.contents, helpdeskScreen.ClickFaqCategory, out subUIElement);
+                                helpdeskScreen.rebotsUICreater.CreateCategory<Category>(sub, RebotsCategoryAssetType.Contents, helpdeskScreen.ClickFaqCategory, out subUIElement);
                                 lowerList.Add(subUIElement);
                                 countInt++;
                             }
@@ -262,7 +270,7 @@ namespace Rebots.HelpDesk
                             foreach (var faq in faqs.Take(5 - countInt))
                             {
                                 TemplateContainer faqUIElement = null;
-                                helpdeskScreen.rebotsUICreater.CreateCategory<Faq>(faq, RebotsCategoryAssetType.sub, helpdeskScreen.ClickFaq, out faqUIElement);
+                                helpdeskScreen.rebotsUICreater.CreateCategory<Faq>(faq, RebotsCategoryAssetType.Sub, helpdeskScreen.ClickFaq, out faqUIElement);
                                 lowerList.Add(faqUIElement);
                             }
                         }
@@ -280,7 +288,7 @@ namespace Rebots.HelpDesk
                 foreach (var item in csCategories)
                 {
                     TemplateContainer categoryUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.cs, helpdeskScreen.ClickCsCategory, out categoryUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Cs, helpdeskScreen.ClickCsCategory, out categoryUIElement);
                     m_CsCategoryList.Add(categoryUIElement);
                 }
             }
@@ -290,19 +298,17 @@ namespace Rebots.HelpDesk
         {
             var faqCategory = response;
 
-            TemplateContainer menuUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel("Main > FAQ > ", false, out menuUIElement);
-            m_RouteLabelContainer.Add(menuUIElement);
-
             var routeCategories = faqCategory.categories;
-            var routeCategoryStr = faqCategory.name;
+            var routeStrFormat = "Main > FAQ > <color={0}>{1}</color>";
+            var categoriesStr = faqCategory.name;
             foreach (var category in routeCategories)
             {
-                routeCategoryStr = category.name + " > " + routeCategoryStr;
+                categoriesStr = category.name + " > " + categoriesStr;
             }
+            var routeStr = string.Format(routeStrFormat, m_Theme, categoriesStr);
 
             TemplateContainer routeUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeCategoryStr, true, out routeUIElement);
+            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeStr, out routeUIElement);
             m_RouteLabelContainer.Add(routeUIElement);
 
             m_MenuLabel.text = "FAQ";
@@ -315,11 +321,11 @@ namespace Rebots.HelpDesk
                     TemplateContainer categoryUIElement = null;
                     if (item.id == faqCategory.id)
                     {
-                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.selected, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
+                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Selected, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
                     }
                     else
                     {
-                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.sibling, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
+                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Sibling, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
                     }
                     m_SiblingCategoryList.Add(categoryUIElement);
                 }
@@ -333,7 +339,7 @@ namespace Rebots.HelpDesk
                 foreach (var item in subCategories)
                 {
                     TemplateContainer categoryUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.contents, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Contents, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
                     m_SubCategoryList.Add(categoryUIElement);
                 }
             }
@@ -344,7 +350,7 @@ namespace Rebots.HelpDesk
                 foreach (var faq in faqs)
                 {
                     TemplateContainer categoryUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateCategory<Faq>(faq, RebotsCategoryAssetType.sub, helpdeskScreen.ClickFaq, out categoryUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateCategory<Faq>(faq, RebotsCategoryAssetType.Sub, helpdeskScreen.ClickFaq, out categoryUIElement);
                     m_SubCategoryList.Add(categoryUIElement);
                 }
             }
@@ -354,19 +360,17 @@ namespace Rebots.HelpDesk
         {
             var csCategory = response;
 
-            TemplateContainer menuUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel("Main > Inquiry > ", false, out menuUIElement);
-            m_RouteLabelContainer.Add(menuUIElement);
-
             var routeCategories = csCategory.categories;
-            var routeCategoryStr = csCategory.name;
+            var routeStrFormat = "Main > Inquiry > <color={0}>{1}</color>";
+            var categoriesStr = csCategory.name;
             foreach (var category in routeCategories)
             {
-                routeCategoryStr = category.name + " > " + routeCategoryStr;
+                categoriesStr = category.name + " > " + categoriesStr;
             }
+            var routeStr = string.Format(routeStrFormat, m_Theme, categoriesStr);
 
             TemplateContainer routeUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeCategoryStr, true, out routeUIElement);
+            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeStr, out routeUIElement);
             m_RouteLabelContainer.Add(routeUIElement);
 
             m_MenuLabel.text = "Inquiry";
@@ -379,11 +383,11 @@ namespace Rebots.HelpDesk
                     TemplateContainer categoryUIElement = null;
                     if (item.id == csCategory.id)
                     {
-                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.selected, helpdeskScreen.ClickCsCategory, out categoryUIElement);
+                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Selected, helpdeskScreen.ClickCsCategory, out categoryUIElement);
                     }
                     else
                     {
-                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.sibling, helpdeskScreen.ClickCsCategory, out categoryUIElement);
+                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Sibling, helpdeskScreen.ClickCsCategory, out categoryUIElement);
                     }
                     m_SiblingCategoryList.Add(categoryUIElement);
                 }
@@ -399,11 +403,11 @@ namespace Rebots.HelpDesk
                     TemplateContainer categoryUIElement = null;
                     if (item.useField)
                     {
-                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.sub, helpdeskScreen.ClickCsCategory, out categoryUIElement); 
+                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Sub, helpdeskScreen.ClickCsCategory, out categoryUIElement); 
                     }
                     else
                     {
-                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.contents, helpdeskScreen.ClickCsCategory, out categoryUIElement);
+                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Contents, helpdeskScreen.ClickCsCategory, out categoryUIElement);
                     }
                     m_SubCategoryList.Add(categoryUIElement);
                 }
@@ -414,19 +418,17 @@ namespace Rebots.HelpDesk
         {
             var faq = response;
 
-            TemplateContainer menuUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel("Main > FAQ > ", false, out menuUIElement);
-            m_RouteLabelContainer.Add(menuUIElement);
-
             var routeCategories = faq.categories;
-            var routeCategoryStr = "";
+            var routeStrFormat = "Main > FAQ > <color={0}>{1}</color>";
+            var categoriesStr = faq.title;
             foreach (var category in routeCategories)
             {
-                routeCategoryStr = routeCategoryStr == "" ? category.name : category.name + " > " + routeCategoryStr;
+                categoriesStr = category.name + " > " + categoriesStr;
             }
+            var routeStr = string.Format(routeStrFormat, m_Theme, categoriesStr);
 
             TemplateContainer routeUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeCategoryStr, true, out routeUIElement);
+            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeStr, out routeUIElement);
             m_RouteLabelContainer.Add(routeUIElement);
 
             m_MenuLabel.text = "FAQ";
@@ -440,11 +442,11 @@ namespace Rebots.HelpDesk
                     TemplateContainer categoryUIElement = null;
                     if (item.id == faq.id)
                     {
-                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.selected, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
+                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Selected, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
                     }
                     else
                     {
-                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.sibling, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
+                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Sibling, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
                     }
                     m_SiblingCategoryList.Add(categoryUIElement);
                 }
@@ -465,19 +467,17 @@ namespace Rebots.HelpDesk
         {
             var csCategory = response.category;
 
-            TemplateContainer menuUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel("Main > Inquiry > ", false, out menuUIElement);
-            m_RouteLabelContainer.Add(menuUIElement);
-
             var routeCategories = csCategory.categories;
-            var routeCategoryStr = csCategory.name;
+            var routeStrFormat = "Main > Inquiry > <color={0}>{1}</color>";
+            var categoriesStr = csCategory.name;
             foreach (var category in routeCategories)
             {
-                routeCategoryStr = category.name + " > " + routeCategoryStr;
+                categoriesStr = category.name + " > " + categoriesStr;
             }
+            var routeStr = string.Format(routeStrFormat, m_Theme, categoriesStr);
 
             TemplateContainer routeUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeCategoryStr, true, out routeUIElement);
+            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeStr, out routeUIElement);
             m_RouteLabelContainer.Add(routeUIElement);
 
             m_MenuLabel.text = "Inquiry";
@@ -489,7 +489,7 @@ namespace Rebots.HelpDesk
                 foreach (var field in fields)
                 {
                     string parameterValue = "";
-                    m_parameterDic.TryGetValue(field.name, out parameterValue);
+                    m_ParameterDic.TryGetValue(field.name, out parameterValue);
 
                     TemplateContainer fieldUIElement = null;
                     object fieldUIComponent = null;
@@ -498,18 +498,18 @@ namespace Rebots.HelpDesk
                     var m_RequiredLabel = fieldUIElement.Q<Label>(RebotsUIStaticString.RequiredLabel);
                     m_RequiredLabel.text = localizationManager.translationDic[RebotsUIStaticString.RequiredLabel];
 
-                    if (field.fieldType == RebotsInputFieldType.file)
+                    if (field.fieldType == RebotsInputFieldType.File)
                     {
                         var m_NoFileLabel = fieldUIElement.Q<Label>(RebotsUIStaticString.NoFileLabel);
                         m_NoFileLabel.text = localizationManager.translationDic[RebotsUIStaticString.NoFileLabel];
                     }
 
                     m_TicketFieldList.Add(fieldUIElement);
-                    helpdeskScreen.m_fieldDic.Add(field, fieldUIComponent);
+                    helpdeskScreen.AddFieldDic(field, fieldUIComponent);
                 }
             }
 
-            if (m_ticketPrivacySetting != null)
+            if (m_TicketPrivacySetting != null)
             {
                 string[] formSectionTransData = { 
                     localizationManager.translationDic[RebotsUIStaticString.PrivacyPrpose],
@@ -521,7 +521,7 @@ namespace Rebots.HelpDesk
                 };
 
                 TemplateContainer privacyUIElement = null;
-                helpdeskScreen.rebotsUICreater.CreatePrivacyField(m_ticketPrivacySetting, formSectionTransData, out privacyUIElement);
+                helpdeskScreen.rebotsUICreater.CreatePrivacyField(m_TicketPrivacySetting, formSectionTransData, out privacyUIElement);
 
                 var m_RequiredLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.RequiredLabel);
                 m_RequiredLabel.text = localizationManager.translationDic[RebotsUIStaticString.RequiredLabel];
@@ -546,7 +546,7 @@ namespace Rebots.HelpDesk
             var tickets = response.items;
 
             TemplateContainer menuUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel("Main > My Tickets", false, out menuUIElement);
+            helpdeskScreen.rebotsUICreater.CreateRouteLabel("Main > My Tickets", out menuUIElement);
             m_RouteLabelContainer.Add(menuUIElement);
 
             m_MenuLabel.text = "My Tickets";
@@ -570,7 +570,7 @@ namespace Rebots.HelpDesk
             var answers = response.ticket.answers;
 
             TemplateContainer menuUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel("Main > My Tickets", false, out menuUIElement);
+            helpdeskScreen.rebotsUICreater.CreateRouteLabel("Main > My Tickets", out menuUIElement);
             m_RouteLabelContainer.Add(menuUIElement);
 
             m_MenuLabel.text = "My Tickets";
@@ -582,7 +582,7 @@ namespace Rebots.HelpDesk
                 foreach (var item in dataDic)
                 {
                     TemplateContainer fieldUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateTicketDetail(item.Key, item.Value, RebotsTicketDetailAssetType.field, out fieldUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateTicketDetail(item.Key, item.Value, RebotsTicketDetailAssetType.Field, out fieldUIElement);
                     m_TicketDetailList.Add(fieldUIElement);
                 }
             }
@@ -594,7 +594,7 @@ namespace Rebots.HelpDesk
                 foreach (var item in answers)
                 {
                     TemplateContainer answerUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateTicketDetail(string.Format("{0:d}", item.answered), item.content, RebotsTicketDetailAssetType.answer, out answerUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateTicketDetail(string.Format("{0:d}", item.answered), item.content, RebotsTicketDetailAssetType.Answer, out answerUIElement);
                     m_TicketAnswerList.Add(answerUIElement);
                 }
             }
