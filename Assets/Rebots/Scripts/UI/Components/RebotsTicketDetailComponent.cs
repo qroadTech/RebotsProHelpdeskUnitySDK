@@ -1,4 +1,6 @@
-﻿using UnityEngine.UIElements;
+﻿using HelpDesk.Sdk.Library.Utility;
+using System.Linq;
+using UnityEngine.UIElements;
 
 namespace Rebots.HelpDesk
 {
@@ -10,6 +12,7 @@ namespace Rebots.HelpDesk
         string m_sub;
         string m_content;
         Label m_DetailSubLabel;
+        VisualElement m_DetailContentContainer;
         Label m_DetailContentLabel;
 
         public RebotsTicketDetailComponent(string sub, string content)
@@ -37,19 +40,7 @@ namespace Rebots.HelpDesk
             }
 
             m_DetailSubLabel.text = m_sub;
-
-            if (m_content.Contains("<p>"))
-            {
-                var answerStr = m_content.ToString();
-                var startTagRemove = answerStr.Replace("<p>", "");
-                var endTagReplace = startTagRemove.Replace("</p>", "<br>");
-
-                m_DetailContentLabel.text = endTagReplace.ToString();
-            }
-            else
-            {
-                m_DetailContentLabel.text = m_content;
-            }
+            m_DetailContentLabel.text = m_content;
         }
     }
 }

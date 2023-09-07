@@ -1,8 +1,11 @@
 ﻿using HelpDesk.Sdk.Common.Objects;
 using HelpDesk.Sdk.Common.Protocols.Responses;
+using HelpDesk.Sdk.Library.Utility;
 using Newtonsoft.Json;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Rebots.HelpDesk
@@ -38,6 +41,7 @@ namespace Rebots.HelpDesk
         public Label m_MenuLabel;
 
         public VisualElement m_SiblingCategoryContainer;
+        public ScrollView m_SiblingCategoryScrollview;
         public VisualElement m_SiblingCategoryList;
 
         public VisualElement m_TitleCategoryConatiner;
@@ -108,7 +112,8 @@ namespace Rebots.HelpDesk
             m_MenuLabel = m_MenuNameContainer.Q<Label>(RebotsUIStaticString.MenuLabel);
 
             m_SiblingCategoryContainer = m_PageConatiner.Q(RebotsUIStaticString.SiblingCategoryContainer);
-            m_SiblingCategoryList = m_SiblingCategoryContainer.Q(RebotsUIStaticString.SiblingCategoryList);
+            m_SiblingCategoryScrollview = m_SiblingCategoryContainer.Q<ScrollView>(RebotsUIStaticString.SiblingCategoryScrollview);
+            m_SiblingCategoryList = m_SiblingCategoryScrollview.Q(RebotsUIStaticString.SiblingCategoryList);
 
             m_TitleCategoryConatiner = m_PageConatiner.Q(RebotsUIStaticString.TitleCategoryConatiner);
             m_TitleCategoryLabel = m_TitleCategoryConatiner.Q<Label>(RebotsUIStaticString.CategoryLabel);
@@ -313,14 +318,19 @@ namespace Rebots.HelpDesk
 
             m_MenuLabel.text = "FAQ";
 
-            var sliblingCategories = faqCategory.siblingCategories;
-            if (sliblingCategories != null && sliblingCategories.Count() > 0)
+            var siblingCategories = faqCategory.siblingCategories;
+            var siblingCount = (siblingCategories != null) ? siblingCategories.Count() : 0;
+            if (siblingCount > 0)
             {
-                foreach (var item in sliblingCategories)
+                var selectedIndex = -1;
+                for (int i = 0; i < siblingCount; i++)
                 {
+                    var item = siblingCategories[i];
                     TemplateContainer categoryUIElement = null;
+
                     if (item.id == faqCategory.id)
                     {
+                        selectedIndex = i;
                         helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Selected, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
                     }
                     else
@@ -329,6 +339,8 @@ namespace Rebots.HelpDesk
                     }
                     m_SiblingCategoryList.Add(categoryUIElement);
                 }
+
+                StartCoroutine(ScrollingSiblingCategory(selectedIndex));
             }
 
             m_TitleCategoryLabel.text = faqCategory.name;
@@ -375,14 +387,19 @@ namespace Rebots.HelpDesk
 
             m_MenuLabel.text = "Inquiry";
 
-            var sliblingCategories = csCategory.siblingCategories;
-            if (sliblingCategories != null && sliblingCategories.Count() > 0)
+            var siblingCategories = csCategory.siblingCategories;
+            var siblingCount = (siblingCategories != null) ? siblingCategories.Count() : 0;
+            if (siblingCount > 0)
             {
-                foreach (var item in sliblingCategories)
+                var selectedIndex = -1;
+                for (int i = 0; i < siblingCount; i++)
                 {
+                    var item = siblingCategories[i];
                     TemplateContainer categoryUIElement = null;
+
                     if (item.id == csCategory.id)
                     {
+                        selectedIndex = i;
                         helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Selected, helpdeskScreen.ClickCsCategory, out categoryUIElement);
                     }
                     else
@@ -391,6 +408,8 @@ namespace Rebots.HelpDesk
                     }
                     m_SiblingCategoryList.Add(categoryUIElement);
                 }
+
+                StartCoroutine(ScrollingSiblingCategory(selectedIndex));
             }
 
             m_TitleCategoryLabel.text = csCategory.name;
@@ -434,33 +453,80 @@ namespace Rebots.HelpDesk
             m_MenuLabel.text = "FAQ";
             m_TitleCategoryLabel.text = faq.title;
 
-            var sliblingCategories = faq.siblingCategories;
-            if (sliblingCategories != null && sliblingCategories.Count() > 0)
+            var selectedCategory = routeCategories[0];
+            var siblingCategories = faq.siblingCategories;
+            var siblingCount = (siblingCategories != null) ? siblingCategories.Count() : 0;
+            if (siblingCount > 0)
             {
-                foreach (var item in sliblingCategories)
+                var selectedIndex = -1;
+                for (int i = 0; i < siblingCount; i++)
                 {
+                    var item = siblingCategories[i];
                     TemplateContainer categoryUIElement = null;
-                    if (item.id == faq.id)
+
+                    if (item.id == selectedCategory.id)
                     {
+                        selectedIndex = i;
                         helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Selected, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
                     }
                     else
                     {
+
                         helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Sibling, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
                     }
                     m_SiblingCategoryList.Add(categoryUIElement);
                 }
+
+                StartCoroutine(ScrollingSiblingCategory(selectedIndex));
             }
             else
             {
                 ShowVisualElement(m_SiblingCategoryContainer, false);
             }
 
-            var contents = new Label();
-            contents.text = faq.contents;
-            contents.AddToClassList(RebotsUIStaticString.RebotsLabel_Regular16);
-            contents.AddToClassList(RebotsUIStaticString.RebotsFontColor_Black);
-            m_FaqDetailContainer.Add(contents);
+            var contentsDic = HtmlParser.HtmlToUnityTag(faq.contents.ToString());
+            foreach (var item in contentsDic)
+            {
+                switch (item.type)
+                {
+                    case "text":
+                        helpdeskScreen.rebotsUICreater.CreateLabel(item.value, out Label labelUIElement);
+                        m_FaqDetailContainer.Add(labelUIElement);
+                        break;
+                    case "img":
+                        var imgContents = item.value;
+                        helpdeskScreen.ImageUrlToTexture2D(new System.Uri(imgContents), imgContents);
+                        break;
+                    case "link":
+                        var linkContents = item.value.Split(HtmlParser.linkSplitPoint);
+                        helpdeskScreen.rebotsUICreater.CreateLinkLabel(linkContents[0], linkContents[1], out Label linkLabelUIElement);
+                        m_FaqDetailContainer.Add(linkLabelUIElement);
+                        break;
+                    case "iframe":
+                        var videoContents = item.value;
+                        helpdeskScreen.rebotsUICreater.CreateLinkLabel(videoContents, null, out Label iframeLabelUIElement);
+                        m_FaqDetailContainer.Add(iframeLabelUIElement);
+                        break;
+                }
+            }
+        }
+
+        public void OnFaqImageAdded(Texture2D texture, string externalLinkUri)
+        {
+            if (texture != null && !string.IsNullOrEmpty(externalLinkUri))
+            {
+                VisualElement imgUIElement = new VisualElement();
+
+                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(texture.width / 2, texture.height / 2));
+                imgUIElement.style.backgroundImage = new StyleBackground(sprite);
+                imgUIElement.style.unityBackgroundScaleMode = ScaleMode.ScaleToFit;
+                imgUIElement.style.width = Length.Percent(100);
+                imgUIElement.style.minHeight = new Length(300f);
+                imgUIElement.style.flexShrink = 0;
+                imgUIElement.style.flexGrow = 1;
+
+                m_FaqDetailContainer.Add(imgUIElement);
+            }
         }
 
         public void OnCsCategoryFieldsUpdated(HelpdeskTicketCategoryField response)
@@ -594,11 +660,76 @@ namespace Rebots.HelpDesk
                 foreach (var item in answers)
                 {
                     TemplateContainer answerUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateTicketDetail(string.Format("{0:d}", item.answered), item.content, RebotsTicketDetailAssetType.Answer, out answerUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateTicketDetail(string.Format("{0:d}", item.answered), "", RebotsTicketDetailAssetType.Answer, out answerUIElement);
+
+                    if (answerUIElement != null)
+                    {
+                        VisualElement AnswerContentContainer = answerUIElement.Q(RebotsUIStaticString.TicketAnswerContentContainer);
+                        AnswerContentContainer.Clear();
+
+                        var contentsDic = HtmlParser.HtmlToUnityTag(item.content.ToString());
+                        int imgCount = 1;
+                        foreach (var content in contentsDic)
+                        {
+                            switch (content.type)
+                            {
+                                case "text":
+                                    helpdeskScreen.rebotsUICreater.CreateLabel(content.value, out Label labelUIElement);
+                                    AnswerContentContainer.Add(labelUIElement);
+                                    break;
+                                case "link":
+                                    var linkContents = content.value.Split(HtmlParser.linkSplitPoint);
+                                    helpdeskScreen.rebotsUICreater.CreateLinkLabel(linkContents[0], linkContents[1], out Label linkLabelUIElement);
+                                    AnswerContentContainer.Add(linkLabelUIElement);
+                                    break;
+                                case "img":
+                                    var imgContents = content.value;
+                                    helpdeskScreen.rebotsUICreater.CreateLinkLabel(imgContents, ("Image Link " + imgCount.ToString()), out Label imgLabelUIElement);
+                                    AnswerContentContainer.Add(imgLabelUIElement);
+                                    imgCount++;
+                                    break;
+                                case "iframe":
+                                    var mediaContents = content.value;
+                                    helpdeskScreen.rebotsUICreater.CreateLinkLabel(mediaContents, null, out Label iframeLabelUIElement);
+                                    AnswerContentContainer.Add(iframeLabelUIElement);
+                                    break;
+                            }
+                        }
+                    }
+
                     m_TicketAnswerList.Add(answerUIElement);
                 }
             }
         }
+        #endregion
+
+        #region (private) Set Sibling Category Scrolling Point
+        private IEnumerator ScrollingSiblingCategory(int index)
+        {
+            yield return null;
+
+            var allElementWidth = 0f;
+            var forwardElementWidth = 0f;
+            var categoryElements = m_SiblingCategoryList.Children();
+            var i = 0;
+            foreach (var categoryElement in categoryElements)
+            {
+                if (index == i++)
+                {
+                    forwardElementWidth = allElementWidth;
+                }
+                allElementWidth += (m_SiblingCategoryList.childCount == i) ? 0 : categoryElement.contentRect.width;
+            }
+
+            var scrollHighValue = m_SiblingCategoryScrollview.horizontalScroller.highValue;
+            var scrollRange = forwardElementWidth / allElementWidth;
+            var scrollValue = scrollRange * scrollHighValue;
+            m_SiblingCategoryScrollview.horizontalScroller.value = scrollValue;
+        }
+        #endregion
+
+        #region 
+
         #endregion
     }
 }

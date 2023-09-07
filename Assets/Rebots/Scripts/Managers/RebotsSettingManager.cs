@@ -333,12 +333,12 @@ namespace Rebots.HelpDesk
             StartCoroutine(req.GetTickets());
         }
 
-        public void LoadTexture(UnityAction<Texture2D, string> textureUpdate, EventBanner banner)
+        public void LoadTexture(UnityAction<Texture2D, string> textureUpdate, Uri fileUrl, string externalLinkUrl)
         {
             var evt = new UnityEvent<Texture2D, string>();
             evt.AddListener(textureUpdate);
             var req = new UnityRebotsProMaxGetTexture(helpdeskConfig, helpdeskEvents, evt);
-            StartCoroutine(req.GetTexture(banner));
+            StartCoroutine(req.GetTexture(fileUrl, externalLinkUrl));
         }
         #endregion
 

@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ScreenName: RebotsHelpdeskScreen
-  m_RebotsHelpdeskUIManager: {fileID: 552945275181414245}
+  m_RebotsHelpdeskUIManager: {fileID: 8807594975628496268}
   m_Document: {fileID: 6512093179079527}
   rebotsSettingManager: {fileID: 0}
   rebotsParameterDataManager: {fileID: 0}
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ScreenName: RebotsLayoutUI
-  m_RebotsHelpdeskUIManager: {fileID: 552945275181414245}
+  m_RebotsHelpdeskUIManager: {fileID: 8807594975628496268}
   m_Document: {fileID: 6512093179079527}
   helpdeskScreen: {fileID: 6512091703982552}
 --- !u!1 &6512093179079524
@@ -135,7 +135,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6512093179079526}
   - component: {fileID: 6512093179079527}
-  - component: {fileID: 552945275181414245}
+  - component: {fileID: 8807594975628496268}
   m_Layer: 0
   m_Name: Rebots
   m_TagString: Untagged
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_ParentUI: {fileID: 0}
   sourceAsset: {fileID: 9197481963319205126, guid: 21b85167330245d4cbe6bad5f6a264e4, type: 3}
   m_SortingOrder: 1
---- !u!114 &552945275181414245
+--- !u!114 &8807594975628496268
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_RebotsHelpdeskScreen: {fileID: 6512091703982552}
-  m_RebotsBannerScreen: {fileID: 0}
+  m_RebotsBannerScreen: {fileID: 1487581472455094443}
 --- !u!1 &6512093571915442
 GameObject:
   m_ObjectHideFlags: 0
@@ -302,7 +302,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ScreenName: RebotsPageUI
-  m_RebotsHelpdeskUIManager: {fileID: 552945275181414245}
+  m_RebotsHelpdeskUIManager: {fileID: 8807594975628496268}
   m_Document: {fileID: 6512093179079527}
   helpdeskScreen: {fileID: 6512091703982552}
 --- !u!1 &2242639866391864291
@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ScreenName: RebotsBannerScreen
-  m_RebotsHelpdeskUIManager: {fileID: 552945275181414245}
+  m_RebotsHelpdeskUIManager: {fileID: 8807594975628496268}
   m_Document: {fileID: 6512093179079527}
   rebotsSettingManager: {fileID: 0}
   BannerAsset: {fileID: 9197481963319205126, guid: d8d7095c6442f2d4db67e252f4ce103c, type: 3}

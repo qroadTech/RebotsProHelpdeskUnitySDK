@@ -233,5 +233,32 @@ namespace Rebots.HelpDesk
 
             uiElement = PrivacyUIElement;
         }
+
+        public void CreateLabel(string textString, out Label label)
+        {
+            var labelUIElement = new Label();
+
+            labelUIElement.text = textString;
+            labelUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Regular16);
+            labelUIElement.AddToClassList(RebotsUIStaticString.RebotsFontColor_Black);
+
+            label = labelUIElement;
+        }
+
+        public void CreateLinkLabel(string linkString, string? textString, out Label label)
+        {
+            var labelUIElement = new Label();
+
+            if (textString == null && string.IsNullOrEmpty(textString))
+            {
+                textString = linkString;
+            }
+            labelUIElement.text = "<u>" + textString + "</u>";
+            labelUIElement?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(linkString));
+            labelUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Regular16);
+            labelUIElement.AddToClassList(RebotsUIStaticString.RebotsLabelLink);
+
+            label = labelUIElement;
+        }
     }
 }

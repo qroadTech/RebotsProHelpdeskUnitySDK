@@ -11,7 +11,7 @@
                 <ui:Label text="Ticket Contents Preview Label" display-tooltip-when-elided="true" name="rebots-ticket-preview-label" class="rebots-label__regular14 rebots-font-color__dakr-grey" />
             </ui:VisualElement>
             <ui:VisualElement name="rebots-ticket-state-container" style="width: 100px; min-width: auto; height: 60px; min-height: 60px; align-items: center; justify-content: center; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 10px; display: flex;">
-                <ui:Label text="State Label" display-tooltip-when-elided="true" name="rebots-ticket-state-label" class="rebots-label__regular14 rebots-font-color__white" />
+                <ui:Label text="State Label" display-tooltip-when-elided="true" name="rebots-ticket-state-label" class="rebots-label__regular14 rebots-font-color__white" style="white-space: normal;" />
             </ui:VisualElement>
         </ui:Button>
     </ui:VisualElement>

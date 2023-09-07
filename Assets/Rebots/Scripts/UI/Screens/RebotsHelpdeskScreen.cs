@@ -5,6 +5,7 @@ using HelpDesk.Sdk.Common.Objects;
 using System.IO;
 using System;
 using System.Collections;
+using System.Reflection;
 
 namespace Rebots.HelpDesk
 {
@@ -621,6 +622,13 @@ namespace Rebots.HelpDesk
         public void AddFieldDic(TicketCategoryInputField field, object fieldUIComponent)
         {
             m_FieldDic.Add(field, fieldUIComponent);
+        }
+        #endregion
+
+        #region (public) ImageUrl to Texture2D 
+        public void ImageUrlToTexture2D(Uri fileUrl, string externalLinkUrl)
+        {
+            rebotsSettingManager.LoadTexture(rebotsPageUI.OnFaqImageAdded, fileUrl, externalLinkUrl);
         }
         #endregion
 

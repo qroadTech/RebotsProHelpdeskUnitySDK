@@ -1,5 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Template name="RebotsFaqCategory" src="project://database/Assets/Rebots/UI/Uxml/HelpdeskAsset/RebotsFaqCategory.uxml?fileID=9197481963319205126&amp;guid=fa44eaa3eb7f4454892eead3276863a4&amp;type=3#RebotsFaqCategory" />
+    <ui:Template name="RebotsSiblingCategory" src="project://database/Assets/Rebots/UI/Uxml/HelpdeskAsset/RebotsSiblingCategory.uxml?fileID=9197481963319205126&amp;guid=6e5e7efaebdba794bb05fbd10de56bc9&amp;type=3#RebotsSiblingCategory" />
     <Style src="project://database/Assets/Rebots/UI/Uss/RebotsHelpdeskScreen.uss?fileID=7433441132597879392&amp;guid=9407434687e1057419f486af0bbbab07&amp;type=3#RebotsHelpdeskScreen" />
     <Style src="project://database/Assets/Rebots/UI/Uss/RebotsCommon.uss?fileID=7433441132597879392&amp;guid=0ce8fc6f13fcf2d4b8f1f0fdcb5ed037&amp;type=3#RebotsCommon" />
     <Style src="project://database/Assets/Rebots/UI/Uss/Language/RebotsFontEn.uss?fileID=7433441132597879392&amp;guid=5e1ad9dcd6cd72449a77863ffc31aa7d&amp;type=3#RebotsFontEn" />
@@ -90,9 +91,14 @@
                                 <ui:VisualElement style="width: 100%; height: 1px; background-color: rgb(188, 188, 188);" />
                             </ui:VisualElement>
                         </ui:VisualElement>
-                        <ui:VisualElement name="rebots-sibling-category-container" style="width: 100%; height: auto; max-height: none; min-height: auto; margin-left: 0; margin-right: 0; display: none; margin-top: 0; margin-bottom: 0; padding-left: 16px; padding-right: 16px;">
-                            <ui:ScrollView mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" style="width: 100%; height: 100%;">
-                                <ui:VisualElement name="rebots-sibling-category-list-container" style="flex-direction: row; width: 100%; min-width: 100%;" />
+                        <ui:VisualElement name="rebots-sibling-category-container" style="width: 100%; height: auto; max-height: none; min-height: auto; margin-left: 0; margin-right: 0; display: flex; margin-top: 0; margin-bottom: 0; padding-left: 16px; padding-right: 16px;">
+                            <ui:ScrollView mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="rebots-sibling-category-scrollview" style="width: 100%; height: 100%;">
+                                <ui:VisualElement name="rebots-sibling-category-list-container" style="flex-direction: row; width: 100%; min-width: 100%;">
+                                    <ui:Instance template="RebotsSiblingCategory" name="RebotsSiblingCategory" style="flex-shrink: 0; flex-grow: 1;" />
+                                    <ui:Instance template="RebotsSiblingCategory" name="RebotsSiblingCategory" style="flex-shrink: 0; flex-grow: 1;" />
+                                    <ui:Instance template="RebotsSiblingCategory" name="RebotsSiblingCategory" style="flex-shrink: 0; flex-grow: 1;" />
+                                    <ui:Instance template="RebotsSiblingCategory" name="RebotsSiblingCategory" style="flex-shrink: 0; flex-grow: 1;" />
+                                </ui:VisualElement>
                             </ui:ScrollView>
                         </ui:VisualElement>
                         <ui:VisualElement name="rebots-title-category-container" style="justify-content: space-around; min-height: 33px; margin-top: 40px; margin-bottom: 10px; margin-left: 16px; margin-right: 16px; display: none;">
@@ -103,7 +109,7 @@
                         </ui:VisualElement>
                         <ui:VisualElement name="rebots-faq-container" style="margin-top: 10px; margin-bottom: 20px; margin-left: 16px; display: flex; margin-right: 16px;">
                             <ui:VisualElement name="rebots-faq-detail-container" style="margin-bottom: 35px;" />
-                            <ui:VisualElement style="align-items: center; justify-content: space-between; margin-top: 30px; margin-bottom: 30px;">
+                            <ui:VisualElement style="align-items: center; justify-content: space-between; margin-top: 30px; margin-bottom: 30px; display: none;">
                                 <ui:VisualElement style="margin-bottom: 30px; padding-top: 10px; padding-bottom: 10px;">
                                     <ui:Label text="Was this helpful?" display-tooltip-when-elided="true" name="rebots-was-it-helpful" class="rebots-label__bold18 rebots-font-color__black" />
                                 </ui:VisualElement>
