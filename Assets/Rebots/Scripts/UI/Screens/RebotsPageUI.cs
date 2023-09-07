@@ -238,6 +238,102 @@ namespace Rebots.HelpDesk
             }
         }
 
+        public void OnFaqUpdated(HelpdeskFaqResponse response)
+        {
+            var faq = response;
+
+            var routeCategories = faq.categories;
+            var routeStrFormat = "Main > FAQ > <color={0}>{1}</color>";
+            var categoriesStr = faq.title;
+            foreach (var category in routeCategories)
+            {
+                categoriesStr = category.name + " > " + categoriesStr;
+            }
+            var routeStr = string.Format(routeStrFormat, m_Theme, categoriesStr);
+
+            TemplateContainer routeUIElement = null;
+            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeStr, out routeUIElement);
+            m_RouteLabelContainer.Add(routeUIElement);
+
+            m_MenuLabel.text = "FAQ";
+            m_TitleCategoryLabel.text = faq.title;
+
+            var selectedCategory = routeCategories[0];
+            var siblingCategories = faq.siblingCategories;
+            var siblingCount = (siblingCategories != null) ? siblingCategories.Count() : 0;
+            if (siblingCount > 0)
+            {
+                var selectedIndex = -1;
+                for (int i = 0; i < siblingCount; i++)
+                {
+                    var item = siblingCategories[i];
+                    TemplateContainer categoryUIElement = null;
+
+                    if (item.id == selectedCategory.id)
+                    {
+                        selectedIndex = i;
+                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Selected, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
+                    }
+                    else
+                    {
+
+                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Sibling, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
+                    }
+                    m_SiblingCategoryList.Add(categoryUIElement);
+                }
+
+                StartCoroutine(ScrollingSiblingCategory(selectedIndex));
+            }
+            else
+            {
+                ShowVisualElement(m_SiblingCategoryContainer, false);
+            }
+
+            var contentsDic = HtmlParser.HtmlToUnityTag(faq.contents.ToString());
+            foreach (var item in contentsDic)
+            {
+                switch (item.type)
+                {
+                    case "text":
+                        helpdeskScreen.rebotsUICreater.CreateLabel(item.value, out Label labelUIElement);
+                        m_FaqDetailContainer.Add(labelUIElement);
+                        break;
+                    case "img":
+                        var imgContents = item.value;
+                        helpdeskScreen.ImageUrlToTexture2D(new System.Uri(imgContents), imgContents);
+                        break;
+                    case "link":
+                        var linkContents = item.value.Split(HtmlParser.linkSplitPoint);
+                        helpdeskScreen.rebotsUICreater.CreateLinkLabel(linkContents[0], linkContents[1], out Label linkLabelUIElement);
+                        m_FaqDetailContainer.Add(linkLabelUIElement);
+                        break;
+                    case "iframe":
+                        var videoContents = item.value;
+                        helpdeskScreen.rebotsUICreater.CreateLinkLabel(videoContents, null, out Label iframeLabelUIElement);
+                        m_FaqDetailContainer.Add(iframeLabelUIElement);
+                        break;
+                }
+            }
+        }
+
+        public void OnFaqImageAdded(Texture2D texture, string externalLinkUri)
+        {
+            if (texture != null && !string.IsNullOrEmpty(externalLinkUri))
+            {
+                VisualElement imgUIElement = new VisualElement();
+
+                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(texture.width / 2, texture.height / 2));
+                imgUIElement.style.backgroundImage = new StyleBackground(sprite);
+                imgUIElement.style.unityBackgroundScaleMode = ScaleMode.ScaleToFit;
+                imgUIElement.style.width = Length.Percent(100);
+                imgUIElement.style.minHeight = new Length(300f);
+                imgUIElement.style.flexShrink = 0;
+                imgUIElement.style.flexGrow = 1;
+
+                m_FaqDetailContainer.Add(imgUIElement);
+            }
+        }
+
         public void OnFaqCategoriesUpdated(HelpdeskFaqCategoriesResponse response)
         {
             var faqCategories = response.items;
@@ -433,99 +529,17 @@ namespace Rebots.HelpDesk
             }
         }
 
-        public void OnFaqUpdated(HelpdeskFaqResponse response)
+        public void CheckCsCategoryPage(HelpdeskTicketCategoryResponse response)
         {
-            var faq = response;
+            var csCategory = response;
 
-            var routeCategories = faq.categories;
-            var routeStrFormat = "Main > FAQ > <color={0}>{1}</color>";
-            var categoriesStr = faq.title;
-            foreach (var category in routeCategories)
-            {
-                categoriesStr = category.name + " > " + categoriesStr;
-            }
-            var routeStr = string.Format(routeStrFormat, m_Theme, categoriesStr);
-
-            TemplateContainer routeUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeStr, out routeUIElement);
-            m_RouteLabelContainer.Add(routeUIElement);
-
-            m_MenuLabel.text = "FAQ";
-            m_TitleCategoryLabel.text = faq.title;
-
-            var selectedCategory = routeCategories[0];
-            var siblingCategories = faq.siblingCategories;
-            var siblingCount = (siblingCategories != null) ? siblingCategories.Count() : 0;
-            if (siblingCount > 0)
-            {
-                var selectedIndex = -1;
-                for (int i = 0; i < siblingCount; i++)
-                {
-                    var item = siblingCategories[i];
-                    TemplateContainer categoryUIElement = null;
-
-                    if (item.id == selectedCategory.id)
-                    {
-                        selectedIndex = i;
-                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Selected, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
-                    }
-                    else
-                    {
-
-                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Sibling, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
-                    }
-                    m_SiblingCategoryList.Add(categoryUIElement);
-                }
-
-                StartCoroutine(ScrollingSiblingCategory(selectedIndex));
+            if (csCategory.subCategories == null || csCategory.subCategories.Count() == 0) 
+            { 
+                helpdeskScreen.ShowTicketCreate(csCategory);
             }
             else
             {
-                ShowVisualElement(m_SiblingCategoryContainer, false);
-            }
-
-            var contentsDic = HtmlParser.HtmlToUnityTag(faq.contents.ToString());
-            foreach (var item in contentsDic)
-            {
-                switch (item.type)
-                {
-                    case "text":
-                        helpdeskScreen.rebotsUICreater.CreateLabel(item.value, out Label labelUIElement);
-                        m_FaqDetailContainer.Add(labelUIElement);
-                        break;
-                    case "img":
-                        var imgContents = item.value;
-                        helpdeskScreen.ImageUrlToTexture2D(new System.Uri(imgContents), imgContents);
-                        break;
-                    case "link":
-                        var linkContents = item.value.Split(HtmlParser.linkSplitPoint);
-                        helpdeskScreen.rebotsUICreater.CreateLinkLabel(linkContents[0], linkContents[1], out Label linkLabelUIElement);
-                        m_FaqDetailContainer.Add(linkLabelUIElement);
-                        break;
-                    case "iframe":
-                        var videoContents = item.value;
-                        helpdeskScreen.rebotsUICreater.CreateLinkLabel(videoContents, null, out Label iframeLabelUIElement);
-                        m_FaqDetailContainer.Add(iframeLabelUIElement);
-                        break;
-                }
-            }
-        }
-
-        public void OnFaqImageAdded(Texture2D texture, string externalLinkUri)
-        {
-            if (texture != null && !string.IsNullOrEmpty(externalLinkUri))
-            {
-                VisualElement imgUIElement = new VisualElement();
-
-                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(texture.width / 2, texture.height / 2));
-                imgUIElement.style.backgroundImage = new StyleBackground(sprite);
-                imgUIElement.style.unityBackgroundScaleMode = ScaleMode.ScaleToFit;
-                imgUIElement.style.width = Length.Percent(100);
-                imgUIElement.style.minHeight = new Length(300f);
-                imgUIElement.style.flexShrink = 0;
-                imgUIElement.style.flexGrow = 1;
-
-                m_FaqDetailContainer.Add(imgUIElement);
+                helpdeskScreen.ShowCsSubCategory(csCategory);
             }
         }
 

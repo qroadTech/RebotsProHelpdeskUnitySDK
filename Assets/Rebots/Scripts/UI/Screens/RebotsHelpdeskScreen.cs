@@ -6,6 +6,7 @@ using System.IO;
 using System;
 using System.Collections;
 using System.Reflection;
+using System.Linq;
 
 namespace Rebots.HelpDesk
 {
@@ -130,7 +131,7 @@ namespace Rebots.HelpDesk
             HidePage(RebotsPageType.Main);
             ClearData(RebotsPageType.Main, RebotsPageName.Cs);
 
-            rebotsSettingManager.LoadCsCategoryList(rebotsPageUI.OnCsCategoriesUpdated, true);
+            rebotsSettingManager.LoadCsCategoryList(rebotsPageUI.OnCsCategoriesUpdated, false);
 
             ShowPage(RebotsPageType.Main, RebotsPageName.Cs);
         }
@@ -451,14 +452,7 @@ namespace Rebots.HelpDesk
 
         public void ClickCsCategory(Category category)
         {
-            if (category.useField)
-            {
-                ShowTicketCreate(category);
-            }
-            else
-            {
-                ShowCsSubCategory(category);
-            }
+            rebotsSettingManager.LoadCsCategory(rebotsPageUI.CheckCsCategoryPage, category.id);
         }
 
         public void ClickFaqCategory(Category category)
