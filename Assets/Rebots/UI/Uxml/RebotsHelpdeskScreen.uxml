@@ -9,9 +9,9 @@
         <ui:VisualElement name="rebots-helpdesk-layout" style="height: 100%; background-color: rgb(255, 255, 255);">
             <ui:VisualElement style="height: 100%;">
                 <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="rebots-scrollview" class="rebots-helpdesk-scrollview" style="height: 100%; margin-top: 62px;">
-                    <ui:VisualElement name="rebots-title-container" class="rebots-background-color__theme" style="width: 100%; display: none;">
+                    <ui:VisualElement name="rebots-title-container" class="rebots-background-color__theme" style="width: 100%; display: flex;">
                         <ui:VisualElement name="rebots-image-title-background" style="width: 100%; height: 300px; max-height: 300px; min-height: 300px; background-image: none; -unity-background-scale-mode: scale-and-crop; padding-left: 23px; padding-right: 23px; justify-content: space-around; flex-shrink: 0; display: flex; padding-bottom: 62px; align-items: center;">
-                            <ui:Label text="Welcome to Rebots Pro Help Desk" display-tooltip-when-elided="true" name="rebots-helpdesk-label" class="rebots-label__black28 rebots-font-color__white" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center;" />
+                            <ui:Label text="Welcome to Rebots Pro Help Desk" display-tooltip-when-elided="true" name="rebots-helpdesk-label" class="rebots-label__black28 rebots-font-color__white" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center; -unity-text-align: middle-center;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="rebots-page-container">
@@ -316,7 +316,7 @@
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="rebots-menu-container" class="rebots-background-color__theme" style="position: absolute; flex-shrink: 0; flex-grow: 1; height: 100%; min-width: 295px; max-width: 391px; min-height: 100%; padding-left: 20px; padding-right: 20px; padding-top: 0; padding-bottom: 0; display: none;">
+            <ui:VisualElement name="rebots-menu-container" class="rebots-background-color__theme" style="position: absolute; flex-shrink: 0; flex-grow: 1; height: 100%; min-width: 295px; max-width: 295px; min-height: 100%; padding-left: 20px; padding-right: 20px; padding-top: 0; padding-bottom: 0; display: none; width: 295px;">
                 <ui:VisualElement style="height: 62px; min-height: 62px; flex-direction: row; align-items: center;">
                     <ui:Button display-tooltip-when-elided="true" name="rebots-menu-close-button" style="width: 22px; height: 22px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgba(255, 255, 255, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; align-items: center; justify-content: space-around;">
                         <ui:VisualElement style="width: 12px; height: 12px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/SideMenuClose.png?fileID=21300000&amp;guid=f2bb81093d91ab7468b6b071960688c1&amp;type=3#SideMenuClose&apos;); -unity-background-scale-mode: scale-to-fit;" />

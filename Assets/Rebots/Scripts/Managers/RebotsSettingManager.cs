@@ -25,14 +25,6 @@ namespace Rebots.HelpDesk
         private string gameCustomerUuid;
 
         /// <summary>
-        /// Public name is common string texts when you register our services.
-        /// This name is public and not secured.
-        /// 
-        /// Already filled string is example of sample project.
-        /// </summary>
-        public string ProjectPublicName;
-
-        /// <summary>
         /// Project main key is encrypted and used for main initialize REST API.
         /// You must fill specific key strings what you received from
         /// RebotsPro Web solutions(workspace).
@@ -61,16 +53,11 @@ namespace Rebots.HelpDesk
             RebotsHelpdeskInitailize();
         }
 
-        public void RebotsHelpdeskInitailize(string? publicName = "", string? mainKey = "", string? apiUri = "", string? apiStatisticsUri = "")
+        public void RebotsHelpdeskInitailize(string? mainKey = "", string? apiUri = "", string? apiStatisticsUri = "")
         {
             projectInitialized = false;
 
             localizationManager = new RebotsLocalizationManager(translationFile);
-
-            if (!string.IsNullOrEmpty(publicName))
-            {
-                ProjectPublicName = publicName;
-            }
 
             if (!string.IsNullOrEmpty(mainKey))
             {
@@ -87,9 +74,6 @@ namespace Rebots.HelpDesk
                 /// This configuration set main key. You must fill this. 
                 /// If you don't it will casue <see cref="ArgumentNullException"/>.
                 .UseProjectMainKey(ProjectMainKey)
-                /// This configuration set project public name. You must fill this. 
-                /// If you don't it will casue <see cref="ArgumentNullException"/>.
-                .UseProjectPublicName(ProjectPublicName)
                 /// This configuration set project default language. You must fill this.  
                 /// If you don't it will casue <see cref="ArgumentNullException"/>.
                 .UseProjecLanguage(HelpdeskLanguage);

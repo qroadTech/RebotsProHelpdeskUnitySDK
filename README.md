@@ -17,7 +17,6 @@
   - <code>Assets/Prefabs/Rebots/RebotsSettingManager.prefab</code> :
     - **Inspector** 패널에 <code>RebotsSettingManager.cs</code> 파일을 필요로 합니다.
     - **Inspector** 패널 내에서 프로젝트 정보 항목을 입력합니다.
-    - <code>Project Public Name</code> - *Rebots Pro Workspace에서 설정한 정보입니다.*
     - <code>Project Main Key</code> - *Rebots Pro Workspace에서 설정한 정보입니다.*
     - <code>Rebots Translation File</code> - *<code>Assets/Rebots/Localization/rebots_translation_utf.csv</code> 파일을 필요로 합니다.*
     - <code>Helpdesk Language</code> - *Rebots Pro Workspace에서 설정한 정보입니다.*
@@ -51,7 +50,6 @@ You can test with <code>Assets/Scenes/Rebots.Unity</code> file.
   - <code>Assets/Prefabs/Rebots/RebotsSettingManager.prefab</code> :
     - The **Inspector** panel requires the <code>RebotsSettingManager.cs</code> file.
     - Inside the **Inspector** panel, assign the property.
-    - <code>Project Public Name</code> - *Information set in Rebots Pro Workspace.*
     - <code>Project Main Key</code> - *Information set in Rebots Pro Workspace.*
     - <code>Rebots Translation File</code> - *Requires the <code>Assets/Rebots/Localization/rebots_translation_utf.csv</code> file.*
     - <code>Helpdesk Language</code> - *Information set in Rebots Pro Workspace.*
