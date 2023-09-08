@@ -5,6 +5,7 @@ using HelpDesk.Sdk.Unity.Library.Events;
 using HelpDesk.Sdk.Unity.Library.Objects;
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
@@ -12,7 +13,7 @@ using UnityEngine.Networking;
 namespace Rebots.HelpDesk
 {
     /// <summary>
-    /// Sample of Qroad RebotsProMax HelpDesk SDK.
+    /// Sample of Qroad RebotsPro HelpDesk SDK.
     /// 
     /// Main Initializer and SDK usage samples via MonoBehaviour Manager
     /// Objects. This object helps for HelpDesk project initialize,
@@ -30,11 +31,11 @@ namespace Rebots.HelpDesk
         /// Already filled string is example of sample project.
         /// </summary>
         public string ProjectPublicName;
-         
+
         /// <summary>
         /// Project main key is encrypted and used for main initialize REST API.
         /// You must fill specific key strings what you received from
-        /// RebotsProMax Web solutions.
+        /// RebotsPro Web solutions(workspace).
         /// 
         /// Already filled string is example of sample project.
         /// </summary>
@@ -88,7 +89,20 @@ namespace Rebots.HelpDesk
                 .UseProjectMainKey(ProjectMainKey)
                 /// This configuration set project public name. You must fill this. 
                 /// If you don't it will casue <see cref="ArgumentNullException"/>.
-                .UseProjectPublicName(ProjectPublicName);
+                .UseProjectPublicName(ProjectPublicName)
+                /// This configuration set project default language. You must fill this.  
+                /// If you don't it will casue <see cref="ArgumentNullException"/>.
+                .UseProjecLanguage(HelpdeskLanguage);
+
+            if (!string.IsNullOrEmpty(apiUri))
+            {
+                builder.UseApiUri(apiUri);
+            }
+
+            if (!string.IsNullOrEmpty(apiStatisticsUri))
+            {
+                builder.UseStatisticsApiUri(apiStatisticsUri);
+            }
 
             if (!string.IsNullOrEmpty(apiUri))
             {
@@ -165,12 +179,23 @@ namespace Rebots.HelpDesk
         /// It will gain additional informations for using Qroad RebostProMax
         /// HelpDesk Services.
         /// </summary>
-        public void HelpdeskInitialize()
+        public void HelpdeskInitialize(string? changeLanguage = "")
         {
+            var evt = new UnityEvent<HelpdeskProjectInitializeResponse>();
+
+            if (!string.IsNullOrEmpty(changeLanguage))
+            {
+                projectInitialized = false;
+                localizationManager.SetLanguage(changeLanguage);
+                evt.AddListener(OnLanguageInitializeSuccessed);
+            }
+            else
+            {
+                evt.AddListener(OnInitializeSuccessed);
+            }
+
             /// You can use initialize REST API easily.
             /// Third parameter callback is using on successed to call initialize API call.
-            var evt = new UnityEvent<HelpdeskProjectInitializeResponse>();
-            evt.AddListener(OnInitializeSuccessed);
             var initializer = new UnityRebotsProMaxProjectInitializer(
                 helpdeskConfig, helpdeskEvents, evt);
 
@@ -183,11 +208,11 @@ namespace Rebots.HelpDesk
             /// game login processes. (e.g: LoginScene, SocialLogin...)
 
             /// You need using coroutines for using API call.
-            StartCoroutine(initializer.Initialize());
+            StartCoroutine(initializer.Initialize(changeLanguage));
         }
 
         /// <summary>
-        ///  You can load event banners what you added from RebotsProMax Solutions .
+        ///  You can load event banners what you added from RebotsPro Web solutions(workspace).
         /// </summary>
         public void LoadEventBannerList(UnityAction<HelpdeskEventBannerResponses> listUpdate)
         {
@@ -198,7 +223,7 @@ namespace Rebots.HelpDesk
         }
 
         /// <summary>
-        ///  You can load faq cateogories what you added from RebotsProMax Solutions .
+        ///  You can load faq cateogories what you added from RebotsPro Web solutions(workspace).
         /// </summary>
         public void LoadFaqCategoryList(UnityAction<HelpdeskFaqCategoriesResponse> listUpdate, bool? isRoot = false)
         {
@@ -209,7 +234,7 @@ namespace Rebots.HelpDesk
         }
 
         /// <summary>
-        ///  You can load faq cateogory what you added from RebotsProMax Solutions.
+        ///  You can load faq cateogory what you added from RebotsPro Web solutions(workspace).
         /// </summary>
         public void LoadFaqCategory(UnityAction<HelpdeskFaqCategoryResponse> listUpdate, int categoryId)
         {
@@ -220,7 +245,7 @@ namespace Rebots.HelpDesk
         }
 
         /// <summary>
-        ///  You can load recommend faq what you added from RebotsProMax Solutions .
+        ///  You can load recommend faq what you added from RebotsPro Web solutions(workspace).
         /// </summary>
         public void LoadFaqRecommendList(UnityAction<HelpdeskFaqListResponse> listUpdate)
         {
@@ -231,7 +256,7 @@ namespace Rebots.HelpDesk
         }
 
         /// <summary>
-        ///  You can load recommend faq what you added from RebotsProMax Solutions .
+        ///  You can load recommend faq what you added from RebotsPro Web solutions(workspace).
         /// </summary>
         public void LoadFaqSearchList(UnityAction<HelpdeskFaqSearchResponse> listUpdate, string search, int page)
         {
@@ -242,7 +267,7 @@ namespace Rebots.HelpDesk
         }
 
         /// <summary>
-        /// You can load faqs what you added from RebotsProMax Solutions .
+        /// You can load faqs what you added from RebotsPro Web solutions(workspace).
         /// </summary>
         public void LoadFaq(UnityAction<HelpdeskFaqResponse> listUpdate, int faqId)
         {
@@ -253,7 +278,7 @@ namespace Rebots.HelpDesk
         }
 
         /// <summary>
-        /// You can load cs cateogories what you added from RebotsProMax Solutions .
+        /// You can load cs cateogories what you added from RebotsPro Web solutions(workspace).
         /// </summary>
         public void LoadCsCategoryList(UnityAction<HelpdeskTicketCategoriesResponse> listUpdate, bool? isRoot = false)
         {
@@ -264,7 +289,7 @@ namespace Rebots.HelpDesk
         }
 
         /// <summary>
-        /// You can load cs cateogory what you added from RebotsProMax Solutions .
+        /// You can load cs cateogory what you added from RebotsPro Web solutions(workspace).
         /// </summary>
         public void LoadCsCategory(UnityAction<HelpdeskTicketCategoryResponse> listUpdate, int categoryId)
         {
@@ -275,7 +300,7 @@ namespace Rebots.HelpDesk
         }
 
         /// <summary>
-        /// You can load fields that selected category which you have added from RebotsProMax Solutions .
+        /// You can load fields that selected category which you have added from RebotsPro Web solutions(workspace).
         /// </summary>
         public void LoadCsCategoryFieldList(UnityAction<HelpdeskTicketCategoryField> listUpdate, int categoryId)
         {
@@ -286,7 +311,7 @@ namespace Rebots.HelpDesk
         }
 
         /// <summary>
-        /// You can send ticket to the RebotsProMax Solutions you have added.
+        /// You can send ticket to the RebotsPro Web solutions(workspace) you have added.
         /// </summary>
         public void CreateTicket(UnityAction<HelpDeskTicketCreateResponse> ticketCreate, TicketInputFormData ticketInputFields)
         {
@@ -318,12 +343,12 @@ namespace Rebots.HelpDesk
             StartCoroutine(req.GetTickets());
         }
 
-        public void LoadTexture(UnityAction<Texture2D, string> textureUpdate, EventBanner banner)
+        public void LoadTexture(UnityAction<Texture2D, string> textureUpdate, Uri fileUrl, string externalLinkUrl)
         {
             var evt = new UnityEvent<Texture2D, string>();
             evt.AddListener(textureUpdate);
             var req = new UnityRebotsProMaxGetTexture(helpdeskConfig, helpdeskEvents, evt);
-            StartCoroutine(req.GetTexture(banner));
+            StartCoroutine(req.GetTexture(fileUrl, externalLinkUrl));
         }
         #endregion
 
@@ -331,7 +356,7 @@ namespace Rebots.HelpDesk
         /// <summary>
         /// When you successfully initialize, your next step is about
         /// your game player or customers. This action will create game player
-        /// on your RebotsProMax Solutions or get information current registered.
+        /// on your RebotsPro Web solutions(workspace) or get information current registered.
         /// 
         /// If API was called, it will gain game players UUID for get player's
         /// tickets or create it.
@@ -362,7 +387,7 @@ namespace Rebots.HelpDesk
                 AuthKey = authKey,
                 /// Email is optional.
                 Email = email,
-                /// Displayed user name on RebotsProMax Solution.
+                /// Displayed user name on RebotsPro Web solutions(workspace).
                 Username = username,
                 /// Player selected language. Must using which you received from 
                 /// <see cref="HelpdeskUserInitializeResponse"/>
@@ -402,9 +427,9 @@ namespace Rebots.HelpDesk
         #region Project and User Initialize Successed callback
         /// <summary>
         /// Response objects contains about Project information what you configured
-        /// on RebotsProMax Solutions. <seealso cref="ProjectData"/>
+        /// on RebotsPro Web solutions(workspace). <seealso cref="ProjectData"/>
         /// 
-        /// Project Data contains Customer Key and support languages.
+        /// Project Data contains CS Key and support languages.
         /// </summary>
         /// <param name="response">Helpdesk Initialize response.</param>
         void OnInitializeSuccessed(HelpdeskProjectInitializeResponse response)
@@ -419,7 +444,7 @@ namespace Rebots.HelpDesk
 
             if (languageCheck)
             {
-                Debug.Log("RebotsProMax HelpDeskSdk was initialized.");
+                Debug.Log("RebotsPro HelpDeskSdk was initialized.");
                 Debug.Log($"Project CS Key : {response.data.csKey}");
                 Debug.Log($"Project Supports language {string.Join(", ", response.data.languages)}.");
 
@@ -433,10 +458,43 @@ namespace Rebots.HelpDesk
             }
             else
             {
-                Debug.LogError("RebotsProMax HelpDeskSdk was not initialized.");
+                Debug.LogError("RebotsPro HelpDeskSdk was not initialized.");
                 Debug.LogError($"Project Supports language {string.Join(", ", response.data.languages)}.");
 
                 HelpdeskLanguage = RebotsLanguage.None;
+                projectInitialized = false;
+            }
+        }
+
+        /// <summary>
+        /// Response objects contains about Project information what you configured
+        /// on RebotsPro Web solutions(workspace). <seealso cref="ProjectData"/>
+        /// 
+        /// Project Data contains CS Key and support languages.
+        /// </summary>
+        /// <param name="response">Helpdesk Initialize response.</param>
+        void OnLanguageInitializeSuccessed(HelpdeskProjectInitializeResponse response)
+        {
+            var languageCheck = localizationManager.CheckSupportedLanguage(HelpdeskLanguage);
+
+            if (languageCheck)
+            {
+                Debug.Log("RebotsPro HelpDeskSdk was language initialized.");
+                Debug.Log($"Project CS Key : {response.data.csKey}");
+                Debug.Log($"Project Supports language {string.Join(", ", response.data.languages)}.");
+
+                helpdeskSetting = response.data.helpdeskSetting;
+                ticketPrivacySetting = response.data.ticketPrivacySetting;
+
+                localizationManager.ReadData();
+
+                projectInitialized = true;
+            }
+            else
+            {
+                Debug.LogError("RebotsPro HelpDeskSdk was not language initialized.");
+                Debug.LogError($"Project Supports language {string.Join(", ", response.data.languages)}.");
+
                 projectInitialized = false;
             }
         }
@@ -446,7 +504,7 @@ namespace Rebots.HelpDesk
         /// <param name="response">Helpdesk UserInitialize response.</param>
         void OnUserInitializeSuccessed(HelpdeskUserInitializeResponse response)
         {
-            Debug.Log("RebotsProMax Game Player was initialized.");
+            Debug.Log("RebotsPro Game Player was initialized.");
             Debug.Log($"Player UUID : {response.data.customerUuid}");
             gameCustomerUuid = new string(response.data.customerUuid);
         }
@@ -456,14 +514,14 @@ namespace Rebots.HelpDesk
         {
             /// TODO : [UI Feature] 인디케이터 켜는 호출 삽입
             /// StartCoroutine(IndicatorOn);
-            Debug.Log("RebotsProMax HelpDeskSdk REST API call start.");
+            Debug.Log("RebotsPro HelpDeskSdk REST API call start.");
         }
 
         void OnApiCallFinished()
         {
             /// TODO : [UI Feature] 인디케이터 끄는 호출 삽입
             /// StartCoroutine(IndicatorOff);
-            Debug.Log("RebotsProMax HelpDeskSdk REST API call was finished.");
+            Debug.Log("RebotsPro HelpDeskSdk REST API call was finished.");
         }
 
         #region Initialize state

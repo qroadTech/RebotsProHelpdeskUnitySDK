@@ -233,6 +233,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1591111724 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8807594975628496268, guid: bf7a07804addf994981e29b2f520406a, type: 3}
+  m_PrefabInstance: {fileID: 1307173591112795907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37ea85760dfcfba4387e8dc7dccdb0f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1810837036
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aab085edcebb9a42bdf290156d581ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rebotsHelpdeskUIManager: {fileID: 1551621707098746982}
+  rebotsHelpdeskUIManager: {fileID: 1591111724}
 --- !u!1001 &2014752611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -568,16 +579,9 @@ PrefabInstance:
       propertyPath: rebotsSettingManager
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1487581472455094443, guid: bf7a07804addf994981e29b2f520406a, type: 3}
+      propertyPath: rebotsSettingManager
+      value: 
+      objectReference: {fileID: 198267418}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf7a07804addf994981e29b2f520406a, type: 3}
---- !u!114 &1551621707098746982 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 552945275181414245, guid: bf7a07804addf994981e29b2f520406a, type: 3}
-  m_PrefabInstance: {fileID: 1307173591112795907}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37ea85760dfcfba4387e8dc7dccdb0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

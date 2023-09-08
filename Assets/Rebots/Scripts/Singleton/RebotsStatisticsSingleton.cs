@@ -5,10 +5,10 @@ using UnityEngine;
 namespace Rebots.HelpDesk
 {
     /// <summary>
-    /// HelpdStatistics Method singleton.
+    /// Statistics Method singleton.
     /// 
     /// This singletone class globally used in sample game. Instance will
-    /// constructed after HelpdeskStatisticsAuthorized.
+    /// constructed after <see cref="RebotsSettingManager.HelpdeskStatisticsAuthorize"/>.
     /// </summary>
     public class RebotsStatisticsSingleton : MonoBehaviour
     {
@@ -38,7 +38,20 @@ namespace Rebots.HelpDesk
             request = new UnityRebotsProMaxAddStatistics(configurations);
         }
 
-
+        /// <summary>
+        /// <example>
+        /// parameter key use only: 
+        /// <code>
+        /// RebotsStatisticsSingleton.Instance.Send("PlayerLose");
+        /// </code>
+        /// parameter value use: 
+        /// <code>
+        /// RebotsStatisticsSingleton.Instance.Send("UsePotion", item.name);
+        /// </code>
+        /// </example>
+        /// </summary>
+        /// <param name="key">key strings what you set from RebotsPro Web solution(workspace).</param>
+        /// <param name="value">detail value of key</param>
         public void Send(string key, string value = null) 
         {
             if (request == null) 

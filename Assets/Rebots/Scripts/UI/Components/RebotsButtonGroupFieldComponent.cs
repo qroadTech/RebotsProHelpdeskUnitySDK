@@ -70,7 +70,7 @@ namespace Rebots.HelpDesk
                 var m_ButtonLabel = buttonUIElement.Q<Label>(k_ButtonLabel);
                 m_ButtonLabel.text = item.answer;
 
-                if (m_csCategoryField.fieldType == RebotsInputFieldType.checkbox)
+                if (m_csCategoryField.fieldType == RebotsInputFieldType.Checkbox)
                 {
                     var m_Check = buttonUIElement.Q<Toggle>(k_Check);
                     m_Check.value = (parameterIndex == i) ? true : false;
@@ -96,7 +96,7 @@ namespace Rebots.HelpDesk
         {
             List<string> valueStr = new List<string>();
 
-            if (m_csCategoryField.fieldType == RebotsInputFieldType.checkbox)
+            if (m_csCategoryField.fieldType == RebotsInputFieldType.Checkbox)
             {
                 foreach (var item in m_Checkbuttons)
                 {

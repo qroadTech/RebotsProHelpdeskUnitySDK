@@ -1,4 +1,5 @@
 ﻿using HelpDesk.Sdk.Common.Objects;
+using HelpDesk.Sdk.Library.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,23 +72,22 @@ namespace Rebots.HelpDesk
                 faqTitleStr += "...";
             }
 
-            if (faqType == RebotsFaqAssetType.popular)
+            if (faqType == RebotsFaqAssetType.Popular)
             {
                 m_FaqLikeCountLabel.text = m_Faq.likeCount.ToString();
                 m_FaqTitleLabel.text = faqTitleStr;
             }
 
-            if (faqType == RebotsFaqAssetType.search)
+            if (faqType == RebotsFaqAssetType.Search)
             {
                 var searchHtml = "<u>" + searchStr + "</u>";
                 faqTitleStr = faqTitleStr.Replace(searchStr, searchHtml);
                 m_FaqTitleLabel.text = faqTitleStr;
-
-                var contents = m_Faq.contents.ToString();
-                contents = contents.Replace("<br>", " ");
-                if (contents.Length > 179)
+                
+                var contents = HtmlParser.HtmlToRemoveTag(m_Faq.contents.ToString());
+                if (contents.Length > 117)
                 {
-                    contents = contents.Substring(0, 179);
+                    contents = contents.Substring(0, 116);
                     contents += "...";
                 }
                 contents = contents.Replace(searchStr, searchHtml);

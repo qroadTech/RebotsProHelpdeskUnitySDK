@@ -72,12 +72,12 @@ namespace Rebots.HelpDesk
             if (m_Ticket.isAnswers)
             {
                 m_TicketStateContainer.AddToClassList(RebotsUIStaticString.RebotsBackgroundColor_Theme);
-                m_TicketStateLabel.text = "답변완료";
+                m_TicketStateLabel.text = "Completed";
             }
             else
             {
                 m_TicketStateContainer.AddToClassList(RebotsUIStaticString.RebotsBackgroundColor_Grey);
-                m_TicketStateLabel.text = "답변대기";
+                m_TicketStateLabel.text = "Waiting";
             }
         }
 

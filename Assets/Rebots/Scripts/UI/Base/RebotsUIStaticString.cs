@@ -81,6 +81,7 @@ namespace Rebots.HelpDesk
         public const string MenuLabel = "rebots-menu-label";
 
         public const string SiblingCategoryContainer = "rebots-sibling-category-container";
+        public const string SiblingCategoryScrollview = "rebots-sibling-category-scrollview";
         public const string SiblingCategoryList = "rebots-sibling-category-list-container";
 
         public const string TitleCategoryConatiner = "rebots-title-category-container";
@@ -114,6 +115,7 @@ namespace Rebots.HelpDesk
         public const string TicketDetailList = "rebots-ticket-detail-list-container";
         public const string TicketContentsLabel = "rebots-ticket-contents-label";
         public const string TicketAnswerList = "rebots-ticket-answer-list-container";
+        public const string TicketAnswerContentContainer = "rebots-content-container";
         #endregion
         #region - - - Ticket Button UI name - - - 
         public const string TicketButtonContainer = "rebots-ticket-button-container";
@@ -170,6 +172,7 @@ namespace Rebots.HelpDesk
         public const string RebotsFontColor_Black = "rebots-font-color__black";
         public const string RebotsFontColor_Grey = "rebots-font-color__grey";
         public const string RebotsFontColor_Theme = "rebots-font-color__theme";
+        public const string RebotsLabelLink = "rebots-label-link";
         #endregion
 
         #region - - - Theme Code String - - - 

@@ -14,6 +14,8 @@ public class RebotsExport : MonoBehaviour
         exportedPackageAssetList.Add("Assets/Plugins/NativeGallery");
         exportedPackageAssetList.Add("Assets/Plugins/Newtonsoft.Json.dll");
         exportedPackageAssetList.Add("Assets/Plugins/Newtonsoft.Json.pdb");
+        exportedPackageAssetList.Add("Assets/Plugins/HtmlAgilityPack.dll");
+        exportedPackageAssetList.Add("Assets/Plugins/HtmlAgilityPack.pdb");
         exportedPackageAssetList.Add("Assets/Plugins/HelpDesk.Sdk.Common.dll");
         exportedPackageAssetList.Add("Assets/Plugins/HelpDesk.Sdk.Common.pdb");
         exportedPackageAssetList.Add("Assets/Plugins/HelpDesk.Sdk.Library.dll");
@@ -30,5 +32,7 @@ public class RebotsExport : MonoBehaviour
 
         AssetDatabase.ExportPackage(exportedPackageAssetList.ToArray(), "RebotsSDK.unitypackage",
             ExportPackageOptions.Recurse | ExportPackageOptions.IncludeDependencies);
+
+        Debug.Log("RebotsSDK.unitypackage export completed.");
     }
 }

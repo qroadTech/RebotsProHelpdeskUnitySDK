@@ -80,7 +80,7 @@ namespace Rebots.HelpDesk
                 m_BannerList.Clear();
                 foreach (var item in banners)
                 {
-                    BannerImageToTexture(item);
+                    ImageUrlToTexture2D(new Uri(item.fileUrl), item.externalLinkUrl);
                 }
             }
             else
@@ -89,9 +89,9 @@ namespace Rebots.HelpDesk
             }
         }
 
-        private void BannerImageToTexture(EventBanner banner)
+        private void ImageUrlToTexture2D(Uri fileUrl, string externalLinkUrl)
         {
-            rebotsSettingManager.LoadTexture(SetBanner, banner);
+            rebotsSettingManager.LoadTexture(SetBanner, fileUrl, externalLinkUrl);
         }
 
         private void SetBanner(Texture2D texture, string externalLinkUri)

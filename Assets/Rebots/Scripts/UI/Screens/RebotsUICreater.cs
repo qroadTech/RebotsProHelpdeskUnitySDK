@@ -45,15 +45,11 @@ namespace Rebots.HelpDesk
             uiElement = languageUIElement;
         }
 
-        public void CreateRouteLabel(string categoryName, bool isColor, out TemplateContainer uiElement)
+        public void CreateRouteLabel(string categoryName, out TemplateContainer uiElement)
         {
             TemplateContainer routeLabelUIElement = RouteLabelAsset.Instantiate();
             Label routeLabel = routeLabelUIElement.Q<Label>(RebotsUIStaticString.RouteLabel);
             routeLabel.text = categoryName;
-            if (isColor)
-            {
-                routeLabel.AddToClassList(RebotsUIStaticString.RebotsFontColor_Theme);
-            }
 
             uiElement = routeLabelUIElement;
         }
@@ -63,25 +59,25 @@ namespace Rebots.HelpDesk
             VisualTreeAsset asset = FaqCategoryAsset;
             switch (type)
             {
-                case RebotsCategoryAssetType.cs:
+                case RebotsCategoryAssetType.Cs:
                     asset = CsCategoryAsset;
                     break;
-                case RebotsCategoryAssetType.faq:
+                case RebotsCategoryAssetType.Faq:
                     asset = FaqCategoryAsset;
                     break;
-                case RebotsCategoryAssetType.menu:
+                case RebotsCategoryAssetType.Menu:
                     asset = MenuCategoryAsset;
                     break;
-                case RebotsCategoryAssetType.sibling:
+                case RebotsCategoryAssetType.Sibling:
                     asset = SiblingCategoryAsset;
                     break;
-                case RebotsCategoryAssetType.selected:
+                case RebotsCategoryAssetType.Selected:
                     asset = SelectedCategoryAsset;
                     break;
-                case RebotsCategoryAssetType.sub:
+                case RebotsCategoryAssetType.Sub:
                     asset = SubCategoryAsset;
                     break;
-                case RebotsCategoryAssetType.contents:
+                case RebotsCategoryAssetType.Contents:
                     asset = ContentCategoryAsset;
                     break;
             }
@@ -93,7 +89,7 @@ namespace Rebots.HelpDesk
             categoryComponent.SetCategoryData(categoryUIElement);
             categoryComponent.RegisterCallbacks(clickAction);
 
-            if (type == RebotsCategoryAssetType.sibling || type == RebotsCategoryAssetType.selected)
+            if (type == RebotsCategoryAssetType.Sibling || type == RebotsCategoryAssetType.Selected)
             {
                 categoryUIElement.style.flexGrow = 1;
                 categoryUIElement.style.flexShrink = 0;
@@ -110,10 +106,10 @@ namespace Rebots.HelpDesk
             VisualTreeAsset asset = PopularFaqAsset;
             switch (type)
             {
-                case RebotsFaqAssetType.popular:
+                case RebotsFaqAssetType.Popular:
                     asset = PopularFaqAsset;
                     break;
-                case RebotsFaqAssetType.search:
+                case RebotsFaqAssetType.Search:
                     asset = SearchFaqAsset;
                     break;
             }
@@ -131,11 +127,11 @@ namespace Rebots.HelpDesk
 
         public void CreateCsCategoryField(TicketCategoryInputField csCategoryField, string parameterValue, out TemplateContainer uiElement, out object uiComponent)
         {
-            if (csCategoryField.fieldType == RebotsInputFieldType.text || csCategoryField.fieldType == RebotsInputFieldType.textarea)
+            if (csCategoryField.fieldType == RebotsInputFieldType.Text || csCategoryField.fieldType == RebotsInputFieldType.Textarea)
             {
                 VisualTreeAsset asset = TextFieldAsset;
 
-                if (csCategoryField.fieldType == RebotsInputFieldType.textarea)
+                if (csCategoryField.fieldType == RebotsInputFieldType.Textarea)
                 {
                     asset = TextareaFieldAsset;
                 }
@@ -149,7 +145,7 @@ namespace Rebots.HelpDesk
                 uiElement = textFieldUIElement;
                 uiComponent = textFieldComponent;
             }
-            else if (csCategoryField.fieldType == RebotsInputFieldType.dropdown)
+            else if (csCategoryField.fieldType == RebotsInputFieldType.Dropdown)
             {
                 TemplateContainer dropdownFieldUIElement = DropdownFieldAsset.Instantiate();
 
@@ -160,11 +156,11 @@ namespace Rebots.HelpDesk
                 uiElement = dropdownFieldUIElement;
                 uiComponent = dropdownComponent;
             }
-            else if (csCategoryField.fieldType == RebotsInputFieldType.checkbox || csCategoryField.fieldType == RebotsInputFieldType.radiobutton)
+            else if (csCategoryField.fieldType == RebotsInputFieldType.Checkbox || csCategoryField.fieldType == RebotsInputFieldType.Radiobutton)
             {
                 TemplateContainer buttonGroupFieldUIElement = ButtonGroupFieldAsset.Instantiate();
 
-                var buttonAsset = (csCategoryField.fieldType == RebotsInputFieldType.checkbox) ? CheckAsset : RadioAsset;
+                var buttonAsset = (csCategoryField.fieldType == RebotsInputFieldType.Checkbox) ? CheckAsset : RadioAsset;
                 RebotsButtonGroupFieldComponent buttonGroupComponent = new RebotsButtonGroupFieldComponent(csCategoryField, buttonAsset, parameterValue);
                 buttonGroupComponent.SetVisualElement(buttonGroupFieldUIElement);
                 buttonGroupComponent.SetFieldData(buttonGroupFieldUIElement);
@@ -172,7 +168,7 @@ namespace Rebots.HelpDesk
                 uiElement = buttonGroupFieldUIElement;
                 uiComponent = buttonGroupComponent;
             }
-            else if (csCategoryField.fieldType == RebotsInputFieldType.file)
+            else if (csCategoryField.fieldType == RebotsInputFieldType.File)
             {
                 TemplateContainer attachmentFieldUIElement = AttachmentFieldAsset.Instantiate();
 
@@ -208,10 +204,10 @@ namespace Rebots.HelpDesk
             VisualTreeAsset asset = TicketFieldAsset;
             switch (type)
             {
-                case RebotsTicketDetailAssetType.field:
+                case RebotsTicketDetailAssetType.Field:
                     asset = TicketFieldAsset;
                     break;
-                case RebotsTicketDetailAssetType.answer:
+                case RebotsTicketDetailAssetType.Answer:
                     asset = TicketAnswerAsset;
                     break;
             }
@@ -236,6 +232,33 @@ namespace Rebots.HelpDesk
             privacyComponent.SetPrivacyData(PrivacyUIElement);
 
             uiElement = PrivacyUIElement;
+        }
+
+        public void CreateLabel(string textString, out Label label)
+        {
+            var labelUIElement = new Label();
+
+            labelUIElement.text = textString;
+            labelUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Regular16);
+            labelUIElement.AddToClassList(RebotsUIStaticString.RebotsFontColor_Black);
+
+            label = labelUIElement;
+        }
+
+        public void CreateLinkLabel(string linkString, string? textString, out Label label)
+        {
+            var labelUIElement = new Label();
+
+            if (textString == null && string.IsNullOrEmpty(textString))
+            {
+                textString = linkString;
+            }
+            labelUIElement.text = "<u>" + textString + "</u>";
+            labelUIElement?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(linkString));
+            labelUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Regular16);
+            labelUIElement.AddToClassList(RebotsUIStaticString.RebotsLabelLink);
+
+            label = labelUIElement;
         }
     }
 }

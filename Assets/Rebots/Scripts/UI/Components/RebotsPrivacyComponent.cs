@@ -15,6 +15,8 @@ namespace Rebots.HelpDesk
         const string PrivacyLinkLabel = "rebots-privacy-link-label";
         const string PrivacyCheck = "rebots-privacy-check";
 
+        const string FormStringFormat = "<b>{0}</b><br>{1}<br>";
+
         Label m_RequiredFieldLabel;
         VisualElement m_PrivacyTextContainer;
         Label m_PrivacyTextLabel;
@@ -75,27 +77,27 @@ namespace Rebots.HelpDesk
                     
                     if(!string.IsNullOrEmpty(m_ticketPrivacySetting.formPurposeText.Trim()))
                     {
-                        formStr += string.Format("<b>{0}</b><br>{1}<br>", m_transData[0], m_ticketPrivacySetting.formPurposeText.Trim());
+                        formStr += string.Format(FormStringFormat, m_transData[0], m_ticketPrivacySetting.formPurposeText.Trim());
                     }
                     if(!string.IsNullOrEmpty(m_ticketPrivacySetting.formItemText.Trim()))
                     {
-                        formStr += string.Format("<b>{0}</b><br>{1}<br>", m_transData[1], m_ticketPrivacySetting.formItemText.Trim());
+                        formStr += string.Format(FormStringFormat, m_transData[1], m_ticketPrivacySetting.formItemText.Trim());
                     }
                     if(!string.IsNullOrEmpty(m_ticketPrivacySetting.formPeriodText.Trim()))
                     {
-                        formStr += string.Format("<b>{0}</b><br>{1}<br>", m_transData[2], m_ticketPrivacySetting.formPeriodText.Trim());
+                        formStr += string.Format(FormStringFormat, m_transData[2], m_ticketPrivacySetting.formPeriodText.Trim());
                     }
                     if(!string.IsNullOrEmpty(m_ticketPrivacySetting.formAgencyNameText.Trim()))
                     {
-                        formStr += string.Format("<b>{0}</b><br>{1}<br>", m_transData[3], m_ticketPrivacySetting.formAgencyNameText.Trim());
+                        formStr += string.Format(FormStringFormat, m_transData[3], m_ticketPrivacySetting.formAgencyNameText.Trim());
                     }
                     if(!string.IsNullOrEmpty(m_ticketPrivacySetting.formAgencyProivdeText.Trim()))
                     {
-                        formStr += string.Format("<b>{0}</b><br>{1}<br>", m_transData[4], m_ticketPrivacySetting.formAgencyProivdeText.Trim());
+                        formStr += string.Format(FormStringFormat, m_transData[4], m_ticketPrivacySetting.formAgencyProivdeText.Trim());
                     }
                     if(!string.IsNullOrEmpty(m_ticketPrivacySetting.formAgencyPeriodText.Trim()))
                     {
-                        formStr += string.Format("<b>{0}</b><br>{1}<br>", m_transData[5], m_ticketPrivacySetting.formAgencyPeriodText.Trim());
+                        formStr += string.Format(FormStringFormat, m_transData[5], m_ticketPrivacySetting.formAgencyPeriodText.Trim());
                     }
 
                     m_PrivacyTextLabel.text = formStr;
