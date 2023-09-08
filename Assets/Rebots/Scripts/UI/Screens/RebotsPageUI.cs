@@ -336,7 +336,7 @@ namespace Rebots.HelpDesk
 
         public void OnFaqCategoriesUpdated(HelpdeskFaqCategoriesResponse response)
         {
-            var faqCategories = response.items;
+            var faqCategories = (response.items != null) ? response.items.Where(x => x.use == 1) : null;
             if (faqCategories != null && faqCategories.Count() > 0)
             {
                 foreach (var item in faqCategories)
@@ -352,7 +352,7 @@ namespace Rebots.HelpDesk
                         VisualElement lowerList = categoryUIElement.Q(RebotsUIStaticString.LowerCategoryContainer);
                         lowerList.Clear();
 
-                        var subCategories = item.subCategories;
+                        var subCategories = (item.subCategories != null) ? item.subCategories.Where(x => x.use == 1) : null;
                         int countInt = 0;
                         if (subCategories != null && subCategories.Count() > 0)
                         {
@@ -365,7 +365,7 @@ namespace Rebots.HelpDesk
                             }
                         }
 
-                        var faqs = item.faqs;
+                        var faqs = (item.faqs != null) ? item.faqs.Where(x => x.use == 1) : null;
                         if (faqs != null && faqs.Count() > 0)
                         {
                             foreach (var faq in faqs.Take(5 - countInt))
@@ -383,7 +383,7 @@ namespace Rebots.HelpDesk
 
         public void OnCsCategoriesUpdated(HelpdeskTicketCategoriesResponse response)
         {
-            var csCategories = response.items;
+            var csCategories = (response.items != null) ? response.items.Where(x => x.use == 1) : null;
             if (csCategories != null && csCategories.Count() > 0)
             {
                 foreach (var item in csCategories)
@@ -414,7 +414,7 @@ namespace Rebots.HelpDesk
 
             m_MenuLabel.text = "FAQ";
 
-            var siblingCategories = faqCategory.siblingCategories;
+            var siblingCategories = (faqCategory.siblingCategories != null) ? faqCategory.siblingCategories.Where(x => x.use == 1).ToList() : null;
             var siblingCount = (siblingCategories != null) ? siblingCategories.Count() : 0;
             if (siblingCount > 0)
             {
@@ -441,7 +441,7 @@ namespace Rebots.HelpDesk
 
             m_TitleCategoryLabel.text = faqCategory.name;
 
-            var subCategories = faqCategory.subCategories;
+            var subCategories = (faqCategory.subCategories != null) ? faqCategory.subCategories.Where(x => x.use == 1) : null;
             if (subCategories != null && subCategories.Count() > 0)
             {
                 foreach (var item in subCategories)
@@ -452,7 +452,7 @@ namespace Rebots.HelpDesk
                 }
             }
 
-            var faqs = faqCategory.faqs;
+            var faqs = (faqCategory.faqs != null) ? faqCategory.faqs.Where(x => x.use == 1) : null;
             if (faqs != null && faqs.Count() > 0)
             {
                 foreach (var faq in faqs)
@@ -483,7 +483,7 @@ namespace Rebots.HelpDesk
 
             m_MenuLabel.text = "Inquiry";
 
-            var siblingCategories = csCategory.siblingCategories;
+            var siblingCategories = (csCategory.siblingCategories != null) ? csCategory.siblingCategories.Where(x => x.use == 1).ToList() : null;
             var siblingCount = (siblingCategories != null) ? siblingCategories.Count() : 0;
             if (siblingCount > 0)
             {
@@ -510,7 +510,7 @@ namespace Rebots.HelpDesk
 
             m_TitleCategoryLabel.text = csCategory.name;
 
-            var subCategories = csCategory.subCategories;
+            var subCategories = (csCategory.subCategories != null) ? csCategory.subCategories.Where(x => x.use == 1) : null;
             if (subCategories != null && subCategories.Count() > 0)
             {
                 foreach (var item in subCategories)
