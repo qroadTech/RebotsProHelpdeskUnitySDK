@@ -88,6 +88,16 @@ namespace Rebots.HelpDesk
                 builder.UseStatisticsApiUri(apiStatisticsUri);
             }
 
+            if (!string.IsNullOrEmpty(apiUri))
+            {
+                builder.UseApiUri(apiUri);
+            }
+
+            if (!string.IsNullOrEmpty(apiStatisticsUri))
+            {
+                builder.UseStatisticsApiUri(apiStatisticsUri);
+            }
+
             /// configuration object can be constant.
             helpdeskConfig = new Configurations(builder);
             helpdeskConfig.SetJsonConverter(new NewtonJsonConverter());
