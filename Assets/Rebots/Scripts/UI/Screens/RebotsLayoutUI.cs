@@ -3,6 +3,7 @@ using HelpDesk.Sdk.Common.Protocols.Responses;
 using System.Linq;
 using UnityEngine.UIElements;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Rebots.HelpDesk
 {
@@ -47,6 +48,7 @@ namespace Rebots.HelpDesk
         #endregion
         #region - - - Image Title UI Element - - - 
         public VisualElement m_TitleContainer;
+        public VisualElement m_TitleImageContainer;
         public Label m_TitleHelpdeskLabel;
         #endregion
         #region - - - Ticket Button UI Element - - - 
@@ -60,12 +62,16 @@ namespace Rebots.HelpDesk
         public VisualElement m_FooterContainer;
         public VisualElement m_FooterInfoContainer;
         public Label m_OperatingTimeLabel;
-        public VisualElement m_OperatingBar;
         public Button m_TermsButton;
         public Label m_TermsLabel;
+        public VisualElement m_TermsBar;
         public Button m_CookieButton;
         public Label m_CookieLabel;
-        public VisualElement m_CookieBar;
+        public Button m_PrivacyButton;
+        public Label m_PrivacyLabel;
+        public VisualElement m_PrivacyBar;
+        public Button m_OperatingButton;
+        public Label m_OperatingLabel;
         public Label m_TelLabel;
         public VisualElement m_FooterCopyrightConatiner;
         public Label m_CopyrightLabel;
@@ -77,7 +83,7 @@ namespace Rebots.HelpDesk
         protected override void SetVisualElements()
         {
             base.SetVisualElements();
-
+            
             m_HelpdeskLayout = m_Root.Q(RebotsUIStaticString.HelpdeskLayout);
             m_ScrollView = m_HelpdeskLayout.Q<ScrollView>(RebotsUIStaticString.ScrollView);
             m_BackgroundContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.BackgroundContainer);
@@ -109,6 +115,7 @@ namespace Rebots.HelpDesk
             m_ExitLabel = m_MenuContainer.Q<Label>(RebotsUIStaticString.ExitLabel);
 
             m_TitleContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.TitleContainer);
+            m_TitleImageContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.TitleImageContainer);
             m_TitleHelpdeskLabel = m_TitleContainer.Q<Label>(RebotsUIStaticString.HelpdeskLabel);
 
             m_TicketButtonContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.TicketButtonContainer);
@@ -120,12 +127,16 @@ namespace Rebots.HelpDesk
             m_FooterContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.FooterContainer);
             m_FooterInfoContainer = m_FooterContainer.Q(RebotsUIStaticString.FooterInfoContainer);
             m_OperatingTimeLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.OperatingTimeLabel);
-            m_OperatingBar = m_FooterContainer.Q(RebotsUIStaticString.OperatingBar);
             m_TermsButton = m_FooterContainer.Q<Button>(RebotsUIStaticString.TermsButton);
             m_TermsLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.TermsLabel);
+            m_TermsBar = m_FooterContainer.Q(RebotsUIStaticString.TermsBar);
             m_CookieButton = m_FooterContainer.Q<Button>(RebotsUIStaticString.CookieButton);
             m_CookieLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.CookieLabel);
-            m_CookieBar = m_FooterContainer.Q(RebotsUIStaticString.CookieBar);
+            m_PrivacyButton = m_FooterContainer.Q<Button>(RebotsUIStaticString.PrivacyButton);
+            m_PrivacyLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.PrivacyLabel);
+            m_PrivacyBar = m_FooterContainer.Q(RebotsUIStaticString.PrivacyBar);
+            m_OperatingButton = m_FooterContainer.Q<Button>(RebotsUIStaticString.OperatingButton);
+            m_OperatingLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.OperatingLabel);
             m_TelLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.TelLabel);
             m_FooterCopyrightConatiner = m_FooterContainer.Q(RebotsUIStaticString.FooterCopyrightConatiner);
             m_CopyrightLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.CopyrightLabel);
@@ -251,44 +262,79 @@ namespace Rebots.HelpDesk
                     break;
             }
 
-            if (helpdeskSetting.useOperatingTime)
+            if (helpdeskSetting.useMainImage && helpdeskSetting.mainImageMobileUrl != null && !string.IsNullOrEmpty(helpdeskSetting.mainImageMobileUrl))
+            {
+                var imgUrl = helpdeskSetting.mainImageMobileUrl.Trim();
+                helpdeskScreen.ImageUrlToTexture2D(OnTitleImageUpdated, new System.Uri(imgUrl), imgUrl);
+            }
+            else
+            {
+                m_TitleImageContainer.style.backgroundImage = null;
+            }
+
+            #region footer Setting
+            if (helpdeskSetting.useOperatingTime && !string.IsNullOrEmpty(helpdeskSetting.operatingTime))
             {
                 var operatingTime = helpdeskSetting.operatingTime.Split("/");
+                var operatingTimeZone = helpdeskSetting.operatingTimezone.ToString();
                 var operatingTimeStr = localizationManager.translationDic[RebotsUIStaticString.OperatingTimeLabel];
-                m_OperatingTimeLabel.text = string.Format(operatingTimeStr, operatingTime[0], operatingTime[1]);
+                m_OperatingTimeLabel.text = string.Format(operatingTimeStr, operatingTime[0].Trim(), operatingTime[1].Trim(), operatingTimeZone);
                 ShowVisualElement(m_OperatingTimeLabel, true);
-                ShowVisualElement(m_OperatingBar, true);
             }
             else
             {
                 ShowVisualElement(m_OperatingTimeLabel, false);
-                ShowVisualElement(m_OperatingBar, false);
             }
 
-            if (helpdeskSetting.useTermsService)
+            if (helpdeskSetting.useTermsService && !string.IsNullOrEmpty(helpdeskSetting.termsServiceUrl))
             {
                 m_TermsButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.termsServiceUrl));
                 ShowVisualElement(m_TermsButton, true);
+                ShowVisualElement(m_TermsBar, true);
             }
             else
             {
                 ShowVisualElement(m_TermsButton, false);
-                ShowVisualElement(m_OperatingBar, false);
+                ShowVisualElement(m_TermsBar, false);
             }
 
-            if (helpdeskSetting.useCookiePolicy)
+            if (helpdeskSetting.useCookiePolicy && !string.IsNullOrEmpty(helpdeskSetting.cookiePolicyUrl))
             {
                 m_CookieButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.cookiePolicyUrl));
                 ShowVisualElement(m_CookieButton, true);
-                ShowVisualElement(m_CookieBar, true);
             }
             else
             {
                 ShowVisualElement(m_CookieButton, false);
-                ShowVisualElement(m_CookieBar, false);
+                ShowVisualElement(m_TermsBar, false);
             }
 
-            if (helpdeskSetting.useCallNumber)
+            if (helpdeskSetting.usePrivacyPolicyURL && !string.IsNullOrEmpty(helpdeskSetting.privacyPolicyURL))
+            {
+                m_PrivacyButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.privacyPolicyURL));
+                ShowVisualElement(m_PrivacyButton, true);
+                ShowVisualElement(m_PrivacyBar, true);
+            }
+            else
+            {
+                ShowVisualElement(m_PrivacyButton, false);
+                ShowVisualElement(m_PrivacyBar, false);
+            }
+
+            helpdeskSetting.useOperatingPolicy = true;
+            helpdeskSetting.operatingPolicyURL = "https://google.com/";
+            if (helpdeskSetting.useOperatingPolicy && !string.IsNullOrEmpty(helpdeskSetting.operatingPolicyURL))
+            {
+                m_OperatingButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.operatingPolicyURL));
+                ShowVisualElement(m_OperatingButton, true);
+            }
+            else
+            {
+                ShowVisualElement(m_OperatingButton, false);
+                ShowVisualElement(m_PrivacyBar, false);
+            }
+
+            if (helpdeskSetting.useCallNumber && !string.IsNullOrEmpty(helpdeskSetting.callNumber))
             {
                 var telStr = localizationManager.translationDic[RebotsUIStaticString.TelLabel];
                 m_TelLabel.text = string.Format(telStr, helpdeskSetting.callNumber);
@@ -297,8 +343,19 @@ namespace Rebots.HelpDesk
             else
             {
                 ShowVisualElement(m_TelLabel, false);
-                ShowVisualElement(m_CookieBar, false);
             }
+
+            if (helpdeskSetting.useCopyright && !string.IsNullOrEmpty(helpdeskSetting.copyrightText))
+            {
+                var telStr = localizationManager.translationDic[RebotsUIStaticString.CopyrightLabel];
+                m_CopyrightLabel.text = string.Format(telStr, helpdeskSetting.copyrightText);
+                ShowVisualElement(m_FooterCopyrightConatiner, true);
+            }
+            else
+            {
+                ShowVisualElement(m_FooterCopyrightConatiner, false);
+            }
+            #endregion
         }
 
         public void SetLanguageUI()
@@ -318,6 +375,15 @@ namespace Rebots.HelpDesk
         #endregion
 
         #region Set callback data after API
+        public void OnTitleImageUpdated(Texture2D texture, string externalLinkUri)
+        {
+            if (texture != null)
+            {
+                Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(texture.width / 2, texture.height / 2));
+                m_TitleImageContainer.style.backgroundImage = new StyleBackground(sprite);
+            }
+        }
+
         public void OnFaqMenuUpdated(HelpdeskFaqCategoriesResponse response)
         {
             var faqCategories = response.items;

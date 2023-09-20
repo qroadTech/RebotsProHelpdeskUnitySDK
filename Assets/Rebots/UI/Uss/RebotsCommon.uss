@@ -3,7 +3,7 @@
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
-    color: rgba(26, 13, 171, 255);
+    color: rgb(26, 13, 171);
 }
 
 .rebots-font-color__black {
@@ -97,6 +97,10 @@
     font-size: 20px;
     -unity-text-align: middle-left;
     white-space: normal;
+}
+
+.rebots-background-color__none {
+    background-color: rgb(255, 255, 255);
 }
 
 .rebots-background-color__grey {

@@ -1,6 +1,5 @@
 ﻿using HelpDesk.Sdk.Common.Objects;
 using System;
-using System.Linq;
 using UnityEngine.UIElements;
 
 namespace Rebots.HelpDesk
@@ -49,7 +48,7 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            m_TicketNoLabel.text = m_Ticket.uuid;
+            m_TicketNoLabel.text = m_Ticket.ticketId;
 
             var routeCategories = m_Ticket.categories;
             var routeCategoryStr = "";
@@ -62,9 +61,9 @@ namespace Rebots.HelpDesk
 
             var ticketData = m_Ticket.data;
             var ticketPreviewStr = string.IsNullOrEmpty(ticketData.content) ? "" : ticketData.content;
-            if (ticketPreviewStr.Length > 20)
+            if (ticketPreviewStr.Length > 25)
             {
-                ticketPreviewStr = ticketPreviewStr.Substring(0, 18);
+                ticketPreviewStr = ticketPreviewStr.Substring(0, 25);
                 ticketPreviewStr += "...";
             }
             m_TicketPreviewLabel.text = ticketPreviewStr;

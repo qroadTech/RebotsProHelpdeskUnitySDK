@@ -5,8 +5,7 @@ using HelpDesk.Sdk.Common.Objects;
 using System.IO;
 using System;
 using System.Collections;
-using System.Reflection;
-using System.Linq;
+using UnityEngine.Events;
 
 namespace Rebots.HelpDesk
 {
@@ -58,8 +57,10 @@ namespace Rebots.HelpDesk
         public Category m_Category { get; private set; }
         public Faq m_Faq { get; private set; }
         public string m_SearchString { get; private set; }
+        public int m_SubCategoryPage { get; private set; }
         public Dictionary<TicketCategoryInputField, object> m_FieldDic { get; private set; }
 
+        public readonly int subCategoryPageSize = 20;
         private List<RebotsPageRecord> pageRecords = new();
 
         #region Run in 'Awake' call
@@ -156,31 +157,42 @@ namespace Rebots.HelpDesk
             this.m_SearchString = searchStr;
             rebotsSettingManager.LoadFaqSearchList(rebotsPageUI.OnFaqSearchUpdated, searchStr, page.Value);
 
-            AddPageState(RebotsPageType.Search, RebotsPageName.SearchResult, searchStr);
+            if (page == null || page == 1)
+            {
+                AddPageState(RebotsPageType.Search, RebotsPageName.SearchResult, searchStr);
+            }
             ShowPage(RebotsPageType.Search, RebotsPageName.SearchResult);
         }
 
-        public void ShowFaqSubCategory(Category category)
+        public void ShowFaqSubCategory(Category category, int? page = 1)
         {
+            m_SubCategoryPage = (page == null) ? 1 : page.Value;
             HidePage(RebotsPageType.Category);
             ClearData(RebotsPageType.Category, RebotsPageName.FaqSubCategory);
 
             this.m_Category = category;
             rebotsSettingManager.LoadFaqCategory(rebotsPageUI.OnSubCategoryUpdated, m_Category.id);
 
-            AddPageState(RebotsPageType.Category, RebotsPageName.FaqSubCategory, category);
+            if (page == null || page == 1)
+            {
+                AddPageState(RebotsPageType.Category, RebotsPageName.FaqSubCategory, category);
+            }
             ShowPage(RebotsPageType.Category, RebotsPageName.FaqSubCategory);
         }
 
-        public void ShowCsSubCategory(Category category)
+        public void ShowCsSubCategory(Category category, int? page = 1)
         {
+            m_SubCategoryPage = (page == null) ? 1 : page.Value;
             HidePage(RebotsPageType.Category);
             ClearData(RebotsPageType.Category, RebotsPageName.CsSubCategory);
 
             this.m_Category = category;
             rebotsSettingManager.LoadCsCategory(rebotsPageUI.OnSubCategoryUpdated, m_Category.id);
 
-            AddPageState(RebotsPageType.Category, RebotsPageName.CsSubCategory, category);
+            if (page == null || page == 1)
+            {
+                AddPageState(RebotsPageType.Category, RebotsPageName.CsSubCategory, category);
+            }
             ShowPage(RebotsPageType.Category, RebotsPageName.CsSubCategory);
         }
 
@@ -264,8 +276,8 @@ namespace Rebots.HelpDesk
                 case RebotsPageName.Main:
                     ShowVisualElement(rebotsPageUI.m_PopularFaqContainer, true);
                     ShowVisualElement(rebotsPageUI.m_FaqCategoryContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     ShowVisualElement(rebotsLayoutUI.m_TicketButtonContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     break;
                 case RebotsPageName.Cs:
                     ShowVisualElement(rebotsPageUI.m_CsCategoryContainer, true);
@@ -273,23 +285,26 @@ namespace Rebots.HelpDesk
                     break;
                 case RebotsPageName.CsSubCategory:
                     ShowVisualElement(rebotsPageUI.m_SubCategoryContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_PagingContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     break;
                 case RebotsPageName.FaqSubCategory:
                     ShowVisualElement(rebotsPageUI.m_SubCategoryContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
+                    ShowVisualElement(rebotsPageUI.m_PagingContainer, true);
                     ShowVisualElement(rebotsLayoutUI.m_TicketButtonContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     break;
                 case RebotsPageName.FaqDetail:
                     ShowVisualElement(rebotsPageUI.m_FaqContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     ShowVisualElement(rebotsLayoutUI.m_TicketButtonContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     break;
                 case RebotsPageName.SearchResult:
                     ShowVisualElement(rebotsPageUI.m_SearchFaqContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
+                    ShowVisualElement(rebotsPageUI.m_PagingContainer, true);
                     ShowVisualElement(rebotsPageUI.m_RouteLabelContainer, false);
                     ShowVisualElement(rebotsLayoutUI.m_TicketButtonContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     break;
                 case RebotsPageName.TicketCreate:
                     ShowVisualElement(rebotsPageUI.m_TicketCreateContainer, true);
@@ -340,6 +355,7 @@ namespace Rebots.HelpDesk
                 ShowVisualElement(rebotsPageUI.m_CsCategoryContainer, false);
                 ShowVisualElement(rebotsPageUI.m_SubCategoryContainer, false);
                 ShowVisualElement(rebotsPageUI.m_FaqContainer, false);
+                ShowVisualElement(rebotsPageUI.m_PagingContainer, false);
                 ShowVisualElement(rebotsPageUI.m_TicketCreateContainer, false);
                 ShowVisualElement(rebotsPageUI.m_TicketSuccessContainer, false);
                 ShowVisualElement(rebotsPageUI.m_MyTicketContainer, false);
@@ -421,12 +437,14 @@ namespace Rebots.HelpDesk
                 case RebotsPageName.CsSubCategory:
                 case RebotsPageName.FaqSubCategory:
                     rebotsPageUI.m_SubCategoryList.Clear();
+                    rebotsPageUI.m_PageList.Clear();
                     break;
                 case RebotsPageName.FaqDetail:
                     rebotsPageUI.m_FaqDetailContainer.Clear();
                     break;
                 case RebotsPageName.SearchResult:
                     rebotsPageUI.m_SearchFaqList.Clear();
+                    rebotsPageUI.m_PageList.Clear();
                     break;
                 case RebotsPageName.TicketCreate:
                     rebotsPageUI.m_TicketFieldList.Clear();
@@ -452,7 +470,14 @@ namespace Rebots.HelpDesk
 
         public void ClickCsCategory(Category category)
         {
-            rebotsSettingManager.LoadCsCategory(rebotsPageUI.CheckCsCategoryPage, category.id);
+            if (category.childFieldCount > 0)
+            {
+                ShowCsSubCategory(category);
+            }
+            else
+            {
+                ShowTicketCreate(category);
+            }
         }
 
         public void ClickFaqCategory(Category category)
@@ -467,16 +492,22 @@ namespace Rebots.HelpDesk
 
         public void ClickSearch()
         {
-            var searchStr = rebotsLayoutUI.m_SearchField.GetValue();
-            if (string.IsNullOrEmpty(searchStr))
+            this.m_SearchString = rebotsLayoutUI.m_SearchField.GetValue();
+            if (string.IsNullOrEmpty(this.m_SearchString))
             {
                 return;
             }
-            ShowSearch(searchStr);
+            ShowSearch(this.m_SearchString);
         }
 
-        public void ClickTicketSubmit(ClickEvent evt)
+        public void ClickTicketSubmit(bool privacyValue)
         {
+            if (!privacyValue)
+            {
+                return;
+            }
+
+            bool checkValidation = true;
             var ticketInputFields = new DictionaryTicketInputFormData();
             var ticketAddFieldDic = new Dictionary<string, string>();
             ticketInputFields.SelectedCategory = m_Category;
@@ -486,6 +517,11 @@ namespace Rebots.HelpDesk
                 if (field.fieldType == RebotsInputFieldType.Text || field.fieldType == RebotsInputFieldType.Textarea)
                 {
                     var component = item.Value as RebotsTextFieldComponent;
+                    if (!component.CheckFieldValid())
+                    {
+                        checkValidation = false;
+                        continue;
+                    }
                     var fieldValue = component.GetFieldValue();
 
                     if (field.name == "email")
@@ -504,6 +540,11 @@ namespace Rebots.HelpDesk
                 else if (field.fieldType == RebotsInputFieldType.Dropdown)
                 {
                     var component = item.Value as RebotsDropdownFieldComponent;
+                    if (!component.CheckFieldValid())
+                    {
+                        checkValidation = false;
+                        continue;
+                    }
                     var fieldValue = component.GetFieldValue();
 
                     ticketAddFieldDic.Add(field.text, fieldValue);
@@ -511,6 +552,11 @@ namespace Rebots.HelpDesk
                 else if (field.fieldType == RebotsInputFieldType.Checkbox || field.fieldType == RebotsInputFieldType.Radiobutton)
                 {
                     var component = item.Value as RebotsButtonGroupFieldComponent;
+                    if (!component.CheckFieldValid())
+                    {
+                        checkValidation = false;
+                        continue;
+                    }
                     var fieldValue = component.GetFieldValue();
 
                     ticketAddFieldDic.Add(field.text, fieldValue);
@@ -518,6 +564,11 @@ namespace Rebots.HelpDesk
                 else if (field.fieldType == RebotsInputFieldType.File)
                 {
                     var component = item.Value as RebotsAttachmentFieldComponent;
+                    if (!component.CheckFieldValid())
+                    {
+                        checkValidation = false;
+                        continue;
+                    }
                     var fieldValue = component.GetFieldValue();
 
                     foreach (var value in fieldValue)
@@ -526,10 +577,14 @@ namespace Rebots.HelpDesk
                     }
                 }
             }
-            ticketInputFields.Data = ticketAddFieldDic;
-            ticketInputFields.Language = rebotsSettingManager.localizationManager.language;
 
-            rebotsSettingManager.CreateTicket(rebotsPageUI.OnTicketCreate, ticketInputFields);
+            if (checkValidation)
+            {
+                ticketInputFields.Data = ticketAddFieldDic;
+                ticketInputFields.Language = rebotsSettingManager.localizationManager.language;
+
+                rebotsSettingManager.CreateTicket(rebotsPageUI.OnTicketCreate, ticketInputFields);
+            }
         }
 
         public void ClickTicket(HelpdeskTicket ticket)
@@ -620,9 +675,9 @@ namespace Rebots.HelpDesk
         #endregion
 
         #region (public) ImageUrl to Texture2D 
-        public void ImageUrlToTexture2D(Uri fileUrl, string externalLinkUrl)
+        public void ImageUrlToTexture2D(UnityAction<Texture2D, string> callbackAction, Uri fileUrl, string externalLinkUrl)
         {
-            rebotsSettingManager.LoadTexture(rebotsPageUI.OnFaqImageAdded, fileUrl, externalLinkUrl);
+            rebotsSettingManager.LoadTexture(callbackAction, fileUrl, externalLinkUrl);
         }
         #endregion
 

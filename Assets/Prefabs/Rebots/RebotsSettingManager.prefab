@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6757599604808416830
+--- !u!1 &5048724410558172860
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6757599604808416828}
-  - component: {fileID: 6757599604808416831}
-  - component: {fileID: 830544864085941206}
+  - component: {fileID: 5048724410558172862}
+  - component: {fileID: 5048724410558172861}
+  - component: {fileID: 1175946604819721044}
   m_Layer: 0
   m_Name: RebotsSettingManager
   m_TagString: Untagged
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6757599604808416828
+--- !u!4 &5048724410558172862
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6757599604808416830}
+  m_GameObject: {fileID: 5048724410558172860}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 7.844657, y: 1.6310608, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,37 +33,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6757599604808416831
+--- !u!114 &5048724410558172861
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6757599604808416830}
+  m_GameObject: {fileID: 5048724410558172860}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37707eaea6c5c224dad0e10b9ac0002a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectPublicName: qroadtest
-  ProjectMainKey: J0Lsvz3egWC1SQtS
-  HelpdeskLanguage: 1
+  ProjectMainKey: U7c3e4148eaOwjBB
+  HelpdeskLanguage: 2
   translationFile: {fileID: 4900000, guid: d79ff06f7df232045b26971ffc5f1239, type: 3}
   localizationManager: {fileID: 0}
---- !u!114 &830544864085941206
+--- !u!114 &1175946604819721044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6757599604808416830}
+  m_GameObject: {fileID: 5048724410558172860}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f2c53ae6596aece4a9cad0bd55e85c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rebotsSettingManager: {fileID: 6757599604808416831}
-  m_ParameterData:
-    userAuthKey: 
-    username: 
-    userEmail: 
+  rebotsSettingManager: {fileID: 5048724410558172861}

@@ -8,9 +8,9 @@
                     <ui:VisualElement style="height: 100%; width: 1px; background-color: rgb(34, 34, 34); margin-left: 10px; margin-right: 10px;" />
                     <ui:Label text="Ticket Category Label" display-tooltip-when-elided="true" name="rebots-ticket-category-label" class="rebots-font-color__grey rebots-label__bold14" />
                 </ui:VisualElement>
-                <ui:Label text="Ticket Contents Preview Label" display-tooltip-when-elided="true" name="rebots-ticket-preview-label" class="rebots-label__regular14 rebots-font-color__dakr-grey" />
+                <ui:Label text="Ticket Contents Preview Label" display-tooltip-when-elided="true" name="rebots-ticket-preview-label" class="rebots-label__regular14 rebots-font-color__dakr-grey" style="white-space: normal;" />
             </ui:VisualElement>
-            <ui:VisualElement name="rebots-ticket-state-container" style="width: 100px; min-width: auto; height: 60px; min-height: 60px; align-items: center; justify-content: center; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 10px; display: flex;">
+            <ui:VisualElement name="rebots-ticket-state-container" style="width: 110px; min-width: auto; height: 60px; min-height: 60px; align-items: center; justify-content: center; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; margin-left: 10px; display: flex;">
                 <ui:Label text="State Label" display-tooltip-when-elided="true" name="rebots-ticket-state-label" class="rebots-label__regular14 rebots-font-color__white" style="white-space: normal;" />
             </ui:VisualElement>
         </ui:Button>

@@ -10,10 +10,11 @@ namespace Rebots.HelpDesk
 
         private string m_placeholderStr = "";
         private bool m_usePlaceholder = false;
-        private bool m_setPlaceholder = false;
         private string m_parameter = "";
         private bool m_useParameter = false;
         private bool m_ReadOnly = false;
+
+        public bool m_setPlaceholder { get; private set; }
 
         public RebotsTextField(TextField textField)
         {

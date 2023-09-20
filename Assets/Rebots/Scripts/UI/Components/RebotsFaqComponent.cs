@@ -61,15 +61,23 @@ namespace Rebots.HelpDesk
             var routeCategoryStr = "";
             foreach (var category in routeCategories)
             {
-                routeCategoryStr = routeCategoryStr == "" ? category.name : category.name + " > " + routeCategoryStr;
+                var categoryName = category.name;
+                if (faqType == RebotsFaqAssetType.Popular)
+                {
+                    categoryName = (categoryName.Length > 16) ? categoryName.Substring(0, 16).Trim() + "..." : categoryName;
+                }
+                routeCategoryStr = routeCategoryStr == "" ? categoryName : categoryName + " > " + routeCategoryStr;
             }
             m_FaqCategoryRouteLabel.text = routeCategoryStr;
 
             var faqTitleStr = m_Faq.title;
-            if (faqTitleStr.Length > 50)
+            if (faqType == RebotsFaqAssetType.Popular)
             {
-                faqTitleStr = faqTitleStr.Substring(0, 48);
-                faqTitleStr += "...";
+                faqTitleStr = (faqTitleStr.Length > 23) ? faqTitleStr.Substring(0, 23).Trim() + "..." : faqTitleStr;
+            }
+            else if (faqType == RebotsFaqAssetType.Search)
+            {
+                faqTitleStr = (faqTitleStr.Length > 58) ? faqTitleStr.Substring(0, 58).Trim() + "..." : faqTitleStr;
             }
 
             if (faqType == RebotsFaqAssetType.Popular)
@@ -87,7 +95,7 @@ namespace Rebots.HelpDesk
                 var contents = HtmlParser.HtmlToRemoveTag(m_Faq.contents.ToString());
                 if (contents.Length > 117)
                 {
-                    contents = contents.Substring(0, 116);
+                    contents = contents.Substring(0, 116).Trim();
                     contents += "...";
                 }
                 contents = contents.Replace(searchStr, searchHtml);

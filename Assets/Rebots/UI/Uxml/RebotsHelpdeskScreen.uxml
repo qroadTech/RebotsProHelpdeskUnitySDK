@@ -3,19 +3,17 @@
     <ui:Template name="RebotsSiblingCategory" src="project://database/Assets/Rebots/UI/Uxml/HelpdeskAsset/RebotsSiblingCategory.uxml?fileID=9197481963319205126&amp;guid=6e5e7efaebdba794bb05fbd10de56bc9&amp;type=3#RebotsSiblingCategory" />
     <Style src="project://database/Assets/Rebots/UI/Uss/RebotsHelpdeskScreen.uss?fileID=7433441132597879392&amp;guid=9407434687e1057419f486af0bbbab07&amp;type=3#RebotsHelpdeskScreen" />
     <Style src="project://database/Assets/Rebots/UI/Uss/RebotsCommon.uss?fileID=7433441132597879392&amp;guid=0ce8fc6f13fcf2d4b8f1f0fdcb5ed037&amp;type=3#RebotsCommon" />
-    <Style src="project://database/Assets/Rebots/UI/Uss/Language/RebotsFontEn.uss?fileID=7433441132597879392&amp;guid=5e1ad9dcd6cd72449a77863ffc31aa7d&amp;type=3#RebotsFontEn" />
-    <Style src="project://database/Assets/Rebots/UI/Uss/Theme/RebotsTheme1.uss?fileID=7433441132597879392&amp;guid=a1078b398694e964e832661d402eb4ad&amp;type=3#RebotsTheme1" />
     <ui:VisualElement name="rebots-helpdesk-screen" style="scale: 2 2; width: 50%; height: 50%; transform-origin: left top;">
         <ui:VisualElement name="rebots-helpdesk-layout" style="height: 100%; background-color: rgb(255, 255, 255);">
             <ui:VisualElement style="height: 100%;">
                 <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="rebots-scrollview" class="rebots-helpdesk-scrollview" style="height: 100%; margin-top: 62px;">
                     <ui:VisualElement name="rebots-title-container" class="rebots-background-color__theme" style="width: 100%; display: flex;">
-                        <ui:VisualElement name="rebots-image-title-background" style="width: 100%; height: 300px; max-height: 300px; min-height: 300px; background-image: none; -unity-background-scale-mode: scale-and-crop; padding-left: 23px; padding-right: 23px; justify-content: space-around; flex-shrink: 0; display: flex; padding-bottom: 62px; align-items: center;">
+                        <ui:VisualElement name="rebots-image-title-background" style="width: 100%; height: 300px; max-height: 300px; min-height: 300px; background-image: none; -unity-background-scale-mode: scale-to-fit; padding-left: 23px; padding-right: 23px; justify-content: space-around; flex-shrink: 0; display: flex; padding-bottom: 26px; align-items: center;">
                             <ui:Label text="Welcome to Rebots Pro Help Desk" display-tooltip-when-elided="true" name="rebots-helpdesk-label" class="rebots-label__black28 rebots-font-color__white" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center; -unity-text-align: middle-center;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
                     <ui:VisualElement name="rebots-page-container">
-                        <ui:VisualElement name="rebots-route-container" style="margin-top: 15px; margin-bottom: 5px; min-height: 35px; align-items: center; flex-direction: row; margin-left: 16px; margin-right: 16px; display: flex; flex-wrap: wrap;">
+                        <ui:VisualElement name="rebots-route-container" style="margin-top: 15px; margin-bottom: 5px; min-height: 35px; align-items: center; flex-direction: row; margin-left: 16px; margin-right: 16px; display: none; flex-wrap: wrap;">
                             <ui:VisualElement style="width: 70px; max-width: 70px; min-width: 70px; flex-direction: row; align-items: flex-start; flex-shrink: 0; height: 100%; min-height: 100%;">
                                 <ui:Button display-tooltip-when-elided="true" name="rebots-back-button" style="width: 50px; min-width: 40px; height: 35px; min-height: 35px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgb(255, 255, 255);">
                                     <ui:VisualElement style="background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BackButton.png?fileID=21300000&amp;guid=409bbc29e8e1c184d817d410b0cbd9fd&amp;type=3#BackButton&apos;); -unity-background-scale-mode: scale-to-fit; width: 19px; height: 100%; min-height: 100%; min-width: 19px;" />
@@ -48,7 +46,7 @@
                                 </ui:VisualElement>
                                 <ui:Label text="Search String Label" display-tooltip-when-elided="true" name="rebots-search-string-label" class="rebots-label__bold36 rebots-font-color__theme" />
                             </ui:VisualElement>
-                            <ui:VisualElement name="rebots-faq-list-container" style="border-bottom-width: 20px; flex-shrink: 0;" />
+                            <ui:VisualElement name="rebots-faq-list-container" style="flex-shrink: 0; margin-bottom: 20px;" />
                         </ui:VisualElement>
                         <ui:VisualElement name="rebots-faq-category-container" style="margin-bottom: 20px; display: none;">
                             <ui:VisualElement style="flex-direction: row; flex-shrink: 0; margin-left: 16px; margin-right: 16px; margin-top: 45px; margin-bottom: 35px;">
@@ -91,7 +89,7 @@
                                 <ui:VisualElement style="width: 100%; height: 1px; background-color: rgb(188, 188, 188);" />
                             </ui:VisualElement>
                         </ui:VisualElement>
-                        <ui:VisualElement name="rebots-sibling-category-container" style="width: 100%; height: auto; max-height: none; min-height: auto; margin-left: 0; margin-right: 0; display: flex; margin-top: 0; margin-bottom: 0; padding-left: 16px; padding-right: 16px;">
+                        <ui:VisualElement name="rebots-sibling-category-container" style="width: 100%; height: auto; max-height: none; min-height: auto; margin-left: 0; margin-right: 0; display: none; margin-top: 0; margin-bottom: 0; padding-left: 16px; padding-right: 16px;">
                             <ui:ScrollView mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="rebots-sibling-category-scrollview" style="width: 100%; height: 100%;">
                                 <ui:VisualElement name="rebots-sibling-category-list-container" style="flex-direction: row; width: 100%; min-width: 100%;">
                                     <ui:Instance template="RebotsSiblingCategory" name="RebotsSiblingCategory" style="flex-shrink: 0; flex-grow: 1;" />
@@ -107,7 +105,7 @@
                         <ui:VisualElement name="rebots-sub-category-container" style="margin-left: 16px; margin-right: 16px; display: none;">
                             <ui:VisualElement name="rebots-sub-category-list-container" style="flex-shrink: 0; margin-top: 20px; margin-bottom: 20px;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="rebots-faq-container" style="margin-top: 10px; margin-bottom: 20px; margin-left: 16px; display: flex; margin-right: 16px;">
+                        <ui:VisualElement name="rebots-faq-container" style="margin-top: 10px; margin-bottom: 20px; margin-left: 16px; display: none; margin-right: 16px;">
                             <ui:VisualElement name="rebots-faq-detail-container" style="margin-bottom: 35px;" />
                             <ui:VisualElement style="align-items: center; justify-content: space-between; margin-top: 30px; margin-bottom: 30px; display: none;">
                                 <ui:VisualElement style="margin-bottom: 30px; padding-top: 10px; padding-bottom: 10px;">
@@ -125,13 +123,11 @@
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
+                        <ui:VisualElement name="rebots-paging-container" style="flex-direction: row; width: auto; height: 28px; max-height: 28px; min-height: 28px; justify-content: center; margin-left: 16px; margin-right: 16px; align-items: center; display: none;">
+                            <ui:VisualElement name="rebots-page-list" style="flex-direction: row; justify-content: center;" />
+                        </ui:VisualElement>
                         <ui:VisualElement name="rebots-ticket-create-container" style="margin-left: 16px; margin-right: 16px; display: flex;">
                             <ui:VisualElement name="rebots-field-list-container" style="flex-shrink: 0; margin-top: 20px; margin-bottom: 20px;" />
-                            <ui:VisualElement name="rebots-submit-container" style="margin-top: 20px; margin-bottom: 56px; align-items: center; flex-direction: row; justify-content: space-around;">
-                                <ui:Button display-tooltip-when-elided="true" name="rebots-submit-button" style="flex-shrink: 1; min-width: 100px; min-height: 35px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgba(255, 255, 255, 0); border-left-color: rgb(34, 34, 34); border-right-color: rgb(34, 34, 34); border-top-color: rgb(34, 34, 34); border-bottom-color: rgb(34, 34, 34); border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; align-items: stretch; justify-content: center;">
-                                    <ui:Label text="Submit" display-tooltip-when-elided="true" name="rebots-submit" class="rebots-label__black14 rebots-font-color__black" />
-                                </ui:Button>
-                            </ui:VisualElement>
                         </ui:VisualElement>
                         <ui:VisualElement name="rebots-ticket-success-container" style="flex-shrink: 0; flex-grow: 1; justify-content: space-around; margin-left: 15px; margin-right: 15px; display: none;">
                             <ui:VisualElement style="align-items: center; width: 100%; margin-top: 150px; margin-bottom: 110px; padding-left: 20px; padding-right: 20px; padding-top: 50px; padding-bottom: 50px; min-width: auto; min-height: auto; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BoxRoundSmall.png?fileID=21300000&amp;guid=4128ef4419de0be41ab4a13b8d319144&amp;type=3#BoxRoundSmall&apos;);">
@@ -182,23 +178,33 @@
                     <ui:VisualElement name="rebots-footer-container" style="flex-shrink: 0;">
                         <ui:VisualElement style="margin-top: 50px;">
                             <ui:VisualElement name="rebots-info-container" style="flex-shrink: 0; padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px;">
-                                <ui:VisualElement style="flex-direction: row; align-items: center; justify-content: center; min-height: 32px; min-width: auto;">
-                                    <ui:Label text="Operating hours" display-tooltip-when-elided="true" name="rebots-operating-time" class="rebots-label__regular16 rebots-font-color__black" />
-                                    <ui:VisualElement name="rebots-operating-bar" style="width: 1px; height: 18px; margin-left: 5px; margin-right: 5px; background-color: rgb(34, 34, 34);" />
+                                <ui:VisualElement style="flex-direction: row; align-items: center; justify-content: center;">
+                                    <ui:Label text="Operating hours 00:00 to 00:00 (UTC +9)" display-tooltip-when-elided="true" name="rebots-operating-time" class="rebots-label__regular16 rebots-font-color__black" style="-unity-text-align: middle-center; padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 5px;" />
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-direction: row; align-items: center; justify-content: center;">
                                     <ui:Button display-tooltip-when-elided="true" name="rebots-terms-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
-                                        <ui:Label text="Terms and Conditions" display-tooltip-when-elided="true" name="rebots-terms" class="rebots-label__regular16 rebots-font-color__black" />
+                                        <ui:Label text="Terms and Conditions" display-tooltip-when-elided="true" name="rebots-terms" class="rebots-label__regular16 rebots-font-color__black" style="padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 5px;" />
+                                    </ui:Button>
+                                    <ui:VisualElement name="rebots-terms-bar" style="width: 1px; height: 18px; margin-left: 5px; margin-right: 5px; background-color: rgb(34, 34, 34);" />
+                                    <ui:Button display-tooltip-when-elided="true" name="rebots-cookie-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
+                                        <ui:Label text="Cookie Policy" display-tooltip-when-elided="true" name="rebots-cookie" class="rebots-label__regular16 rebots-font-color__black" style="padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 5px;" />
                                     </ui:Button>
                                 </ui:VisualElement>
-                                <ui:VisualElement style="flex-direction: row; align-items: center; justify-content: center; min-height: 32px; min-width: auto;">
-                                    <ui:Button display-tooltip-when-elided="true" name="rebots-cookie-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
-                                        <ui:Label text="Cookie Policy" display-tooltip-when-elided="true" name="rebots-cookie" class="rebots-label__regular16 rebots-font-color__black" />
+                                <ui:VisualElement style="flex-direction: row; align-items: center; justify-content: center;">
+                                    <ui:Button display-tooltip-when-elided="true" name="rebots-privacy-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
+                                        <ui:Label text="Privacy Policy" display-tooltip-when-elided="true" name="rebots-privacy" class="rebots-label__regular16 rebots-font-color__black" style="padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 5px;" />
                                     </ui:Button>
-                                    <ui:VisualElement name="rebots-cookie-bar" style="width: 1px; height: 18px; margin-left: 5px; margin-right: 5px; background-color: rgb(34, 34, 34);" />
-                                    <ui:Label text="Tel. No." display-tooltip-when-elided="true" name="rebots-tel" class="rebots-label__regular16 rebots-font-color__black" />
+                                    <ui:VisualElement name="rebots-privacy-bar" style="width: 1px; height: 18px; margin-left: 5px; margin-right: 5px; background-color: rgb(34, 34, 34);" />
+                                    <ui:Button display-tooltip-when-elided="true" name="rebots-operating-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
+                                        <ui:Label text="Operating Policy" display-tooltip-when-elided="true" name="rebots-operating" class="rebots-label__regular16 rebots-font-color__black" style="padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 5px;" />
+                                    </ui:Button>
+                                </ui:VisualElement>
+                                <ui:VisualElement style="flex-direction: row; align-items: center; justify-content: center;">
+                                    <ui:Label text="Tel. No. +123-456789" display-tooltip-when-elided="true" name="rebots-tel" class="rebots-label__regular16 rebots-font-color__black" style="padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 5px;" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-copyright-container" style="margin-bottom: 10px; padding-left: 30px; padding-right: 30px; padding-top: 10px; align-items: center; border-top-width: 1px; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188);">
-                                <ui:Label text="Copyright(C) 2023 Rebots Pro ALL RIGHTS RESERVED" display-tooltip-when-elided="true" name="rebots-copyright-label" class="rebots-label__regular14 rebots-font-color__black" style="-unity-text-align: middle-center;" />
+                                <ui:Label text="Copyright(C) 2023 Rebots Pro ALL RIGHTS RESERVED" display-tooltip-when-elided="true" name="rebots-copyright" class="rebots-label__regular14 rebots-font-color__black" style="-unity-text-align: middle-center;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
                     </ui:VisualElement>
@@ -347,7 +353,7 @@
                     <ui:VisualElement style="width: 100%; height: 45px; min-height: 45px; margin-bottom: 30px;">
                         <ui:Button display-tooltip-when-elided="true" name="rebots-exit-button" style="flex-direction: row; align-items: center; height: 100%; min-height: 100%; min-width: auto; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
                             <ui:VisualElement style="width: 19px; min-width: 19px; height: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/ExitButton.png?fileID=21300000&amp;guid=abc4a508e4518754d88cc42e1a5de53d&amp;type=3#ExitButton&apos;); -unity-background-scale-mode: scale-to-fit; margin-right: 5px;" />
-                            <ui:Label text="Exit" display-tooltip-when-elided="true" name="rebots-exit" class="rebots-label__bold16 rebots-font-color__white" />
+                            <ui:Label text="Operating hours 00:00 to 00:00 (UTC +9)Operating hours 00:00 to 00:00 (UTC +9)" display-tooltip-when-elided="true" name="rebots-exit" class="rebots-label__bold16 rebots-font-color__white" />
                         </ui:Button>
                     </ui:VisualElement>
                 </ui:ScrollView>
