@@ -7,9 +7,8 @@ using UnityEngine;
 
 namespace Rebots.HelpDesk
 {
-    public class RebotsLocalizationManager : MonoBehaviour
+    public class RebotsLocalizationManager
     {
-        [HideInInspector]
         public string language;
         string defaultLanguage = "ko";
         int? defaultLanguageIndex;
@@ -27,7 +26,6 @@ namespace Rebots.HelpDesk
             this.translationFile = translationFile;
             settingLanguages = new();
         }
-
 
         public void SetAvailableLanguage(string langCode)
         {

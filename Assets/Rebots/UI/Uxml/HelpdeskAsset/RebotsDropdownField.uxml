@@ -1,12 +1,15 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Assets/UI/Uss/Rebots/RebotsDropdownField.uss?fileID=7433441132597879392&amp;guid=46cbd2ad7bcf793478cbe5667bb8846d&amp;type=3#RebotsDropdownField" />
-    <ui:VisualElement style="padding-bottom: 25px;">
-        <ui:VisualElement style="justify-content: flex-start; min-height: 22px; flex-direction: row; align-items: center;">
-            <ui:Label text="Ticket Dropdown Field" display-tooltip-when-elided="true" name="rebots-field-label" class="rebots-label__black16 rebots-font-color__black" />
-            <ui:Label text="(Required Field)" display-tooltip-when-elided="true" name="rebots-required" class="rebots-label__bold11 rebots-font-color__red" style="margin-left: 8px;" />
+    <Style src="project://database/Assets/Rebots/UI/Uss/Components/RebotsDropdownField.uss?fileID=7433441132597879392&amp;guid=46cbd2ad7bcf793478cbe5667bb8846d&amp;type=3#RebotsDropdownField" />
+    <ui:VisualElement>
+        <ui:VisualElement style="justify-content: flex-start; min-height: 22px; flex-direction: row; align-items: center; flex-wrap: wrap;">
+            <ui:Label text="Ticket Dropdown Field" display-tooltip-when-elided="true" name="rebots-field-label" class="rebots-label__black16 rebots-font-color__black" style="margin-right: 8px;" />
+            <ui:Label text="(Required Field)" display-tooltip-when-elided="true" name="rebots-required" class="rebots-label__bold11 rebots-font-color__red" />
         </ui:VisualElement>
         <ui:VisualElement style="margin-top: 3px;">
             <ui:DropdownField name="rebots-dropdown" style="height: 35px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement style="height: 25px; max-height: 25px; min-height: 25px;">
+            <ui:Label display-tooltip-when-elided="true" name="rebots-validation-label" class="rebots-font-color__red rebots-label__regular12" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

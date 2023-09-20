@@ -47,10 +47,11 @@ namespace Rebots.HelpDesk
             /// Inquiry Parameter Key Value Dictionary.
             /// Key: Parameter name of Inquiry category item set in 'RebotsPro Workspase'.
             /// Already added collection is example of sample project.
-            ParameterData.parameters.Add("client_ver", "v1.12.308");
+            ParameterData.parameters.Add("p2myxpm3ff5yx7jr", "v1.12.308");
 #if UNITY_ANDROID
-            ParameterData.parameters.Add("social", "social1");
-            ParameterData.parameters.Add("platform", "platform1");
+            ParameterData.parameters.Add("9f4qnlta9h07zxzv", "OneStore");
+            ParameterData.parameters.Add("u8hq7mhcxr07xb29", "Smart Phone");
+            ParameterData.parameters.Add("g6qpoi8pbl8o84vj", "Item2");
 #elif UNITY_IOS
             ParameterData.parameters.Add("social", "social2");
             ParameterData.parameters.Add("platform", "platform2");

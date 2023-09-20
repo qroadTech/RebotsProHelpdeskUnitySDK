@@ -8,10 +8,10 @@ namespace Rebots.HelpDesk
     [Serializable]
     public class RebotsParameterData
     {
-        /// <summary>
-        /// user Unique IDentifier
-        /// </summary>
         string userAuthKey;
+        /// <summary>
+        /// User Unique IDentifier (Required)
+        /// </summary>
         public string UserAuthKey
         {
             get
@@ -28,10 +28,10 @@ namespace Rebots.HelpDesk
             }
         }
 
-        /// <summary>
-        /// user Name
-        /// </summary>
         string userName;
+        /// <summary>
+        /// User Name (Options)
+        /// </summary>
         public string UserName
         {
             get
@@ -48,10 +48,10 @@ namespace Rebots.HelpDesk
             }
         }
 
-        /// <summary>
-        /// user email
-        /// </summary>
         string userEmail;
+        /// <summary>
+        /// User Email (Options)
+        /// </summary>
         public string UserEmail
         {
             get

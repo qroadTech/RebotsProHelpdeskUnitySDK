@@ -57,6 +57,7 @@ namespace Rebots.HelpDesk
         #endregion
         #region - - - Image Title UI name - - - 
         public const string TitleContainer = "rebots-title-container";
+        public const string TitleImageContainer = "rebots-image-title-background";
         #endregion
         #region - - - Page UI name - - - 
         public const string PageConatiner = "rebots-page-container";
@@ -95,12 +96,13 @@ namespace Rebots.HelpDesk
         public const string HelpfulYesLabel = "rebots-yes";
         public const string HelpfulNoLabel = "rebots-no";
 
+        public const string PagingContainer = "rebots-paging-container";
+        public const string PageList = "rebots-page-list";
+
         public const string TicketCreateContainer = "rebots-ticket-create-container";
         public const string TicketFieldList = "rebots-field-list-container";
         public const string RequiredLabel = "rebots-required";
         public const string AgreeCheckLabel = "rebots-i-agree";
-        public const string TicketSubmitButton = "rebots-submit-button";
-        public const string TicketSubmitLabel = "rebots-submit";
 
         public const string TicketSuccessContainer = "rebots-ticket-success-container";
         public const string TicketReceivedLabel = "rebots-been-received";
@@ -127,12 +129,16 @@ namespace Rebots.HelpDesk
         public const string FooterContainer = "rebots-footer-container";
         public const string FooterInfoContainer = "rebots-info-container";
         public const string OperatingTimeLabel = "rebots-operating-time";
-        public const string OperatingBar = "rebots-operating-bar";
         public const string TermsButton = "rebots-terms-button";
         public const string TermsLabel = "rebots-terms";
+        public const string TermsBar = "rebots-terms-bar";
         public const string CookieButton = "rebots-cookie-button";
         public const string CookieLabel = "rebots-cookie";
-        public const string CookieBar = "rebots-cookie-bar";
+        public const string PrivacyButton = "rebots-privacy-button";
+        public const string PrivacyLabel = "rebots-privacy";
+        public const string PrivacyBar = "rebots-privacy-bar";
+        public const string OperatingButton = "rebots-operating-button";
+        public const string OperatingLabel = "rebots-operating";
         public const string TelLabel = "rebots-tel";
         public const string FooterCopyrightConatiner = "rebots-copyright-container";
         public const string CopyrightLabel = "rebots-copyright";
@@ -141,6 +147,7 @@ namespace Rebots.HelpDesk
         #region - - - Localization Key String - - - 
         public const string LanguageLabel = "rebots-{0}-label";
         public const string SearchPlaceholder = "rebots-search-placeholder";
+        public const string ChooseFileButtonLabel = "rebots-choose-file-label";
         public const string NoFileLabel = "rebots-no-file";
         public const string PrivacyFieldLabel = "rebots-privacy-policy";
         public const string PrivacyPrpose = "rebots-privacy-purpose";
@@ -149,6 +156,9 @@ namespace Rebots.HelpDesk
         public const string PrivacyConsignment = "rebots-privacy-consignment";
         public const string PrivacyProviding = "rebots-privacy-providing";
         public const string PrivacyConsignmentPeriod = "rebots-privacy-consignment-period";
+        public const string TicketSubmitLabel = "rebots-submit";
+        public const string ValidRequired = "rebots-valid-required";
+        public const string ValidEmail = "rebots-valid-email";
         #endregion
 
         #region - - - uss Class Name - - - 
@@ -168,6 +178,8 @@ namespace Rebots.HelpDesk
         public const string RebotsFontEn_Regular = "rebots-font-en__regular";
         public const string RebotsBackgroundColor_Theme = "rebots-background-color__theme";
         public const string RebotsBackgroundColor_Grey = "rebots-background-color__grey";
+        public const string RebotsBackgroundColor_None = "rebots-background-color__none";
+        public const string RebotsLabel_Black16 = "rebots-label__black16";
         public const string RebotsLabel_Regular16 = "rebots-label__regular16";
         public const string RebotsFontColor_Black = "rebots-font-color__black";
         public const string RebotsFontColor_Grey = "rebots-font-color__grey";

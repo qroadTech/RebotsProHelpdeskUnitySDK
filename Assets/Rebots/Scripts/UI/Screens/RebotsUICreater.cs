@@ -3,6 +3,8 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using HelpDesk.Sdk.Common.Protocols.Responses;
+using Unity.VisualScripting;
+using Assets.Rebots;
 
 namespace Rebots.HelpDesk
 {
@@ -125,7 +127,7 @@ namespace Rebots.HelpDesk
             uiElement = faqUIElement;
         }
 
-        public void CreateCsCategoryField(TicketCategoryInputField csCategoryField, string parameterValue, out TemplateContainer uiElement, out object uiComponent)
+        public void CreateCsCategoryField(TicketCategoryInputField csCategoryField, string parameterValue, string[] validationComment, out TemplateContainer uiElement, out object uiComponent)
         {
             if (csCategoryField.fieldType == RebotsInputFieldType.Text || csCategoryField.fieldType == RebotsInputFieldType.Textarea)
             {
@@ -138,7 +140,7 @@ namespace Rebots.HelpDesk
 
                 TemplateContainer textFieldUIElement = asset.Instantiate();
 
-                RebotsTextFieldComponent textFieldComponent = new RebotsTextFieldComponent(csCategoryField, parameterValue);
+                RebotsTextFieldComponent textFieldComponent = new RebotsTextFieldComponent(csCategoryField, parameterValue, validationComment);
                 textFieldComponent.SetVisualElements(textFieldUIElement);
                 textFieldComponent.SetFieldData(textFieldUIElement);
 
@@ -149,7 +151,7 @@ namespace Rebots.HelpDesk
             {
                 TemplateContainer dropdownFieldUIElement = DropdownFieldAsset.Instantiate();
 
-                RebotsDropdownFieldComponent dropdownComponent = new RebotsDropdownFieldComponent(csCategoryField, parameterValue);
+                RebotsDropdownFieldComponent dropdownComponent = new RebotsDropdownFieldComponent(csCategoryField, parameterValue, validationComment);
                 dropdownComponent.SetVisualElement(dropdownFieldUIElement);
                 dropdownComponent.SetFieldData(dropdownFieldUIElement);
 
@@ -161,7 +163,7 @@ namespace Rebots.HelpDesk
                 TemplateContainer buttonGroupFieldUIElement = ButtonGroupFieldAsset.Instantiate();
 
                 var buttonAsset = (csCategoryField.fieldType == RebotsInputFieldType.Checkbox) ? CheckAsset : RadioAsset;
-                RebotsButtonGroupFieldComponent buttonGroupComponent = new RebotsButtonGroupFieldComponent(csCategoryField, buttonAsset, parameterValue);
+                RebotsButtonGroupFieldComponent buttonGroupComponent = new RebotsButtonGroupFieldComponent(csCategoryField, buttonAsset, parameterValue, validationComment);
                 buttonGroupComponent.SetVisualElement(buttonGroupFieldUIElement);
                 buttonGroupComponent.SetFieldData(buttonGroupFieldUIElement);
 
@@ -172,7 +174,7 @@ namespace Rebots.HelpDesk
             {
                 TemplateContainer attachmentFieldUIElement = AttachmentFieldAsset.Instantiate();
 
-                RebotsAttachmentFieldComponent attachmentComponent = new RebotsAttachmentFieldComponent(csCategoryField, AttachmentFileAsset);
+                RebotsAttachmentFieldComponent attachmentComponent = new RebotsAttachmentFieldComponent(csCategoryField, AttachmentFileAsset, validationComment);
                 attachmentComponent.SetVisualElement(attachmentFieldUIElement);
                 attachmentComponent.SetFieldData(attachmentFieldUIElement);
 
@@ -184,6 +186,19 @@ namespace Rebots.HelpDesk
                 uiElement = null;
                 uiComponent = null;
             }
+        }
+
+        public void CreatePrivacyField(PrivacySetting ticketPrivacySetting, string[] transData, Action<bool> clickAction, out TemplateContainer uiElement)
+        {
+            TemplateContainer PrivacyUIElement = PrivacyFieldAsset.Instantiate();
+
+            RebotsPrivacyComponent privacyComponent = new RebotsPrivacyComponent(ticketPrivacySetting, transData);
+
+            privacyComponent.SetVisualElements(PrivacyUIElement);
+            privacyComponent.SetPrivacyData(PrivacyUIElement);
+            privacyComponent.RegisterCallbacks(clickAction);
+
+            uiElement = PrivacyUIElement;
         }
 
         public void CreateTicket(HelpdeskTicket ticket, Action<HelpdeskTicket> clickAction, out TemplateContainer uiElement)
@@ -222,18 +237,6 @@ namespace Rebots.HelpDesk
             uiElement = DetailUIElement;
         }
 
-        public void CreatePrivacyField(PrivacySetting ticketPrivacySetting, string[] transData, out TemplateContainer uiElement)
-        {
-            TemplateContainer PrivacyUIElement = PrivacyFieldAsset.Instantiate();
-
-            RebotsPrivacyComponent privacyComponent = new RebotsPrivacyComponent(ticketPrivacySetting, transData);
-
-            privacyComponent.SetVisualElements(PrivacyUIElement);
-            privacyComponent.SetPrivacyData(PrivacyUIElement);
-
-            uiElement = PrivacyUIElement;
-        }
-
         public void CreateLabel(string textString, out Label label)
         {
             var labelUIElement = new Label();
@@ -259,6 +262,32 @@ namespace Rebots.HelpDesk
             labelUIElement.AddToClassList(RebotsUIStaticString.RebotsLabelLink);
 
             label = labelUIElement;
+        }
+         
+        public void CreatePaging<T>(RebotsPagingData<T> pagingData, bool isCurrent, Action<T, int?> clickAction, out Label label)
+        {
+            var pageUIElement = new Label
+            {
+                text = pagingData.page.ToString()
+            };
+            pageUIElement.style.paddingBottom = 0;
+            pageUIElement.style.paddingTop = 0;
+            pageUIElement.style.paddingRight = 5;
+            pageUIElement.style.paddingLeft = 5;
+
+            if (isCurrent)
+            {
+                pageUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Black16);
+                pageUIElement.AddToClassList(RebotsUIStaticString.RebotsFontColor_Theme);
+            }
+            else
+            {
+                pageUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Regular16);
+                pageUIElement.AddToClassList(RebotsUIStaticString.RebotsFontColor_Black);
+                pageUIElement?.RegisterCallback<ClickEvent>(evt => clickAction(pagingData.data, pagingData.page));
+            }
+
+            label = pageUIElement;
         }
     }
 }

@@ -238,6 +238,7 @@
     -unity-font-definition: none;
     -unity-text-align: middle-left;
     white-space: normal;
+    font-size: 12px;
 }
 
 .rebots-menu-foldout .unity-toggle .unity-label {

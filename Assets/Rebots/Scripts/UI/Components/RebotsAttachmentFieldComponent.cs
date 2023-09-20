@@ -14,9 +14,9 @@ namespace Rebots.HelpDesk
         const string FieldLabel = "rebots-field-label";
         const string RequiredFieldLabel = "rebots-required";
         const string ChooseFileButton = "rebots-choose-file-button";
-        const string ChooseFileButtonLabel = "rebots-choose-file-button-label";
         const string NoFileContainer = "rebots-no-file-container";
         const string FileList = "rebots-file-list-container";
+        const string ValidationLabel = "rebots-validation-label";
 
         const string FileNameLabel = "rebots-file-name-label";
         const string FileSizeLabel = "rebots-file-size-label";
@@ -25,21 +25,23 @@ namespace Rebots.HelpDesk
         Label m_FieldLabel;
         Label m_RequiredFieldLabel;
         Button m_ChooseFileButton;
-        Label m_ChooseFileButtonLabel;
         VisualElement m_NoFileContainer;
         VisualElement m_FileList;
+        Label m_ValidationLabel;
 
         private TicketCategoryInputField m_csCategoryField;
         private VisualTreeAsset m_fileAsset;
         private List<RebotsTicketAttachment> m_attachments;
+        private string validationComment;
 
         private List<string> ImageType = new List<string>() { "png", "jpeg", "jpg" };
 
-        public RebotsAttachmentFieldComponent(TicketCategoryInputField csCategoryField, VisualTreeAsset fileAsset)
+        public RebotsAttachmentFieldComponent(TicketCategoryInputField csCategoryField, VisualTreeAsset fileAsset, string[] validationComment)
         {
             m_csCategoryField = csCategoryField;
             m_fileAsset = fileAsset;
             m_attachments = new List<RebotsTicketAttachment>();
+            this.validationComment = (validationComment != null) ? validationComment[0] : "";
         }
 
         public void SetVisualElement(TemplateContainer attachmentFieldUIElement)
@@ -52,9 +54,9 @@ namespace Rebots.HelpDesk
             m_FieldLabel = attachmentFieldUIElement.Q<Label>(FieldLabel);
             m_RequiredFieldLabel = attachmentFieldUIElement.Q<Label>(RequiredFieldLabel);
             m_ChooseFileButton = attachmentFieldUIElement.Q<Button>(ChooseFileButton);
-            m_ChooseFileButtonLabel = attachmentFieldUIElement.Q<Label>(ChooseFileButtonLabel);
             m_NoFileContainer = attachmentFieldUIElement.Q(NoFileContainer);
             m_FileList = attachmentFieldUIElement.Q(FileList);
+            m_ValidationLabel = attachmentFieldUIElement.Q<Label>(ValidationLabel);
 
             m_NoFileContainer.style.display = DisplayStyle.Flex;
             m_FileList.Clear();
@@ -69,6 +71,11 @@ namespace Rebots.HelpDesk
 
             m_FieldLabel.text = m_csCategoryField.text;
             m_ChooseFileButton?.RegisterCallback<ClickEvent>(evt => ClickChooseFile());
+
+            m_RequiredFieldLabel.style.display = (m_csCategoryField.isRequire) ? DisplayStyle.Flex : DisplayStyle.None;
+
+            m_ValidationLabel.text = validationComment;
+            m_ValidationLabel.style.display = DisplayStyle.None;
         }
 
         private void ClickChooseFile()
@@ -153,6 +160,20 @@ namespace Rebots.HelpDesk
             if (m_attachments.Count < 3 && m_FileList.childCount < 3)
             {
                 m_ChooseFileButton.SetEnabled(true);
+            }
+        }
+
+        public bool CheckFieldValid()
+        {
+            if (m_csCategoryField.isRequire && (m_attachments == null || m_attachments.Count == 0))
+            {
+                m_ValidationLabel.style.display = DisplayStyle.Flex;
+                return false;
+            }
+            else
+            {
+                m_ValidationLabel.style.display = DisplayStyle.None;
+                return true;
             }
         }
 

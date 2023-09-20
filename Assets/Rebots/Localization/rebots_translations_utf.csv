@@ -16,7 +16,7 @@ rebots-need-more,도움이 더 필요하신가요?,Need more help?,¿Necesitas m
 rebots-submit-ticket,티켓 제출,Submit Ticket,enviar boleto,チケットを送信する,提交票据,提交票據,Kirim Tiket,ส่ง Ticket
 rebots-send-us,내용과 함께 메시지를 보내주세요. 최대한 빠르게 도와 드리겠습니다.,"Send us a message with your issue, and we'll get back to you as soon as we can.",Envíenos un mensaje con su problema y nos pondremos en contacto con usted lo antes posible.,内容とともにメッセージを送ってください。 できるだけ早くお手伝いします。,请将详细信息发送给我们。我们将尽快为您提供帮助。,請將詳細信息發送給我們。我們將盡快為您提供幫助。,"Kirimi kami pesan dengan masalah Anda, dan kami akan menghubungi Anda sesegera mungkin.",ส่งข้อความแจ้งปัญหาของคุณถึงเรา แล้วเราจะติดต่อกลับโดยเร็วที่สุด
 rebots-look-up-faq,빠른 답변을 원하시나요? 자주 묻는 질문과 답변에서 원하는 답변을 찾아보세요,Want Quick Responses? Look Up a Query in Our FAQs.,¿Quieres respuestas rápidas? Busque una consulta en nuestras preguntas frecuentes.,早い返信をお望みですか？ よくある質問と回答から希望する回答を探してみてください,想要快速获得答案？ 请在常见问题中找到您想要的答案,想要快速獲得答案？請在常見問題中找到您想要的答案,Ingin Respons Cepat? Cari Permintaan di FAQ Kami.,ต้องการคำตอบด่วนหรือไม่ ค้นหาคำถามในคำถามที่พบบ่อยของเรา
-rebots-operating-time,운영 시간 {0}~{1},Operating hours {0} to {1},hora de trabajo {0}~{1},営業時間 {0}~{1},运营时间 {0} 至 {1},運營時間 {0} 至 {1},Jam operasional {0} hingga {1},เวลาเปิดทำการ {0} น. ถึง {1} น
+rebots-operating-time,운영 시간 {0}~{1} ({2}),Operating hours {0} to {1} ({2}),hora de trabajo {0}~{1} ({2}),営業時間 {0}~{1} ({2}),运营时间 {0} 至 {1} ({2}),運營時間 {0} 至 {1} ({2}),Jam operasional {0} hingga {1} ({2}),เวลาเปิดทำการ {0} น. ถึง {1} น ({2})
 rebots-terms,이용약관,Terms and Conditions,Términos y condiciones,利用規約,使用条款,使用條款,syarat dan Ketentuan,ข้อตกลงและเงื่อนไข
 rebots-cookie,쿠키 정책,Cookie Policy,política de cookies,クッキーポリシー,隐私政策,隱私政策,Kebijakan Cookie,นโยบายคุกกี้
 rebots-tel,Tel. No. +{0},Tel. No. +{0},Tel. No. +{0},Tel. No. +{0},Tel. No. +{0},Tel. No. +{0},Tel. No. +{0},Tel. No. +{0}
@@ -46,3 +46,6 @@ rebots-privacy-period,정보 보유 및 이용기간,Information preservcation a
 rebots-privacy-consignment,수탁사 이름,consignment,consignación,受託会社名,收货人姓名,收貨人姓名,konsinyasi,ฝากขาย
 rebots-privacy-providing,제공정보,Providing info,proporcionando información,提供情報,提供的信息,提供的信息,Menyediakan info,การให้ข้อมูล
 rebots-privacy-consignment-period,수탁 기간,Consignment Period,Período de consignación,受託期間,寄售期,寄售期,Periode Konsinyasi,ระยะเวลาฝากขาย
+rebots-choose-file-label,파일선택,Choose File,Selección de archivos,ファイル選択,选择文件,選擇文件,Pilih Berkas,เลือกแฟ้ม
+rebots-valid-required,필수입력 항목입니다.,It is required field.,It is required field.,It is required field.,It is required field.,It is required field.,It is required field.,It is required field.
+rebots-valid-email,이메일 형식이 올바르지 않습니다.,The email format is incorrect.,The email format is incorrect.,The email format is incorrect.,The email format is incorrect.,The email format is incorrect.,The email format is incorrect.,The email format is incorrect.

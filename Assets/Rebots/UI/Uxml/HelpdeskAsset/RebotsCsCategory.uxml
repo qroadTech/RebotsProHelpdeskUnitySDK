@@ -1,12 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement>
-        <ui:Button display-tooltip-when-elided="true" name="rebots-category-button" style="margin-left: 0; margin-right: 0; margin-top: 14px; margin-bottom: 14px; padding-left: 23px; padding-right: 23px; padding-top: 23px; padding-bottom: 11px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/BoxSquare.png?fileID=21300000&amp;guid=b604a33db80ec474abb45defeea4c19d&amp;type=3#BoxSquare&apos;); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
-            <ui:VisualElement style="padding-left: 13px; padding-right: 13px; padding-top: 16px; padding-bottom: 16px; align-items: center;">
-                <ui:Label text="Cs Category Label" display-tooltip-when-elided="true" name="rebots-category-label" class="rebots-label__black24 rebots-font-color__theme" />
-            </ui:VisualElement>
-            <ui:VisualElement style="flex-direction: row-reverse; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
-                <ui:VisualElement name="rebots-category-img" class="rebots-sprite-color__theme" style="width: 24px; height: 15px; min-width: 24px; min-height: 15px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/CategoryContent.png?fileID=21300000&amp;guid=2d9b142a7366d3e46ba90cce4ed6bacd&amp;type=3#CategoryContent&apos;); -unity-background-scale-mode: scale-to-fit;" />
-            </ui:VisualElement>
-        </ui:Button>
-    </ui:VisualElement>
+    <ui:Button display-tooltip-when-elided="true" name="rebots-category-button" style="background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BoxSquare.png?fileID=21300000&amp;guid=b604a33db80ec474abb45defeea4c19d&amp;type=3#BoxSquare&apos;); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(188, 188, 188, 0); margin-left: 0; margin-right: 0; margin-top: 15px; margin-bottom: 15px; padding-left: 35px; padding-right: 35px; padding-top: 16px; padding-bottom: 16px; min-height: 128px; height: 128px; justify-content: center;">
+        <ui:Label text="rebots-category-label" display-tooltip-when-elided="true" name="rebots-category-label" class="rebots-label__black24 rebots-font-color__theme" style="-unity-text-align: middle-center;" />
+    </ui:Button>
 </ui:UXML>
