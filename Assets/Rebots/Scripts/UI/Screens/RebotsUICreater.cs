@@ -3,7 +3,6 @@ using System;
 using UnityEngine;
 using UnityEngine.UIElements;
 using HelpDesk.Sdk.Common.Protocols.Responses;
-using Unity.VisualScripting;
 using Assets.Rebots;
 
 namespace Rebots.HelpDesk
@@ -14,19 +13,20 @@ namespace Rebots.HelpDesk
         [SerializeField] VisualTreeAsset AttachmentFieldAsset;
         [SerializeField] VisualTreeAsset AttachmentFileAsset;
         [SerializeField] VisualTreeAsset ButtonGroupFieldAsset;
+        [SerializeField] VisualTreeAsset CategoryAsset;
         [SerializeField] VisualTreeAsset CheckAsset;
         [SerializeField] VisualTreeAsset ContentCategoryAsset;
-        [SerializeField] VisualTreeAsset CsCategoryAsset;
         [SerializeField] VisualTreeAsset DropdownFieldAsset;
-        [SerializeField] VisualTreeAsset FaqCategoryAsset;
+        [SerializeField] VisualTreeAsset FaqAsset;
         [SerializeField] VisualTreeAsset LanguageAsset;
+        [SerializeField] VisualTreeAsset LowerCategoryAsset;
         [SerializeField] VisualTreeAsset MenuCategoryAsset;
+        [SerializeField] VisualTreeAsset PagingNavigator;
         [SerializeField] VisualTreeAsset PopularFaqAsset;
         [SerializeField] VisualTreeAsset PrivacyFieldAsset;
         [SerializeField] VisualTreeAsset RadioAsset;
         [SerializeField] VisualTreeAsset RouteLabelAsset;
         [SerializeField] VisualTreeAsset SearchFaqAsset;
-        [SerializeField] VisualTreeAsset SelectedCategoryAsset;
         [SerializeField] VisualTreeAsset SiblingCategoryAsset;
         [SerializeField] VisualTreeAsset SubCategoryAsset;
         [SerializeField] VisualTreeAsset TextareaFieldAsset;
@@ -47,43 +47,58 @@ namespace Rebots.HelpDesk
             uiElement = languageUIElement;
         }
 
-        public void CreateRouteLabel(string categoryName, out TemplateContainer uiElement)
+        public void CreateRouteLabel(string categoryName, bool isSelected, out Label label)
         {
-            TemplateContainer routeLabelUIElement = RouteLabelAsset.Instantiate();
-            Label routeLabel = routeLabelUIElement.Q<Label>(RebotsUIStaticString.RouteLabel);
-            routeLabel.text = categoryName;
+            Label labelUIElement = new Label();
+            if (isSelected)
+            {
+                labelUIElement.text = categoryName;
+                labelUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Black16);
+                labelUIElement.AddToClassList(RebotsUIStaticString.RebotsFontColor_Black);
+            }
+            else
+            {
+                labelUIElement.text = categoryName + " >";
+                labelUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Bold16);
+                labelUIElement.AddToClassList(RebotsUIStaticString.RebotsFontColor_Grey);
+                labelUIElement.style.paddingRight = 5f;
+            }
 
-            uiElement = routeLabelUIElement;
+            label = labelUIElement;
         }
 
         public void CreateCategory<T>(T Category, RebotsCategoryAssetType type, Action<T> clickAction, out TemplateContainer uiElement)
         {
-            VisualTreeAsset asset = FaqCategoryAsset;
+            TemplateContainer categoryUIElement = null;
             switch (type)
             {
                 case RebotsCategoryAssetType.Cs:
-                    asset = CsCategoryAsset;
-                    break;
-                case RebotsCategoryAssetType.Faq:
-                    asset = FaqCategoryAsset;
-                    break;
-                case RebotsCategoryAssetType.Menu:
-                    asset = MenuCategoryAsset;
-                    break;
-                case RebotsCategoryAssetType.Sibling:
-                    asset = SiblingCategoryAsset;
-                    break;
-                case RebotsCategoryAssetType.Selected:
-                    asset = SelectedCategoryAsset;
-                    break;
-                case RebotsCategoryAssetType.Sub:
-                    asset = SubCategoryAsset;
+                    categoryUIElement = CategoryAsset.Instantiate();
                     break;
                 case RebotsCategoryAssetType.Contents:
-                    asset = ContentCategoryAsset;
+                    categoryUIElement = ContentCategoryAsset.Instantiate();
+                    break;
+                case RebotsCategoryAssetType.Faq:
+                    categoryUIElement = FaqAsset.Instantiate();
+                    break;
+                case RebotsCategoryAssetType.Lower:
+                    categoryUIElement = LowerCategoryAsset.Instantiate();
+                    break;
+                case RebotsCategoryAssetType.Menu:
+                    categoryUIElement = MenuCategoryAsset.Instantiate();
+                    break;
+                case RebotsCategoryAssetType.Sibling:
+                    categoryUIElement = SiblingCategoryAsset.Instantiate();
+                    categoryUIElement.RemoveAt(1);
+                    break;
+                case RebotsCategoryAssetType.Selected:
+                    categoryUIElement = SiblingCategoryAsset.Instantiate();
+                    categoryUIElement.RemoveAt(0);
+                    break;
+                case RebotsCategoryAssetType.Sub:
+                    categoryUIElement = SubCategoryAsset.Instantiate();
                     break;
             }
-            TemplateContainer categoryUIElement = asset.Instantiate();
 
             RebotsCategoryComponent<T> categoryComponent = new RebotsCategoryComponent<T>(Category);
 
@@ -91,7 +106,7 @@ namespace Rebots.HelpDesk
             categoryComponent.SetCategoryData(categoryUIElement);
             categoryComponent.RegisterCallbacks(clickAction);
 
-            if (type == RebotsCategoryAssetType.Sibling || type == RebotsCategoryAssetType.Selected)
+            if (type == RebotsCategoryAssetType.Sibling || type == RebotsCategoryAssetType.Selected || type == RebotsCategoryAssetType.Lower)
             {
                 categoryUIElement.style.flexGrow = 1;
                 categoryUIElement.style.flexShrink = 0;
@@ -263,31 +278,65 @@ namespace Rebots.HelpDesk
 
             label = labelUIElement;
         }
-         
-        public void CreatePaging<T>(RebotsPagingData<T> pagingData, bool isCurrent, Action<T, int?> clickAction, out Label label)
-        {
-            var pageUIElement = new Label
-            {
-                text = pagingData.page.ToString()
-            };
-            pageUIElement.style.paddingBottom = 0;
-            pageUIElement.style.paddingTop = 0;
-            pageUIElement.style.paddingRight = 5;
-            pageUIElement.style.paddingLeft = 5;
 
-            if (isCurrent)
+        public void CreatePaging<T>(RebotsPagingData<T> pagingData, Action<RebotsPagingData<T>> clickAction, out TemplateContainer uiElement)
+        {
+            TemplateContainer pagingNavigatorUIElement = PagingNavigator.Instantiate();
+
+            var pageList = pagingNavigatorUIElement.Q(RebotsUIStaticString.PageList);
+            Button startNavigator = pagingNavigatorUIElement.Q<Button>(RebotsUIStaticString.PagingStartButton);
+            Button previousNavigator = pagingNavigatorUIElement.Q<Button>(RebotsUIStaticString.PagingPreviousButton);
+            Button nextNavigator = pagingNavigatorUIElement.Q<Button>(RebotsUIStaticString.PagingNextButton);
+            Button endNavigator = pagingNavigatorUIElement.Q<Button>(RebotsUIStaticString.PagingEndButton);
+
+            var startIndex = (pagingData.SelectedPage / 5) * 5;
+            var endIndex = ((pagingData.SelectedPage / 5) + 1) * 5;
+            endIndex = (pagingData.TotalPage < endIndex) ? pagingData.TotalPage : endIndex;
+
+            while (startIndex++ < endIndex)
             {
-                pageUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Black16);
-                pageUIElement.AddToClassList(RebotsUIStaticString.RebotsFontColor_Theme);
+                var data = pagingData.SetPage(startIndex);
+                var pageUIElement = new Label
+                {
+                    text = data.Page.ToString()
+                };
+                pageUIElement.style.width = 22f;
+                pageUIElement.style.paddingBottom = 0;
+                pageUIElement.style.paddingTop = 0;
+                pageUIElement.style.paddingRight = 5;
+                pageUIElement.style.paddingLeft = 5;
+
+                if (data.IsClickAction)
+                {
+                    pageUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Regular16);
+                    pageUIElement.AddToClassList(RebotsUIStaticString.RebotsFontColor_Grey);
+                    pageUIElement?.RegisterCallback<ClickEvent>(evt => clickAction(data));
+                }
+                else
+                {
+                    pageUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Black16);
+                    pageUIElement.AddToClassList(RebotsUIStaticString.RebotsFontColor_Black);
+                }
+
+                pageList.Add(pageUIElement);
+            }
+
+            if (pagingData.TotalPage > 5)
+            {
+                startNavigator?.RegisterCallback<ClickEvent>(evt => clickAction(pagingData.SetStartPage()));
+                previousNavigator?.RegisterCallback<ClickEvent>(evt => clickAction(pagingData.SetPreviousPage()));
+                nextNavigator?.RegisterCallback<ClickEvent>(evt => clickAction(pagingData.SetNextPage()));
+                endNavigator?.RegisterCallback<ClickEvent>(evt => clickAction(pagingData.SetEndPage()));
             }
             else
             {
-                pageUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Regular16);
-                pageUIElement.AddToClassList(RebotsUIStaticString.RebotsFontColor_Black);
-                pageUIElement?.RegisterCallback<ClickEvent>(evt => clickAction(pagingData.data, pagingData.page));
+                startNavigator.style.display = DisplayStyle.None;
+                previousNavigator.style.display = DisplayStyle.None;
+                nextNavigator.style.display = DisplayStyle.None;
+                endNavigator.style.display = DisplayStyle.None;
             }
-
-            label = pageUIElement;
+            
+            uiElement = pagingNavigatorUIElement;
         }
     }
 }

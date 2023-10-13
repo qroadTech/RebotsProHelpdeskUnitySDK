@@ -7,15 +7,15 @@
 }
 
 .rebots-font-color__black {
-    color: rgb(34, 34, 34);
+    color: rgb(40, 40, 40);
 }
 
-.rebots-font-color__dakr-grey {
+.rebots-font-color__dark-grey {
     color: rgb(85, 85, 85);
 }
 
 .rebots-font-color__grey {
-    color: rgb(188, 188, 188);
+    color: rgb(142, 142, 142);
 }
 
 .rebots-font-color__white {
@@ -28,11 +28,11 @@
 
 .rebots-font-en__black {
     -unity-font-definition: none;
-    -unity-font: resource('Rebots/NotoSans-Black');
+    -unity-font: resource('Rebots/NotoSansEN-Black');
 }
 
 .rebots-font-en__regular {
-    -unity-font: resource('Rebots/NotoSans-Regular');
+    -unity-font: resource('Rebots/NotoSansEN-Regular');
     -unity-font-definition: none;
 }
 
@@ -57,32 +57,32 @@
 }
 
 .rebots-font-cn__black {
-    -unity-font: resource('Rebots/NotoSansSC-Regular');
+    -unity-font: resource('Rebots/NotoSansCN-Regular');
     -unity-font-definition: none;
 }
 
 .rebots-font-cn__regular {
-    -unity-font: resource('Rebots/NotoSansSC-Regular');
+    -unity-font: resource('Rebots/NotoSansCN-Regular');
     -unity-font-definition: none;
 }
 
 .rebots-font-tw__black {
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
 }
 
 .rebots-font-tw__regular {
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
 }
 
 .rebots-font-th__black {
-    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font: resource('Rebots/NotoSansTH-Regular');
     -unity-font-definition: none;
 }
 
 .rebots-font-th__regular {
-    -unity-font: resource('Rebots/NotoSansThai-Regular');
+    -unity-font: resource('Rebots/NotoSansTH-Regular');
     -unity-font-definition: none;
 }
 
@@ -212,4 +212,11 @@
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+}
+
+.rebots-ellipsis {
+    text-overflow: ellipsis;
+    -unity-text-overflow-position: end;
+    overflow: hidden;
+    white-space: nowrap;
 }

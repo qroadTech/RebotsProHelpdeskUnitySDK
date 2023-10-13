@@ -4,8 +4,8 @@
             <ui:VisualElement>
                 <ui:Label text="Language Label" display-tooltip-when-elided="true" name="rebots-language-label" class="rebots-font-color__white" />
             </ui:VisualElement>
-            <ui:VisualElement name="rebots-language-check-container" style="margin-left: 10px; display: none;">
-                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/UI/Textures/Rebots/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
+            <ui:VisualElement name="rebots-language-check-container" style="margin-left: 10px; display: flex;">
+                <ui:VisualElement style="width: 20px; height: 20px; min-width: 20px; min-height: 20px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/LanguageCheck.png?fileID=21300000&amp;guid=391492af279bf4d41968128333da58b0&amp;type=3#LanguageCheck&apos;); -unity-background-scale-mode: scale-to-fit;" />
             </ui:VisualElement>
         </ui:Button>
     </ui:VisualElement>

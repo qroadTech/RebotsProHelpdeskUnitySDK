@@ -12,7 +12,6 @@ namespace Rebots.HelpDesk
         string m_sub;
         string m_content;
         Label m_DetailSubLabel;
-        VisualElement m_DetailContentContainer;
         Label m_DetailContentLabel;
 
         public RebotsTicketDetailComponent(string sub, string content)

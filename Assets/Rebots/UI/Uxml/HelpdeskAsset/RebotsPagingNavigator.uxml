@@ -1,0 +1,17 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="flex-direction: row; width: auto; height: 28px; max-height: 28px; min-height: 28px; justify-content: center; align-items: center; display: flex;">
+        <ui:Button display-tooltip-when-elided="true" name="rebots-paging-start-button" style="min-width: 24px; min-height: 24px; height: 24px; width: 24px; margin-left: 5px; margin-right: 5px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgb(255, 255, 255); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;">
+            <ui:VisualElement style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/PagingStart.png?fileID=21300000&amp;guid=8d96929d995535d4189d216c6a949c38&amp;type=3#PagingStart&apos;); -unity-background-scale-mode: scale-to-fit;" />
+        </ui:Button>
+        <ui:Button display-tooltip-when-elided="true" name="rebots-paging-previous-button" style="min-width: 24px; min-height: 24px; height: 24px; width: 24px; margin-left: 5px; margin-right: 5px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgb(255, 255, 255); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;">
+            <ui:VisualElement style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/PagingPrevious.png?fileID=21300000&amp;guid=88f183e6a3c00b942ad45af18f8ec872&amp;type=3#PagingPrevious&apos;); -unity-background-scale-mode: scale-to-fit;" />
+        </ui:Button>
+        <ui:VisualElement name="rebots-page-list" style="flex-direction: row; justify-content: center; height: 100%;" />
+        <ui:Button display-tooltip-when-elided="true" name="rebots-paging-next-button" style="min-width: 24px; min-height: 24px; height: 24px; width: 24px; margin-left: 5px; margin-right: 5px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgb(255, 255, 255); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;">
+            <ui:VisualElement style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/PagingNext.png?fileID=21300000&amp;guid=8ecd536c0d6c38e4d87d6e0207e2cf73&amp;type=3#PagingNext&apos;); -unity-background-scale-mode: scale-to-fit;" />
+        </ui:Button>
+        <ui:Button display-tooltip-when-elided="true" name="rebots-paging-end-button" style="min-width: 24px; min-height: 24px; height: 24px; width: 24px; margin-left: 5px; margin-right: 5px; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgb(255, 255, 255); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;">
+            <ui:VisualElement style="width: 100%; height: 100%; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/PagingEnd.png?fileID=21300000&amp;guid=b96f03bd57b4cfc4798ce1764304922b&amp;type=3#PagingEnd&apos;); -unity-background-scale-mode: scale-to-fit;" />
+        </ui:Button>
+    </ui:VisualElement>
+</ui:UXML>

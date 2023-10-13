@@ -58,6 +58,18 @@
     white-space: normal;
 }
 
+.rebots-label__black18 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansKR-Black');
+    -unity-font-definition: none;
+    font-size: 18px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
 .rebots-label__black16 {
     padding-left: 0;
     padding-right: 0;
@@ -179,6 +191,18 @@
     -unity-text-align: lower-left;
     white-space: normal;
     font-size: 11px;
+}
+
+.rebots-label__regular24 {
+    -unity-text-align: middle-left;
+    white-space: normal;
+    font-size: 24px;
+    -unity-font: resource('Rebots/NotoSansKR-Regular');
+    -unity-font-definition: none;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 .rebots-label__regular20 {

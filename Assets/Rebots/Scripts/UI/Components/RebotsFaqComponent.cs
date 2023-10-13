@@ -1,10 +1,6 @@
 ﻿using HelpDesk.Sdk.Common.Objects;
 using HelpDesk.Sdk.Library.Utility;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine.UIElements;
 
 namespace Rebots.HelpDesk
@@ -14,7 +10,7 @@ namespace Rebots.HelpDesk
         const string k_FaqButton = "rebots-faq-button";
         const string k_FaqCategoryRouteLabel = "rebots-category-route-label";
         const string k_FaqTitleLabel = "rebots-faq-title-label";
-        const string k_FaqContentsLabel = "rebots-faq-contents-label";
+        const string k_FaqContentsLabel = "rebots-contents-label";
         const string k_FaqLikeCountLabel = "rebots-faq-like-label";
 
         Faq m_Faq;
@@ -62,23 +58,11 @@ namespace Rebots.HelpDesk
             foreach (var category in routeCategories)
             {
                 var categoryName = category.name;
-                if (faqType == RebotsFaqAssetType.Popular)
-                {
-                    categoryName = (categoryName.Length > 16) ? categoryName.Substring(0, 16).Trim() + "..." : categoryName;
-                }
                 routeCategoryStr = routeCategoryStr == "" ? categoryName : categoryName + " > " + routeCategoryStr;
             }
             m_FaqCategoryRouteLabel.text = routeCategoryStr;
 
             var faqTitleStr = m_Faq.title;
-            if (faqType == RebotsFaqAssetType.Popular)
-            {
-                faqTitleStr = (faqTitleStr.Length > 23) ? faqTitleStr.Substring(0, 23).Trim() + "..." : faqTitleStr;
-            }
-            else if (faqType == RebotsFaqAssetType.Search)
-            {
-                faqTitleStr = (faqTitleStr.Length > 58) ? faqTitleStr.Substring(0, 58).Trim() + "..." : faqTitleStr;
-            }
 
             if (faqType == RebotsFaqAssetType.Popular)
             {
@@ -93,11 +77,6 @@ namespace Rebots.HelpDesk
                 m_FaqTitleLabel.text = faqTitleStr;
                 
                 var contents = HtmlParser.HtmlToRemoveTag(m_Faq.contents.ToString());
-                if (contents.Length > 117)
-                {
-                    contents = contents.Substring(0, 116).Trim();
-                    contents += "...";
-                }
                 contents = contents.Replace(searchStr, searchHtml);
                 m_FaqContentsLabel.text = contents;
             }

@@ -12,6 +12,13 @@
 	border-top-color: rgb(236, 244, 249);
 	border-bottom-color: rgb(236, 244, 249);
 }	
+
+.rebots-border-color__theme {
+    border-left-color: rgb(62, 142, 187);
+    border-right-color: rgb(62, 142, 187);
+    border-top-color: rgb(62, 142, 187);
+    border-bottom-color: rgb(62, 142, 187);
+}
 	
 .rebots-sprite-color__theme-opacity {	
 	-unity-background-image-tint-color: rgb(236, 244, 249);

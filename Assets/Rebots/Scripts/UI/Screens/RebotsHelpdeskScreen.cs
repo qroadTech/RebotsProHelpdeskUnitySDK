@@ -6,6 +6,7 @@ using System.IO;
 using System;
 using System.Collections;
 using UnityEngine.Events;
+using Assets.Rebots;
 
 namespace Rebots.HelpDesk
 {
@@ -20,7 +21,7 @@ namespace Rebots.HelpDesk
         public RebotsPageUI rebotsPageUI;
         public RebotsUICreater rebotsUICreater;
 
-        #region - - - Theme Style Sheet - - - 
+        #region - - - Helpdesk Resources - - - 
         [Header("Rebots Theme StyleSheet")]
         [SerializeField] public StyleSheet theme1;
         [SerializeField] public StyleSheet theme2;
@@ -38,9 +39,7 @@ namespace Rebots.HelpDesk
         [SerializeField] public StyleSheet theme14;
         [SerializeField] public StyleSheet theme15;
         [SerializeField] public StyleSheet theme16;
-        #endregion
 
-        #region - - - Language Font Style Sheet - - - 
         [Header("Rebots Language Font StyleSheet")]
         [SerializeField] public StyleSheet fontEn;
         [SerializeField] public StyleSheet fontKr;
@@ -48,6 +47,14 @@ namespace Rebots.HelpDesk
         [SerializeField] public StyleSheet fontCn;
         [SerializeField] public StyleSheet fontTw;
         [SerializeField] public StyleSheet fontTh;
+
+        [Header("Rebots Language Font Asset")]
+        [SerializeField] public Font fontAssetEn;
+        [SerializeField] public Font fontAssetKr;
+        [SerializeField] public Font fontAssetJa;
+        [SerializeField] public Font fontAssetCn;
+        [SerializeField] public Font fontAssetTw;
+        [SerializeField] public Font fontAssetTh;
         #endregion
 
         #region - - - Helpdesk UI Element - - - 
@@ -57,11 +64,10 @@ namespace Rebots.HelpDesk
         public Category m_Category { get; private set; }
         public Faq m_Faq { get; private set; }
         public string m_SearchString { get; private set; }
-        public int m_SubCategoryPage { get; private set; }
         public Dictionary<TicketCategoryInputField, object> m_FieldDic { get; private set; }
+        public List<RebotsPageRecord> m_PageRecords { get; private set; } = new();
 
-        public readonly int subCategoryPageSize = 20;
-        private List<RebotsPageRecord> pageRecords = new();
+        public readonly int listPagingSize = 10;
 
         #region Run in 'Awake' call
         protected override void SetVisualElements()
@@ -69,11 +75,6 @@ namespace Rebots.HelpDesk
             base.SetVisualElements();
 
             m_HelpdeskScreen = m_Root.Q(RebotsUIStaticString.HelpdeskScreen);
-        }
-
-        protected override void RegisterButtonCallbacks()
-        {
-
         }
         #endregion
 
@@ -116,155 +117,148 @@ namespace Rebots.HelpDesk
         #region Show page
         public void ShowMain(bool isOpen, bool isLanguageChange = false)
         {
-            HidePage(RebotsPageType.Main);
-            this.pageRecords = isOpen ? new List<RebotsPageRecord>() : this.pageRecords;
-            ClearData(RebotsPageType.Main, RebotsPageName.Main);
+            HidePage(RebotsPageType.MainTitle);
+            this.m_PageRecords = isOpen ? new List<RebotsPageRecord>() : this.m_PageRecords;
+            ClearData(RebotsPageType.MainTitle, RebotsPageName.Main);
 
             rebotsSettingManager.LoadFaqRecommendList(rebotsPageUI.OnFaqRecommendUpdated);
             rebotsSettingManager.LoadFaqCategoryList(rebotsPageUI.OnFaqCategoriesUpdated, false);
 
-            AddPageState(RebotsPageType.Main, RebotsPageName.Main);
-            ShowPage(RebotsPageType.Main, RebotsPageName.Main);
-        }                                                  
-        
+            AddPageState(RebotsPageType.MainTitle, RebotsPageName.Main);
+            ShowPage(RebotsPageType.MainTitle, RebotsPageName.Main);
+        }
+
         public void ShowCsCategory()
         {
-            HidePage(RebotsPageType.Main);
-            ClearData(RebotsPageType.Main, RebotsPageName.Cs);
+            HidePage(RebotsPageType.NoTitleRoute);
+            ClearData(RebotsPageType.NoTitleRoute, RebotsPageName.InquiryList);
 
             rebotsSettingManager.LoadCsCategoryList(rebotsPageUI.OnCsCategoriesUpdated, false);
 
-            ShowPage(RebotsPageType.Main, RebotsPageName.Cs);
+            AddPageState(RebotsPageType.NoTitleRoute, RebotsPageName.InquiryList);
+            ShowPage(RebotsPageType.NoTitleRoute, RebotsPageName.InquiryList);
         }
 
         public void ShowFaq(Faq faq)
         {
-            HidePage(RebotsPageType.Category);
-            ClearData(RebotsPageType.Category, RebotsPageName.FaqDetail);
+            HidePage(RebotsPageType.PageTitle);
+            ClearData(RebotsPageType.PageTitle, RebotsPageName.Faq);
 
             this.m_Faq = faq;
             rebotsSettingManager.LoadFaq(rebotsPageUI.OnFaqUpdated, m_Faq.id);
 
-            AddPageState(RebotsPageType.Category, RebotsPageName.FaqDetail, faq);
-            ShowPage(RebotsPageType.Category, RebotsPageName.FaqDetail);
+            AddPageState(RebotsPageType.PageTitle, RebotsPageName.Faq, faq);
+            ShowPage(RebotsPageType.PageTitle, RebotsPageName.Faq);
         }
 
-        public void ShowSearch(string searchStr, int? page = 1)
+        public void ShowSearch(RebotsPagingData<string> pagingData)
         {
-            HidePage(RebotsPageType.Search);
-            ClearData(RebotsPageType.Search, RebotsPageName.SearchResult);
+            HidePage(RebotsPageType.NoTitleLabel);
+            ClearData(RebotsPageType.NoTitleLabel, RebotsPageName.SearchList);
 
-            this.m_SearchString = searchStr;
-            rebotsSettingManager.LoadFaqSearchList(rebotsPageUI.OnFaqSearchUpdated, searchStr, page.Value);
+            this.m_SearchString = pagingData.Data;
+            rebotsSettingManager.LoadFaqSearchList(rebotsPageUI.OnFaqSearchUpdated, pagingData.Data, pagingData.Page);
 
-            if (page == null || page == 1)
+            if (pagingData.Page == 1)
             {
-                AddPageState(RebotsPageType.Search, RebotsPageName.SearchResult, searchStr);
+                AddPageState(RebotsPageType.NoTitleLabel, RebotsPageName.SearchList, pagingData.Data);
             }
-            ShowPage(RebotsPageType.Search, RebotsPageName.SearchResult);
+            ShowPage(RebotsPageType.NoTitleLabel, RebotsPageName.SearchList);
         }
 
-        public void ShowFaqSubCategory(Category category, int? page = 1)
+        public void ShowFaqSubCategory(RebotsPagingData<Category> pagingData)
         {
-            m_SubCategoryPage = (page == null) ? 1 : page.Value;
-            HidePage(RebotsPageType.Category);
-            ClearData(RebotsPageType.Category, RebotsPageName.FaqSubCategory);
-
-            this.m_Category = category;
-            rebotsSettingManager.LoadFaqCategory(rebotsPageUI.OnSubCategoryUpdated, m_Category.id);
-
-            if (page == null || page == 1)
+            if (pagingData.IsClickAction)
             {
-                AddPageState(RebotsPageType.Category, RebotsPageName.FaqSubCategory, category);
+                HidePage(RebotsPageType.PageTitle);
+                ClearData(RebotsPageType.PageTitle, RebotsPageName.FaqList);
+
+                this.m_Category = pagingData.Data;
+                rebotsSettingManager.LoadFaqCategory(rebotsPageUI.OnSubCategoryUpdated, m_Category.id, pagingData.Page, listPagingSize);
+
+                if (pagingData.Page == 1)
+                {
+                    AddPageState(RebotsPageType.PageTitle, RebotsPageName.FaqList, pagingData.Data);
+                }
+                ShowPage(RebotsPageType.PageTitle, RebotsPageName.FaqList);
             }
-            ShowPage(RebotsPageType.Category, RebotsPageName.FaqSubCategory);
         }
 
-        public void ShowCsSubCategory(Category category, int? page = 1)
+        public void ShowCsSubCategory(Category category)
         {
-            m_SubCategoryPage = (page == null) ? 1 : page.Value;
-            HidePage(RebotsPageType.Category);
-            ClearData(RebotsPageType.Category, RebotsPageName.CsSubCategory);
+            HidePage(RebotsPageType.PageTitle);
+            ClearData(RebotsPageType.PageTitle, RebotsPageName.InquiryList);
 
             this.m_Category = category;
             rebotsSettingManager.LoadCsCategory(rebotsPageUI.OnSubCategoryUpdated, m_Category.id);
 
-            if (page == null || page == 1)
-            {
-                AddPageState(RebotsPageType.Category, RebotsPageName.CsSubCategory, category);
-            }
-            ShowPage(RebotsPageType.Category, RebotsPageName.CsSubCategory);
+            AddPageState(RebotsPageType.PageTitle, RebotsPageName.InquiryList, category);
+            ShowPage(RebotsPageType.PageTitle, RebotsPageName.InquiryList);
         }
 
         public void ShowTicketCreate(Category category)
         {
-            HidePage(RebotsPageType.Ticket);
-            ClearData(RebotsPageType.Ticket, RebotsPageName.TicketCreate);
+            HidePage(RebotsPageType.PageTitle);
+            ClearData(RebotsPageType.PageTitle, RebotsPageName.TicketCreate);
 
             this.m_FieldDic = new Dictionary<TicketCategoryInputField, object>();
             this.m_Category = category;
             rebotsSettingManager.LoadCsCategoryFieldList(rebotsPageUI.OnCsCategoryFieldsUpdated, m_Category.id);
 
-            AddPageState(RebotsPageType.Ticket, RebotsPageName.TicketCreate, category);
-            ShowPage(RebotsPageType.Ticket, RebotsPageName.TicketCreate);
+            AddPageState(RebotsPageType.PageTitle, RebotsPageName.TicketCreate, category);
+            ShowPage(RebotsPageType.PageTitle, RebotsPageName.TicketCreate);
         }
 
         public void ShowTicketSuccess()
         {
-            HidePage(RebotsPageType.OnlyContent);
+            HidePage(RebotsPageType.PageTitle);
 
-            ShowPage(RebotsPageType.OnlyContent, RebotsPageName.TicketSuccess);
+            ShowPage(RebotsPageType.Layout, RebotsPageName.TicketSuccess);
         }
 
         public void ShowMyTicket()
         {
-            HidePage(RebotsPageType.MyTicket);
-            ClearData(RebotsPageType.MyTicket, RebotsPageName.MyTicket);
+            HidePage(RebotsPageType.NoTitleRoute);
+            ClearData(RebotsPageType.NoTitleRoute, RebotsPageName.TicketList);
 
             rebotsSettingManager.LoadTicketList(rebotsPageUI.OnMyTicketsUpdated);
 
-            AddPageState(RebotsPageType.MyTicket, RebotsPageName.MyTicket);
-            ShowPage(RebotsPageType.MyTicket, RebotsPageName.MyTicket);
+            AddPageState(RebotsPageType.NoTitleRoute, RebotsPageName.TicketList);
+            ShowPage(RebotsPageType.NoTitleRoute, RebotsPageName.TicketList);
         }
 
         public void ShowTicketDetail(HelpdeskTicket ticket)
         {
-            HidePage(RebotsPageType.MyTicket);
-            ClearData(RebotsPageType.MyTicket, RebotsPageName.TicketDetail);
+            HidePage(RebotsPageType.NoTitleRoute);
+            ClearData(RebotsPageType.NoTitleRoute, RebotsPageName.Ticket);
 
             rebotsSettingManager.LoadTicketDetail(rebotsPageUI.OnTicketDetailUpdated, ticket);
 
-            AddPageState(RebotsPageType.MyTicket, RebotsPageName.TicketDetail, ticket);
-            ShowPage(RebotsPageType.MyTicket, RebotsPageName.TicketDetail);
+            AddPageState(RebotsPageType.NoTitleRoute, RebotsPageName.Ticket, ticket);
+            ShowPage(RebotsPageType.NoTitleRoute, RebotsPageName.Ticket);
         }
 
         public void ShowPage(RebotsPageType type, RebotsPageName name)
         {
             switch (type)
             {
-                case RebotsPageType.Main:
-                    ShowVisualElement(rebotsLayoutUI.m_TitleContainer, true);
+                case RebotsPageType.MainTitle:
+                    ShowVisualElement(rebotsLayoutUI.m_MainTitleContainer, true);
                     break;
-                case RebotsPageType.Category:
-                    ShowVisualElement(rebotsPageUI.m_RouteContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_RouteLabelContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_MenuNameContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_SiblingCategoryContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_TitleCategoryConatiner, true);
+                case RebotsPageType.PageTitle:
+                    ShowVisualElement(rebotsPageUI.m_PageTitlleContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_PageTitleLabelContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_PageRouteContainer, true);
                     break;
-                case RebotsPageType.Search:
-                    ShowVisualElement(rebotsPageUI.m_RouteContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_RouteLabelContainer, true);
+                case RebotsPageType.NoTitleLabel:
+                    ShowVisualElement(rebotsPageUI.m_PageTitlleContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_PageTitleLabelContainer, false);
+                    ShowVisualElement(rebotsPageUI.m_PageRouteContainer, false);
                     break;
-                case RebotsPageType.Ticket:
-                    ShowVisualElement(rebotsPageUI.m_RouteContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_RouteLabelContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_TitleCategoryConatiner, true);
-                    break;
-                case RebotsPageType.MyTicket:
-                    ShowVisualElement(rebotsPageUI.m_RouteContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_RouteLabelContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_MenuNameContainer, true);
+                case RebotsPageType.NoTitleRoute:
+                    ShowVisualElement(rebotsPageUI.m_PageTitlleContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_PageTitleLabelContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_PageRouteContainer, false);
                     break;
                 case RebotsPageType.Layout:
                 default:
@@ -274,36 +268,28 @@ namespace Rebots.HelpDesk
             switch (name)
             {
                 case RebotsPageName.Main:
-                    ShowVisualElement(rebotsPageUI.m_PopularFaqContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_FaqCategoryContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_MainContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     ShowVisualElement(rebotsLayoutUI.m_TicketButtonContainer, true);
+                    break;
+                case RebotsPageName.InquiryList:
+                    ShowVisualElement(rebotsPageUI.m_InquiryListContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     break;
-                case RebotsPageName.Cs:
-                    ShowVisualElement(rebotsPageUI.m_CsCategoryContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
-                    break;
-                case RebotsPageName.CsSubCategory:
-                    ShowVisualElement(rebotsPageUI.m_SubCategoryContainer, true);
+                case RebotsPageName.FaqList:
+                    ShowVisualElement(rebotsPageUI.m_FaqListContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PagingContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
-                    break;
-                case RebotsPageName.FaqSubCategory:
-                    ShowVisualElement(rebotsPageUI.m_SubCategoryContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_PagingContainer, true);
                     ShowVisualElement(rebotsLayoutUI.m_TicketButtonContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     break;
-                case RebotsPageName.FaqDetail:
+                case RebotsPageName.Faq:
                     ShowVisualElement(rebotsPageUI.m_FaqContainer, true);
-                    ShowVisualElement(rebotsLayoutUI.m_TicketButtonContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
-                    break;
-                case RebotsPageName.SearchResult:
-                    ShowVisualElement(rebotsPageUI.m_SearchFaqContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_PagingContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_RouteLabelContainer, false);
                     ShowVisualElement(rebotsLayoutUI.m_TicketButtonContainer, true);
+                    break;
+                case RebotsPageName.SearchList:
+                    ShowVisualElement(rebotsPageUI.m_FaqSearchContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_PagingContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     break;
                 case RebotsPageName.TicketCreate:
@@ -314,11 +300,11 @@ namespace Rebots.HelpDesk
                     ShowVisualElement(rebotsPageUI.m_TicketSuccessContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     break;
-                case RebotsPageName.MyTicket:
-                    ShowVisualElement(rebotsPageUI.m_MyTicketContainer, true);
+                case RebotsPageName.TicketList:
+                    ShowVisualElement(rebotsPageUI.m_TicketListContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     break;
-                case RebotsPageName.TicketDetail:
+                case RebotsPageName.Ticket:
                     ShowVisualElement(rebotsPageUI.m_TicketContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     break;
@@ -347,55 +333,20 @@ namespace Rebots.HelpDesk
         {
             if (type != RebotsPageType.Layout)
             {
+                ShowVisualElement(rebotsLayoutUI.m_MainTitleContainer, false);
+                ShowVisualElement(rebotsPageUI.m_PageTitlleContainer, false);
                 ShowVisualElement(rebotsLayoutUI.m_TicketButtonContainer, false);
 
-                ShowVisualElement(rebotsPageUI.m_PopularFaqContainer, false);
-                ShowVisualElement(rebotsPageUI.m_SearchFaqContainer, false);
-                ShowVisualElement(rebotsPageUI.m_FaqCategoryContainer, false);
-                ShowVisualElement(rebotsPageUI.m_CsCategoryContainer, false);
-                ShowVisualElement(rebotsPageUI.m_SubCategoryContainer, false);
+                ShowVisualElement(rebotsPageUI.m_MainContainer, false);
+                ShowVisualElement(rebotsPageUI.m_InquiryListContainer, false);
+                ShowVisualElement(rebotsPageUI.m_FaqListContainer, false);
                 ShowVisualElement(rebotsPageUI.m_FaqContainer, false);
-                ShowVisualElement(rebotsPageUI.m_PagingContainer, false);
+                ShowVisualElement(rebotsPageUI.m_FaqSearchContainer, false);
                 ShowVisualElement(rebotsPageUI.m_TicketCreateContainer, false);
                 ShowVisualElement(rebotsPageUI.m_TicketSuccessContainer, false);
-                ShowVisualElement(rebotsPageUI.m_MyTicketContainer, false);
+                ShowVisualElement(rebotsPageUI.m_TicketListContainer, false);
                 ShowVisualElement(rebotsPageUI.m_TicketContainer, false);
-
-                switch (type)
-                {
-                    case RebotsPageType.Main:
-                        ShowVisualElement(rebotsPageUI.m_RouteContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_MenuNameContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_SiblingCategoryContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_TitleCategoryConatiner, false);
-                        break;
-                    case RebotsPageType.Category:
-                        ShowVisualElement(rebotsLayoutUI.m_TitleContainer, false);
-                        break;
-                    case RebotsPageType.Search:
-                        ShowVisualElement(rebotsLayoutUI.m_TitleContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_MenuNameContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_SiblingCategoryContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_TitleCategoryConatiner, false);
-                        break;
-                    case RebotsPageType.Ticket:
-                        ShowVisualElement(rebotsLayoutUI.m_TitleContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_MenuNameContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_SiblingCategoryContainer, false);
-                        break;
-                    case RebotsPageType.MyTicket:
-                        ShowVisualElement(rebotsLayoutUI.m_TitleContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_SiblingCategoryContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_TitleCategoryConatiner, false);
-                        break;
-                    case RebotsPageType.OnlyContent:
-                        ShowVisualElement(rebotsLayoutUI.m_TitleContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_RouteContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_MenuNameContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_SiblingCategoryContainer, false);
-                        ShowVisualElement(rebotsPageUI.m_TitleCategoryConatiner, false);
-                        break;
-                }
+                ShowVisualElement(rebotsPageUI.m_PagingContainer, false);
             }
             ShowVisualElement(rebotsLayoutUI.m_BackgroundContainer, false);
             ShowVisualElement(rebotsLayoutUI.m_MenuContainer, false);
@@ -415,44 +366,40 @@ namespace Rebots.HelpDesk
         {
             switch (type)
             {
-                case RebotsPageType.Category:
-                    rebotsPageUI.m_RouteLabelContainer.Clear();
-                    rebotsPageUI.m_SiblingCategoryList.Clear();
-                    break;
-                case RebotsPageType.Ticket:
-                case RebotsPageType.MyTicket:
-                    rebotsPageUI.m_RouteLabelContainer.Clear();
+                case RebotsPageType.PageTitle:
+                    rebotsPageUI.m_PageRouteContainer.Clear();
                     break;
             }
 
             switch (name)
             {
                 case RebotsPageName.Main:
-                    rebotsPageUI.m_PopularFaqList.Clear();
+                    rebotsPageUI.m_FaqPopularList.Clear();
                     rebotsPageUI.m_FaqCategoryList.Clear();
                     break;
-                case RebotsPageName.Cs:
-                    rebotsPageUI.m_CsCategoryList.Clear();
+                case RebotsPageName.InquiryList:
+                    rebotsPageUI.m_InquiryList.Clear();
                     break;
-                case RebotsPageName.CsSubCategory:
-                case RebotsPageName.FaqSubCategory:
-                    rebotsPageUI.m_SubCategoryList.Clear();
-                    rebotsPageUI.m_PageList.Clear();
+                case RebotsPageName.FaqList:
+                    rebotsPageUI.m_FaqList.Clear();
+                    rebotsPageUI.m_SiblingCategoryList.Clear();
+                    rebotsPageUI.m_LowerCategoryList.Clear();
+                    rebotsPageUI.m_PagingContainer.Clear();
                     break;
-                case RebotsPageName.FaqDetail:
+                case RebotsPageName.Faq:
                     rebotsPageUI.m_FaqDetailContainer.Clear();
                     break;
-                case RebotsPageName.SearchResult:
-                    rebotsPageUI.m_SearchFaqList.Clear();
-                    rebotsPageUI.m_PageList.Clear();
+                case RebotsPageName.SearchList:
+                    rebotsPageUI.m_FaqSearchList.Clear();
+                    rebotsPageUI.m_PagingContainer.Clear();
                     break;
                 case RebotsPageName.TicketCreate:
                     rebotsPageUI.m_TicketFieldList.Clear();
                     break;
-                case RebotsPageName.MyTicket:
+                case RebotsPageName.TicketList:
                     rebotsPageUI.m_TicketList.Clear();
                     break;
-                case RebotsPageName.TicketDetail:
+                case RebotsPageName.Ticket:
                     rebotsPageUI.m_TicketDetailList.Clear();
                     rebotsPageUI.m_TicketAnswerList.Clear();
                     break;
@@ -482,7 +429,7 @@ namespace Rebots.HelpDesk
 
         public void ClickFaqCategory(Category category)
         {
-            ShowFaqSubCategory(category);
+            ShowFaqSubCategory(new RebotsPagingData<Category>(category));
         }
 
         public void ClickFaq(Faq faq)
@@ -493,11 +440,11 @@ namespace Rebots.HelpDesk
         public void ClickSearch()
         {
             this.m_SearchString = rebotsLayoutUI.m_SearchField.GetValue();
-            if (string.IsNullOrEmpty(this.m_SearchString))
+            if (string.IsNullOrEmpty(this.m_SearchString.Trim()))
             {
                 return;
             }
-            ShowSearch(this.m_SearchString);
+            ShowSearch(new RebotsPagingData<string>(this.m_SearchString));
         }
 
         public void ClickTicketSubmit(bool privacyValue)
@@ -596,7 +543,7 @@ namespace Rebots.HelpDesk
         #region Page Recording Controller 
         private void AddPageState(RebotsPageType type, RebotsPageName name, object parameter = null)
         {
-            pageRecords.Add(new RebotsPageRecord()
+            m_PageRecords.Add(new RebotsPageRecord()
             {
                 PageType = type,
                 PageName = name,
@@ -608,39 +555,43 @@ namespace Rebots.HelpDesk
         {
             if (isGoBack)
             {
-                if (pageRecords.Count <= 1)
+                if (m_PageRecords.Count <= 1)
                 {
-                    pageRecords = new List<RebotsPageRecord>();
+                    m_PageRecords = new List<RebotsPageRecord>();
                     ShowMain(false);
                     return;
                 }
             }
 
-            var CurrentPage = pageRecords[pageRecords.Count - 1];
+            var CurrentPage = m_PageRecords[m_PageRecords.Count - 1];
             var ReloadPage = CurrentPage;
             if (isGoBack)
             {
-                var BackPage = pageRecords[pageRecords.Count - 2];
+                var BackPage = m_PageRecords[m_PageRecords.Count - 2];
                 ReloadPage = BackPage;
-                pageRecords.Remove(BackPage);
+                m_PageRecords.Remove(BackPage);
             }
-            pageRecords.Remove(CurrentPage);
+            m_PageRecords.Remove(CurrentPage);
 
             switch (ReloadPage.PageName)
             {
                 case RebotsPageName.Main:
                     ShowMain(false);
                     break;
-                case RebotsPageName.Cs:
-                    ShowCsCategory();
+                case RebotsPageName.InquiryList:
+                    if (ReloadPage.PageType == RebotsPageType.NoTitleRoute)
+                    {
+                        ShowCsCategory();
+                    }
+                    else
+                    {
+                        ShowCsSubCategory(ReloadPage.Parameter as Category);
+                    }
                     break;
-                case RebotsPageName.CsSubCategory:
-                    ShowCsSubCategory(ReloadPage.Parameter as Category);
+                case RebotsPageName.FaqList:
+                    ShowFaqSubCategory(new RebotsPagingData<Category>(ReloadPage.Parameter as Category));
                     break;
-                case RebotsPageName.FaqSubCategory:
-                    ShowFaqSubCategory(ReloadPage.Parameter as Category);
-                    break;
-                case RebotsPageName.FaqDetail:
+                case RebotsPageName.Faq:
                     ShowFaq(ReloadPage.Parameter as Faq);
                     break;
                 case RebotsPageName.TicketCreate:
@@ -649,13 +600,13 @@ namespace Rebots.HelpDesk
                 case RebotsPageName.TicketSuccess:
                     ShowTicketSuccess();
                     break;
-                case RebotsPageName.SearchResult:
-                    ShowSearch(ReloadPage.Parameter as string);
+                case RebotsPageName.SearchList:
+                    ShowSearch(new RebotsPagingData<string>(ReloadPage.Parameter as string));
                     break;
-                case RebotsPageName.MyTicket:
+                case RebotsPageName.TicketList:
                     ShowMyTicket();
                     break;
-                case RebotsPageName.TicketDetail:
+                case RebotsPageName.Ticket:
                     ShowTicketDetail(ReloadPage.Parameter as HelpdeskTicket);
                     break;
                 case RebotsPageName.Search:
@@ -667,6 +618,87 @@ namespace Rebots.HelpDesk
         }
         #endregion
 
+        #region (public) Get Helpdesk Resources
+        public StyleSheet GetThemeStyleSheet(string theme)
+        {
+            switch (theme)
+            {
+                case RebotsUIStaticString.ThemeCode1:
+                    return theme1;
+                case RebotsUIStaticString.ThemeCode2:
+                    return theme2;
+                case RebotsUIStaticString.ThemeCode3:
+                    return theme3;
+                case RebotsUIStaticString.ThemeCode4:
+                    return theme4;
+                case RebotsUIStaticString.ThemeCode5:
+                    return theme5;
+                case RebotsUIStaticString.ThemeCode6:
+                    return theme6;
+                case RebotsUIStaticString.ThemeCode7:
+                    return theme7;
+                case RebotsUIStaticString.ThemeCode8:
+                    return theme8;
+                case RebotsUIStaticString.ThemeCode9:
+                    return theme9;
+                case RebotsUIStaticString.ThemeCode10:
+                    return theme10;
+                case RebotsUIStaticString.ThemeCode11:
+                    return theme11;
+                case RebotsUIStaticString.ThemeCode12:
+                    return theme12;
+                case RebotsUIStaticString.ThemeCode13:
+                    return theme13;
+                case RebotsUIStaticString.ThemeCode14:
+                    return theme14;
+                case RebotsUIStaticString.ThemeCode15:
+                    return theme15;
+                case RebotsUIStaticString.ThemeCode16:
+                    return theme16;
+                default:
+                    return theme1;
+            }
+        }
+
+        public StyleSheet GetLanguageStyleSheet(string language)
+        {
+            switch (language)
+            {
+                case "ko":
+                    return fontKr;
+                case "ja":
+                    return fontJa;
+                case "zh-cn":
+                    return fontCn;
+                case "zh-tw":
+                    return fontTw;
+                case "th":
+                    return fontTh;
+                default:
+                    return fontEn;
+            }
+        }
+
+        public Font GetLanguageFontAsset(string language)
+        {
+            switch (language)
+            {
+                case "ko":
+                    return fontAssetKr;
+                case "ja":
+                    return fontAssetJa;
+                case "zh-cn":
+                    return fontAssetCn;
+                case "zh-tw":
+                    return fontAssetTw;
+                case "th":
+                    return fontAssetTh;
+                default:
+                    return fontAssetEn;
+            }
+        }
+        #endregion
+
         #region (public) Add m_FieldDic
         public void AddFieldDic(TicketCategoryInputField field, object fieldUIComponent)
         {
@@ -674,10 +706,58 @@ namespace Rebots.HelpDesk
         }
         #endregion
 
-        #region (public) ImageUrl to Texture2D 
+        #region (public) Image Url to Texture2D 
         public void ImageUrlToTexture2D(UnityAction<Texture2D, string> callbackAction, Uri fileUrl, string externalLinkUrl)
         {
             rebotsSettingManager.LoadTexture(callbackAction, fileUrl, externalLinkUrl);
+        }
+        #endregion
+
+        #region (public) Add space to word-wrap point
+        public string AddSpaceToWordWrapPoint(string text, Rect availableSpace, GUIStyle labelStyle)
+        {
+            string resultStr = "";
+            GUIContent content = new GUIContent(text);
+            Vector2 contentSize = labelStyle.CalcSize(content);
+
+            if (contentSize.x > availableSpace.width)
+            {
+                float lineWidth = 0f;
+                int breakPoint = -1;
+                bool firstLine = true;
+
+                for (int i = 0; i < text.Length; i++)
+                {
+                    char c = text[i];
+                    float charWidth = labelStyle.CalcSize(new GUIContent(c.ToString())).x;
+
+                    if (lineWidth + charWidth <= availableSpace.width)
+                    {
+                        lineWidth += charWidth;
+                    }
+                    else
+                    {
+                        if (firstLine)
+                        {
+                            text = text.Insert((i - 1), " ");
+                            lineWidth = 0f;
+                            firstLine = false;
+                        }
+                        else
+                        {
+                            breakPoint = i - 1;
+                            break;
+                        }
+                    }
+                }
+
+                if (breakPoint >= 0)
+                {
+                    string wrappedText = text.Substring(0, (breakPoint - 3));
+                    resultStr =  wrappedText;
+                }
+            }
+            return resultStr;
         }
         #endregion
 
