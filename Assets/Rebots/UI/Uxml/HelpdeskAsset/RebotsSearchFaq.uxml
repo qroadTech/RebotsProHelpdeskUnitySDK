@@ -1,13 +1,13 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:Button display-tooltip-when-elided="true" name="rebots-faq-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 10px; padding-left: 0; padding-right: 0; padding-top: 10px; padding-bottom: 20px; background-color: rgb(255, 255, 255); border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 1px; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188); width: 100%;">
-        <ui:VisualElement style="margin-bottom: 10px;">
-            <ui:Label text="Category Route Label" display-tooltip-when-elided="true" name="rebots-category-route-label" class="rebots-label__regular14 rebots-font-color__dakr-grey" />
+        <ui:VisualElement style="margin-bottom: 15px;">
+            <ui:Label text="Category Route Label Category Route Label" display-tooltip-when-elided="true" name="rebots-category-route-label" class="rebots-label__regular14 rebots-font-color__dark-grey rebots-ellipsis" style="width: 100%; -unity-text-align: middle-left; white-space: nowrap;" />
         </ui:VisualElement>
         <ui:VisualElement style="margin-bottom: 15px;">
-            <ui:Label text="Faq Title Label" display-tooltip-when-elided="true" name="rebots-faq-title-label" class="rebots-label__black20 rebots-font-color__theme" />
+            <ui:Label text="Faq Title Label" display-tooltip-when-elided="true" name="rebots-faq-title-label" class="rebots-label__black20 rebots-font-color__black" />
         </ui:VisualElement>
         <ui:VisualElement>
-            <ui:Label text="Faq Contents Preview Label" display-tooltip-when-elided="true" name="rebots-faq-contents-label" class="rebots-label__regular16 rebots-font-color__black" style="-unity-font-definition: none; -unity-font: resource(&apos;Rebots/NotoSansKR-Regular&apos;);" />
+            <ui:Label text="Faq Contents Preview Label" display-tooltip-when-elided="true" name="rebots-contents-label" class="rebots-label__regular16 rebots-font-color__dark-grey" style="-unity-font-definition: none; -unity-font: resource(&apos;Rebots/NotoSansKR-Regular&apos;); max-height: 50px; -unity-text-align: upper-left; overflow: hidden;" />
         </ui:VisualElement>
     </ui:Button>
 </ui:UXML>

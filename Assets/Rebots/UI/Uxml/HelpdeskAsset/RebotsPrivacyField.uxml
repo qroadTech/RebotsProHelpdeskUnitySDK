@@ -28,7 +28,7 @@
         <ui:VisualElement style="margin-top: 6px;">
             <ui:Toggle name="rebots-privacy-check" class="rebots-check" style="width: 100%; min-height: 26px; margin-left: 0; margin-right: 0; margin-top: 4px; margin-bottom: 4px; align-items: center;">
                 <ui:VisualElement style="flex-grow: 1; justify-content: center; padding-left: 10px;">
-                    <ui:Label text="I agree to the collection of personal information." display-tooltip-when-elided="true" name="rebots-i-agree" class="rebots-font-color__dakr-grey rebots-label__regular14" />
+                    <ui:Label text="I agree to the collection of personal information." display-tooltip-when-elided="true" name="rebots-i-agree" class="rebots-font-color__dark-grey rebots-label__regular14" />
                 </ui:VisualElement>
             </ui:Toggle>
         </ui:VisualElement>

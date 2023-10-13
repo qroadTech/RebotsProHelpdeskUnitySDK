@@ -69,7 +69,7 @@ namespace Rebots.HelpDesk
         public bool CheckFieldValid()
         {
             var value = m_TextField.GetValue().Trim();
-            if (m_csCategoryField.isRequire && (string.IsNullOrEmpty(value) || m_TextField.m_setPlaceholder))
+            if (m_csCategoryField.isRequire && string.IsNullOrEmpty(value))
             {
                 m_ValidationLabel.text = validationComment;
                 m_ValidationLabel.style.display = DisplayStyle.Flex;

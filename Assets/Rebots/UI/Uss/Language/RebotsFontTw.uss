@@ -3,7 +3,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Black');
+    -unity-font: resource('Rebots/NotoSansTW-Black');
     -unity-font-definition: none;
     font-size: 40px;
     white-space: normal;
@@ -15,7 +15,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Black');
+    -unity-font: resource('Rebots/NotoSansTW-Black');
     -unity-font-definition: none;
     font-size: 36px;
     -unity-text-align: middle-left;
@@ -27,7 +27,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Black');
+    -unity-font: resource('Rebots/NotoSansTW-Black');
     -unity-font-definition: none;
     font-size: 28px;
     -unity-text-align: middle-left;
@@ -39,7 +39,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Black');
+    -unity-font: resource('Rebots/NotoSansTW-Black');
     -unity-font-definition: none;
     font-size: 24px;
     -unity-text-align: middle-left;
@@ -51,9 +51,21 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Black');
+    -unity-font: resource('Rebots/NotoSansTW-Black');
     -unity-font-definition: none;
     font-size: 20px;
+    -unity-text-align: middle-left;
+    white-space: normal;
+}
+
+.rebots-label__black18 {
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    -unity-font: resource('Rebots/NotoSansTW-Black');
+    -unity-font-definition: none;
+    font-size: 18px;
     -unity-text-align: middle-left;
     white-space: normal;
 }
@@ -63,7 +75,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Black');
+    -unity-font: resource('Rebots/NotoSansTW-Black');
     -unity-font-definition: none;
     font-size: 16px;
     -unity-text-align: middle-left;
@@ -75,7 +87,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Black');
+    -unity-font: resource('Rebots/NotoSansTW-Black');
     -unity-font-definition: none;
     font-size: 14px;
     -unity-text-align: middle-center;
@@ -86,7 +98,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
     font-size: 36px;
     -unity-text-align: middle-left;
@@ -99,7 +111,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-style: bold;
     font-size: 26px;
     -unity-text-align: middle-left;
@@ -112,7 +124,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
     -unity-font-style: bold;
     font-size: 24px;
@@ -125,7 +137,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
     font-size: 20px;
     -unity-font-style: bold;
@@ -135,7 +147,7 @@
 
 .rebots-label__bold18 {
     font-size: 18px;
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
     -unity-font-style: bold;
     padding-left: 0;
@@ -151,7 +163,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
     -unity-font-style: bold;
     font-size: 16px;
@@ -160,7 +172,7 @@
 }
 
 .rebots-label__bold14 {
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
     -unity-font-style: bold;
     font-size: 14px;
@@ -173,7 +185,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
     -unity-font-style: bold;
     -unity-text-align: lower-left;
@@ -181,12 +193,24 @@
     font-size: 11px;
 }
 
+.rebots-label__regular24 {
+    -unity-text-align: middle-left;
+    white-space: normal;
+    font-size: 24px;
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
+    -unity-font-definition: none;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 .rebots-label__regular20 {
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
     font-size: 20px;
     -unity-text-align: middle-left;
@@ -198,7 +222,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
     font-size: 18px;
     -unity-text-align: middle-left;
@@ -210,7 +234,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
     font-size: 16px;
     -unity-text-align: middle-left;
@@ -222,7 +246,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
     font-size: 14px;
     -unity-text-align: middle-left;
@@ -234,7 +258,7 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansHK-Regular');
+    -unity-font: resource('Rebots/NotoSansTW-Regular');
     -unity-font-definition: none;
     -unity-text-align: middle-left;
     white-space: normal;
@@ -242,6 +266,6 @@
 }
 
 .rebots-menu-foldout .unity-toggle .unity-label {
-    -unity-font: resource('Rebots/NotoSansHK-Black');
+    -unity-font: resource('Rebots/NotoSansTW-Black');
     -unity-font-definition: none;
 }

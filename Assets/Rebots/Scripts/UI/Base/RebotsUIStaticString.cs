@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-
-namespace Rebots.HelpDesk
+﻿namespace Rebots.HelpDesk
 {
     public class RebotsUIStaticString
     {
@@ -18,16 +10,12 @@ namespace Rebots.HelpDesk
         #endregion
         #region - - - Common UI name - - -
         public const string HelpdeskLabel = "rebots-helpdesk-label";
-        public const string TicketButton = "rebots-ticket-button";
-        public const string FaqCategoryList = "rebots-faq-category-list-container";
-        public const string FaqList = "rebots-faq-list-container";
-        public const string CsCategoryList = "rebots-cs-category-list-container";
+        public const string List = "rebots-list-container";
+        public const string CategoryList = "rebots-category-list-container";
         public const string CategoryLabel = "rebots-category-label";
         public const string RouteLabel = "rebots-route-label";
+        public const string ContentsLabel = "rebots-contents-label";
         public const string MainButton = "rebots-main-button";
-        
-        public const string FaqWasHelpfulLabel = "rebots-it-was-helpful";
-        public const string ViewMoreLabel = "rebots-view-more";
         #endregion
         #region - - - Top Bar UI name - - - 
         public const string TopContainer = "rebots-top-container";
@@ -50,47 +38,44 @@ namespace Rebots.HelpDesk
         public const string MainLabel = "rebots-main";
         public const string MenuMyTicketButton = "rebots-my-ticket-button";
         public const string MenuFaqFoldout = "rebots-menu-faq-foldout";
-        public const string MenuCsFoldout = "rebots-menu-cs-foldout";
+        public const string MenuInquiryFoldout = "rebots-menu-inquiry-foldout";
         public const string InquiryLabel = "rebots-inquiry";
         public const string ExitButton = "rebots-exit-button";
         public const string ExitLabel = "rebots-exit";
         #endregion
-        #region - - - Image Title UI name - - - 
-        public const string TitleContainer = "rebots-title-container";
+        #region - - - Title UI name - - - 
+        public const string MainTitleContainer = "rebots-main-title-container";
         public const string TitleImageContainer = "rebots-image-title-background";
         #endregion
         #region - - - Page UI name - - - 
         public const string PageConatiner = "rebots-page-container";
 
-        public const string PopularFaqContainer = "rebots-popular-faq-container";
-        public const string PopularFaqCation = "rebots-top-faq";
+        public const string PageTitlleContainer = "rebots-page-title-container";
+        public const string PageBackButton = "rebots-page-back-button";
+        public const string PageTitleLabelContainer = "rebots-page-title-label-container";
+        public const string PageTitleLabel = "rebots-page-title-label";
+        public const string PageRouteContainer = "rebots-page-route-container";
 
-        public const string SearchFaqContainer = "rebots-search-faq-container";
+        public const string MainContainer = "rebots-main-container";
+        public const string FaqPopularContainer = "rebots-faq-popular-container";
+        public const string PopularFaqCation = "rebots-top-faq";
+        public const string FaqCategoryContainer = "rebots-faq-category-container";
+
+        public const string FaqSearchContainer = "rebots-faq-search-container";
         public const string SearchResultLabel = "rebots-search-result";
         public const string SearchStringLabel = "rebots-search-string-label";
 
-        public const string FaqCategoryContainer = "rebots-faq-category-container";
-        public const string LowerCategoryContainer = "rebots-lower-category-container";
+        public const string InquiryListContainer = "rebots-inquiry-list-container";
 
-        public const string CsCategoryContainer = "rebots-cs-category-container";
-
-        public const string RouteContainer = "rebots-route-container";
-        public const string BackButton = "rebots-back-button";
-        public const string RouteLabelContainer = "rebots-route-label-container";
-
-        public const string MenuNameContainer = "rebots-menu-name-container";
-        public const string MenuLabel = "rebots-menu-label";
-
+        public const string FaqListContainer = "rebots-faq-list-container";
+        public const string ListResultLabel = "rebots-list-result";
         public const string SiblingCategoryContainer = "rebots-sibling-category-container";
         public const string SiblingCategoryScrollview = "rebots-sibling-category-scrollview";
-        public const string SiblingCategoryList = "rebots-sibling-category-list-container";
-
-        public const string TitleCategoryConatiner = "rebots-title-category-container";
-
-        public const string SubCategoryContainer = "rebots-sub-category-container";
-        public const string SubCategoryList = "rebots-sub-category-list-container";
+        public const string LowerCategoryContainer = "rebots-lower-category-container";
+        public const string LowerCategoryScrollview = "rebots-lower-category-scrollview";
 
         public const string FaqContainer = "rebots-faq-container";
+        public const string FaqTitleLabel = "rebots-faq-title-label";
         public const string FaqDetailContainer = "rebots-faq-detail-container";
         public const string FaqHelpfulLabel = "rebots-was-it-helpful";
         public const string HelpfulYesLabel = "rebots-yes";
@@ -98,6 +83,10 @@ namespace Rebots.HelpDesk
 
         public const string PagingContainer = "rebots-paging-container";
         public const string PageList = "rebots-page-list";
+        public const string PagingStartButton = "rebots-paging-start-button";
+        public const string PagingPreviousButton = "rebots-paging-previous-button";
+        public const string PagingNextButton = "rebots-paging-next-button";
+        public const string PagingEndButton = "rebots-paging-end-button";
 
         public const string TicketCreateContainer = "rebots-ticket-create-container";
         public const string TicketFieldList = "rebots-field-list-container";
@@ -110,8 +99,7 @@ namespace Rebots.HelpDesk
         public const string TicketThankYouLabel = "rebots-thank-you";
         public const string TicketReturnMainLabel = "rebots-return-main";
 
-        public const string MyTicketContainer = "rebots-my-ticket-container";
-        public const string TicketList = "rebots-ticket-list-container";
+        public const string TicketListContainer = "rebots-ticket-list-container";
 
         public const string TicketContainer = "rebots-ticket-container";
         public const string TicketDetailList = "rebots-ticket-detail-list-container";
@@ -121,9 +109,9 @@ namespace Rebots.HelpDesk
         #endregion
         #region - - - Ticket Button UI name - - - 
         public const string TicketButtonContainer = "rebots-ticket-button-container";
+        public const string TicketButton = "rebots-ticket-button";
         public const string NeedMoreLabel = "rebots-need-more";
         public const string SubmitTicketLabel = "rebots-submit-ticket";
-        public const string SendUsLabel = "rebots-send-us";
         #endregion
         #region - - - Footer UI name - - - 
         public const string FooterContainer = "rebots-footer-container";
@@ -144,7 +132,7 @@ namespace Rebots.HelpDesk
         public const string CopyrightLabel = "rebots-copyright";
         #endregion
 
-        #region - - - Localization Key String - - - 
+        #region - - - Localization Key name - - - 
         public const string LanguageLabel = "rebots-{0}-label";
         public const string SearchPlaceholder = "rebots-search-placeholder";
         public const string ChooseFileButtonLabel = "rebots-choose-file-label";
@@ -164,6 +152,7 @@ namespace Rebots.HelpDesk
         #region - - - uss Class Name - - - 
         public const string RebotsLanguageLabel_Black20 = "rebots-language-label__black20";
         public const string RebotsLanguageLabel_Bold20 = "rebots-language-label__bold20";
+
         public const string RebotsFontKr_Black = "rebots-font-kr__black";
         public const string RebotsFontJa_Black = "rebots-font-ja__black";
         public const string RebotsFontCn_Black = "rebots-font-cn__black";
@@ -176,18 +165,22 @@ namespace Rebots.HelpDesk
         public const string RebotsFontTw_Regular = "rebots-font-tw__regular";
         public const string RebotsFontTh_Regular = "rebots-font-th__regular";
         public const string RebotsFontEn_Regular = "rebots-font-en__regular";
+
         public const string RebotsBackgroundColor_Theme = "rebots-background-color__theme";
         public const string RebotsBackgroundColor_Grey = "rebots-background-color__grey";
         public const string RebotsBackgroundColor_None = "rebots-background-color__none";
+
         public const string RebotsLabel_Black16 = "rebots-label__black16";
+        public const string RebotsLabel_Bold16 = "rebots-label__bold16";
         public const string RebotsLabel_Regular16 = "rebots-label__regular16";
+
         public const string RebotsFontColor_Black = "rebots-font-color__black";
         public const string RebotsFontColor_Grey = "rebots-font-color__grey";
         public const string RebotsFontColor_Theme = "rebots-font-color__theme";
+
         public const string RebotsLabelLink = "rebots-label-link";
         #endregion
-
-        #region - - - Theme Code String - - - 
+        #region - - - Theme code - - - 
         public const string ThemeCode1 = "#343A40";
         public const string ThemeCode2 = "#DC3545";
         public const string ThemeCode3 = "#FD7E14";
@@ -204,6 +197,11 @@ namespace Rebots.HelpDesk
         public const string ThemeCode14 = "#3E8EBB";
         public const string ThemeCode15 = "#38518F";
         public const string ThemeCode16 = "#8C32A3";
+        #endregion
+        #region - - - Rebots Color code - - - 
+        public const string BlackColor = "#282828";
+        public const string GreyColor = "#8E8E8E";
+        public const string DarkGreyColor = "#555555";
         #endregion
     }
 }

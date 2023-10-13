@@ -6,7 +6,6 @@ using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -19,47 +18,45 @@ namespace Rebots.HelpDesk
         #region - - - Page UI Element - - -
         public VisualElement m_PageConatiner;
 
-        public VisualElement m_PopularFaqContainer;
+        public VisualElement m_PageTitlleContainer;
+        public Button m_PageBackButton;
+        public VisualElement m_PageTitleLabelContainer;
+        public Label m_PageTitleLabel;
+        public VisualElement m_PageRouteContainer;
+
+        public VisualElement m_MainContainer;
+        public VisualElement m_FaqPopularContainer;
         public Label m_PopularFaqCation;
-        public VisualElement m_PopularFaqList;
-
-        public VisualElement m_SearchFaqContainer;
-        public Label m_SearchResultLabel;
-        public Label m_SearchStringLabel;
-        public VisualElement m_SearchFaqList;
-
+        public VisualElement m_FaqPopularList;
         public VisualElement m_FaqCategoryContainer;
         public VisualElement m_FaqCategoryList;
 
-        public VisualElement m_CsCategoryContainer;
-        public VisualElement m_CsCategoryList;
+        public VisualElement m_FaqSearchContainer;
+        public Label m_SearchResultLabel;
+        public Label m_SearchStringLabel;
+        public VisualElement m_FaqSearchList;
 
-        public VisualElement m_RouteContainer;
-        public Button m_BackButton;
-        public VisualElement m_RouteLabelContainer;
-        public Label m_RouteLabel;
+        public VisualElement m_InquiryListContainer;
+        public VisualElement m_InquiryList;
 
-        public VisualElement m_MenuNameContainer;
-        public Label m_MenuLabel;
-
+        public VisualElement m_FaqListContainer;
+        public Label m_ListResultLabel;
+        public VisualElement m_FaqList;
         public VisualElement m_SiblingCategoryContainer;
         public ScrollView m_SiblingCategoryScrollview;
         public VisualElement m_SiblingCategoryList;
-
-        public VisualElement m_TitleCategoryConatiner;
-        public Label m_TitleCategoryLabel;
-
-        public VisualElement m_SubCategoryContainer;
-        public VisualElement m_SubCategoryList;
+        public VisualElement m_LowerCategoryContainer;
+        public ScrollView m_LowerCategoryScrollview;
+        public VisualElement m_LowerCategoryList;
 
         public VisualElement m_FaqContainer;
+        public Label m_FaqTitleLabel;
         public VisualElement m_FaqDetailContainer;
         public Label m_FaqHelpfulLabel;
         public Label m_HelpfulYesLabel;
         public Label m_HelpfulNoLabel;
 
         public VisualElement m_PagingContainer;
-        public VisualElement m_PageList;
 
         public VisualElement m_TicketCreateContainer;
         public VisualElement m_TicketFieldList;
@@ -71,7 +68,7 @@ namespace Rebots.HelpDesk
         public Button m_TicketSuccessMainButton;
         public Label m_TicketReturnMainLabel;
 
-        public VisualElement m_MyTicketContainer;
+        public VisualElement m_TicketListContainer;
         public VisualElement m_TicketList;
 
         public VisualElement m_TicketContainer;
@@ -84,6 +81,7 @@ namespace Rebots.HelpDesk
 
         public PrivacySetting m_TicketPrivacySetting { get; private set; }
         public string m_Theme { get; private set; }
+        public bool m_ScreenPortrait { get; private set; } = true;
         public Dictionary<string, string> m_ParameterDic { get; private set; }
 
         #region Run in 'Awake' call
@@ -92,46 +90,46 @@ namespace Rebots.HelpDesk
             base.SetVisualElements();
 
             m_PageConatiner = m_Root.Q(RebotsUIStaticString.PageConatiner);
-            m_PopularFaqContainer = m_PageConatiner.Q(RebotsUIStaticString.PopularFaqContainer);
-            m_PopularFaqCation = m_PopularFaqContainer.Q<Label>(RebotsUIStaticString.PopularFaqCation);
-            m_PopularFaqList = m_PopularFaqContainer.Q(RebotsUIStaticString.FaqList);
 
-            m_SearchFaqContainer = m_PageConatiner.Q(RebotsUIStaticString.SearchFaqContainer);
-            m_SearchResultLabel = m_SearchFaqContainer.Q<Label>(RebotsUIStaticString.SearchResultLabel);
-            m_SearchStringLabel = m_SearchFaqContainer.Q<Label>(RebotsUIStaticString.SearchStringLabel);
-            m_SearchFaqList = m_SearchFaqContainer.Q(RebotsUIStaticString.FaqList);
+            m_PageTitlleContainer = m_PageConatiner.Q(RebotsUIStaticString.PageTitlleContainer);
+            m_PageBackButton = m_PageTitlleContainer.Q<Button>(RebotsUIStaticString.PageBackButton);
+            m_PageTitleLabelContainer = m_PageTitlleContainer.Q(RebotsUIStaticString.PageTitleLabelContainer);
+            m_PageTitleLabel = m_PageTitlleContainer.Q<Label>(RebotsUIStaticString.PageTitleLabel);
+            m_PageRouteContainer = m_PageTitlleContainer.Q(RebotsUIStaticString.PageRouteContainer);
 
-            m_FaqCategoryContainer = m_PageConatiner.Q(RebotsUIStaticString.FaqCategoryContainer);
-            m_FaqCategoryList = m_FaqCategoryContainer.Q(RebotsUIStaticString.FaqCategoryList);
+            m_MainContainer = m_PageConatiner.Q(RebotsUIStaticString.MainContainer);
+            m_FaqPopularContainer = m_MainContainer.Q(RebotsUIStaticString.FaqPopularContainer);
+            m_PopularFaqCation = m_FaqPopularContainer.Q<Label>(RebotsUIStaticString.PopularFaqCation);
+            m_FaqPopularList = m_FaqPopularContainer.Q(RebotsUIStaticString.List);
+            m_FaqCategoryContainer = m_MainContainer.Q(RebotsUIStaticString.FaqCategoryContainer);
+            m_FaqCategoryList = m_FaqCategoryContainer.Q(RebotsUIStaticString.List);
 
-            m_CsCategoryContainer = m_PageConatiner.Q(RebotsUIStaticString.CsCategoryContainer);
-            m_CsCategoryList = m_CsCategoryContainer.Q(RebotsUIStaticString.CsCategoryList);
+            m_FaqSearchContainer = m_PageConatiner.Q(RebotsUIStaticString.FaqSearchContainer);
+            m_SearchResultLabel = m_FaqSearchContainer.Q<Label>(RebotsUIStaticString.SearchResultLabel);
+            m_SearchStringLabel = m_FaqSearchContainer.Q<Label>(RebotsUIStaticString.SearchStringLabel);
+            m_FaqSearchList = m_FaqSearchContainer.Q(RebotsUIStaticString.List);
 
-            m_RouteContainer = m_PageConatiner.Q(RebotsUIStaticString.RouteContainer);
-            m_BackButton = m_RouteContainer.Q<Button>(RebotsUIStaticString.BackButton);
-            m_RouteLabelContainer = m_RouteContainer.Q(RebotsUIStaticString.RouteLabelContainer);
+            m_InquiryListContainer = m_PageConatiner.Q(RebotsUIStaticString.InquiryListContainer);
+            m_InquiryList = m_InquiryListContainer.Q(RebotsUIStaticString.List);
 
-            m_MenuNameContainer = m_PageConatiner.Q(RebotsUIStaticString.MenuNameContainer);
-            m_MenuLabel = m_MenuNameContainer.Q<Label>(RebotsUIStaticString.MenuLabel);
-
-            m_SiblingCategoryContainer = m_PageConatiner.Q(RebotsUIStaticString.SiblingCategoryContainer);
+            m_FaqListContainer = m_PageConatiner.Q(RebotsUIStaticString.FaqListContainer);
+            m_ListResultLabel = m_FaqListContainer.Q<Label>(RebotsUIStaticString.ListResultLabel);
+            m_FaqList = m_FaqListContainer.Q(RebotsUIStaticString.List);
+            m_SiblingCategoryContainer = m_FaqListContainer.Q(RebotsUIStaticString.SiblingCategoryContainer);
             m_SiblingCategoryScrollview = m_SiblingCategoryContainer.Q<ScrollView>(RebotsUIStaticString.SiblingCategoryScrollview);
-            m_SiblingCategoryList = m_SiblingCategoryScrollview.Q(RebotsUIStaticString.SiblingCategoryList);
-
-            m_TitleCategoryConatiner = m_PageConatiner.Q(RebotsUIStaticString.TitleCategoryConatiner);
-            m_TitleCategoryLabel = m_TitleCategoryConatiner.Q<Label>(RebotsUIStaticString.CategoryLabel);
-
-            m_SubCategoryContainer = m_PageConatiner.Q(RebotsUIStaticString.SubCategoryContainer);
-            m_SubCategoryList = m_SubCategoryContainer.Q(RebotsUIStaticString.SubCategoryList);
+            m_SiblingCategoryList = m_SiblingCategoryScrollview.Q(RebotsUIStaticString.CategoryList);
+            m_LowerCategoryContainer = m_FaqListContainer.Q(RebotsUIStaticString.LowerCategoryContainer);
+            m_LowerCategoryScrollview = m_LowerCategoryContainer.Q<ScrollView>(RebotsUIStaticString.LowerCategoryScrollview);
+            m_LowerCategoryList = m_LowerCategoryContainer.Q(RebotsUIStaticString.CategoryList);
 
             m_FaqContainer = m_PageConatiner.Q(RebotsUIStaticString.FaqContainer);
+            m_FaqTitleLabel = m_FaqContainer.Q<Label>(RebotsUIStaticString.FaqTitleLabel);
             m_FaqDetailContainer = m_FaqContainer.Q(RebotsUIStaticString.FaqDetailContainer);
             m_FaqHelpfulLabel = m_FaqContainer.Q<Label>(RebotsUIStaticString.FaqHelpfulLabel);
             m_HelpfulYesLabel = m_FaqContainer.Q<Label>(RebotsUIStaticString.HelpfulYesLabel);
             m_HelpfulNoLabel = m_FaqContainer.Q<Label>(RebotsUIStaticString.HelpfulNoLabel);
 
             m_PagingContainer = m_PageConatiner.Q(RebotsUIStaticString.PagingContainer);
-            m_PageList = m_PagingContainer.Q(RebotsUIStaticString.PageList);
 
             m_TicketCreateContainer = m_PageConatiner.Q(RebotsUIStaticString.TicketCreateContainer);
             m_TicketFieldList = m_TicketCreateContainer.Q(RebotsUIStaticString.TicketFieldList);
@@ -143,8 +141,8 @@ namespace Rebots.HelpDesk
             m_TicketSuccessMainButton = m_TicketSuccessContainer.Q<Button>(RebotsUIStaticString.MainButton);
             m_TicketReturnMainLabel = m_TicketSuccessContainer.Q<Label>(RebotsUIStaticString.TicketReturnMainLabel);
 
-            m_MyTicketContainer = m_PageConatiner.Q(RebotsUIStaticString.MyTicketContainer);
-            m_TicketList = m_MyTicketContainer.Q(RebotsUIStaticString.TicketList);
+            m_TicketListContainer = m_PageConatiner.Q(RebotsUIStaticString.TicketListContainer);
+            m_TicketList = m_TicketListContainer.Q(RebotsUIStaticString.List);
 
             m_TicketContainer = m_PageConatiner.Q(RebotsUIStaticString.TicketContainer);
             m_TicketDetailList = m_TicketContainer.Q(RebotsUIStaticString.TicketDetailList);
@@ -154,7 +152,7 @@ namespace Rebots.HelpDesk
 
         protected override void RegisterButtonCallbacks()
         {
-            m_BackButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ChangePage(true));
+            m_PageBackButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ChangePage(true));
             m_TicketSuccessMainButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ShowMain(false));
         }
         #endregion
@@ -179,6 +177,8 @@ namespace Rebots.HelpDesk
         public void SetHelpdeskData(HelpdeskSetting helpdeskSetting)
         {
             m_Theme = helpdeskSetting.theme;
+
+            m_ScreenPortrait = (Screen.orientation == ScreenOrientation.Portrait || Screen.orientation == ScreenOrientation.AutoRotation);
         }
 
         public void SetPrivacyData(PrivacySetting ticketPrivacySetting)
@@ -205,16 +205,13 @@ namespace Rebots.HelpDesk
                     TemplateContainer faqUIElement = null;
                     helpdeskScreen.rebotsUICreater.CreateFaq(item, RebotsFaqAssetType.Popular, null, helpdeskScreen.ClickFaq, out faqUIElement);
 
-                    var m_WasHelpfulLabel = faqUIElement.Q<Label>(RebotsUIStaticString.FaqWasHelpfulLabel);
-                    m_WasHelpfulLabel.text = localizationManager.translationDic[RebotsUIStaticString.FaqWasHelpfulLabel];
-
                     faqUIElement.style.flexShrink = 0;
-                    m_PopularFaqList.Add(faqUIElement);
+                    m_FaqPopularList.Add(faqUIElement);
                 }
             }
             else
             {
-                ShowVisualElement(m_PopularFaqContainer, false);
+                ShowVisualElement(m_FaqPopularContainer, false);
             }
         }
 
@@ -226,8 +223,9 @@ namespace Rebots.HelpDesk
             var currentPage = searchResult.page;
             var recordCount = searchResult.recordCount;
 
+            var recordCountStr = "<color=" + RebotsUIStaticString.BlackColor + ">" + recordCount.ToString() + "</color>";
             var searchResultStr = localizationManager.translationDic[RebotsUIStaticString.SearchResultLabel];
-            m_SearchResultLabel.text = string.Format(searchResultStr, recordCount.ToString());
+            m_SearchResultLabel.text = string.Format(searchResultStr, recordCountStr);
             m_SearchStringLabel.text = search;
 
             if (faqs != null && faqs.Count() > 0)
@@ -236,22 +234,22 @@ namespace Rebots.HelpDesk
                 {
                     TemplateContainer faqUIElement = null;
                     helpdeskScreen.rebotsUICreater.CreateFaq(item, RebotsFaqAssetType.Search, search, helpdeskScreen.ClickFaq, out faqUIElement);
-                    m_SearchFaqList.Add(faqUIElement);
+
+                    var contentsLabel = faqUIElement.Q<Label>(RebotsUIStaticString.ContentsLabel);
+                    StartCoroutine(LabelMultilineEllipsis(contentsLabel));
+                    m_FaqSearchList.Add(faqUIElement);
                 }
             }
 
+            int pageSize = helpdeskScreen.listPagingSize;
             if (recordCount != 0 && recordCount > 0)
             {
-                var totalPage = ((recordCount % 10) == 0) ? (recordCount / 10) : (recordCount / 10) + 1;
-                var page = 0;
+                var totalPage = ((recordCount % pageSize) == 0) ? (recordCount / pageSize) : (recordCount / pageSize) + 1;
+                RebotsPagingData<string> pagingData = new RebotsPagingData<string>(search, totalPage, currentPage);
 
-                while(page++ < totalPage)
-                {
-                    RebotsPagingData<string> pagingData = new RebotsPagingData<string> { data = search, page = page };
-                    helpdeskScreen.rebotsUICreater.CreatePaging(pagingData, (page == currentPage), helpdeskScreen.ShowSearch, out Label pageUIElement);
+                helpdeskScreen.rebotsUICreater.CreatePaging(pagingData, helpdeskScreen.ShowSearch, out TemplateContainer pageUIElement);
 
-                    m_PageList.Add(pageUIElement);
-                }
+                m_PagingContainer.Add(pageUIElement);
             }
         }
 
@@ -259,52 +257,18 @@ namespace Rebots.HelpDesk
         {
             var faq = response;
 
-            var routeCategories = faq.categories;
-            var routeStrFormat = "Main > FAQ > <color={0}>{1}</color>";
-            var categoriesStr = faq.title;
-            foreach (var category in routeCategories)
+            m_PageTitleLabel.text = "FAQ";
+
+            Label routeLabel = null;
+            var routeList = faq.categories.Reverse().Select(c => new { c.name, c.id }).ToList();
+            routeList.Insert(0, new { name = "FAQ", id = 0 });
+            foreach (var item in routeList)
             {
-                categoriesStr = category.name + " > " + categoriesStr;
+                helpdeskScreen.rebotsUICreater.CreateRouteLabel(item.name, (faq.categoryId == item.id), out routeLabel);
+                m_PageRouteContainer.Add(routeLabel);
             }
-            var routeStr = string.Format(routeStrFormat, m_Theme, categoriesStr);
 
-            TemplateContainer routeUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeStr, out routeUIElement);
-            m_RouteLabelContainer.Add(routeUIElement);
-
-            m_MenuLabel.text = "FAQ";
-            m_TitleCategoryLabel.text = faq.title;
-
-            var selectedCategory = routeCategories[0];
-            var siblingCategories = faq.siblingCategories;
-            var siblingCount = (siblingCategories != null) ? siblingCategories.Count() : 0;
-            if (siblingCount > 0)
-            {
-                var selectedIndex = -1;
-                for (int i = 0; i < siblingCount; i++)
-                {
-                    var item = siblingCategories[i];
-                    TemplateContainer categoryUIElement = null;
-
-                    if (item.id == selectedCategory.id)
-                    {
-                        selectedIndex = i;
-                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Selected, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
-                    }
-                    else
-                    {
-
-                        helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Sibling, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
-                    }
-                    m_SiblingCategoryList.Add(categoryUIElement);
-                }
-
-                StartCoroutine(ScrollingSiblingCategory(selectedIndex));
-            }
-            else
-            {
-                ShowVisualElement(m_SiblingCategoryContainer, false);
-            }
+            m_FaqTitleLabel.text = faq.title;
 
             var contentsDic = HtmlParser.HtmlToUnityTag(faq.contents.ToString());
             foreach (var item in contentsDic)
@@ -353,62 +317,74 @@ namespace Rebots.HelpDesk
 
         public void OnFaqCategoriesUpdated(HelpdeskFaqCategoriesResponse response)
         {
-            var faqCategories = (response.items != null) ? response.items.Where(x => x.use == 1) : null;
-            if (faqCategories != null && faqCategories.Count() > 0)
+            var categories = response.items;
+
+            if (m_ScreenPortrait)
+                m_FaqCategoryList.style.flexDirection = FlexDirection.Column;
+            else
+                m_FaqCategoryList.style.flexDirection = FlexDirection.Row;
+
+            var faqCategories = (response.items != null) ? response.items.Where(x => x.use == 1).ToArray() : new Category[0];
+            for (int i = 0; i < faqCategories.Count(); i++)
             {
-                foreach (var item in faqCategories)
+                var category = faqCategories[i];
+
+                TemplateContainer categoryUIElement = null;
+                helpdeskScreen.rebotsUICreater.CreateCategory<Category>(category, RebotsCategoryAssetType.Cs, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
+
+                if (m_ScreenPortrait)
                 {
-                    TemplateContainer categoryUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Faq, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
-
-                    var m_ViewMoreLabel = categoryUIElement.Q<Label>(RebotsUIStaticString.ViewMoreLabel);
-                    m_ViewMoreLabel.text = localizationManager.translationDic[RebotsUIStaticString.ViewMoreLabel];
-
-                    if (categoryUIElement != null)
-                    {
-                        VisualElement lowerList = categoryUIElement.Q(RebotsUIStaticString.LowerCategoryContainer);
-                        lowerList.Clear();
-
-                        var subCategories = (item.subCategories != null) ? item.subCategories.Where(x => x.use == 1) : null;
-                        int countInt = 0;
-                        if (subCategories != null && subCategories.Count() > 0)
-                        {
-                            foreach (var sub in subCategories.Take(5))
-                            {
-                                TemplateContainer subUIElement = null;
-                                helpdeskScreen.rebotsUICreater.CreateCategory<Category>(sub, RebotsCategoryAssetType.Contents, helpdeskScreen.ClickFaqCategory, out subUIElement);
-                                lowerList.Add(subUIElement);
-                                countInt++;
-                            }
-                        }
-
-                        var faqs = (item.faqs != null) ? item.faqs.Where(x => x.use == 1) : null;
-                        if (faqs != null && faqs.Count() > 0)
-                        {
-                            foreach (var faq in faqs.Take(5 - countInt))
-                            {
-                                TemplateContainer faqUIElement = null;
-                                helpdeskScreen.rebotsUICreater.CreateCategory<Faq>(faq, RebotsCategoryAssetType.Sub, helpdeskScreen.ClickFaq, out faqUIElement);
-                                lowerList.Add(faqUIElement);
-                            }
-                        }
-                    }
-                    m_FaqCategoryList.Add(categoryUIElement);
+                    categoryUIElement.style.width = Length.Percent(100f);
                 }
+                else
+                {
+                    if (i % 2 == 1)
+                    {
+                        categoryUIElement.style.width = Length.Percent(49f);
+                    }
+                    else
+                    {
+                        categoryUIElement.style.width = Length.Percent(50f);
+                        categoryUIElement.style.paddingRight = 10f;
+                    }
+                }
+                m_FaqCategoryList.Add(categoryUIElement);
             }
         }
 
         public void OnCsCategoriesUpdated(HelpdeskTicketCategoriesResponse response)
         {
-            var csCategories = (response.items != null) ? response.items.Where(x => x.use == 1) : null;
-            if (csCategories != null && csCategories.Count() > 0)
+            var categories = response.items;
+
+            m_PageTitleLabel.text = "Inquiry";
+
+            m_InquiryList.style.flexDirection = m_ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
+
+            var csCategories = (categories != null) ? categories.Where(x => x.use == 1).ToArray() : new Category[0];
+            
+            for (int i = 0; i < csCategories.Count(); i++)
             {
-                foreach (var item in csCategories)
+                var category = csCategories[i];
+                TemplateContainer categoryUIElement = null;
+                helpdeskScreen.rebotsUICreater.CreateCategory<Category>(category, RebotsCategoryAssetType.Cs, helpdeskScreen.ClickCsCategory, out categoryUIElement);
+
+                if (m_ScreenPortrait)
                 {
-                    TemplateContainer categoryUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Cs, helpdeskScreen.ClickCsCategory, out categoryUIElement);
-                    m_CsCategoryList.Add(categoryUIElement);
+                    categoryUIElement.style.width = Length.Percent(100f);
                 }
+                else
+                {
+                    if (i % 2 == 1)
+                    {
+                        categoryUIElement.style.width = Length.Percent(49f);
+                    }
+                    else
+                    {
+                        categoryUIElement.style.width = Length.Percent(50f);
+                        categoryUIElement.style.paddingRight = 10f;
+                    }
+                }
+                m_InquiryList.Add(categoryUIElement);
             }
         }
 
@@ -416,25 +392,24 @@ namespace Rebots.HelpDesk
         {
             var faqCategory = response;
 
-            var routeCategories = faqCategory.categories;
-            var routeStrFormat = "Main > FAQ > <color={0}>{1}</color>";
-            var categoriesStr = faqCategory.name;
-            foreach (var category in routeCategories)
+            m_PageTitleLabel.text = "FAQ";
+
+            Label routeLabel = null;
+            List<string> routeList = faqCategory.categories.Select(c => c.name).Reverse().ToList();
+            routeList.Insert(0, "FAQ");
+            foreach (var item in routeList)
             {
-                categoriesStr = category.name + " > " + categoriesStr;
+                helpdeskScreen.rebotsUICreater.CreateRouteLabel(item, false, out routeLabel);
+                m_PageRouteContainer.Add(routeLabel);
             }
-            var routeStr = string.Format(routeStrFormat, m_Theme, categoriesStr);
-
-            TemplateContainer routeUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeStr, out routeUIElement);
-            m_RouteLabelContainer.Add(routeUIElement);
-
-            m_MenuLabel.text = "FAQ";
+            helpdeskScreen.rebotsUICreater.CreateRouteLabel(faqCategory.name, true, out routeLabel);
+            m_PageRouteContainer.Add(routeLabel);
 
             var siblingCategories = (faqCategory.siblingCategories != null) ? faqCategory.siblingCategories.Where(x => x.use == 1).ToList() : null;
             var siblingCount = (siblingCategories != null) ? siblingCategories.Count() : 0;
             if (siblingCount > 0)
             {
+                ShowVisualElement(m_SiblingCategoryContainer, true);
                 var selectedIndex = -1;
                 for (int i = 0; i < siblingCount; i++)
                 {
@@ -455,53 +430,54 @@ namespace Rebots.HelpDesk
 
                 StartCoroutine(ScrollingSiblingCategory(selectedIndex));
             }
-
-            m_TitleCategoryLabel.text = faqCategory.name;
-
-            int displayPage = helpdeskScreen.m_SubCategoryPage;
-            int pageSize = helpdeskScreen.subCategoryPageSize;
-            int recordCount = 0;
-
-            var subCategories = (faqCategory.subCategories != null) ? faqCategory.subCategories.Where(x => x.use == 1) : null;
-            int subSize = (subCategories != null) ? subCategories.Count() : 0;
-            int subSkipPoint = pageSize * (displayPage - 1);
-            if (subSize > 0)
+            else
             {
-                recordCount += subSize;
-                foreach (var item in subCategories.Skip(subSkipPoint).Take(pageSize))
-                {
-                    TemplateContainer categoryUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Contents, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
-                    m_SubCategoryList.Add(categoryUIElement);
-                }
+                ShowVisualElement(m_SiblingCategoryContainer, false);
             }
 
-            var faqs = (faqCategory.faqs != null) ? faqCategory.faqs.Where(x => x.use == 1) : null;
-            int faqSkipPoint = (m_SubCategoryList.childCount == 0) ? (subSkipPoint - subSize) : 0;
-            int faqTakeSize = pageSize - m_SubCategoryList.childCount;
-            if (faqs != null && faqs.Count() > 0)
+            var lowerCategories = (faqCategory.subCategories != null) ? faqCategory.subCategories.Where(x => x.use == 1) : null;
+            var lowerCount = (lowerCategories != null) ? lowerCategories.Count() : 0;
+            if (lowerCount > 0)
             {
-                recordCount += faqs.Count();
-                foreach (var faq in faqs.Skip(faqSkipPoint).Take(faqTakeSize))
+                ShowVisualElement(m_LowerCategoryContainer, true);
+                foreach (var item in lowerCategories)
                 {
                     TemplateContainer categoryUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateCategory<Faq>(faq, RebotsCategoryAssetType.Sub, helpdeskScreen.ClickFaq, out categoryUIElement);
-                    m_SubCategoryList.Add(categoryUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Lower, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
+                    m_LowerCategoryList.Add(categoryUIElement);
+                }
+            }
+            else
+            {
+                ShowVisualElement(m_LowerCategoryContainer, false);
+            }
+
+            int displayPage = faqCategory.page;
+            int pageSize = helpdeskScreen.listPagingSize;
+            int recordCount = faqCategory.recordCount;
+            string listResultFormat = localizationManager.translationDic[RebotsUIStaticString.ListResultLabel];
+            m_ListResultLabel.text = string.Format(listResultFormat, recordCount.ToString());
+
+            var faqs = (faqCategory.faqs != null) ? faqCategory.faqs.Where(x => x.use == 1) : null;
+            int subSize = (faqs != null) ? faqs.Count() : 0;
+            if (subSize > 0)
+            {
+                foreach (var item in faqs.Take(pageSize))
+                {
+                    TemplateContainer categoryUIElement = null;
+                    helpdeskScreen.rebotsUICreater.CreateCategory<Faq>(item, RebotsCategoryAssetType.Faq, helpdeskScreen.ClickFaq, out categoryUIElement);
+                    m_FaqList.Add(categoryUIElement);
                 }
             }
 
             if (recordCount > 0)
             {
                 var totalPage = ((recordCount % pageSize) == 0) ? (recordCount / pageSize) : (recordCount / pageSize) + 1;
-                var page = 0;
+                RebotsPagingData<Category> pagingData = new RebotsPagingData<Category>(faqCategory, totalPage, displayPage);
 
-                while (page++ < totalPage)
-                {
-                    RebotsPagingData<Category> pagingData = new RebotsPagingData<Category> { data = faqCategory, page = page };
-                    helpdeskScreen.rebotsUICreater.CreatePaging(pagingData, (page == displayPage), helpdeskScreen.ShowFaqSubCategory, out Label pageUIElement);
+                helpdeskScreen.rebotsUICreater.CreatePaging(pagingData, helpdeskScreen.ShowFaqSubCategory, out TemplateContainer pageUIElement);
 
-                    m_PageList.Add(pageUIElement);
-                }
+                m_PagingContainer.Add(pageUIElement);
             }
         }
 
@@ -509,83 +485,44 @@ namespace Rebots.HelpDesk
         {
             var csCategory = response;
 
-            var routeCategories = csCategory.categories;
-            var routeStrFormat = "Main > Inquiry > <color={0}>{1}</color>";
-            var categoriesStr = csCategory.name;
-            foreach (var category in routeCategories)
+            m_PageTitleLabel.text = "Inquiry";
+
+            Label routeLabel = null;
+            List<string> routeList = csCategory.categories.Select(c => c.name).Reverse().ToList();
+            routeList.Insert(0, "Inquiry");
+            foreach (var item in routeList)
             {
-                categoriesStr = category.name + " > " + categoriesStr;
+                helpdeskScreen.rebotsUICreater.CreateRouteLabel(item, false, out routeLabel);
+                m_PageRouteContainer.Add(routeLabel);
             }
-            var routeStr = string.Format(routeStrFormat, m_Theme, categoriesStr);
+            helpdeskScreen.rebotsUICreater.CreateRouteLabel(csCategory.name, true, out routeLabel);
+            m_PageRouteContainer.Add(routeLabel);
 
-            TemplateContainer routeUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeStr, out routeUIElement);
-            m_RouteLabelContainer.Add(routeUIElement);
+            m_InquiryList.style.flexDirection = m_ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
 
-            m_MenuLabel.text = "Inquiry";
-
-            var siblingCategories = (csCategory.siblingCategories != null) ? csCategory.siblingCategories.Where(x => x.use == 1).ToList() : null;
-            var siblingCount = (siblingCategories != null) ? siblingCategories.Count() : 0;
-            if (siblingCount > 0)
+            var subCategories = (csCategory.subCategories != null) ? csCategory.subCategories.Where(x => x.use == 1).ToArray() : new Category[0];
+            for (int i = 0; i < subCategories.Count(); i++)
             {
-                var selectedIndex = -1;
-                for (int i = 0; i < siblingCount; i++)
+                var category = subCategories[i];
+                TemplateContainer categoryUIElement = null;
+                helpdeskScreen.rebotsUICreater.CreateCategory(category, RebotsCategoryAssetType.Cs, helpdeskScreen.ClickCsCategory, out categoryUIElement);
+                if (m_ScreenPortrait)
                 {
-                    var item = siblingCategories[i];
-                    TemplateContainer categoryUIElement = null;
-
-                    if (item.id == csCategory.id)
+                    categoryUIElement.style.width = Length.Percent(100f);
+                }
+                else
+                {
+                    if (i % 2 == 1)
                     {
-                        selectedIndex = i;
-                        helpdeskScreen.rebotsUICreater.CreateCategory(item, RebotsCategoryAssetType.Selected, helpdeskScreen.ClickCsCategory, out categoryUIElement);
+                        categoryUIElement.style.width = Length.Percent(49f);
                     }
                     else
                     {
-                        helpdeskScreen.rebotsUICreater.CreateCategory(item, RebotsCategoryAssetType.Sibling, helpdeskScreen.ClickCsCategory, out categoryUIElement);
+                        categoryUIElement.style.width = Length.Percent(50f);
+                        categoryUIElement.style.paddingRight = 10f;
                     }
-                    m_SiblingCategoryList.Add(categoryUIElement);
                 }
-
-                StartCoroutine(ScrollingSiblingCategory(selectedIndex));
-            }
-
-            m_TitleCategoryLabel.text = csCategory.name;
-
-            int displayPage = helpdeskScreen.m_SubCategoryPage;
-            int pageSize = helpdeskScreen.subCategoryPageSize;
-
-            var subCategories = (csCategory.subCategories != null) ? csCategory.subCategories.Where(x => x.use == 1) : null;
-            int subSize = (subCategories != null) ? subCategories.Count() : 0;
-            int subSkipPoint = pageSize * (displayPage - 1);
-            if (subSize > 0)
-            {
-                foreach (var item in subCategories.Skip(subSkipPoint).Take(pageSize))
-                {
-                    TemplateContainer categoryUIElement = null;
-                    if (item.subCategories != null && item.subCategories.Count() != 0)
-                    {
-                        helpdeskScreen.rebotsUICreater.CreateCategory(item, RebotsCategoryAssetType.Contents, helpdeskScreen.ClickCsCategory, out categoryUIElement);
-                    }
-                    else
-                    {
-                        helpdeskScreen.rebotsUICreater.CreateCategory(item, RebotsCategoryAssetType.Sub, helpdeskScreen.ClickCsCategory, out categoryUIElement);
-                    }
-                    m_SubCategoryList.Add(categoryUIElement);
-                }
-            }
-
-            if (subSize > 0)
-            {
-                var totalPage = ((subSize % pageSize) == 0) ? (subSize / pageSize) : (subSize / pageSize) + 1;
-                var page = 0;
-
-                while (page++ < totalPage)
-                {
-                    RebotsPagingData<Category> pagingData = new RebotsPagingData<Category> { data = csCategory, page = page };
-                    helpdeskScreen.rebotsUICreater.CreatePaging(pagingData, (page == displayPage), helpdeskScreen.ShowCsSubCategory, out Label pageUIElement);
-
-                    m_PageList.Add(pageUIElement);
-                }
+                m_InquiryList.Add(categoryUIElement);
             }
         }
 
@@ -593,21 +530,18 @@ namespace Rebots.HelpDesk
         {
             var csCategory = response.category;
 
-            var routeCategories = csCategory.categories;
-            var routeStrFormat = "Main > Inquiry > <color={0}>{1}</color>";
-            var categoriesStr = csCategory.name;
-            foreach (var category in routeCategories)
+            m_PageTitleLabel.text = "Inquiry";
+
+            Label routeLabel = null;
+            List<string> routeList = csCategory.categories.Select(c => c.name).Reverse().ToList();
+            routeList.Insert(0, "Inquiry");
+            foreach (var item in routeList)
             {
-                categoriesStr = category.name + " > " + categoriesStr;
+                helpdeskScreen.rebotsUICreater.CreateRouteLabel(item, false, out routeLabel);
+                m_PageRouteContainer.Add(routeLabel);
             }
-            var routeStr = string.Format(routeStrFormat, m_Theme, categoriesStr);
-
-            TemplateContainer routeUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel(routeStr, out routeUIElement);
-            m_RouteLabelContainer.Add(routeUIElement);
-
-            m_MenuLabel.text = "Inquiry";
-            m_TitleCategoryLabel.text = csCategory.name;
+            helpdeskScreen.rebotsUICreater.CreateRouteLabel(csCategory.name, true, out routeLabel);
+            m_PageRouteContainer.Add(routeLabel);
 
             var fields = csCategory.inputFields;
             string validationField = localizationManager.translationDic[RebotsUIStaticString.ValidRequired];
@@ -685,11 +619,7 @@ namespace Rebots.HelpDesk
         {
             var tickets = response.items;
 
-            TemplateContainer menuUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel("Main > My Tickets", out menuUIElement);
-            m_RouteLabelContainer.Add(menuUIElement);
-
-            m_MenuLabel.text = "My Tickets";
+            m_PageTitleLabel.text = "My Tickets";
 
             if (tickets != null && tickets.Count() > 0)
             {
@@ -699,8 +629,8 @@ namespace Rebots.HelpDesk
                     TemplateContainer faqUIElement = null;
                     helpdeskScreen.rebotsUICreater.CreateTicket(item, helpdeskScreen.ClickTicket, out faqUIElement);
 
-                    var test = item.data.language;
-                    switch (test)
+                    var ticketLanguage = item.data.language;
+                    switch (ticketLanguage)
                     {
                         case "ko":
                             faqUIElement.styleSheets.Add(helpdeskScreen.fontKr);
@@ -733,11 +663,7 @@ namespace Rebots.HelpDesk
             var ticketData = response.ticket.data;
             var answers = response.ticket.answers;
 
-            TemplateContainer menuUIElement = null;
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel("Main > My Tickets", out menuUIElement);
-            m_RouteLabelContainer.Add(menuUIElement);
-
-            m_MenuLabel.text = "My Tickets";
+            m_PageTitleLabel.text = "My Tickets";
 
             m_TicketContainer.styleSheets.Clear();
             switch (ticketData.language)
@@ -846,6 +772,30 @@ namespace Rebots.HelpDesk
             var scrollRange = forwardElementWidth / allElementWidth;
             var scrollValue = scrollRange * scrollHighValue;
             m_SiblingCategoryScrollview.horizontalScroller.value = scrollValue;
+        }
+        #endregion
+
+        #region (private) Set Multi-Line Ellipsis Point
+        private IEnumerator LabelMultilineEllipsis(Label labelElement)
+        {
+            yield return null;
+
+            string text = labelElement.text;
+
+            float areaWidth = labelElement.contentRect.width;
+            float areaHeight = labelElement.contentRect.height;
+            Rect textRect = new Rect(0, 0, areaWidth, areaHeight);
+
+            GUIStyle textStyle = new GUIStyle();
+            textStyle.font = helpdeskScreen.GetLanguageFontAsset(localizationManager.language);
+            textStyle.fontSize = 16;
+            textStyle.wordWrap = true;
+
+            string breakText = helpdeskScreen.AddSpaceToWordWrapPoint(text, textRect, textStyle);
+            if (!string.IsNullOrEmpty(breakText))
+            {
+                labelElement.text = breakText + "...";
+            }
         }
         #endregion
     }

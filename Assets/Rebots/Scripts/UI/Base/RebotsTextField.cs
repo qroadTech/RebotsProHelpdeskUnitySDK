@@ -112,7 +112,14 @@ namespace Rebots.HelpDesk
 
         public string GetValue()
         {
-            return this.textField.value;
+            if (!m_setPlaceholder)
+            {
+                return this.textField.value;
+            }
+            else
+            {
+                return "";
+            }
         }
     }
 }

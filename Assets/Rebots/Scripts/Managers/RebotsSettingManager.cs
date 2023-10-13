@@ -210,12 +210,12 @@ namespace Rebots.HelpDesk
         /// <summary>
         ///  You can load faq cateogory what you added from RebotsPro Web solutions(workspace).
         /// </summary>
-        public void LoadFaqCategory(UnityAction<HelpdeskFaqCategoryResponse> listUpdate, int categoryId)
+        public void LoadFaqCategory(UnityAction<HelpdeskFaqCategoryResponse> listUpdate, int categoryId, int page, int size, bool recursive = true)
         {
             var evt = new UnityEvent<HelpdeskFaqCategoryResponse>();
             evt.AddListener(listUpdate);
             var req = new UnityRebotsProMaxGetFaqCategory(helpdeskConfig, helpdeskEvents, evt);
-            StartCoroutine(req.GetFaqCategory(categoryId));
+            StartCoroutine(req.GetFaqCategory(categoryId, recursive, page, size));
         }
 
         /// <summary>

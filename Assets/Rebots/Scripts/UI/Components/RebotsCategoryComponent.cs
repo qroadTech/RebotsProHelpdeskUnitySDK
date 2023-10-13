@@ -1,17 +1,13 @@
 ﻿using HelpDesk.Sdk.Common.Objects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine.UIElements;
 
 namespace Rebots.HelpDesk
 {
     public class RebotsCategoryComponent<T>
     {
-        const string k_CategoryLabel = "rebots-category-label";
-        const string k_CategoryButton = "rebots-category-button";
+        const string k_CategoryLabel = "rebots-contents-label";
+        const string k_CategoryButton = "rebots-contents-button";
 
         T m_Category;
         Label m_CategoryLabel;

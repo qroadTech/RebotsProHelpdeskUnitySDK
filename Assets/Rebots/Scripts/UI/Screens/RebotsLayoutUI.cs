@@ -41,13 +41,13 @@ namespace Rebots.HelpDesk
         public Button m_MenuMyTicketButton;
         public Foldout m_MenuFaqFoldout;
         public VisualElement m_MenuFaqCategoryList;
-        public Foldout m_MenuCsFoldout;
+        public Foldout m_MenuInquiryFoldout;
         public VisualElement m_MenuCsCategoryList;
         public Button m_ExitButton;
         public Label m_ExitLabel;
         #endregion
         #region - - - Image Title UI Element - - - 
-        public VisualElement m_TitleContainer;
+        public VisualElement m_MainTitleContainer;
         public VisualElement m_TitleImageContainer;
         public Label m_TitleHelpdeskLabel;
         #endregion
@@ -55,7 +55,6 @@ namespace Rebots.HelpDesk
         public VisualElement m_TicketButtonContainer;
         public Label m_NeedMoreLabel;
         public Label m_SubmitTicketLabel;
-        public Label m_SendUsLabel;
         public Button m_TicketButton;
         #endregion
         #region - - - Footer UI Element - - - 
@@ -108,20 +107,19 @@ namespace Rebots.HelpDesk
             m_MainLabel = m_MenuContainer.Q<Label>(RebotsUIStaticString.MainLabel);
             m_MenuMyTicketButton = m_MenuContainer.Q<Button>(RebotsUIStaticString.MenuMyTicketButton);
             m_MenuFaqFoldout = m_MenuContainer.Q<Foldout>(RebotsUIStaticString.MenuFaqFoldout);
-            m_MenuFaqCategoryList = m_MenuFaqFoldout.Q(RebotsUIStaticString.FaqCategoryList);
-            m_MenuCsFoldout = m_MenuContainer.Q<Foldout>(RebotsUIStaticString.MenuCsFoldout);
-            m_MenuCsCategoryList = m_MenuCsFoldout.Q(RebotsUIStaticString.CsCategoryList);
+            m_MenuFaqCategoryList = m_MenuFaqFoldout.Q(RebotsUIStaticString.List);
+            m_MenuInquiryFoldout = m_MenuContainer.Q<Foldout>(RebotsUIStaticString.MenuInquiryFoldout);
+            m_MenuCsCategoryList = m_MenuInquiryFoldout.Q(RebotsUIStaticString.List);
             m_ExitButton = m_MenuContainer.Q<Button>(RebotsUIStaticString.ExitButton);
             m_ExitLabel = m_MenuContainer.Q<Label>(RebotsUIStaticString.ExitLabel);
 
-            m_TitleContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.TitleContainer);
-            m_TitleImageContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.TitleImageContainer);
-            m_TitleHelpdeskLabel = m_TitleContainer.Q<Label>(RebotsUIStaticString.HelpdeskLabel);
+            m_MainTitleContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.MainTitleContainer);
+            m_TitleImageContainer = m_MainTitleContainer.Q(RebotsUIStaticString.TitleImageContainer);
+            m_TitleHelpdeskLabel = m_MainTitleContainer.Q<Label>(RebotsUIStaticString.HelpdeskLabel);
 
             m_TicketButtonContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.TicketButtonContainer);
             m_NeedMoreLabel = m_TicketButtonContainer.Q<Label>(RebotsUIStaticString.NeedMoreLabel);
             m_SubmitTicketLabel = m_TicketButtonContainer.Q<Label>(RebotsUIStaticString.SubmitTicketLabel);
-            m_SendUsLabel = m_TicketButtonContainer.Q<Label>(RebotsUIStaticString.SendUsLabel);
             m_TicketButton = m_TicketButtonContainer.Q<Button>(RebotsUIStaticString.TicketButton);
 
             m_FooterContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.FooterContainer);
@@ -167,12 +165,11 @@ namespace Rebots.HelpDesk
             m_SearchField.InitializeTextField();
 
             m_MainLabel.text = localizationManager.translationDic[RebotsUIStaticString.MainLabel];
-            m_MenuCsFoldout.text = localizationManager.translationDic[RebotsUIStaticString.InquiryLabel];
+            m_MenuInquiryFoldout.text = localizationManager.translationDic[RebotsUIStaticString.InquiryLabel];
             m_ExitLabel.text = localizationManager.translationDic[RebotsUIStaticString.ExitLabel];
 
             m_NeedMoreLabel.text = localizationManager.translationDic[RebotsUIStaticString.NeedMoreLabel];
             m_SubmitTicketLabel.text = localizationManager.translationDic[RebotsUIStaticString.SubmitTicketLabel];
-            m_SendUsLabel.text = localizationManager.translationDic[RebotsUIStaticString.SendUsLabel];
 
             m_TermsLabel.text = localizationManager.translationDic[RebotsUIStaticString.TermsLabel];
             m_CookieLabel.text = localizationManager.translationDic[RebotsUIStaticString.CookieLabel];
@@ -184,84 +181,10 @@ namespace Rebots.HelpDesk
             m_TitleHelpdeskLabel.text = helpdeskSetting.helpdeskName;
 
             m_HelpdeskLayout.styleSheets.Clear();
+            m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.GetThemeStyleSheet(helpdeskSetting.theme));
+            m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.GetLanguageStyleSheet(localizationManager.language));
 
-            switch (helpdeskSetting.theme)
-            {
-                case RebotsUIStaticString.ThemeCode1:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme1);
-                    break;
-                case RebotsUIStaticString.ThemeCode2:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme2);
-                    break;
-                case RebotsUIStaticString.ThemeCode3:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme3);
-                    break;
-                case RebotsUIStaticString.ThemeCode4:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme4);
-                    break;
-                case RebotsUIStaticString.ThemeCode5:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme5);
-                    break;
-                case RebotsUIStaticString.ThemeCode6:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme6);
-                    break;
-                case RebotsUIStaticString.ThemeCode7:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme7);
-                    break;
-                case RebotsUIStaticString.ThemeCode8:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme8);
-                    break;
-                case RebotsUIStaticString.ThemeCode9:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme9);
-                    break;
-                case RebotsUIStaticString.ThemeCode10:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme10);
-                    break;
-                case RebotsUIStaticString.ThemeCode11:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme11);
-                    break;
-                case RebotsUIStaticString.ThemeCode12:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme12);
-                    break;
-                case RebotsUIStaticString.ThemeCode13:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme13);
-                    break;
-                case RebotsUIStaticString.ThemeCode14:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme14);
-                    break;
-                case RebotsUIStaticString.ThemeCode15:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme15);
-                    break;
-                case RebotsUIStaticString.ThemeCode16:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme16);
-                    break;
-                default:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.theme1);
-                    break;
-            }
-
-            switch (localizationManager.language)
-            {
-                case "ko":
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.fontKr);
-                    break;
-                case "ja":
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.fontJa);
-                    break;
-                case "zh-cn":
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.fontCn);
-                    break;
-                case "zh-tw":
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.fontTw);
-                    break;
-                case "th":
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.fontTh);
-                    break;
-                default:
-                    m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.fontEn);
-                    break;
-            }
-
+            #region setting Main Image
             if (helpdeskSetting.useMainImage && helpdeskSetting.mainImageMobileUrl != null && !string.IsNullOrEmpty(helpdeskSetting.mainImageMobileUrl))
             {
                 var imgUrl = helpdeskSetting.mainImageMobileUrl.Trim();
@@ -271,8 +194,9 @@ namespace Rebots.HelpDesk
             {
                 m_TitleImageContainer.style.backgroundImage = null;
             }
+            #endregion
 
-            #region footer Setting
+            #region setting Footer
             if (helpdeskSetting.useOperatingTime && !string.IsNullOrEmpty(helpdeskSetting.operatingTime))
             {
                 var operatingTime = helpdeskSetting.operatingTime.Split("/");
@@ -413,7 +337,7 @@ namespace Rebots.HelpDesk
                     m_MenuCsCategoryList.Add(menuUIElement);
                 }
             }
-            m_MenuCsFoldout.value = false;
+            m_MenuInquiryFoldout.value = false;
         }
         #endregion
     }
