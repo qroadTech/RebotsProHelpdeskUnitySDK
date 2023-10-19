@@ -9,15 +9,16 @@ namespace Rebots.HelpDesk
         const string DetailSubLabel = "rebots-sub-label";
         const string DetailContentLabel = "rebots-content-label";
 
-        string m_sub;
-        string m_content;
         Label m_DetailSubLabel;
         Label m_DetailContentLabel;
 
+        private string sub;
+        private string content;
+
         public RebotsTicketDetailComponent(string sub, string content)
         {
-            m_sub = sub;
-            m_content = content;
+            this.sub = sub;
+            this.content = content;
         }
 
         public void SetVisualElements(TemplateContainer answerUIElement)
@@ -38,8 +39,8 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            m_DetailSubLabel.text = m_sub;
-            m_DetailContentLabel.text = m_content;
+            m_DetailSubLabel.text = sub;
+            m_DetailContentLabel.text = content;
         }
     }
 }

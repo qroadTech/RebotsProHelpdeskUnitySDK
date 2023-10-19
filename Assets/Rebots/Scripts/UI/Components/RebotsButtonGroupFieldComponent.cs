@@ -1,5 +1,4 @@
 ﻿using HelpDesk.Sdk.Common.Objects;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine.UIElements;
@@ -8,12 +7,12 @@ namespace Rebots.HelpDesk
 {
     public class RebotsButtonGroupFieldComponent
     {
-        const string k_FieldLabel = "rebots-field-label";
+        const string FieldLabel = "rebots-field-label";
         const string RequiredFieldLabel = "rebots-required";
-        const string k_ButtonGroupField = "rebots-button-group";
-        const string k_ButtonLabel = "rebots-button-label";
-        const string k_Check = "rebots-check";
-        const string k_Radio = "rebots-radio";
+        const string ButtonGroupField = "rebots-button-group";
+        const string ButtonLabel = "rebots-button-label";
+        const string Check = "rebots-check";
+        const string Radio = "rebots-radio";
         const string ValidationLabel = "rebots-validation-label";
 
         Label m_Label;
@@ -21,19 +20,19 @@ namespace Rebots.HelpDesk
         RadioButtonGroup m_ButtonGroupField;
         Label m_ValidationLabel;
 
-        private TicketCategoryInputField m_csCategoryField;
+        private TicketCategoryInputField csCategoryField;
         private string parameter;
         private string validationComment;
-        private VisualTreeAsset m_buttonAsset;
-        private string[] m_answers;
-        private Dictionary<Toggle, string> m_Checkbuttons = new Dictionary<Toggle, string>();
-        private Dictionary<RadioButton, string> m_Radiobuttons = new Dictionary<RadioButton, string>();
+        private VisualTreeAsset buttonAsset;
+        private string[] answers;
+        private Dictionary<Toggle, string> checkbuttons = new Dictionary<Toggle, string>();
+        private Dictionary<RadioButton, string> radiobuttons = new Dictionary<RadioButton, string>();
 
         public RebotsButtonGroupFieldComponent(TicketCategoryInputField csCategoryField, VisualTreeAsset buttonAsset, string? parameter, string[] validationComment)
         {
-            this.m_csCategoryField = csCategoryField;
-            this.m_buttonAsset = buttonAsset;
-            this.m_answers = csCategoryField.answers;
+            this.csCategoryField = csCategoryField;
+            this.buttonAsset = buttonAsset;
+            this.answers = csCategoryField.answers;
             this.parameter = (!string.IsNullOrEmpty(parameter)) ? parameter.Trim().ToLower() : "";
             this.validationComment = (validationComment != null) ? validationComment[0] : "";
         }
@@ -45,9 +44,9 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            m_Label = buttonGroupFieldUIElement.Q<Label>(k_FieldLabel);
+            m_Label = buttonGroupFieldUIElement.Q<Label>(FieldLabel);
             m_RequiredFieldLabel = buttonGroupFieldUIElement.Q<Label>(RequiredFieldLabel);
-            m_ButtonGroupField = buttonGroupFieldUIElement.Q<RadioButtonGroup>(k_ButtonGroupField);
+            m_ButtonGroupField = buttonGroupFieldUIElement.Q<RadioButtonGroup>(ButtonGroupField);
             m_ValidationLabel = buttonGroupFieldUIElement.Q<Label>(ValidationLabel);
         }
 
@@ -58,44 +57,44 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            m_Label.text = m_csCategoryField.text;
+            m_Label.text = csCategoryField.text;
 
-            for (int i = 0; i < m_answers.Count(); i++)
+            for (int i = 0; i < answers.Count(); i++)
             {
-                var item = m_answers[i];
-                TemplateContainer buttonUIElement = m_buttonAsset.Instantiate();
-                var m_ButtonLabel = buttonUIElement.Q<Label>(k_ButtonLabel);
+                var item = answers[i];
+                TemplateContainer buttonUIElement = buttonAsset.Instantiate();
+                var m_ButtonLabel = buttonUIElement.Q<Label>(ButtonLabel);
                 m_ButtonLabel.text = item;
 
-                if (m_csCategoryField.fieldType == RebotsInputFieldType.Checkbox)
+                if (csCategoryField.fieldType == RebotsInputFieldType.Checkbox)
                 {
-                    var m_Check = buttonUIElement.Q<Toggle>(k_Check);
+                    var m_Check = buttonUIElement.Q<Toggle>(Check);
                     m_Check.value = (item.ToLower() == parameter) ? true : false;
 
-                    m_Checkbuttons.Add(m_Check, item);
+                    checkbuttons.Add(m_Check, item);
                 }
                 else
                 {
-                    var m_Radio = buttonUIElement.Q<RadioButton>(k_Radio);
+                    var m_Radio = buttonUIElement.Q<RadioButton>(Radio);
                     m_Radio.value = (item.ToLower() == parameter) ? true : false;
 
-                    m_Radiobuttons.Add(m_Radio, item);
+                    radiobuttons.Add(m_Radio, item);
                 }
                 m_ButtonGroupField.Add(buttonUIElement);
             }
 
-            m_RequiredFieldLabel.style.display = (m_csCategoryField.isRequire) ? DisplayStyle.Flex : DisplayStyle.None;
+            m_RequiredFieldLabel.style.display = (csCategoryField.isRequire) ? DisplayStyle.Flex : DisplayStyle.None;
 
             m_ValidationLabel.text = validationComment;
             m_ValidationLabel.style.display = DisplayStyle.None;
 
-            buttonGroupFieldUIElement.style.display = (m_csCategoryField.isHidden) ? DisplayStyle.None : DisplayStyle.Flex;
+            buttonGroupFieldUIElement.style.display = (csCategoryField.isHidden) ? DisplayStyle.None : DisplayStyle.Flex;
         }
 
         public bool CheckFieldValid()
         {
             var value = GetFieldValue();
-            if (m_csCategoryField.isRequire && string.IsNullOrEmpty(value))
+            if (csCategoryField.isRequire && string.IsNullOrEmpty(value))
             {
                 m_ValidationLabel.style.display = DisplayStyle.Flex;
                 return false;
@@ -111,12 +110,12 @@ namespace Rebots.HelpDesk
         {
             List<string> valueStr = new List<string>();
 
-            if (m_csCategoryField.fieldType == RebotsInputFieldType.Checkbox)
+            if (csCategoryField.fieldType == RebotsInputFieldType.Checkbox)
             {
-                foreach (var item in m_Checkbuttons)
+                foreach (var item in checkbuttons)
                 {
                     var button = item.Key as Toggle;
-                    var label = button.Q<Label>(k_ButtonLabel);
+                    var label = button.Q<Label>(ButtonLabel);
                     if (button.value)
                     {
                         valueStr.Add(label.text);
@@ -125,10 +124,10 @@ namespace Rebots.HelpDesk
             }
             else
             {
-                foreach (var item in m_Radiobuttons)
+                foreach (var item in radiobuttons)
                 {
                     var button = item.Key as RadioButton;
-                    var label = button.Q<Label>(k_ButtonLabel);
+                    var label = button.Q<Label>(ButtonLabel);
                     if (button.value)
                     {
                         valueStr.Add(label.text);

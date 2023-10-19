@@ -29,18 +29,18 @@ namespace Rebots.HelpDesk
         VisualElement m_FileList;
         Label m_ValidationLabel;
 
-        private TicketCategoryInputField m_csCategoryField;
-        private VisualTreeAsset m_fileAsset;
-        private List<RebotsTicketAttachment> m_attachments;
+        private TicketCategoryInputField csCategoryField;
+        private VisualTreeAsset fileAsset;
+        private List<RebotsTicketAttachment> attachments;
         private string validationComment;
 
-        private List<string> ImageType = new List<string>() { "png", "jpeg", "jpg" };
+        private readonly List<string> ImageType = new List<string>() { "png", "jpeg", "jpg" };
 
         public RebotsAttachmentFieldComponent(TicketCategoryInputField csCategoryField, VisualTreeAsset fileAsset, string[] validationComment)
         {
-            m_csCategoryField = csCategoryField;
-            m_fileAsset = fileAsset;
-            m_attachments = new List<RebotsTicketAttachment>();
+            this.csCategoryField = csCategoryField;
+            this.fileAsset = fileAsset;
+            this.attachments = new List<RebotsTicketAttachment>();
             this.validationComment = (validationComment != null) ? validationComment[0] : "";
         }
 
@@ -51,15 +51,15 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            m_FieldLabel = attachmentFieldUIElement.Q<Label>(FieldLabel);
-            m_RequiredFieldLabel = attachmentFieldUIElement.Q<Label>(RequiredFieldLabel);
-            m_ChooseFileButton = attachmentFieldUIElement.Q<Button>(ChooseFileButton);
-            m_NoFileContainer = attachmentFieldUIElement.Q(NoFileContainer);
-            m_FileList = attachmentFieldUIElement.Q(FileList);
-            m_ValidationLabel = attachmentFieldUIElement.Q<Label>(ValidationLabel);
+            this.m_FieldLabel = attachmentFieldUIElement.Q<Label>(FieldLabel);
+            this.m_RequiredFieldLabel = attachmentFieldUIElement.Q<Label>(RequiredFieldLabel);
+            this.m_ChooseFileButton = attachmentFieldUIElement.Q<Button>(ChooseFileButton);
+            this.m_NoFileContainer = attachmentFieldUIElement.Q(NoFileContainer);
+            this.m_FileList = attachmentFieldUIElement.Q(FileList);
+            this.m_ValidationLabel = attachmentFieldUIElement.Q<Label>(ValidationLabel);
 
-            m_NoFileContainer.style.display = DisplayStyle.Flex;
-            m_FileList.Clear();
+            this.m_NoFileContainer.style.display = DisplayStyle.Flex;
+            this.m_FileList.Clear();
         }
 
         public void SetFieldData(TemplateContainer attachmentFieldUIElement)
@@ -69,13 +69,13 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            m_FieldLabel.text = m_csCategoryField.text;
-            m_ChooseFileButton?.RegisterCallback<ClickEvent>(evt => ClickChooseFile());
+            this.m_FieldLabel.text = this.csCategoryField.text;
+            this.m_ChooseFileButton?.RegisterCallback<ClickEvent>(evt => ClickChooseFile());
 
-            m_RequiredFieldLabel.style.display = (m_csCategoryField.isRequire) ? DisplayStyle.Flex : DisplayStyle.None;
+            this.m_RequiredFieldLabel.style.display = (this.csCategoryField.isRequire) ? DisplayStyle.Flex : DisplayStyle.None;
 
-            m_ValidationLabel.text = validationComment;
-            m_ValidationLabel.style.display = DisplayStyle.None;
+            this.m_ValidationLabel.text = this.validationComment;
+            this.m_ValidationLabel.style.display = DisplayStyle.None;
         }
 
         private void ClickChooseFile()
@@ -113,8 +113,8 @@ namespace Rebots.HelpDesk
                     return;
                 }
 
-                var originPathList = m_attachments.Select(x => x.originPath).ToList();
-                if (m_attachments.Count == 0 || !originPathList.Contains(path))
+                var originPathList = this.attachments.Select(x => x.originPath).ToList();
+                if (this.attachments.Count == 0 || !originPathList.Contains(path))
                 {
                     var itemType = Path.GetExtension(path).Replace(".", "");
                     itemType = ImageType.Contains(itemType) ? "image/" + itemType : "";
@@ -129,9 +129,9 @@ namespace Rebots.HelpDesk
                         fileType = itemType,
                         fileSize = file.Length
                     };
-                    m_attachments.Add(attachmentInfo);
+                    this.attachments.Add(attachmentInfo);
 
-                    TemplateContainer fileUIElement = m_fileAsset.Instantiate();
+                    TemplateContainer fileUIElement = this.fileAsset.Instantiate();
                     var m_FileNameLabel = fileUIElement.Q<Label>(FileNameLabel);
                     var m_FileSizeLabel = fileUIElement.Q<Label>(FileSizeLabel);
                     var m_FileRemoveButton = fileUIElement.Q<Button>(FileRemoveButton);
@@ -140,13 +140,13 @@ namespace Rebots.HelpDesk
                     m_FileSizeLabel.text = string.Format("({0:N2}KB)", (double)attachmentInfo.fileSize / 1024);
                     m_FileRemoveButton?.RegisterCallback<ClickEvent>(evt => RemoveAttachmentFile(attachmentInfo, fileUIElement));
 
-                    m_FileList.Add(fileUIElement);
+                    this.m_FileList.Add(fileUIElement);
 
-                    m_NoFileContainer.style.display = DisplayStyle.None;
+                    this.m_NoFileContainer.style.display = DisplayStyle.None;
 
-                    if (m_attachments.Count > 2 && m_FileList.childCount > 2)
+                    if (this.attachments.Count > 2 && this.m_FileList.childCount > 2)
                     {
-                        m_ChooseFileButton.SetEnabled(false);
+                        this.m_ChooseFileButton.SetEnabled(false);
                     }
                 }
             }
@@ -154,32 +154,32 @@ namespace Rebots.HelpDesk
 
         private void RemoveAttachmentFile(RebotsTicketAttachment attachmentInfo, TemplateContainer fileUIElement)
         {
-            m_attachments.Remove(attachmentInfo);
-            m_FileList.Remove(fileUIElement);
+            this.attachments.Remove(attachmentInfo);
+            this.m_FileList.Remove(fileUIElement);
 
-            if (m_attachments.Count < 3 && m_FileList.childCount < 3)
+            if (this.attachments.Count < 3 && this.m_FileList.childCount < 3)
             {
-                m_ChooseFileButton.SetEnabled(true);
+                this.m_ChooseFileButton.SetEnabled(true);
             }
         }
 
         public bool CheckFieldValid()
         {
-            if (m_csCategoryField.isRequire && (m_attachments == null || m_attachments.Count == 0))
+            if (this.csCategoryField.isRequire && (this.attachments == null || this.attachments.Count == 0))
             {
-                m_ValidationLabel.style.display = DisplayStyle.Flex;
+                this.m_ValidationLabel.style.display = DisplayStyle.Flex;
                 return false;
             }
             else
             {
-                m_ValidationLabel.style.display = DisplayStyle.None;
+                this.m_ValidationLabel.style.display = DisplayStyle.None;
                 return true;
             }
         }
 
-        public List<RebotsTicketAttachment> GetFieldValue()
+        public RebotsTicketAttachment[] GetFieldValue()
         {
-            return m_attachments;
+            return this.attachments.ToArray();
         }
     }
 }

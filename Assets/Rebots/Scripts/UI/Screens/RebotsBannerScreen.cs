@@ -75,11 +75,12 @@ namespace Rebots.HelpDesk
             var banners = response.banners;
             bannerCount = banners.Count();
 
-            if (banners != null && banners.Count() > 0)
+            if (banners != null && bannerCount > 0)
             {
                 m_BannerList.Clear();
-                foreach (var item in banners)
+                for (int i = 0; i < bannerCount; i++)
                 {
+                    var item = banners[i];
                     ImageUrlToTexture2D(new Uri(item.fileUrl), item.externalLinkUrl);
                 }
             }

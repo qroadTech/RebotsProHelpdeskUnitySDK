@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine.UIElements;
 using UnityEngine;
 using UnityEngine.Networking;
+using System;
 
 namespace Rebots.HelpDesk
 {
@@ -76,7 +77,7 @@ namespace Rebots.HelpDesk
         public Label m_CopyrightLabel;
         #endregion
 
-        private RebotsLocalizationManager localizationManager;
+        public RebotsLocalizationManager LocalizationManager { get; private set; }
 
         #region Run in 'Awake' call
         protected override void SetVisualElements()
@@ -158,21 +159,21 @@ namespace Rebots.HelpDesk
         #region Set before show screen
         public void SetTranslationText()
         {
-            localizationManager = helpdeskScreen.rebotsSettingManager.localizationManager;
+            LocalizationManager = helpdeskScreen.rebotsSettingManager.localizationManager;
 
-            m_SearchCaption.text = localizationManager.translationDic[RebotsUIStaticString.SearchCaption];
-            m_SearchField.UsePlaceholder(localizationManager.translationDic[RebotsUIStaticString.SearchPlaceholder]);
+            m_SearchCaption.text = LocalizationManager.translationDic[RebotsUIStaticString.SearchCaption];
+            m_SearchField.UsePlaceholder(LocalizationManager.translationDic[RebotsUIStaticString.SearchPlaceholder]);
             m_SearchField.InitializeTextField();
 
-            m_MainLabel.text = localizationManager.translationDic[RebotsUIStaticString.MainLabel];
-            m_MenuInquiryFoldout.text = localizationManager.translationDic[RebotsUIStaticString.InquiryLabel];
-            m_ExitLabel.text = localizationManager.translationDic[RebotsUIStaticString.ExitLabel];
+            m_MainLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.MainLabel];
+            m_MenuInquiryFoldout.text = LocalizationManager.translationDic[RebotsUIStaticString.InquiryLabel];
+            m_ExitLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.ExitLabel];
 
-            m_NeedMoreLabel.text = localizationManager.translationDic[RebotsUIStaticString.NeedMoreLabel];
-            m_SubmitTicketLabel.text = localizationManager.translationDic[RebotsUIStaticString.SubmitTicketLabel];
+            m_NeedMoreLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.NeedMoreLabel];
+            m_SubmitTicketLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.SubmitTicketLabel];
 
-            m_TermsLabel.text = localizationManager.translationDic[RebotsUIStaticString.TermsLabel];
-            m_CookieLabel.text = localizationManager.translationDic[RebotsUIStaticString.CookieLabel];
+            m_TermsLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.TermsLabel];
+            m_CookieLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.CookieLabel];
         }
 
         public void SetHelpdeskData(HelpdeskSetting helpdeskSetting)
@@ -182,7 +183,7 @@ namespace Rebots.HelpDesk
 
             m_HelpdeskLayout.styleSheets.Clear();
             m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.GetThemeStyleSheet(helpdeskSetting.theme));
-            m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.GetLanguageStyleSheet(localizationManager.language));
+            m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.GetLanguageStyleSheet(LocalizationManager.language));
 
             #region setting Main Image
             if (helpdeskSetting.useMainImage && helpdeskSetting.mainImageMobileUrl != null && !string.IsNullOrEmpty(helpdeskSetting.mainImageMobileUrl))
@@ -201,7 +202,7 @@ namespace Rebots.HelpDesk
             {
                 var operatingTime = helpdeskSetting.operatingTime.Split("/");
                 var operatingTimeZone = helpdeskSetting.operatingTimezone.ToString();
-                var operatingTimeStr = localizationManager.translationDic[RebotsUIStaticString.OperatingTimeLabel];
+                var operatingTimeStr = LocalizationManager.translationDic[RebotsUIStaticString.OperatingTimeLabel];
                 m_OperatingTimeLabel.text = string.Format(operatingTimeStr, operatingTime[0].Trim(), operatingTime[1].Trim(), operatingTimeZone);
                 ShowVisualElement(m_OperatingTimeLabel, true);
             }
@@ -260,7 +261,7 @@ namespace Rebots.HelpDesk
 
             if (helpdeskSetting.useCallNumber && !string.IsNullOrEmpty(helpdeskSetting.callNumber))
             {
-                var telStr = localizationManager.translationDic[RebotsUIStaticString.TelLabel];
+                var telStr = LocalizationManager.translationDic[RebotsUIStaticString.TelLabel];
                 m_TelLabel.text = string.Format(telStr, helpdeskSetting.callNumber);
                 ShowVisualElement(m_TelLabel, true);
             }
@@ -271,7 +272,7 @@ namespace Rebots.HelpDesk
 
             if (helpdeskSetting.useCopyright && !string.IsNullOrEmpty(helpdeskSetting.copyrightText))
             {
-                var telStr = localizationManager.translationDic[RebotsUIStaticString.CopyrightLabel];
+                var telStr = LocalizationManager.translationDic[RebotsUIStaticString.CopyrightLabel];
                 m_CopyrightLabel.text = string.Format(telStr, helpdeskSetting.copyrightText);
                 ShowVisualElement(m_FooterCopyrightConatiner, true);
             }
@@ -284,12 +285,12 @@ namespace Rebots.HelpDesk
 
         public void SetLanguageUI()
         {
-            var settingLanguages = localizationManager.settingLanguages.OrderBy(x => x.index).ToList();
+            var settingLanguages = LocalizationManager.settingLanguages.OrderBy(x => x.index).ToArray();
             m_LanguageList.Clear();
 
             foreach (var item in settingLanguages)
             {
-                var lanuageText = localizationManager.translationDic[string.Format(RebotsUIStaticString.LanguageLabel, item.languageCode.ToLower())];
+                var lanuageText = LocalizationManager.translationDic[string.Format(RebotsUIStaticString.LanguageLabel, item.languageCode.ToLower())];
 
                 TemplateContainer languageUIElement = null;
                 helpdeskScreen.rebotsUICreater.CreateLanguage(item, lanuageText, helpdeskScreen.ClickLanguage, out languageUIElement);
@@ -311,10 +312,12 @@ namespace Rebots.HelpDesk
         public void OnFaqMenuUpdated(HelpdeskFaqCategoriesResponse response)
         {
             var faqCategories = response.items;
-            if (faqCategories != null && faqCategories.Count() > 0)
+            var count = faqCategories.Count();
+            if (faqCategories != null && count > 0)
             {
-                foreach (var item in faqCategories)
+                for (int i = 0; i < count; i++)
                 {
+                    var item = faqCategories[i];
                     TemplateContainer menuUIElement = null;
                     helpdeskScreen.rebotsUICreater
                         .CreateCategory<Category>(item, RebotsCategoryAssetType.Menu, helpdeskScreen.ClickFaqCategory, out menuUIElement);
@@ -327,13 +330,16 @@ namespace Rebots.HelpDesk
         public void OnCsMenuUpdated(HelpdeskTicketCategoriesResponse response)
         {
             var csCategories = response.items;
-            if (csCategories != null && csCategories.Count() > 0)
+            var count = csCategories.Count();
+            if (csCategories != null && count > 0)
             {
-                foreach (var item in csCategories)
+                for (int i = 0; i < count; i++)
                 {
+                    var item = csCategories[i];
                     TemplateContainer menuUIElement = null;
+                    Action<Category> clickAction = (item.childFieldCount > 0) ? helpdeskScreen.ShowCsSubCategory : helpdeskScreen.ShowTicketCreate;
                     helpdeskScreen.rebotsUICreater
-                        .CreateCategory<Category>(item, RebotsCategoryAssetType.Menu, helpdeskScreen.ClickCsCategory, out menuUIElement);
+                        .CreateCategory<Category>(item, RebotsCategoryAssetType.Menu, clickAction, out menuUIElement);
                     m_MenuCsCategoryList.Add(menuUIElement);
                 }
             }

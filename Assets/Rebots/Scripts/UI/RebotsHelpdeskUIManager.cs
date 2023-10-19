@@ -8,17 +8,17 @@ namespace Rebots.HelpDesk
     public class RebotsHelpdeskUIManager : MonoBehaviour
     {
         [Header("Screens")]
-        [SerializeField] RebotsHelpdeskScreen m_RebotsHelpdeskScreen;
-        [SerializeField] RebotsBannerScreen m_RebotsBannerScreen;
+        [SerializeField] RebotsHelpdeskScreen rebotsHelpdeskScreen;
+        [SerializeField] RebotsBannerScreen rebotsBannerScreen;
 
-        List<RebotsModalScreen> m_AllModalScreens = new List<RebotsModalScreen>();
+        List<RebotsModalScreen> AllModalScreens = new List<RebotsModalScreen>();
 
-        UIDocument m_UIDocument;
-        public UIDocument UIDocument => m_UIDocument;
+        UIDocument uiDocument;
+        public UIDocument UIDocument => uiDocument;
 
         void OnEnable()
         {
-            m_UIDocument = GetComponent<UIDocument>();
+            this.uiDocument = GetComponent<UIDocument>();
 
             SetupModalScreens();
 
@@ -34,21 +34,21 @@ namespace Rebots.HelpDesk
         {
             Time.timeScale = 1f;
 
-            m_RebotsBannerScreen?.CheckEventBanner();
+            rebotsBannerScreen?.CheckEventBanner();
         }
 
         void SetupModalScreens()
         {
-            if (m_RebotsHelpdeskScreen != null)
-                m_AllModalScreens.Add(m_RebotsHelpdeskScreen);
+            if (rebotsHelpdeskScreen != null)
+                AllModalScreens.Add(rebotsHelpdeskScreen);
 
-            if (m_RebotsBannerScreen != null)
-                m_AllModalScreens.Add(m_RebotsBannerScreen);
+            if (rebotsBannerScreen != null)
+                AllModalScreens.Add(rebotsBannerScreen);
         }
 
         void ShowModalScreen(RebotsModalScreen modalScreen)
         {
-            foreach (RebotsModalScreen m in m_AllModalScreens)
+            foreach (RebotsModalScreen m in AllModalScreens)
             {
                 if (m == modalScreen)
                 {
@@ -63,17 +63,17 @@ namespace Rebots.HelpDesk
 
         public void PublicCallCheckEventBanner()
         {
-            this.m_RebotsBannerScreen?.CheckEventBanner();
+            this.rebotsBannerScreen?.CheckEventBanner();
         }
 
         public void RebotsHelpdeskShow()
         {
-            ShowModalScreen(m_RebotsHelpdeskScreen);
+            ShowModalScreen(rebotsHelpdeskScreen);
         }
 
         public void RebotsBannerShow()
         {
-            ShowModalScreen(m_RebotsBannerScreen);
+            ShowModalScreen(rebotsBannerScreen);
         }
     }
 }

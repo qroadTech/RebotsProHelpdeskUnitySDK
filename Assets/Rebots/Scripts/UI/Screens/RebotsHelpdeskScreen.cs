@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using UnityEngine.Events;
 using Assets.Rebots;
+using System.Linq;
 
 namespace Rebots.HelpDesk
 {
@@ -61,13 +62,9 @@ namespace Rebots.HelpDesk
         public VisualElement m_HelpdeskScreen;
         #endregion
 
-        public Category m_Category { get; private set; }
-        public Faq m_Faq { get; private set; }
-        public string m_SearchString { get; private set; }
-        public Dictionary<TicketCategoryInputField, object> m_FieldDic { get; private set; }
-        public List<RebotsPageRecord> m_PageRecords { get; private set; } = new();
-
-        public readonly int listPagingSize = 10;
+        public Dictionary<TicketCategoryInputField, object> FieldDictionary { get; private set; }
+        public List<RebotsPageRecord> PageRecords { get; private set; } = new();
+        public int ListPageSize { get; private set; } = 10;
 
         #region Run in 'Awake' call
         protected override void SetVisualElements()
@@ -75,6 +72,7 @@ namespace Rebots.HelpDesk
             base.SetVisualElements();
 
             m_HelpdeskScreen = m_Root.Q(RebotsUIStaticString.HelpdeskScreen);
+            ListPageSize = 10;
         }
         #endregion
 
@@ -118,7 +116,7 @@ namespace Rebots.HelpDesk
         public void ShowMain(bool isOpen, bool isLanguageChange = false)
         {
             HidePage(RebotsPageType.MainTitle);
-            this.m_PageRecords = isOpen ? new List<RebotsPageRecord>() : this.m_PageRecords;
+            this.PageRecords = isOpen ? new List<RebotsPageRecord>() : this.PageRecords;
             ClearData(RebotsPageType.MainTitle, RebotsPageName.Main);
 
             rebotsSettingManager.LoadFaqRecommendList(rebotsPageUI.OnFaqRecommendUpdated);
@@ -144,8 +142,7 @@ namespace Rebots.HelpDesk
             HidePage(RebotsPageType.PageTitle);
             ClearData(RebotsPageType.PageTitle, RebotsPageName.Faq);
 
-            this.m_Faq = faq;
-            rebotsSettingManager.LoadFaq(rebotsPageUI.OnFaqUpdated, m_Faq.id);
+            rebotsSettingManager.LoadFaq(rebotsPageUI.OnFaqUpdated, faq.id);
 
             AddPageState(RebotsPageType.PageTitle, RebotsPageName.Faq, faq);
             ShowPage(RebotsPageType.PageTitle, RebotsPageName.Faq);
@@ -156,7 +153,6 @@ namespace Rebots.HelpDesk
             HidePage(RebotsPageType.NoTitleLabel);
             ClearData(RebotsPageType.NoTitleLabel, RebotsPageName.SearchList);
 
-            this.m_SearchString = pagingData.Data;
             rebotsSettingManager.LoadFaqSearchList(rebotsPageUI.OnFaqSearchUpdated, pagingData.Data, pagingData.Page);
 
             if (pagingData.Page == 1)
@@ -173,8 +169,7 @@ namespace Rebots.HelpDesk
                 HidePage(RebotsPageType.PageTitle);
                 ClearData(RebotsPageType.PageTitle, RebotsPageName.FaqList);
 
-                this.m_Category = pagingData.Data;
-                rebotsSettingManager.LoadFaqCategory(rebotsPageUI.OnSubCategoryUpdated, m_Category.id, pagingData.Page, listPagingSize);
+                rebotsSettingManager.LoadFaqCategory(rebotsPageUI.OnSubCategoryUpdated, pagingData.Data.id, pagingData.Page, ListPageSize);
 
                 if (pagingData.Page == 1)
                 {
@@ -189,8 +184,7 @@ namespace Rebots.HelpDesk
             HidePage(RebotsPageType.PageTitle);
             ClearData(RebotsPageType.PageTitle, RebotsPageName.InquiryList);
 
-            this.m_Category = category;
-            rebotsSettingManager.LoadCsCategory(rebotsPageUI.OnSubCategoryUpdated, m_Category.id);
+            rebotsSettingManager.LoadCsCategory(rebotsPageUI.OnSubCategoryUpdated, category.id);
 
             AddPageState(RebotsPageType.PageTitle, RebotsPageName.InquiryList, category);
             ShowPage(RebotsPageType.PageTitle, RebotsPageName.InquiryList);
@@ -201,9 +195,8 @@ namespace Rebots.HelpDesk
             HidePage(RebotsPageType.PageTitle);
             ClearData(RebotsPageType.PageTitle, RebotsPageName.TicketCreate);
 
-            this.m_FieldDic = new Dictionary<TicketCategoryInputField, object>();
-            this.m_Category = category;
-            rebotsSettingManager.LoadCsCategoryFieldList(rebotsPageUI.OnCsCategoryFieldsUpdated, m_Category.id);
+            this.FieldDictionary = new Dictionary<TicketCategoryInputField, object>();
+            rebotsSettingManager.LoadCsCategoryFieldList(rebotsPageUI.OnCsCategoryFieldsUpdated, category.id);
 
             AddPageState(RebotsPageType.PageTitle, RebotsPageName.TicketCreate, category);
             ShowPage(RebotsPageType.PageTitle, RebotsPageName.TicketCreate);
@@ -415,39 +408,22 @@ namespace Rebots.HelpDesk
             StartCoroutine(LanguageInitialize());
         }
 
-        public void ClickCsCategory(Category category)
-        {
-            if (category.childFieldCount > 0)
-            {
-                ShowCsSubCategory(category);
-            }
-            else
-            {
-                ShowTicketCreate(category);
-            }
-        }
-
         public void ClickFaqCategory(Category category)
         {
             ShowFaqSubCategory(new RebotsPagingData<Category>(category));
         }
 
-        public void ClickFaq(Faq faq)
-        {
-            ShowFaq(faq);
-        }
-
         public void ClickSearch()
         {
-            this.m_SearchString = rebotsLayoutUI.m_SearchField.GetValue();
-            if (string.IsNullOrEmpty(this.m_SearchString.Trim()))
+            var searchString = rebotsLayoutUI.m_SearchField.GetValue().Trim();
+            if (string.IsNullOrEmpty(searchString))
             {
                 return;
             }
-            ShowSearch(new RebotsPagingData<string>(this.m_SearchString));
+            ShowSearch(new RebotsPagingData<string>(searchString));
         }
 
-        public void ClickTicketSubmit(bool privacyValue)
+        public void ClickTicketSubmit(bool privacyValue, Category category)
         {
             if (!privacyValue)
             {
@@ -457,9 +433,12 @@ namespace Rebots.HelpDesk
             bool checkValidation = true;
             var ticketInputFields = new DictionaryTicketInputFormData();
             var ticketAddFieldDic = new Dictionary<string, string>();
-            ticketInputFields.SelectedCategory = m_Category;
-            foreach (var item in m_FieldDic)
+            ticketInputFields.SelectedCategory = category;
+            var fieldDic = FieldDictionary.ToArray();
+            var fieldCount = fieldDic.Length;
+            for (int i = 0; i < fieldCount; i++)
             {
+                var item = fieldDic[i];
                 var field = item.Key;
                 if (field.fieldType == RebotsInputFieldType.Text || field.fieldType == RebotsInputFieldType.Textarea)
                 {
@@ -543,7 +522,7 @@ namespace Rebots.HelpDesk
         #region Page Recording Controller 
         private void AddPageState(RebotsPageType type, RebotsPageName name, object parameter = null)
         {
-            m_PageRecords.Add(new RebotsPageRecord()
+            PageRecords.Add(new RebotsPageRecord()
             {
                 PageType = type,
                 PageName = name,
@@ -555,23 +534,23 @@ namespace Rebots.HelpDesk
         {
             if (isGoBack)
             {
-                if (m_PageRecords.Count <= 1)
+                if (PageRecords.Count <= 1)
                 {
-                    m_PageRecords = new List<RebotsPageRecord>();
+                    PageRecords = new List<RebotsPageRecord>();
                     ShowMain(false);
                     return;
                 }
             }
 
-            var CurrentPage = m_PageRecords[m_PageRecords.Count - 1];
+            var CurrentPage = PageRecords[PageRecords.Count - 1];
             var ReloadPage = CurrentPage;
             if (isGoBack)
             {
-                var BackPage = m_PageRecords[m_PageRecords.Count - 2];
+                var BackPage = PageRecords[PageRecords.Count - 2];
                 ReloadPage = BackPage;
-                m_PageRecords.Remove(BackPage);
+                PageRecords.Remove(BackPage);
             }
-            m_PageRecords.Remove(CurrentPage);
+            PageRecords.Remove(CurrentPage);
 
             switch (ReloadPage.PageName)
             {
@@ -699,10 +678,10 @@ namespace Rebots.HelpDesk
         }
         #endregion
 
-        #region (public) Add m_FieldDic
+        #region (public) Add FieldDictionary
         public void AddFieldDic(TicketCategoryInputField field, object fieldUIComponent)
         {
-            m_FieldDic.Add(field, fieldUIComponent);
+            FieldDictionary.Add(field, fieldUIComponent);
         }
         #endregion
 
