@@ -22,7 +22,7 @@
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-page-route-container" style="flex-direction: row; flex-wrap: wrap; margin-bottom: 25px; align-items: center; display: flex;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="rebots-main-container" style="display: flex;">
+                        <ui:VisualElement name="rebots-main-container" style="display: none;">
                             <ui:VisualElement name="rebots-faq-popular-container" style="display: flex;">
                                 <ui:VisualElement style="flex-direction: row; flex-shrink: 0; margin-left: 16px; margin-right: 16px; margin-top: 45px; margin-bottom: 35px;">
                                     <ui:VisualElement style="justify-content: space-around;">
@@ -109,18 +109,15 @@
                         <ui:VisualElement name="rebots-ticket-create-container" style="margin-left: 16px; margin-right: 16px; display: none;">
                             <ui:VisualElement name="rebots-field-list-container" style="flex-shrink: 0; margin-top: 20px; margin-bottom: 20px;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="rebots-ticket-success-container" style="flex-shrink: 0; flex-grow: 1; justify-content: space-around; margin-left: 15px; margin-right: 15px; display: none;">
-                            <ui:VisualElement style="align-items: center; width: 100%; margin-top: 150px; margin-bottom: 110px; padding-left: 20px; padding-right: 20px; padding-top: 50px; padding-bottom: 50px; min-width: auto; min-height: auto; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BoxRoundSmall.png?fileID=21300000&amp;guid=4128ef4419de0be41ab4a13b8d319144&amp;type=3#BoxRoundSmall&apos;);">
-                                <ui:VisualElement name="rebots-ticket-button-icon" class="rebots-background-color__theme" style="align-items: center; justify-content: space-around; width: 52px; height: 52px; border-top-left-radius: 26px; border-bottom-left-radius: 26px; border-top-right-radius: 26px; border-bottom-right-radius: 26px;">
-                                    <ui:VisualElement style="width: 32px; height: 32px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/TicketButton.png?fileID=21300000&amp;guid=35b68ee606916fa43bd15283b18bb5a4&amp;type=3#TicketButton&apos;); -unity-background-scale-mode: scale-to-fit;" />
-                                </ui:VisualElement>
-                                <ui:VisualElement style="align-items: center; justify-content: center; margin-top: 25px; margin-bottom: 25px;">
+                        <ui:VisualElement name="rebots-ticket-success-container" style="flex-shrink: 0; flex-grow: 1; justify-content: space-around; margin-left: 15px; margin-right: 15px; display: flex;">
+                            <ui:VisualElement style="align-items: center; width: 100%; margin-top: 150px; margin-bottom: 110px; padding-left: 20px; padding-right: 20px; padding-top: 60px; padding-bottom: 50px; min-width: auto; min-height: auto; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BoxRoundSmall.png?fileID=21300000&amp;guid=4128ef4419de0be41ab4a13b8d319144&amp;type=3#BoxRoundSmall&apos;);">
+                                <ui:VisualElement style="align-items: center; justify-content: center; margin-top: 0; margin-bottom: 25px;">
                                     <ui:Label text="Your inquiry has been received." display-tooltip-when-elided="true" name="rebots-been-received" class="rebots-label__black16 rebots-font-color__black" style="min-height: 22px;" />
                                     <ui:Label text="We will reply by e-mail as soon as possible." display-tooltip-when-elided="true" name="rebots-will-reply" class="rebots-label__regular16 rebots-font-color__black" style="margin-top: 2px; -unity-text-align: middle-center;" />
                                     <ui:Label text="Thank you." display-tooltip-when-elided="true" name="rebots-thank-you" class="rebots-label__regular16 rebots-font-color__black" style="-unity-text-align: middle-center;" />
                                 </ui:VisualElement>
-                                <ui:Button display-tooltip-when-elided="true" name="rebots-main-button" style="min-width: 250px; min-height: 36px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgba(255, 255, 255, 0); align-items: center; justify-content: center; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-left-color: rgb(34, 34, 34); border-right-color: rgb(34, 34, 34); border-top-color: rgb(34, 34, 34); border-bottom-color: rgb(34, 34, 34);">
-                                    <ui:Label text="Return to Main" display-tooltip-when-elided="true" name="rebots-return-main" class="rebots-label__regular14 rebots-font-color__black" />
+                                <ui:Button display-tooltip-when-elided="true" name="rebots-main-button" style="min-width: 250px; min-height: 36px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgb(40, 40, 40); align-items: center; justify-content: center; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-left-color: rgb(34, 34, 34); border-right-color: rgb(34, 34, 34); border-top-color: rgb(34, 34, 34); border-bottom-color: rgb(34, 34, 34); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0;">
+                                    <ui:Label text="Return to Main" display-tooltip-when-elided="true" name="rebots-return-main" class="rebots-label__regular14 rebots-font-color__white" />
                                 </ui:Button>
                             </ui:VisualElement>
                         </ui:VisualElement>

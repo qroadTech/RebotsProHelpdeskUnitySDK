@@ -15,7 +15,6 @@ namespace Rebots.HelpDesk
         [SerializeField] VisualTreeAsset ButtonGroupFieldAsset;
         [SerializeField] VisualTreeAsset CategoryAsset;
         [SerializeField] VisualTreeAsset CheckAsset;
-        [SerializeField] VisualTreeAsset ContentCategoryAsset;
         [SerializeField] VisualTreeAsset DropdownFieldAsset;
         [SerializeField] VisualTreeAsset FaqAsset;
         [SerializeField] VisualTreeAsset LanguageAsset;
@@ -28,7 +27,6 @@ namespace Rebots.HelpDesk
         [SerializeField] VisualTreeAsset RouteLabelAsset;
         [SerializeField] VisualTreeAsset SearchFaqAsset;
         [SerializeField] VisualTreeAsset SiblingCategoryAsset;
-        [SerializeField] VisualTreeAsset SubCategoryAsset;
         [SerializeField] VisualTreeAsset TextareaFieldAsset;
         [SerializeField] VisualTreeAsset TextFieldAsset;
         [SerializeField] VisualTreeAsset TicketAsset;
@@ -47,20 +45,24 @@ namespace Rebots.HelpDesk
             uiElement = languageUIElement;
         }
 
-        public void CreateRouteLabel(string categoryName, bool isSelected, out Label label)
+        public void CreateRouteLabel(Category category, bool isSelected, Action<Category>? clickAction, out Label label)
         {
             Label labelUIElement = new Label();
             if (isSelected)
             {
-                labelUIElement.text = categoryName;
+                labelUIElement.text = category.name;
                 labelUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Black16);
                 labelUIElement.AddToClassList(RebotsUIStaticString.RebotsFontColor_Black);
             }
             else
             {
-                labelUIElement.text = categoryName + " >";
+                labelUIElement.text = category.name + " >";
                 labelUIElement.AddToClassList(RebotsUIStaticString.RebotsLabel_Bold16);
                 labelUIElement.AddToClassList(RebotsUIStaticString.RebotsFontColor_Grey);
+                if (clickAction != null)
+                {
+                    labelUIElement.RegisterCallback<ClickEvent>(evt => clickAction(category));
+                }
                 labelUIElement.style.paddingRight = 5f;
             }
 
@@ -72,11 +74,8 @@ namespace Rebots.HelpDesk
             TemplateContainer categoryUIElement = null;
             switch (type)
             {
-                case RebotsCategoryAssetType.Cs:
+                case RebotsCategoryAssetType.Category:
                     categoryUIElement = CategoryAsset.Instantiate();
-                    break;
-                case RebotsCategoryAssetType.Contents:
-                    categoryUIElement = ContentCategoryAsset.Instantiate();
                     break;
                 case RebotsCategoryAssetType.Faq:
                     categoryUIElement = FaqAsset.Instantiate();
@@ -95,9 +94,6 @@ namespace Rebots.HelpDesk
                     categoryUIElement = SiblingCategoryAsset.Instantiate();
                     categoryUIElement.RemoveAt(0);
                     break;
-                case RebotsCategoryAssetType.Sub:
-                    categoryUIElement = SubCategoryAsset.Instantiate();
-                    break;
             }
 
             RebotsCategoryComponent<T> categoryComponent = new RebotsCategoryComponent<T>(Category);
@@ -108,7 +104,7 @@ namespace Rebots.HelpDesk
 
             if (type == RebotsCategoryAssetType.Sibling || type == RebotsCategoryAssetType.Selected || type == RebotsCategoryAssetType.Lower)
             {
-                categoryUIElement.style.flexGrow = 1;
+                categoryUIElement.style.flexGrow = 0;
                 categoryUIElement.style.flexShrink = 0;
                 uiElement = categoryUIElement;
             }
@@ -203,11 +199,11 @@ namespace Rebots.HelpDesk
             }
         }
 
-        public void CreatePrivacyField(PrivacySetting ticketPrivacySetting, string[] transData, Action<bool> clickAction, out TemplateContainer uiElement)
+        public void CreatePrivacyField(PrivacySetting ticketPrivacySetting, string[] transData, Category category, Action<bool, Category> clickAction, out TemplateContainer uiElement)
         {
             TemplateContainer PrivacyUIElement = PrivacyFieldAsset.Instantiate();
 
-            RebotsPrivacyComponent privacyComponent = new RebotsPrivacyComponent(ticketPrivacySetting, transData);
+            RebotsPrivacyComponent privacyComponent = new RebotsPrivacyComponent(ticketPrivacySetting, transData, category);
 
             privacyComponent.SetVisualElements(PrivacyUIElement);
             privacyComponent.SetPrivacyData(PrivacyUIElement);

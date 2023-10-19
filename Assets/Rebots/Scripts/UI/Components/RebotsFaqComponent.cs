@@ -7,24 +7,25 @@ namespace Rebots.HelpDesk
 {
     public class RebotsFaqComponent
     {
-        const string k_FaqButton = "rebots-faq-button";
-        const string k_FaqCategoryRouteLabel = "rebots-category-route-label";
-        const string k_FaqTitleLabel = "rebots-faq-title-label";
-        const string k_FaqContentsLabel = "rebots-contents-label";
-        const string k_FaqLikeCountLabel = "rebots-faq-like-label";
+        const string FaqButton = "rebots-faq-button";
+        const string FaqCategoryRouteLabel = "rebots-category-route-label";
+        const string FaqTitleLabel = "rebots-faq-title-label";
+        const string FaqContentsLabel = "rebots-contents-label";
+        const string FaqLikeCountLabel = "rebots-faq-like-label";
 
-        Faq m_Faq;
-        RebotsFaqAssetType faqType;
-        string searchStr;
         Button m_FaqButton;
         Label m_FaqCategoryRouteLabel;
         Label m_FaqTitleLabel;
         Label m_FaqContentsLabel;
         Label m_FaqLikeCountLabel;
 
+        private Faq faq;
+        private RebotsFaqAssetType faqType;
+        private string searchStr;
+
         public RebotsFaqComponent(Faq faq, RebotsFaqAssetType faqType, string? search)
         {
-            this.m_Faq = faq;
+            this.faq = faq;
             this.faqType = faqType;
             if (!string.IsNullOrEmpty(search))
             {
@@ -39,11 +40,11 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            m_FaqButton = faqUIElement.Q<Button>(k_FaqButton);
-            m_FaqCategoryRouteLabel = faqUIElement.Q<Label>(k_FaqCategoryRouteLabel);
-            m_FaqTitleLabel = faqUIElement.Q<Label>(k_FaqTitleLabel);
-            m_FaqContentsLabel = faqUIElement.Q<Label> (k_FaqContentsLabel);
-            m_FaqLikeCountLabel = faqUIElement.Q<Label>(k_FaqLikeCountLabel);
+            m_FaqButton = faqUIElement.Q<Button>(FaqButton);
+            m_FaqCategoryRouteLabel = faqUIElement.Q<Label>(FaqCategoryRouteLabel);
+            m_FaqTitleLabel = faqUIElement.Q<Label>(FaqTitleLabel);
+            m_FaqContentsLabel = faqUIElement.Q<Label> (FaqContentsLabel);
+            m_FaqLikeCountLabel = faqUIElement.Q<Label>(FaqLikeCountLabel);
         }
 
         public void SetFaqData(TemplateContainer faqUIElement)
@@ -53,7 +54,7 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            var routeCategories = m_Faq.categories;
+            var routeCategories = faq.categories;
             var routeCategoryStr = "";
             foreach (var category in routeCategories)
             {
@@ -62,11 +63,11 @@ namespace Rebots.HelpDesk
             }
             m_FaqCategoryRouteLabel.text = routeCategoryStr;
 
-            var faqTitleStr = m_Faq.title;
+            var faqTitleStr = faq.title;
 
             if (faqType == RebotsFaqAssetType.Popular)
             {
-                m_FaqLikeCountLabel.text = m_Faq.likeCount.ToString();
+                m_FaqLikeCountLabel.text = faq.likeCount.ToString();
                 m_FaqTitleLabel.text = faqTitleStr;
             }
 
@@ -76,7 +77,7 @@ namespace Rebots.HelpDesk
                 faqTitleStr = faqTitleStr.Replace(searchStr, searchHtml);
                 m_FaqTitleLabel.text = faqTitleStr;
                 
-                var contents = HtmlParser.HtmlToRemoveTag(m_Faq.contents.ToString());
+                var contents = HtmlParser.HtmlToRemoveTag(faq.contents.ToString());
                 contents = contents.Replace(searchStr, searchHtml);
                 m_FaqContentsLabel.text = contents;
             }
@@ -84,7 +85,7 @@ namespace Rebots.HelpDesk
 
         public void RegisterCallbacks(Action<Faq> faqAction)
         {
-            m_FaqButton?.RegisterCallback<ClickEvent>(evt => faqAction(m_Faq));
+            m_FaqButton?.RegisterCallback<ClickEvent>(evt => faqAction(faq));
         }
     }
 }

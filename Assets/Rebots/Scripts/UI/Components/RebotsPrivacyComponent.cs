@@ -28,14 +28,16 @@ namespace Rebots.HelpDesk
         Toggle m_PrivacyCheck; 
         Button m_TicketSubmitButton;
 
-        private PrivacySetting m_ticketPrivacySetting;
-        private string[] m_transData;
+        private Category category = new();
+        private PrivacySetting ticketPrivacySetting = new();
+        private string[] transData;
         private bool privacyValue = false;
 
-        public RebotsPrivacyComponent(PrivacySetting ticketPrivacySetting, string[] transData)
+        public RebotsPrivacyComponent(PrivacySetting ticketPrivacySetting, string[] transData, Category category)
         {
-            m_ticketPrivacySetting = ticketPrivacySetting;
-            m_transData = transData;
+            this.category = category;
+            this.ticketPrivacySetting = ticketPrivacySetting;
+            this.transData = transData;
         }
 
         public void SetVisualElements(TemplateContainer privacyUIElement)
@@ -62,52 +64,52 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            if (!m_ticketPrivacySetting.usePrivacyPolicyURL)
+            if (!ticketPrivacySetting.usePrivacyPolicyURL)
             {
                 m_PrivacyTextContainer.style.display = DisplayStyle.None;
                 m_PrivacyLinkContainer.style.display = DisplayStyle.Flex;
 
-                m_PrivacyLinkButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(m_ticketPrivacySetting.privacyPolicyURL));
+                m_PrivacyLinkButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(ticketPrivacySetting.privacyPolicyURL));
             }
             else
             {
                 m_PrivacyTextContainer.style.display = DisplayStyle.Flex;
                 m_PrivacyLinkContainer.style.display = DisplayStyle.None;
 
-                if (!m_ticketPrivacySetting.useFormPrivacyPolicy)
+                if (!ticketPrivacySetting.useFormPrivacyPolicy)
                 {
                     string formStr = "";
                     
-                    if(!string.IsNullOrEmpty(m_ticketPrivacySetting.formPurposeText.Trim()))
+                    if(!string.IsNullOrEmpty(ticketPrivacySetting.formPurposeText.Trim()))
                     {
-                        formStr += string.Format(FormStringFormat, m_transData[0], m_ticketPrivacySetting.formPurposeText.Trim());
+                        formStr += string.Format(FormStringFormat, transData[0], ticketPrivacySetting.formPurposeText.Trim());
                     }
-                    if(!string.IsNullOrEmpty(m_ticketPrivacySetting.formItemText.Trim()))
+                    if(!string.IsNullOrEmpty(ticketPrivacySetting.formItemText.Trim()))
                     {
-                        formStr += string.Format(FormStringFormat, m_transData[1], m_ticketPrivacySetting.formItemText.Trim());
+                        formStr += string.Format(FormStringFormat, transData[1], ticketPrivacySetting.formItemText.Trim());
                     }
-                    if(!string.IsNullOrEmpty(m_ticketPrivacySetting.formPeriodText.Trim()))
+                    if(!string.IsNullOrEmpty(ticketPrivacySetting.formPeriodText.Trim()))
                     {
-                        formStr += string.Format(FormStringFormat, m_transData[2], m_ticketPrivacySetting.formPeriodText.Trim());
+                        formStr += string.Format(FormStringFormat, transData[2], ticketPrivacySetting.formPeriodText.Trim());
                     }
-                    if(!string.IsNullOrEmpty(m_ticketPrivacySetting.formAgencyNameText.Trim()))
+                    if(!string.IsNullOrEmpty(ticketPrivacySetting.formAgencyNameText.Trim()))
                     {
-                        formStr += string.Format(FormStringFormat, m_transData[3], m_ticketPrivacySetting.formAgencyNameText.Trim());
+                        formStr += string.Format(FormStringFormat, transData[3], ticketPrivacySetting.formAgencyNameText.Trim());
                     }
-                    if(!string.IsNullOrEmpty(m_ticketPrivacySetting.formAgencyProivdeText.Trim()))
+                    if(!string.IsNullOrEmpty(ticketPrivacySetting.formAgencyProivdeText.Trim()))
                     {
-                        formStr += string.Format(FormStringFormat, m_transData[4], m_ticketPrivacySetting.formAgencyProivdeText.Trim());
+                        formStr += string.Format(FormStringFormat, transData[4], ticketPrivacySetting.formAgencyProivdeText.Trim());
                     }
-                    if(!string.IsNullOrEmpty(m_ticketPrivacySetting.formAgencyPeriodText.Trim()))
+                    if(!string.IsNullOrEmpty(ticketPrivacySetting.formAgencyPeriodText.Trim()))
                     {
-                        formStr += string.Format(FormStringFormat, m_transData[5], m_ticketPrivacySetting.formAgencyPeriodText.Trim());
+                        formStr += string.Format(FormStringFormat, transData[5], ticketPrivacySetting.formAgencyPeriodText.Trim());
                     }
 
                     m_PrivacyTextLabel.text = formStr;
                 }
                 else
                 {
-                    m_PrivacyTextLabel.text = m_ticketPrivacySetting.privacyPolicyText;
+                    m_PrivacyTextLabel.text = ticketPrivacySetting.privacyPolicyText;
                 }
             }
 
@@ -120,9 +122,9 @@ namespace Rebots.HelpDesk
             m_TicketSubmitButton.AddToClassList(RebotsUIStaticString.RebotsBackgroundColor_Grey);
         }
 
-        public void RegisterCallbacks(Action<bool> submitAction)
+        public void RegisterCallbacks(Action<bool, Category> submitAction)
         {
-            m_TicketSubmitButton?.RegisterCallback<ClickEvent>(evt => submitAction(privacyValue));
+            m_TicketSubmitButton?.RegisterCallback<ClickEvent>(evt => submitAction(privacyValue, category));
         }
 
         void ChangePrivacyValue(ChangeEvent<bool> evt)

@@ -46,16 +46,18 @@ namespace Rebots.HelpDesk
 
         public string SetLanguage(RebotsLanguage selectLanguage)
         {
-            foreach (var item in settingLanguages)
+            var count = settingLanguages.Count();
+            for (int i = 0; i < count; i++)
             {
-                if (item.languageValue == selectLanguage)
+                var language = settingLanguages[i];
+                if (language.languageValue == selectLanguage)
                 {
-                    item.isCurrent = true;
-                    language = item.languageCode;
+                    language.isCurrent = true;
+                    this.language = language.languageCode;
                 }
                 else
                 {
-                    item.isCurrent = false;
+                    language.isCurrent = false;
                 }
             }
             return language;
@@ -63,16 +65,18 @@ namespace Rebots.HelpDesk
 
         public string SetLanguage(string selectLanguage)
         {
-            foreach (var item in settingLanguages)
+            var count = settingLanguages.Count();
+            for (int i = 0; i < count; i++)
             {
-                if (item.languageCode == selectLanguage)
+                var language = settingLanguages[i];
+                if (language.languageCode == selectLanguage)
                 {
-                    item.isCurrent = true;
-                    language = item.languageCode;
+                    language.isCurrent = true;
+                    this.language = language.languageCode;
                 }
                 else
                 {
-                    item.isCurrent = false;
+                    language.isCurrent = false;
                 }
             }
             return language;

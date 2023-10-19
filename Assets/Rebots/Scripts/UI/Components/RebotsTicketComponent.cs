@@ -13,7 +13,6 @@ namespace Rebots.HelpDesk
         const string TicketStateContainer = "rebots-ticket-state-container";
         const string TicketStateLabel = "rebots-ticket-state-label";
 
-        HelpdeskTicket m_Ticket;
         Button m_TicketButton;
         Label m_TicketNoLabel;
         Label m_TicketCategoryLabel;
@@ -21,9 +20,11 @@ namespace Rebots.HelpDesk
         VisualElement m_TicketStateContainer;
         Label m_TicketStateLabel;
 
+        private HelpdeskTicket ticket;
+
         public RebotsTicketComponent(HelpdeskTicket ticket)
         {
-            m_Ticket = ticket;
+            this.ticket = ticket;
         }
 
         public void SetVisualElements(TemplateContainer ticketUIElement)
@@ -48,18 +49,18 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            m_TicketNoLabel.text = m_Ticket.ticketId;
+            m_TicketNoLabel.text = ticket.ticketId;
 
-            var routeCategories = m_Ticket.categories;
+            var routeCategories = ticket.categories;
             var routeCategoryStr = "";
             foreach (var category in routeCategories)
             {
                 routeCategoryStr = routeCategoryStr == "" ? category.name : category.name + " > " + routeCategoryStr;
             }
-            var createDateStr = (string.Format("{0:d}", m_Ticket.created));
+            var createDateStr = (string.Format("{0:d}", ticket.created));
             m_TicketCategoryLabel.text = createDateStr;
 
-            var ticketData = m_Ticket.data;
+            var ticketData = ticket.data;
             var ticketPreviewStr = string.IsNullOrEmpty(ticketData.content) ? "" : ticketData.content;
             if (ticketPreviewStr.Length > 25)
             {
@@ -68,7 +69,7 @@ namespace Rebots.HelpDesk
             }
             m_TicketPreviewLabel.text = ticketPreviewStr;
 
-            if (m_Ticket.isAnswers)
+            if (ticket.isAnswers)
             {
                 m_TicketStateContainer.AddToClassList(RebotsUIStaticString.RebotsBackgroundColor_Theme);
                 m_TicketStateLabel.text = "Completed";
@@ -82,7 +83,7 @@ namespace Rebots.HelpDesk
 
         public void RegisterCallbacks(Action<HelpdeskTicket> ticketAction)
         {
-            m_TicketButton?.RegisterCallback<ClickEvent>(evt => ticketAction(m_Ticket));
+            m_TicketButton?.RegisterCallback<ClickEvent>(evt => ticketAction(ticket));
         }
     }
 }

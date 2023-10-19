@@ -10,16 +10,17 @@ namespace Rebots.HelpDesk
         const string LanguageLabel = "rebots-language-label";
         const string LanguageSelectedContainer = "rebots-language-check-container";
 
-        RebotsLanguageInfo m_LanguageInfo;
-        string m_LanuageText;
         Button m_LanguageButton;
         Label m_LanguageLabel;
         VisualElement m_LanguageSelectedContainer;
 
+        private RebotsLanguageInfo languageInfo;
+        private string lanuageText;
+
         public RebotsLanguageComponent(RebotsLanguageInfo settinglanguage, string lanuageText)
         {
-            m_LanguageInfo = settinglanguage;
-            m_LanuageText = lanuageText;
+            this.languageInfo = settinglanguage;
+            this.lanuageText = lanuageText;
         }
 
         public void SetVisualElements(TemplateContainer languageUIElement)
@@ -43,14 +44,14 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            m_LanguageLabel.text = m_LanuageText;
+            m_LanguageLabel.text = lanuageText;
 
-            if (m_LanguageInfo.isCurrent)
+            if (languageInfo.isCurrent)
             {
                 m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsLanguageLabel_Black20);
                 m_LanguageSelectedContainer.style.display = DisplayStyle.Flex;
 
-                switch (m_LanguageInfo.languageValue)
+                switch (languageInfo.languageValue)
                 {
                     case RebotsLanguage.Korean:
                         m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontKr_Black);
@@ -81,7 +82,7 @@ namespace Rebots.HelpDesk
                 m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsLanguageLabel_Bold20);
                 m_LanguageSelectedContainer.style.display = DisplayStyle.None;
 
-                switch (m_LanguageInfo.languageValue)
+                switch (languageInfo.languageValue)
                 {
                     case RebotsLanguage.Korean:
                         m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontKr_Regular);
@@ -111,7 +112,7 @@ namespace Rebots.HelpDesk
 
         public void RegisterCallbacks(Action<RebotsLanguageInfo> action)
         {
-            m_LanguageButton?.RegisterCallback<ClickEvent>(evt => action(m_LanguageInfo));
+            m_LanguageButton?.RegisterCallback<ClickEvent>(evt => action(languageInfo));
         }
     }
 }

@@ -3,6 +3,7 @@ using HelpDesk.Sdk.Common.Objects;
 using HelpDesk.Sdk.Common.Protocols.Responses;
 using HelpDesk.Sdk.Library.Utility;
 using Newtonsoft.Json;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,12 +78,11 @@ namespace Rebots.HelpDesk
         public VisualElement m_TicketAnswerList;
         #endregion
 
-        private RebotsLocalizationManager localizationManager;
-
-        public PrivacySetting m_TicketPrivacySetting { get; private set; }
-        public string m_Theme { get; private set; }
-        public bool m_ScreenPortrait { get; private set; } = true;
-        public Dictionary<string, string> m_ParameterDic { get; private set; }
+        public RebotsLocalizationManager LocalizationManager { get; private set; }
+        public PrivacySetting TicketPrivacySetting { get; private set; }
+        public string Theme { get; private set; }
+        public bool ScreenPortrait { get; private set; } = true;
+        public Dictionary<string, string> ParameterDic { get; private set; }
 
         #region Run in 'Awake' call
         protected override void SetVisualElements()
@@ -160,50 +160,51 @@ namespace Rebots.HelpDesk
         #region Set before show page
         public void SetTranslationText()
         {
-            localizationManager = helpdeskScreen.rebotsSettingManager.localizationManager;
+            LocalizationManager = helpdeskScreen.rebotsSettingManager.localizationManager;
 
-            m_PopularFaqCation.text = localizationManager.translationDic[RebotsUIStaticString.PopularFaqCation];
+            m_PopularFaqCation.text = LocalizationManager.translationDic[RebotsUIStaticString.PopularFaqCation];
 
-            m_FaqHelpfulLabel.text = localizationManager.translationDic[RebotsUIStaticString.FaqHelpfulLabel];
-            m_HelpfulYesLabel.text = localizationManager.translationDic[RebotsUIStaticString.HelpfulYesLabel];
-            m_HelpfulNoLabel.text = localizationManager.translationDic[RebotsUIStaticString.HelpfulNoLabel];
+            m_FaqHelpfulLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.FaqHelpfulLabel];
+            m_HelpfulYesLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.HelpfulYesLabel];
+            m_HelpfulNoLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.HelpfulNoLabel];
 
-            m_TicketReceivedLabel.text = localizationManager.translationDic[RebotsUIStaticString.TicketReceivedLabel];
-            m_TicketReplyLabel.text = localizationManager.translationDic[RebotsUIStaticString.TicketReplyLabel];
-            m_TicketThankYouLabel.text = localizationManager.translationDic[RebotsUIStaticString.TicketThankYouLabel];
-            m_TicketReturnMainLabel.text = localizationManager.translationDic[RebotsUIStaticString.TicketReturnMainLabel];
+            m_TicketReceivedLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.TicketReceivedLabel];
+            m_TicketReplyLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.TicketReplyLabel];
+            m_TicketThankYouLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.TicketThankYouLabel];
+            m_TicketReturnMainLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.TicketReturnMainLabel];
         }
 
         public void SetHelpdeskData(HelpdeskSetting helpdeskSetting)
         {
-            m_Theme = helpdeskSetting.theme;
+            Theme = helpdeskSetting.theme;
 
-            m_ScreenPortrait = (Screen.orientation == ScreenOrientation.Portrait || Screen.orientation == ScreenOrientation.AutoRotation);
+            ScreenPortrait = (Screen.orientation == ScreenOrientation.Portrait || Screen.orientation == ScreenOrientation.AutoRotation);
         }
 
         public void SetPrivacyData(PrivacySetting ticketPrivacySetting)
         {
-            m_TicketPrivacySetting = ticketPrivacySetting;
+            TicketPrivacySetting = ticketPrivacySetting;
         }
 
         public void SetParameterData(RebotsParameterData parameterData)
         {
-            m_ParameterDic = new Dictionary<string, string>();
-            m_ParameterDic = parameterData.parameters;
+            ParameterDic = new Dictionary<string, string>();
+            ParameterDic = parameterData.parameters;
         }
         #endregion
 
         #region Set callback data after API
         public void OnFaqRecommendUpdated(HelpdeskFaqListResponse response)
         {
-            var faqs = response.faqs;
-
-            if (faqs != null && faqs.Count() > 0)
+            var faqs = (response.faqs != null) ? response.faqs.Where(x => x.use == 1).ToArray() : null;
+            int faqCount = (faqs != null) ? faqs.Count() : 0;
+            if (faqs != null && faqCount > 0)
             {
-                foreach (var item in faqs)
+                for (int i = 0; i < faqCount; i++)
                 {
+                    var item = faqs[i];
                     TemplateContainer faqUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateFaq(item, RebotsFaqAssetType.Popular, null, helpdeskScreen.ClickFaq, out faqUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateFaq(item, RebotsFaqAssetType.Popular, null, helpdeskScreen.ShowFaq, out faqUIElement);
 
                     faqUIElement.style.flexShrink = 0;
                     m_FaqPopularList.Add(faqUIElement);
@@ -217,23 +218,24 @@ namespace Rebots.HelpDesk
 
         public void OnFaqSearchUpdated(HelpdeskFaqSearchResponse response)
         {
-            var searchResult = response;
-            var faqs = searchResult.faqs;
-            var search = searchResult.search;
-            var currentPage = searchResult.page;
-            var recordCount = searchResult.recordCount;
+            var faqs = (response.faqs != null) ? response.faqs.Where(x => x.use == 1).ToArray() : null; ;
+            var search = response.search;
+            var currentPage = response.page;
+            var recordCount = response.recordCount;
 
             var recordCountStr = "<color=" + RebotsUIStaticString.BlackColor + ">" + recordCount.ToString() + "</color>";
-            var searchResultStr = localizationManager.translationDic[RebotsUIStaticString.SearchResultLabel];
+            var searchResultStr = LocalizationManager.translationDic[RebotsUIStaticString.SearchResultLabel];
             m_SearchResultLabel.text = string.Format(searchResultStr, recordCountStr);
             m_SearchStringLabel.text = search;
 
-            if (faqs != null && faqs.Count() > 0)
+            var faqCount = faqs.Count();
+            if (faqs != null && faqCount > 0)
             {
-                foreach (var item in faqs)
+                for (int i = 0; i < faqCount; i++)
                 {
+                    var item = faqs[i];
                     TemplateContainer faqUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateFaq(item, RebotsFaqAssetType.Search, search, helpdeskScreen.ClickFaq, out faqUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateFaq(item, RebotsFaqAssetType.Search, search, helpdeskScreen.ShowFaq, out faqUIElement);
 
                     var contentsLabel = faqUIElement.Q<Label>(RebotsUIStaticString.ContentsLabel);
                     StartCoroutine(LabelMultilineEllipsis(contentsLabel));
@@ -241,7 +243,7 @@ namespace Rebots.HelpDesk
                 }
             }
 
-            int pageSize = helpdeskScreen.listPagingSize;
+            int pageSize = helpdeskScreen.ListPageSize;
             if (recordCount != 0 && recordCount > 0)
             {
                 var totalPage = ((recordCount % pageSize) == 0) ? (recordCount / pageSize) : (recordCount / pageSize) + 1;
@@ -259,20 +261,22 @@ namespace Rebots.HelpDesk
 
             m_PageTitleLabel.text = "FAQ";
 
-            Label routeLabel = null;
-            var routeList = faq.categories.Reverse().Select(c => new { c.name, c.id }).ToList();
-            routeList.Insert(0, new { name = "FAQ", id = 0 });
+            var routeList = faq.categories.Reverse().ToList();
+            routeList.Insert(0, new Category { name = "FAQ", id = 0 });
             foreach (var item in routeList)
             {
-                helpdeskScreen.rebotsUICreater.CreateRouteLabel(item.name, (faq.categoryId == item.id), out routeLabel);
+                Action<Category> clickAction = (item.id == 0) ? null : helpdeskScreen.ClickFaqCategory;
+                helpdeskScreen.rebotsUICreater.CreateRouteLabel(item, (faq.categoryId == item.id), clickAction, out Label routeLabel);
                 m_PageRouteContainer.Add(routeLabel);
             }
 
             m_FaqTitleLabel.text = faq.title;
 
             var contentsDic = HtmlParser.HtmlToUnityTag(faq.contents.ToString());
-            foreach (var item in contentsDic)
+            var count = contentsDic.Count();
+            for (int i = 0; i < count; i++)
             {
+                var item = contentsDic[i];
                 switch (item.type)
                 {
                     case "text":
@@ -281,7 +285,7 @@ namespace Rebots.HelpDesk
                         break;
                     case "img":
                         var imgContents = item.value;
-                        helpdeskScreen.ImageUrlToTexture2D(OnFaqImageAdded, new System.Uri(imgContents), imgContents);
+                        helpdeskScreen.ImageUrlToTexture2D(OnFaqImageAdded, new Uri(imgContents), imgContents);
                         break;
                     case "link":
                         var linkContents = item.value.Split(HtmlParser.linkSplitPoint);
@@ -319,7 +323,7 @@ namespace Rebots.HelpDesk
         {
             var categories = response.items;
 
-            if (m_ScreenPortrait)
+            if (ScreenPortrait)
                 m_FaqCategoryList.style.flexDirection = FlexDirection.Column;
             else
                 m_FaqCategoryList.style.flexDirection = FlexDirection.Row;
@@ -330,9 +334,9 @@ namespace Rebots.HelpDesk
                 var category = faqCategories[i];
 
                 TemplateContainer categoryUIElement = null;
-                helpdeskScreen.rebotsUICreater.CreateCategory<Category>(category, RebotsCategoryAssetType.Cs, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
+                helpdeskScreen.rebotsUICreater.CreateCategory<Category>(category, RebotsCategoryAssetType.Category, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
 
-                if (m_ScreenPortrait)
+                if (ScreenPortrait)
                 {
                     categoryUIElement.style.width = Length.Percent(100f);
                 }
@@ -358,7 +362,7 @@ namespace Rebots.HelpDesk
 
             m_PageTitleLabel.text = "Inquiry";
 
-            m_InquiryList.style.flexDirection = m_ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
+            m_InquiryList.style.flexDirection = ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
 
             var csCategories = (categories != null) ? categories.Where(x => x.use == 1).ToArray() : new Category[0];
             
@@ -366,9 +370,10 @@ namespace Rebots.HelpDesk
             {
                 var category = csCategories[i];
                 TemplateContainer categoryUIElement = null;
-                helpdeskScreen.rebotsUICreater.CreateCategory<Category>(category, RebotsCategoryAssetType.Cs, helpdeskScreen.ClickCsCategory, out categoryUIElement);
+                Action<Category> clickAction = (category.childFieldCount > 0) ? helpdeskScreen.ShowCsSubCategory : helpdeskScreen.ShowTicketCreate;
+                helpdeskScreen.rebotsUICreater.CreateCategory<Category>(category, RebotsCategoryAssetType.Category, clickAction, out categoryUIElement);
 
-                if (m_ScreenPortrait)
+                if (ScreenPortrait)
                 {
                     categoryUIElement.style.width = Length.Percent(100f);
                 }
@@ -395,17 +400,17 @@ namespace Rebots.HelpDesk
             m_PageTitleLabel.text = "FAQ";
 
             Label routeLabel = null;
-            List<string> routeList = faqCategory.categories.Select(c => c.name).Reverse().ToList();
-            routeList.Insert(0, "FAQ");
+            var routeList = faqCategory.categories.Reverse().ToList();
+            routeList.Insert(0, new Category { name = "FAQ", id = 0 });
+            routeList.Add(faqCategory);
             foreach (var item in routeList)
             {
-                helpdeskScreen.rebotsUICreater.CreateRouteLabel(item, false, out routeLabel);
+                Action<Category> clickAction = (item.id == 0) ? null : helpdeskScreen.ClickFaqCategory;
+                helpdeskScreen.rebotsUICreater.CreateRouteLabel(item, (faqCategory.id == item.id), clickAction, out routeLabel);
                 m_PageRouteContainer.Add(routeLabel);
             }
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel(faqCategory.name, true, out routeLabel);
-            m_PageRouteContainer.Add(routeLabel);
 
-            var siblingCategories = (faqCategory.siblingCategories != null) ? faqCategory.siblingCategories.Where(x => x.use == 1).ToList() : null;
+            var siblingCategories = (faqCategory.siblingCategories != null) ? faqCategory.siblingCategories.Where(x => x.use == 1).ToArray() : null;
             var siblingCount = (siblingCategories != null) ? siblingCategories.Count() : 0;
             if (siblingCount > 0)
             {
@@ -435,13 +440,14 @@ namespace Rebots.HelpDesk
                 ShowVisualElement(m_SiblingCategoryContainer, false);
             }
 
-            var lowerCategories = (faqCategory.subCategories != null) ? faqCategory.subCategories.Where(x => x.use == 1) : null;
+            var lowerCategories = (faqCategory.subCategories != null) ? faqCategory.subCategories.Where(x => x.use == 1).ToArray() : null;
             var lowerCount = (lowerCategories != null) ? lowerCategories.Count() : 0;
             if (lowerCount > 0)
             {
                 ShowVisualElement(m_LowerCategoryContainer, true);
-                foreach (var item in lowerCategories)
+                for (int i = 0; i < lowerCount; i++)
                 {
+                    var item = lowerCategories[i];
                     TemplateContainer categoryUIElement = null;
                     helpdeskScreen.rebotsUICreater.CreateCategory<Category>(item, RebotsCategoryAssetType.Lower, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
                     m_LowerCategoryList.Add(categoryUIElement);
@@ -453,19 +459,20 @@ namespace Rebots.HelpDesk
             }
 
             int displayPage = faqCategory.page;
-            int pageSize = helpdeskScreen.listPagingSize;
+            int pageSize = helpdeskScreen.ListPageSize;
             int recordCount = faqCategory.recordCount;
-            string listResultFormat = localizationManager.translationDic[RebotsUIStaticString.ListResultLabel];
+            string listResultFormat = LocalizationManager.translationDic[RebotsUIStaticString.ListResultLabel];
             m_ListResultLabel.text = string.Format(listResultFormat, recordCount.ToString());
 
-            var faqs = (faqCategory.faqs != null) ? faqCategory.faqs.Where(x => x.use == 1) : null;
-            int subSize = (faqs != null) ? faqs.Count() : 0;
-            if (subSize > 0)
+            var faqs = (faqCategory.faqs != null) ? faqCategory.faqs.Where(x => x.use == 1).ToArray() : null;
+            int faqCount = (faqs != null) ? faqs.Count() : 0;
+            if (faqCount > 0)
             {
-                foreach (var item in faqs.Take(pageSize))
+                for (int i = 0; i < faqCount; i++)
                 {
+                    var item = faqs[i];
                     TemplateContainer categoryUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateCategory<Faq>(item, RebotsCategoryAssetType.Faq, helpdeskScreen.ClickFaq, out categoryUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateCategory<Faq>(item, RebotsCategoryAssetType.Faq, helpdeskScreen.ShowFaq, out categoryUIElement);
                     m_FaqList.Add(categoryUIElement);
                 }
             }
@@ -488,25 +495,26 @@ namespace Rebots.HelpDesk
             m_PageTitleLabel.text = "Inquiry";
 
             Label routeLabel = null;
-            List<string> routeList = csCategory.categories.Select(c => c.name).Reverse().ToList();
-            routeList.Insert(0, "Inquiry");
+            var routeList = csCategory.categories.Reverse().ToList();
+            routeList.Insert(0, new Category { name = "Inquiry", id = 0 });
+            routeList.Add(csCategory);
             foreach (var item in routeList)
             {
-                helpdeskScreen.rebotsUICreater.CreateRouteLabel(item, false, out routeLabel);
+                Action<Category> clickAction = (item.id == 0) ? null : helpdeskScreen.ShowCsSubCategory;
+                helpdeskScreen.rebotsUICreater.CreateRouteLabel(item, (csCategory.id == item.id), clickAction, out routeLabel);
                 m_PageRouteContainer.Add(routeLabel);
             }
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel(csCategory.name, true, out routeLabel);
-            m_PageRouteContainer.Add(routeLabel);
 
-            m_InquiryList.style.flexDirection = m_ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
+            m_InquiryList.style.flexDirection = ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
 
             var subCategories = (csCategory.subCategories != null) ? csCategory.subCategories.Where(x => x.use == 1).ToArray() : new Category[0];
             for (int i = 0; i < subCategories.Count(); i++)
             {
                 var category = subCategories[i];
                 TemplateContainer categoryUIElement = null;
-                helpdeskScreen.rebotsUICreater.CreateCategory(category, RebotsCategoryAssetType.Cs, helpdeskScreen.ClickCsCategory, out categoryUIElement);
-                if (m_ScreenPortrait)
+                Action<Category> clickAction = (category.childFieldCount > 0) ? helpdeskScreen.ShowCsSubCategory : helpdeskScreen.ShowTicketCreate;
+                helpdeskScreen.rebotsUICreater.CreateCategory(category, RebotsCategoryAssetType.Category, clickAction, out categoryUIElement);
+                if (ScreenPortrait)
                 {
                     categoryUIElement.style.width = Length.Percent(100f);
                 }
@@ -533,42 +541,40 @@ namespace Rebots.HelpDesk
             m_PageTitleLabel.text = "Inquiry";
 
             Label routeLabel = null;
-            List<string> routeList = csCategory.categories.Select(c => c.name).Reverse().ToList();
-            routeList.Insert(0, "Inquiry");
+            var routeList = csCategory.categories.Reverse().ToList();
+            routeList.Insert(0, new Category { name = "Inquiry", id = 0 });
+            routeList.Add(csCategory);
             foreach (var item in routeList)
             {
-                helpdeskScreen.rebotsUICreater.CreateRouteLabel(item, false, out routeLabel);
+                Action<Category> clickAction = (item.id == 0) ? null : helpdeskScreen.ShowCsSubCategory;
+                helpdeskScreen.rebotsUICreater.CreateRouteLabel(item, (csCategory.id == item.id), clickAction, out routeLabel);
                 m_PageRouteContainer.Add(routeLabel);
             }
-            helpdeskScreen.rebotsUICreater.CreateRouteLabel(csCategory.name, true, out routeLabel);
-            m_PageRouteContainer.Add(routeLabel);
 
             var fields = csCategory.inputFields;
-            string validationField = localizationManager.translationDic[RebotsUIStaticString.ValidRequired];
-            string validationEmail = localizationManager.translationDic[RebotsUIStaticString.ValidEmail];
-            if (fields != null && fields.Count() > 0)
+            var count = fields.Count();
+            string validationField = LocalizationManager.translationDic[RebotsUIStaticString.ValidRequired];
+            string validationEmail = LocalizationManager.translationDic[RebotsUIStaticString.ValidEmail];
+            if (fields != null && count > 0)
             {
-                foreach (var field in fields)
+                for (int i = 0; i < count; i++)
                 {
-                    string parameterValue = "";
-                    m_ParameterDic.TryGetValue(field.name, out parameterValue);
+                    var field = fields[i];
+                    ParameterDic.TryGetValue(field.name, out string parameterValue);
 
-                    TemplateContainer fieldUIElement = null;
-                    object fieldUIComponent = null;
                     string[] validationComment = (field.name == "email") ? new string[] { validationField, validationEmail } : new string[] { validationField };
 
-
-                    helpdeskScreen.rebotsUICreater.CreateCsCategoryField(field, parameterValue, validationComment, out fieldUIElement, out fieldUIComponent);
+                    helpdeskScreen.rebotsUICreater.CreateCsCategoryField(field, parameterValue, validationComment, out TemplateContainer fieldUIElement, out object fieldUIComponent);
 
                     var m_RequiredLabel = fieldUIElement.Q<Label>(RebotsUIStaticString.RequiredLabel);
-                    m_RequiredLabel.text = localizationManager.translationDic[RebotsUIStaticString.RequiredLabel];
+                    m_RequiredLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.RequiredLabel];
 
                     if (field.fieldType == RebotsInputFieldType.File)
                     {
                         var m_ChooseFileButtonLabel = fieldUIElement.Q<Label>(RebotsUIStaticString.ChooseFileButtonLabel);
-                        m_ChooseFileButtonLabel.text = localizationManager.translationDic[RebotsUIStaticString.ChooseFileButtonLabel];
+                        m_ChooseFileButtonLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.ChooseFileButtonLabel];
                         var m_NoFileLabel = fieldUIElement.Q<Label>(RebotsUIStaticString.NoFileLabel);
-                        m_NoFileLabel.text = localizationManager.translationDic[RebotsUIStaticString.NoFileLabel];
+                        m_NoFileLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.NoFileLabel];
                     }
 
                     m_TicketFieldList.Add(fieldUIElement);
@@ -576,15 +582,15 @@ namespace Rebots.HelpDesk
                 }
             }
 
-            if (m_TicketPrivacySetting != null)
+            if (TicketPrivacySetting != null)
             {
                 string[] formSectionTransData = { 
-                    localizationManager.translationDic[RebotsUIStaticString.PrivacyPrpose],
-                    localizationManager.translationDic[RebotsUIStaticString.PrivacyCollection],
-                    localizationManager.translationDic[RebotsUIStaticString.PrivacyPeriod],
-                    localizationManager.translationDic[RebotsUIStaticString.PrivacyConsignment],
-                    localizationManager.translationDic[RebotsUIStaticString.PrivacyProviding],
-                    localizationManager.translationDic[RebotsUIStaticString.PrivacyConsignmentPeriod]
+                    LocalizationManager.translationDic[RebotsUIStaticString.PrivacyPrpose],
+                    LocalizationManager.translationDic[RebotsUIStaticString.PrivacyCollection],
+                    LocalizationManager.translationDic[RebotsUIStaticString.PrivacyPeriod],
+                    LocalizationManager.translationDic[RebotsUIStaticString.PrivacyConsignment],
+                    LocalizationManager.translationDic[RebotsUIStaticString.PrivacyProviding],
+                    LocalizationManager.translationDic[RebotsUIStaticString.PrivacyConsignmentPeriod]
                 };
 
                 TemplateContainer privacyUIElement = null;
@@ -592,19 +598,19 @@ namespace Rebots.HelpDesk
                 {
                     inputType = "privacy",
                 };
-                helpdeskScreen.rebotsUICreater.CreatePrivacyField(m_TicketPrivacySetting, formSectionTransData, helpdeskScreen.ClickTicketSubmit, out privacyUIElement);
+                helpdeskScreen.rebotsUICreater.CreatePrivacyField(TicketPrivacySetting, formSectionTransData, csCategory, helpdeskScreen.ClickTicketSubmit, out privacyUIElement);
 
                 var m_RequiredLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.RequiredLabel);
-                m_RequiredLabel.text = localizationManager.translationDic[RebotsUIStaticString.RequiredLabel];
+                m_RequiredLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.RequiredLabel];
 
                 var m_AgreeCheckLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.AgreeCheckLabel);
-                m_AgreeCheckLabel.text = localizationManager.translationDic[RebotsUIStaticString.AgreeCheckLabel];
+                m_AgreeCheckLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.AgreeCheckLabel];
 
                 var m_PrivacyFieldLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.PrivacyFieldLabel);
-                m_PrivacyFieldLabel.text = localizationManager.translationDic[RebotsUIStaticString.PrivacyFieldLabel];
+                m_PrivacyFieldLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.PrivacyFieldLabel];
 
                 var m_TicketSubmitLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.TicketSubmitLabel);
-                m_TicketSubmitLabel.text = localizationManager.translationDic[RebotsUIStaticString.TicketSubmitLabel];
+                m_TicketSubmitLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.TicketSubmitLabel];
 
                 m_TicketFieldList.Add(privacyUIElement);
             }
@@ -618,14 +624,16 @@ namespace Rebots.HelpDesk
         public void OnMyTicketsUpdated(HelpDeskTicketListResponse response)
         {
             var tickets = response.items;
+            var count = tickets.Count();
 
             m_PageTitleLabel.text = "My Tickets";
 
-            if (tickets != null && tickets.Count() > 0)
+            if (tickets != null && count > 0)
             {
                 tickets = tickets.OrderByDescending(x => x.created).ToArray();
-                foreach (var item in tickets)
+                for (int i = 0; i < count; i++)
                 {
+                    var item = tickets[i]; 
                     TemplateContainer faqUIElement = null;
                     helpdeskScreen.rebotsUICreater.CreateTicket(item, helpdeskScreen.ClickTicket, out faqUIElement);
 
@@ -659,9 +667,8 @@ namespace Rebots.HelpDesk
 
         public void OnTicketDetailUpdated(HelpDeskTicketDetailResponse response)
         {
-            var ticket = response.ticket;
-            var ticketData = response.ticket.data;
-            var answers = response.ticket.answers;
+            var ticketData = response.ticket.data ?? new();
+            var answers = response.ticket.answers ?? null;
 
             m_PageTitleLabel.text = "My Tickets";
 
@@ -688,12 +695,13 @@ namespace Rebots.HelpDesk
                     break;
             }
 
-            var dataDic = JsonConvert.DeserializeObject<Dictionary<string, string>>(ticketData.data);
-
-            if (dataDic != null && dataDic.Count() > 0)
+            var dataDic = JsonConvert.DeserializeObject<Dictionary<string, string>>(ticketData.data).ToArray();
+            var dataCount = (dataDic != null) ? dataDic.Count() : 0;
+            if (dataDic != null && dataCount > 0)
             {
-                foreach (var item in dataDic)
+                for (int i = 0; i < dataCount; i++)
                 {
+                    var item = dataDic[i];
                     TemplateContainer fieldUIElement = null;
                     helpdeskScreen.rebotsUICreater.CreateTicketDetail(item.Key, item.Value, RebotsTicketDetailAssetType.Field, out fieldUIElement);
                     m_TicketDetailList.Add(fieldUIElement);
@@ -702,10 +710,12 @@ namespace Rebots.HelpDesk
 
             m_TicketContentsLabel.text = ticketData.content;
 
-            if (answers != null && answers.Count() > 0)
+            var answerCount = (answers != null) ? answers.Count() : 0;
+            if (answers != null && answerCount > 0)
             {
-                foreach (var item in answers)
+                for (int i = 0; i < answerCount; i++)
                 {
+                    var item = answers[i];
                     TemplateContainer answerUIElement = null;
                     helpdeskScreen.rebotsUICreater.CreateTicketDetail(string.Format("{0:d}", item.answered), "", RebotsTicketDetailAssetType.Answer, out answerUIElement);
 
@@ -715,9 +725,11 @@ namespace Rebots.HelpDesk
                         AnswerContentContainer.Clear();
 
                         var contentsDic = HtmlParser.HtmlToUnityTag(item.content.ToString());
+                        var contentCount = contentsDic.Count();
                         int imgCount = 1;
-                        foreach (var content in contentsDic)
+                        for (int c = 0; c < contentCount; c++)
                         {
+                            var content = contentsDic[c];
                             switch (content.type)
                             {
                                 case "text":
@@ -757,11 +769,12 @@ namespace Rebots.HelpDesk
 
             var allElementWidth = 0f;
             var forwardElementWidth = 0f;
-            var categoryElements = m_SiblingCategoryList.Children();
-            var i = 0;
-            foreach (var categoryElement in categoryElements)
+            var categoryElements = m_SiblingCategoryList.Children().ToArray();
+            var count = categoryElements.Length;
+            for (int i = 0; i < count; i++)
             {
-                if (index == i++)
+                var categoryElement = categoryElements[i];
+                if (index == i)
                 {
                     forwardElementWidth = allElementWidth;
                 }
@@ -787,7 +800,7 @@ namespace Rebots.HelpDesk
             Rect textRect = new Rect(0, 0, areaWidth, areaHeight);
 
             GUIStyle textStyle = new GUIStyle();
-            textStyle.font = helpdeskScreen.GetLanguageFontAsset(localizationManager.language);
+            textStyle.font = helpdeskScreen.GetLanguageFontAsset(LocalizationManager.language);
             textStyle.fontSize = 16;
             textStyle.wordWrap = true;
 

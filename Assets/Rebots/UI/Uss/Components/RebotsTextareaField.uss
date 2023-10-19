@@ -22,10 +22,6 @@
     border-right-width: 1px;
     border-top-width: 1px;
     border-bottom-width: 1px;
-    border-top-left-radius: 3px;
-    border-bottom-left-radius: 3px;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
     -unity-text-align: upper-left;
     -unity-font: resource('Rebots/NotoSansKR-Regular');
     -unity-font-definition: none;

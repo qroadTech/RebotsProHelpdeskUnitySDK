@@ -194,8 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ea85760dfcfba4387e8dc7dccdb0f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RebotsHelpdeskScreen: {fileID: 6512091703982552}
-  m_RebotsBannerScreen: {fileID: 1487581472455094443}
+  rebotsHelpdeskScreen: {fileID: 6512091703982552}
+  rebotsBannerScreen: {fileID: 1487581472455094443}
 --- !u!1 &6512093571915442
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,13 +243,12 @@ MonoBehaviour:
   AttachmentFieldAsset: {fileID: 9197481963319205126, guid: c342f957e92c5a9469deac730a27a824, type: 3}
   AttachmentFileAsset: {fileID: 9197481963319205126, guid: 1581cf5448024f5499df2256f2601047, type: 3}
   ButtonGroupFieldAsset: {fileID: 9197481963319205126, guid: 540e4a464d1ab1941a1103c7efd78456, type: 3}
-  CategoryAsset: {fileID: 9197481963319205126, guid: 1f19acd5a31153340a6839eb909bc817, type: 3}
+  CategoryAsset: {fileID: 9197481963319205126, guid: 7c41650d3faf50041930dde7c89d7a7a, type: 3}
   CheckAsset: {fileID: 9197481963319205126, guid: 1d51ea6ec4401f341bc7011da3e749dc, type: 3}
-  ContentCategoryAsset: {fileID: 9197481963319205126, guid: 64d18fc409caf944795ac332689ed06c, type: 3}
   DropdownFieldAsset: {fileID: 9197481963319205126, guid: c17610b18b8166445afd111dcc28c5ce, type: 3}
   FaqAsset: {fileID: 9197481963319205126, guid: 2263351221fd2b94b83e6c2154c253b6, type: 3}
   LanguageAsset: {fileID: 9197481963319205126, guid: 68be2249c7cc09f479e64d88d7dccab6, type: 3}
-  LowerCategoryAsset: {fileID: 9197481963319205126, guid: 25ed158bafc866747b55a84fa39753c7, type: 3}
+  LowerCategoryAsset: {fileID: 9197481963319205126, guid: 5608d2acd8eb0b94fbcad1a13c5ec268, type: 3}
   MenuCategoryAsset: {fileID: 9197481963319205126, guid: 03b76c5a7762ec64d9daeff6a14b3eb3, type: 3}
   PagingNavigator: {fileID: 9197481963319205126, guid: 8f92c45678f6d9e438e22af0c0224edc, type: 3}
   PopularFaqAsset: {fileID: 9197481963319205126, guid: ceee0968772d7eb4a9d615d465266170, type: 3}
@@ -258,7 +257,6 @@ MonoBehaviour:
   RouteLabelAsset: {fileID: 9197481963319205126, guid: f0924b8b20ac50d4ea485a55506bbf11, type: 3}
   SearchFaqAsset: {fileID: 9197481963319205126, guid: 5e46846676a70c34c9724c561bba0e40, type: 3}
   SiblingCategoryAsset: {fileID: 9197481963319205126, guid: 6e5e7efaebdba794bb05fbd10de56bc9, type: 3}
-  SubCategoryAsset: {fileID: 9197481963319205126, guid: d1f6078534ec5a44d95be78f07b066c1, type: 3}
   TextareaFieldAsset: {fileID: 9197481963319205126, guid: 166205d36d7804d488c7c16bd258ad4e, type: 3}
   TextFieldAsset: {fileID: 9197481963319205126, guid: 42e513ec3b7a5454bb53b75dbc822e7f, type: 3}
   TicketAsset: {fileID: 9197481963319205126, guid: a98c2a96eb8aed14ab3e4801ef91f553, type: 3}

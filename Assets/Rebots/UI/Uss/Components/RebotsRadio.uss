@@ -44,10 +44,10 @@
 }
 
 .unity-radio-button__checkmark {
-    border-left-color: rgb(143, 172, 182);
-    border-right-color: rgb(143, 172, 182);
-    border-top-color: rgb(143, 172, 182);
-    border-bottom-color: rgb(143, 172, 182);
+    border-left-color: rgb(40, 40, 40);
+    border-right-color: rgb(40, 40, 40);
+    border-top-color: rgb(40, 40, 40);
+    border-bottom-color: rgb(40, 40, 40);
     border-left-width: 5px;
     border-right-width: 5px;
     border-top-width: 5px;
