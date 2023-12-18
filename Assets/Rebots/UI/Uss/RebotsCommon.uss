@@ -29,21 +29,25 @@
 .rebots-font-en__black {
     -unity-font-definition: none;
     -unity-font: resource('Rebots/NotoSansEN-Black');
+    -unity-font-definition: resource('Rebots/NotoSansEN-Black');
 }
 
 .rebots-font-en__regular {
     -unity-font: resource('Rebots/NotoSansEN-Regular');
     -unity-font-definition: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular');
 }
 
 .rebots-font-kr__black {
     -unity-font-definition: none;
     -unity-font: resource('Rebots/NotoSansKR-Black');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black');
 }
 
 .rebots-font-kr__regular {
     -unity-font-definition: none;
     -unity-font: resource('Rebots/NotoSansKR-Regular');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-font-ja__black {

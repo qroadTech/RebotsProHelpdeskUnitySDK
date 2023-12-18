@@ -123,71 +123,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &198267416
+--- !u!1001 &530094024
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5048724410558172860, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
+      propertyPath: m_Name
+      value: RebotsSettingManager
+      objectReference: {fileID: 0}
     - target: {fileID: 5048724410558172862, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 6757599604808416828, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6757599604808416828, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
+    - target: {fileID: 5048724410558172862, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.844657
       objectReference: {fileID: 0}
-    - target: {fileID: 6757599604808416828, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
+    - target: {fileID: 5048724410558172862, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.6310608
       objectReference: {fileID: 0}
-    - target: {fileID: 6757599604808416828, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
+    - target: {fileID: 5048724410558172862, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6757599604808416828, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
+    - target: {fileID: 5048724410558172862, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 6757599604808416828, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
+    - target: {fileID: 5048724410558172862, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 6757599604808416828, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
+    - target: {fileID: 5048724410558172862, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 6757599604808416828, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
+    - target: {fileID: 5048724410558172862, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 6757599604808416828, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
+    - target: {fileID: 5048724410558172862, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6757599604808416828, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
+    - target: {fileID: 5048724410558172862, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6757599604808416828, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
+    - target: {fileID: 5048724410558172862, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6757599604808416830, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
-      propertyPath: m_Name
-      value: RebotsSettingManager
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
---- !u!114 &198267417 stripped
+--- !u!114 &1336138205 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1175946604819721044, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
-  m_PrefabInstance: {fileID: 198267416}
+  m_PrefabInstance: {fileID: 530094024}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -195,10 +191,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c53ae6596aece4a9cad0bd55e85c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &198267418 stripped
+--- !u!114 &1336138206 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5048724410558172861, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
-  m_PrefabInstance: {fileID: 198267416}
+  m_PrefabInstance: {fileID: 530094024}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
@@ -494,11 +490,11 @@ PrefabInstance:
     - target: {fileID: 6512091703982552, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: rebotsSettingManager
       value: 
-      objectReference: {fileID: 198267418}
+      objectReference: {fileID: 1336138206}
     - target: {fileID: 6512091703982552, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: rebotsParameterDataManager
       value: 
-      objectReference: {fileID: 198267417}
+      objectReference: {fileID: 1336138205}
     - target: {fileID: 6512093179079524, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: m_Name
       value: Rebots
@@ -547,6 +543,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6512093571915445, guid: bf7a07804addf994981e29b2f520406a, type: 3}
+      propertyPath: CategoryAsset
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: ac4d72b242431f34cad1abef820ab003, type: 3}
+    - target: {fileID: 6512093571915445, guid: bf7a07804addf994981e29b2f520406a, type: 3}
+      propertyPath: LowerCategoryAsset
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: f0901f8170dfe3f4190dbe2751a38be7, type: 3}
     - target: {fileID: 1307173592818080567, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: rebotsSettingManager
       value: 
@@ -554,7 +558,7 @@ PrefabInstance:
     - target: {fileID: 1487581472455094443, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: rebotsSettingManager
       value: 
-      objectReference: {fileID: 198267418}
+      objectReference: {fileID: 1336138206}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf7a07804addf994981e29b2f520406a, type: 3}
 --- !u!114 &1307173591112795908 stripped

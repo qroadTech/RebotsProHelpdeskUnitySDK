@@ -5,7 +5,6 @@ using HelpDesk.Sdk.Unity.Library.Events;
 using HelpDesk.Sdk.Unity.Library.Objects;
 using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Networking;
@@ -22,21 +21,25 @@ namespace Rebots.HelpDesk
     public class RebotsSettingManager : MonoBehaviour
     {
         private bool projectInitialized;
-        private string gameCustomerUuid;
 
         /// <summary>
-        /// Project main key is encrypted and used for main initialize REST API.
+        /// 프로젝트 메인 키는 암호화되어 초기화 REST API에 사용됩니다.
+        /// RebotsPro 웹 솔루션(Workspace)에서 발급 받은 키 문자열을 입력해야 합니다.
+        /// en) Project main key is encrypted and used for main initialize REST API.
         /// You must fill specific key strings what you received from
-        /// RebotsPro Web solutions(workspace).
+        /// RebotsPro Web solutions(Workspace).
         /// 
-        /// Already filled string is example of sample project.
+        /// 이미 할당된 문자열은 샘플 프로젝트의 예입니다.
+        /// en) Already filled string is example of sample project.
         /// </summary>
-        public string ProjectMainKey;
+        public string ProjectMainKey = "Xf37b8ce929Zo1mcQkmqbsM";
 
         public RebotsLanguage HelpdeskLanguage;
 
         public TextAsset translationFile;
 
+        [HideInInspector]
+        public RebotsParameterDataManager? rebotsParameterDataManager;
         [HideInInspector]
         public HelpdeskSetting helpdeskSetting { get; private set; }
         [HideInInspector]
@@ -44,12 +47,14 @@ namespace Rebots.HelpDesk
 
         [HideInInspector]
         public RebotsLocalizationManager localizationManager;
+        [HideInInspector]
+        public Configurations helpdeskConfig { get; private set; }
 
-        private Configurations helpdeskConfig;
         private UnityWWWRestApiRequestEventBuilder helpdeskEvents;
 
         void Awake()
         {
+            rebotsParameterDataManager = GetComponent<RebotsParameterDataManager>();
             RebotsHelpdeskInitailize();
         }
 
@@ -145,6 +150,15 @@ namespace Rebots.HelpDesk
 
             Debug.Log("Helpdesk ProjectInitialize start.");
             HelpdeskInitialize();
+
+            if (rebotsParameterDataManager != null)
+            {
+                rebotsParameterDataManager.SetParameterData();
+                StartCoroutine(HelpdeskUserInitialize(
+                    rebotsParameterDataManager.ParameterData.UserAuthKey,
+                    rebotsParameterDataManager.ParameterData.UserEmail,
+                    rebotsParameterDataManager.ParameterData.UserName));
+            }
         }
 
         #region API Call methods
@@ -480,7 +494,6 @@ namespace Rebots.HelpDesk
         {
             Debug.Log("RebotsPro Game Player was initialized.");
             Debug.Log($"Player UUID : {response.data.customerUuid}");
-            gameCustomerUuid = new string(response.data.customerUuid);
         }
         #endregion
 

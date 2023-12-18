@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 96b7f7e5f59a2424dbb064b74d3637f2
+guid: b256e51d8b4de3a4389aa2c9df123886
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,9 +9,23 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Noto Sans
+  - Noto Sans KR
+  - Noto Sans JP
+  - Noto Sans SC
+  - Noto Sans Thai
+  - Noto Sans HK
   fallbackFontReferences:
+  - {fileID: 12800000, guid: 067e3b10f262c3e4694a8174d47dfbbe, type: 3}
+  - {fileID: 12800000, guid: 38b916ed15be01e408c79acf370d91e2, type: 3}
+  - {fileID: 12800000, guid: dd8ff9cbabc9c0645a9b40126d01593b, type: 3}
+  - {fileID: 12800000, guid: 9fd7104f5a86c61408cde0b17a9c43aa, type: 3}
+  - {fileID: 12800000, guid: 57398deed91e71c4aaa24d0818314861, type: 3}
+  - {fileID: 12800000, guid: e2c9f4515c6af4e49833d1ff4bb3c108, type: 3}
   - {fileID: 12800000, guid: 160421a06f5b07a4a9d2697be0134ae6, type: 3}
+  - {fileID: 12800000, guid: 16db06376cff20643910f0f39b35e12f, type: 3}
+  - {fileID: 12800000, guid: cc180a6886e17a446a2cca85c276390e, type: 3}
+  - {fileID: 12800000, guid: 3aa591837d32b42459fbfaf811349a87, type: 3}
+  - {fileID: 12800000, guid: 835d41b6ef06eeb4a899c77d50df2b28, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

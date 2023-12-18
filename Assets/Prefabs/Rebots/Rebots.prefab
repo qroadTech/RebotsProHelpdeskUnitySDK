@@ -243,12 +243,12 @@ MonoBehaviour:
   AttachmentFieldAsset: {fileID: 9197481963319205126, guid: c342f957e92c5a9469deac730a27a824, type: 3}
   AttachmentFileAsset: {fileID: 9197481963319205126, guid: 1581cf5448024f5499df2256f2601047, type: 3}
   ButtonGroupFieldAsset: {fileID: 9197481963319205126, guid: 540e4a464d1ab1941a1103c7efd78456, type: 3}
-  CategoryAsset: {fileID: 9197481963319205126, guid: 7c41650d3faf50041930dde7c89d7a7a, type: 3}
+  CategoryAsset: {fileID: 9197481963319205126, guid: 1ad21f1426a4f9441a5c9535e5398ff4, type: 3}
   CheckAsset: {fileID: 9197481963319205126, guid: 1d51ea6ec4401f341bc7011da3e749dc, type: 3}
   DropdownFieldAsset: {fileID: 9197481963319205126, guid: c17610b18b8166445afd111dcc28c5ce, type: 3}
   FaqAsset: {fileID: 9197481963319205126, guid: 2263351221fd2b94b83e6c2154c253b6, type: 3}
   LanguageAsset: {fileID: 9197481963319205126, guid: 68be2249c7cc09f479e64d88d7dccab6, type: 3}
-  LowerCategoryAsset: {fileID: 9197481963319205126, guid: 5608d2acd8eb0b94fbcad1a13c5ec268, type: 3}
+  LowerCategoryAsset: {fileID: 9197481963319205126, guid: 9fc3087c78e8dcf469db413e37f0e7b6, type: 3}
   MenuCategoryAsset: {fileID: 9197481963319205126, guid: 03b76c5a7762ec64d9daeff6a14b3eb3, type: 3}
   PagingNavigator: {fileID: 9197481963319205126, guid: 8f92c45678f6d9e438e22af0c0224edc, type: 3}
   PopularFaqAsset: {fileID: 9197481963319205126, guid: ceee0968772d7eb4a9d615d465266170, type: 3}

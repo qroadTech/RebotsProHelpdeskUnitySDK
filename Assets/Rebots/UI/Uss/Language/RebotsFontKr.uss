@@ -4,10 +4,10 @@
     padding-top: 0;
     padding-bottom: 0;
     -unity-font: resource('Rebots/NotoSansKR-Black');
-    -unity-font-definition: none;
     font-size: 40px;
     white-space: normal;
     -unity-text-align: middle-left;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black');
 }
 
 .rebots-label__black36 {
@@ -16,10 +16,10 @@
     padding-top: 0;
     padding-bottom: 0;
     -unity-font: resource('Rebots/NotoSansKR-Black');
-    -unity-font-definition: none;
     font-size: 36px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black');
 }
 
 .rebots-label__black28 {
@@ -28,10 +28,10 @@
     padding-top: 0;
     padding-bottom: 0;
     -unity-font: resource('Rebots/NotoSansKR-Black');
-    -unity-font-definition: none;
     font-size: 28px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black');
 }
 
 .rebots-label__black24 {
@@ -40,10 +40,10 @@
     padding-top: 0;
     padding-bottom: 0;
     -unity-font: resource('Rebots/NotoSansKR-Black');
-    -unity-font-definition: none;
     font-size: 24px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black');
 }
 
 .rebots-label__black20 {
@@ -52,10 +52,10 @@
     padding-top: 0;
     padding-bottom: 0;
     -unity-font: resource('Rebots/NotoSansKR-Black');
-    -unity-font-definition: none;
     font-size: 20px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black');
 }
 
 .rebots-label__black18 {
@@ -64,10 +64,10 @@
     padding-top: 0;
     padding-bottom: 0;
     -unity-font: resource('Rebots/NotoSansKR-Black');
-    -unity-font-definition: none;
     font-size: 18px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black');
 }
 
 .rebots-label__black16 {
@@ -76,10 +76,10 @@
     padding-top: 0;
     padding-bottom: 0;
     -unity-font: resource('Rebots/NotoSansKR-Black');
-    -unity-font-definition: none;
     font-size: 16px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black');
 }
 
 .rebots-label__black14 {
@@ -88,9 +88,9 @@
     padding-top: 0;
     padding-bottom: 0;
     -unity-font: resource('Rebots/NotoSansKR-Black');
-    -unity-font-definition: none;
     font-size: 14px;
     -unity-text-align: middle-center;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black');
 }
 
 .rebots-label__bold36 {
@@ -98,12 +98,11 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     font-size: 36px;
     -unity-text-align: middle-left;
     white-space: normal;
     -unity-font-style: bold;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__bold26 {
@@ -111,12 +110,10 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-style: bold;
     font-size: 26px;
     -unity-text-align: middle-left;
-    -unity-font-definition: none;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__bold24 {
@@ -124,12 +121,11 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     -unity-font-style: bold;
     font-size: 24px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__bold20 {
@@ -137,18 +133,15 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     font-size: 20px;
     -unity-font-style: bold;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__bold18 {
     font-size: 18px;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     -unity-font-style: bold;
     padding-left: 0;
     padding-right: 0;
@@ -156,6 +149,7 @@
     padding-bottom: 0;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__bold16 {
@@ -163,21 +157,19 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     -unity-font-style: bold;
     font-size: 16px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__bold14 {
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     -unity-font-style: bold;
     font-size: 14px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__bold11 {
@@ -185,24 +177,22 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     -unity-font-style: bold;
     -unity-text-align: lower-left;
     white-space: normal;
     font-size: 11px;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__regular24 {
     -unity-text-align: middle-left;
     white-space: normal;
     font-size: 24px;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     padding-left: 0;
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__regular20 {
@@ -210,11 +200,10 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     font-size: 20px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__regular18 {
@@ -222,11 +211,10 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     font-size: 18px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__regular16 {
@@ -234,11 +222,10 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     font-size: 16px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__regular14 {
@@ -246,11 +233,10 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     font-size: 14px;
     -unity-text-align: middle-left;
     white-space: normal;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-label__regular12 {
@@ -258,11 +244,10 @@
     padding-right: 0;
     padding-top: 0;
     padding-bottom: 0;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
     -unity-text-align: middle-left;
     white-space: normal;
     font-size: 12px;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }
 
 .rebots-menu-foldout .unity-toggle .unity-label {

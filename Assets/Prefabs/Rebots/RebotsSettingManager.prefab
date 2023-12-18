@@ -45,10 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37707eaea6c5c224dad0e10b9ac0002a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectMainKey: U7c3e4148eaOwjBB
-  HelpdeskLanguage: 2
+  ProjectMainKey: Xf37b8ce929Zo1mcQkmqbsM
+  HelpdeskLanguage: 1
   translationFile: {fileID: 4900000, guid: d79ff06f7df232045b26971ffc5f1239, type: 3}
-  localizationManager: {fileID: 0}
+  rebotsParameterDataManager: {fileID: 0}
 --- !u!114 &1175946604819721044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,4 +61,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c53ae6596aece4a9cad0bd55e85c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rebotsSettingManager: {fileID: 5048724410558172861}

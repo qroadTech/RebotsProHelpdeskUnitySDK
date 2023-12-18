@@ -15,7 +15,6 @@ namespace Rebots.HelpDesk
     {
         [Header("Rebots Manager")]
         public RebotsSettingManager rebotsSettingManager;
-        public RebotsParameterDataManager rebotsParameterDataManager;
 
         [Header("Rebots Helpdesk UI")]
         public RebotsLayoutUI rebotsLayoutUI;
@@ -76,10 +75,11 @@ namespace Rebots.HelpDesk
         }
         #endregion
 
+
         #region Show screen
         public override void ShowScreen()
         {
-            rebotsPageUI.SetParameterData(rebotsParameterDataManager.ParameterData);
+            rebotsPageUI.SetParameterData(rebotsSettingManager.rebotsParameterDataManager.ParameterData);
 
             SetLayout();
             ShowMain(true);

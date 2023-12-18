@@ -10,8 +10,11 @@ TrueTypeFontImporter:
   includeFontData: 1
   fontNames:
   - Noto Sans KR
+  - Noto Sans
   fallbackFontReferences:
   - {fileID: 12800000, guid: 38b916ed15be01e408c79acf370d91e2, type: 3}
+  - {fileID: 12800000, guid: 160421a06f5b07a4a9d2697be0134ae6, type: 3}
+  - {fileID: 12800000, guid: f82eb559747f7c043b12c82745db9575, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

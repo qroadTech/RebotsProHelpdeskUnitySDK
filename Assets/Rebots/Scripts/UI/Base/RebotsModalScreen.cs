@@ -69,7 +69,6 @@ namespace Rebots.HelpDesk
         // This allows you to use a number of different events (ClickEvent, ChangeEvent, etc.)
         protected virtual void RegisterButtonCallbacks()
         {
-
         }
 
         public bool IsVisible()
@@ -88,7 +87,7 @@ namespace Rebots.HelpDesk
 
             visualElement.style.display = (state) ? DisplayStyle.Flex : DisplayStyle.None;
         }
-
+        
         // returns an element by name
         public VisualElement GetVisualElement(string elementName)
         {
