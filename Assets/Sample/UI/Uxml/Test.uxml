@@ -1,0 +1,3 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:Label text="한국어어/早晨/เช้า/添付アイテム" display-tooltip-when-elided="true" />
+</ui:UXML>

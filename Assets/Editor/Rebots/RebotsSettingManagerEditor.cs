@@ -13,7 +13,7 @@ namespace Rebots.HelpDesk
             if (settingScript != null)
             {
                 settingScript.ProjectMainKey = EditorGUILayout.TextField("Project Main Key", settingScript.ProjectMainKey);
-
+                
                 settingScript.translationFile = (TextAsset)EditorGUILayout.ObjectField("Rebots Translation File", settingScript.translationFile, typeof(TextAsset), true);
 
                 settingScript.HelpdeskLanguage = (RebotsLanguage)EditorGUILayout.EnumPopup("Helpdesk Language", settingScript.HelpdeskLanguage);
