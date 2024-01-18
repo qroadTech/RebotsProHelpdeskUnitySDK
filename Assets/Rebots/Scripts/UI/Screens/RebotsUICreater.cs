@@ -154,7 +154,7 @@ namespace Rebots.HelpDesk
                 RebotsTextFieldComponent textFieldComponent = new RebotsTextFieldComponent(csCategoryField, parameterValue, validationComment);
                 textFieldComponent.SetVisualElements(textFieldUIElement);
                 textFieldComponent.SetFieldData(textFieldUIElement);
-
+                
                 uiElement = textFieldUIElement;
                 uiComponent = textFieldComponent;
             }
@@ -163,7 +163,7 @@ namespace Rebots.HelpDesk
                 TemplateContainer dropdownFieldUIElement = DropdownFieldAsset.Instantiate();
 
                 RebotsDropdownFieldComponent dropdownComponent = new RebotsDropdownFieldComponent(csCategoryField, parameterValue, validationComment);
-                dropdownComponent.SetVisualElement(dropdownFieldUIElement);
+                dropdownComponent.SetVisualElements(dropdownFieldUIElement);
                 dropdownComponent.SetFieldData(dropdownFieldUIElement);
 
                 uiElement = dropdownFieldUIElement;
@@ -175,7 +175,7 @@ namespace Rebots.HelpDesk
 
                 var buttonAsset = (csCategoryField.fieldType == RebotsInputFieldType.Checkbox) ? CheckAsset : RadioAsset;
                 RebotsButtonGroupFieldComponent buttonGroupComponent = new RebotsButtonGroupFieldComponent(csCategoryField, buttonAsset, parameterValue, validationComment);
-                buttonGroupComponent.SetVisualElement(buttonGroupFieldUIElement);
+                buttonGroupComponent.SetVisualElements(buttonGroupFieldUIElement);
                 buttonGroupComponent.SetFieldData(buttonGroupFieldUIElement);
 
                 uiElement = buttonGroupFieldUIElement;
@@ -186,7 +186,7 @@ namespace Rebots.HelpDesk
                 TemplateContainer attachmentFieldUIElement = AttachmentFieldAsset.Instantiate();
 
                 RebotsAttachmentFieldComponent attachmentComponent = new RebotsAttachmentFieldComponent(csCategoryField, AttachmentFileAsset, validationComment);
-                attachmentComponent.SetVisualElement(attachmentFieldUIElement);
+                attachmentComponent.SetVisualElements(attachmentFieldUIElement);
                 attachmentComponent.SetFieldData(attachmentFieldUIElement);
 
                 uiElement = attachmentFieldUIElement;

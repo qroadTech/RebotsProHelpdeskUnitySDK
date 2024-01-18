@@ -1,15 +1,21 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Rebots/UI/Uss/Components/RebotsTextareaField.uss?fileID=7433441132597879392&amp;guid=554c10ce08f91fc43b016ed2c7f24914&amp;type=3#RebotsTextareaField" />
-    <ui:VisualElement>
-        <ui:VisualElement style="justify-content: flex-start; min-height: 22px; flex-direction: row; align-items: center; flex-wrap: wrap;">
+    <ui:VisualElement style="align-items: center;">
+        <ui:VisualElement style="justify-content: flex-start; min-height: 22px; flex-direction: row; align-items: center; flex-wrap: wrap; min-width: 100%; width: 100%; margin-top: 5px; margin-bottom: 5px;">
             <ui:Label text="Ticket Textarea Field" display-tooltip-when-elided="true" name="rebots-field-label" class="rebots-label__black16 rebots-font-color__black" style="margin-right: 8px;" />
+            <ui:VisualElement name="rebots-tooltip-button-container" style="min-width: 0; min-height: auto; margin-right: 8px; display: none;">
+                <ui:Button display-tooltip-when-elided="true" name="rebots-tooltip-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; width: 24px; height: 24px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/Tooltip.png?fileID=21300000&amp;guid=5a531d3f202178a4b882efcafe4950b6&amp;type=3#Tooltip&apos;); background-color: rgba(188, 188, 188, 0);" />
+            </ui:VisualElement>
             <ui:Label text="(Required Field)" display-tooltip-when-elided="true" name="rebots-required" class="rebots-label__bold11 rebots-font-color__red" />
         </ui:VisualElement>
-        <ui:VisualElement style="margin-top: 3px;">
+        <ui:VisualElement style="margin-top: 10px; width: 100%; min-width: 100%;">
             <ui:TextField picking-mode="Ignore" text="Ticket Textarea Field Placeholder" name="rebots-text-field" style="width: 100%; height: auto; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; min-height: 139px; -unity-font: resource(&apos;Rebots/NotoSansKR-Regular&apos;);" />
         </ui:VisualElement>
-        <ui:VisualElement style="height: 25px; max-height: 25px; min-height: 25px;">
+        <ui:VisualElement style="height: 25px; max-height: 25px; min-height: 25px; width: 100%; min-width: 100%;">
             <ui:Label display-tooltip-when-elided="true" name="rebots-validation-label" class="rebots-font-color__red rebots-label__regular12" />
+        </ui:VisualElement>
+        <ui:VisualElement name="rebots-tooltip-container" style="position: absolute; top: 32px; width: 100%; align-items: flex-start; min-width: 100%; display: flex; padding-left: 10px; padding-right: 10px;">
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="rebots-tooltip-label" class="rebots-font-color__white rebots-label__regular10" style="padding-left: 8px; padding-right: 8px; padding-top: 3px; padding-bottom: 3px; background-color: rgb(40, 40, 40); white-space: normal; border-top-left-radius: 3px; border-bottom-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; min-width: auto;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

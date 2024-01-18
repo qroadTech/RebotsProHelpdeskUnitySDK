@@ -4,7 +4,7 @@ using UnityEngine.UIElements;
 
 namespace Rebots.HelpDesk
 {
-    public class RebotsTextFieldComponent
+    public class RebotsTextFieldComponent : RebotsFieldBase
     {
         const string FieldLabel = "rebots-field-label";
         const string RequiredFieldLabel = "rebots-required";
@@ -22,7 +22,7 @@ namespace Rebots.HelpDesk
         private string validationComment;
         private string validtaionCommentEmail;
 
-        public RebotsTextFieldComponent(TicketCategoryInputField csCategoryField, string? parameter, string[] validationComment)
+        public RebotsTextFieldComponent(TicketCategoryInputField csCategoryField, string? parameter, string[] validationComment) : base(csCategoryField.isAdvice, csCategoryField.adviceText)
         {
             this.csCategoryField = csCategoryField;
             this.parameter = (!string.IsNullOrEmpty(parameter)) ? parameter.Trim() : "";
@@ -30,12 +30,13 @@ namespace Rebots.HelpDesk
             this.validtaionCommentEmail = (validationComment != null && validationComment.Length > 1) ? validationComment[1] : "";
         }
 
-        public void SetVisualElements(TemplateContainer textFieldUIElement)
+        public override void SetVisualElements(TemplateContainer textFieldUIElement)
         {
             if (textFieldUIElement == null)
             {
                 return;
             }
+            base.SetVisualElements(textFieldUIElement);
 
             m_FieldLabel = textFieldUIElement.Q<Label>(FieldLabel);
             m_RequiredFieldLabel = textFieldUIElement.Q<Label>(RequiredFieldLabel);
@@ -49,6 +50,7 @@ namespace Rebots.HelpDesk
             {
                 return;
             }
+            base.SetFieldData();
 
             m_FieldLabel.text = csCategoryField.text;
 

@@ -16,6 +16,7 @@ namespace Rebots.HelpDesk
 
         public bool m_setPlaceholder { get; private set; }
 
+        #region constructor and Initialize
         public RebotsTextField(TextField textField)
         {
             this.m_usePlaceholder = false;
@@ -68,6 +69,7 @@ namespace Rebots.HelpDesk
             UnsetPlaceholderStyle();
             return this;
         }
+        #endregion
 
         private void OnFocusIn()
         {
@@ -88,10 +90,7 @@ namespace Rebots.HelpDesk
 
         private void UnsetPlaceholderStyle()
         {
-            if (this.textField.ClassListContains(RebotsUIStaticString.RebotsFontColor_Grey))
-            {
-                this.textField.RemoveFromClassList(RebotsUIStaticString.RebotsFontColor_Grey);
-            }
+            this.textField.RemoveFromClassList(RebotsUIStaticString.RebotsFontColor_Grey);
             this.textField.AddToClassList(RebotsUIStaticString.RebotsFontColor_Black);
 
             m_setPlaceholder = false;
@@ -101,10 +100,7 @@ namespace Rebots.HelpDesk
         {
             this.textField.SetValueWithoutNotify(m_placeholderStr);
 
-            if (this.textField.ClassListContains(RebotsUIStaticString.RebotsFontColor_Black))
-            {
-                this.textField.RemoveFromClassList(RebotsUIStaticString.RebotsFontColor_Black);
-            }
+            this.textField.RemoveFromClassList(RebotsUIStaticString.RebotsFontColor_Black);
             this.textField.AddToClassList(RebotsUIStaticString.RebotsFontColor_Grey);
 
             m_setPlaceholder = true;

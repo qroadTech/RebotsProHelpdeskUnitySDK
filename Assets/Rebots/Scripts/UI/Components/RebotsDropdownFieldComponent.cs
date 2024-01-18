@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace Rebots.HelpDesk
 {
-    public class RebotsDropdownFieldComponent
+    public class RebotsDropdownFieldComponent : RebotsFieldBase
     {
         const string FieldLabel = "rebots-field-label";
         const string RequiredFieldLabel = "rebots-required";
@@ -22,7 +22,7 @@ namespace Rebots.HelpDesk
         private string validationComment;
         private string[] answers;
 
-        public RebotsDropdownFieldComponent(TicketCategoryInputField csCategoryField, string? parameter, string[] validationComment)
+        public RebotsDropdownFieldComponent(TicketCategoryInputField csCategoryField, string? parameter, string[] validationComment) : base(csCategoryField.isAdvice, csCategoryField.adviceText)
         {
             this.csCategoryField = csCategoryField;
             this.answers = csCategoryField.answers;
@@ -30,12 +30,13 @@ namespace Rebots.HelpDesk
             this.validationComment = (validationComment != null) ? validationComment[0] : "";
         }
 
-        public void SetVisualElement(TemplateContainer dropdownFieldUIElement)
+        public override void SetVisualElements(TemplateContainer dropdownFieldUIElement)
         {
             if (dropdownFieldUIElement == null)
             {
                 return;
             }
+            base.SetVisualElements(dropdownFieldUIElement);
 
             m_Label = dropdownFieldUIElement.Q<Label>(FieldLabel);
             m_RequiredFieldLabel = dropdownFieldUIElement.Q<Label>(RequiredFieldLabel);
@@ -51,6 +52,7 @@ namespace Rebots.HelpDesk
             {
                 return;
             }
+            base.SetFieldData();
 
             m_Label.text = csCategoryField.text;
 

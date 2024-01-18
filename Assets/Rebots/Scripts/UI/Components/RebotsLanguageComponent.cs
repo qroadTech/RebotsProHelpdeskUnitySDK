@@ -48,7 +48,7 @@ namespace Rebots.HelpDesk
 
             if (languageInfo.isCurrent)
             {
-                m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsLanguageLabel_Black20);
+                m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsLabel_Black20);
                 m_LanguageSelectedContainer.style.display = DisplayStyle.Flex;
 
                 switch (languageInfo.languageValue)
@@ -79,7 +79,7 @@ namespace Rebots.HelpDesk
             }
             else
             {
-                m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsLanguageLabel_Bold20);
+                m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsLabel_Bold20);
                 m_LanguageSelectedContainer.style.display = DisplayStyle.None;
 
                 switch (languageInfo.languageValue)

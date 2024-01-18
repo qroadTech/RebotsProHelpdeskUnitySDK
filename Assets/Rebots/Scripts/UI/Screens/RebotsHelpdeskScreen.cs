@@ -40,21 +40,9 @@ namespace Rebots.HelpDesk
         [SerializeField] public StyleSheet theme15;
         [SerializeField] public StyleSheet theme16;
 
-        [Header("Rebots Language Font StyleSheet")]
-        [SerializeField] public StyleSheet fontEn;
-        [SerializeField] public StyleSheet fontKr;
-        [SerializeField] public StyleSheet fontJa;
-        [SerializeField] public StyleSheet fontCn;
-        [SerializeField] public StyleSheet fontTw;
-        [SerializeField] public StyleSheet fontTh;
-
         [Header("Rebots Language Font Asset")]
         [SerializeField] public Font fontAssetEn;
         [SerializeField] public Font fontAssetKr;
-        [SerializeField] public Font fontAssetJa;
-        [SerializeField] public Font fontAssetCn;
-        [SerializeField] public Font fontAssetTw;
-        [SerializeField] public Font fontAssetTh;
         #endregion
 
         #region - - - Helpdesk UI Element - - - 
@@ -74,7 +62,6 @@ namespace Rebots.HelpDesk
             ListPageSize = 10;
         }
         #endregion
-
 
         #region Show screen
         public override void ShowScreen()
@@ -639,42 +626,9 @@ namespace Rebots.HelpDesk
             }
         }
 
-        public StyleSheet GetLanguageStyleSheet(string language)
+        public Font GetLanguageFontAsset()
         {
-            switch (language)
-            {
-                case "ko":
-                    return fontKr;
-                case "ja":
-                    return fontJa;
-                case "zh-cn":
-                    return fontCn;
-                case "zh-tw":
-                    return fontTw;
-                case "th":
-                    return fontTh;
-                default:
-                    return fontEn;
-            }
-        }
-
-        public Font GetLanguageFontAsset(string language)
-        {
-            switch (language)
-            {
-                case "ko":
-                    return fontAssetKr;
-                case "ja":
-                    return fontAssetJa;
-                case "zh-cn":
-                    return fontAssetCn;
-                case "zh-tw":
-                    return fontAssetTw;
-                case "th":
-                    return fontAssetTh;
-                default:
-                    return fontAssetEn;
-            }
+            return fontAssetKr;
         }
         #endregion
 

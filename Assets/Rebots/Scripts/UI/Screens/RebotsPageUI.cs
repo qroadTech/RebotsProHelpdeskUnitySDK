@@ -7,6 +7,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -161,8 +162,6 @@ namespace Rebots.HelpDesk
         public void SetTranslationText()
         {
             LocalizationManager = helpdeskScreen.rebotsSettingManager.localizationManager;
-
-            m_PopularFaqCation.text = LocalizationManager.translationDic[RebotsUIStaticString.PopularFaqCation];
 
             m_FaqHelpfulLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.FaqHelpfulLabel];
             m_HelpfulYesLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.HelpfulYesLabel];
@@ -634,33 +633,10 @@ namespace Rebots.HelpDesk
                 for (int i = 0; i < count; i++)
                 {
                     var item = tickets[i]; 
-                    TemplateContainer faqUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateTicket(item, helpdeskScreen.ClickTicket, out faqUIElement);
+                    TemplateContainer ticketUIElement = null;
+                    helpdeskScreen.rebotsUICreater.CreateTicket(item, helpdeskScreen.ClickTicket, out ticketUIElement);
 
-                    var ticketLanguage = item.data.language;
-                    switch (ticketLanguage)
-                    {
-                        case "ko":
-                            faqUIElement.styleSheets.Add(helpdeskScreen.fontKr);
-                            break;
-                        case "ja":
-                            faqUIElement.styleSheets.Add(helpdeskScreen.fontJa);
-                            break;
-                        case "zh-cn":
-                            faqUIElement.styleSheets.Add(helpdeskScreen.fontCn);
-                            break;
-                        case "zh-tw":
-                            faqUIElement.styleSheets.Add(helpdeskScreen.fontTw);
-                            break;
-                        case "th":
-                            faqUIElement.styleSheets.Add(helpdeskScreen.fontTh);
-                            break;
-                        default:
-                            faqUIElement.styleSheets.Add(helpdeskScreen.fontEn);
-                            break;
-                    }
-
-                    m_TicketList.Add(faqUIElement);
+                    m_TicketList.Add(ticketUIElement);
                 }
             }
         }
@@ -671,29 +647,6 @@ namespace Rebots.HelpDesk
             var answers = response.ticket.answers ?? null;
 
             m_PageTitleLabel.text = "My Tickets";
-
-            m_TicketContainer.styleSheets.Clear();
-            switch (ticketData.language)
-            {
-                case "ko":
-                    m_TicketContainer.styleSheets.Add(helpdeskScreen.fontKr);
-                    break;
-                case "ja":
-                    m_TicketContainer.styleSheets.Add(helpdeskScreen.fontJa);
-                    break;
-                case "zh-cn":
-                    m_TicketContainer.styleSheets.Add(helpdeskScreen.fontCn);
-                    break;
-                case "zh-tw":
-                    m_TicketContainer.styleSheets.Add(helpdeskScreen.fontTw);
-                    break;
-                case "th":
-                    m_TicketContainer.styleSheets.Add(helpdeskScreen.fontTh);
-                    break;
-                default:
-                    m_TicketContainer.styleSheets.Add(helpdeskScreen.fontEn);
-                    break;
-            }
 
             var dataDic = JsonConvert.DeserializeObject<Dictionary<string, string>>(ticketData.data).ToArray();
             var dataCount = (dataDic != null) ? dataDic.Count() : 0;
@@ -800,7 +753,7 @@ namespace Rebots.HelpDesk
             Rect textRect = new Rect(0, 0, areaWidth, areaHeight);
 
             GUIStyle textStyle = new GUIStyle();
-            textStyle.font = helpdeskScreen.GetLanguageFontAsset(LocalizationManager.language);
+            textStyle.font = helpdeskScreen.GetLanguageFontAsset();
             textStyle.fontSize = 16;
             textStyle.wordWrap = true;
 
