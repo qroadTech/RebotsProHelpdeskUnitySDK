@@ -64,15 +64,20 @@ namespace Rebots.HelpDesk
         public Label m_OperatingTimeLabel;
         public Button m_TermsButton;
         public Label m_TermsLabel;
-        public VisualElement m_TermsBar;
         public Button m_CookieButton;
         public Label m_CookieLabel;
         public Button m_PrivacyButton;
         public Label m_PrivacyLabel;
-        public VisualElement m_PrivacyBar;
         public Button m_OperatingButton;
         public Label m_OperatingLabel;
         public Label m_TelLabel;
+        public VisualElement m_TermsBar;
+        public VisualElement m_CookieBar;
+        public VisualElement m_FooterLowConatiner;
+        public VisualElement m_PrivacyBar;
+        public VisualElement m_OperatingBar;
+        public VisualElement m_TelContainer;
+        public VisualElement m_TelBar;
         public VisualElement m_FooterCopyrightConatiner;
         public Label m_CopyrightLabel;
         #endregion
@@ -128,15 +133,20 @@ namespace Rebots.HelpDesk
             m_OperatingTimeLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.OperatingTimeLabel);
             m_TermsButton = m_FooterContainer.Q<Button>(RebotsUIStaticString.TermsButton);
             m_TermsLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.TermsLabel);
-            m_TermsBar = m_FooterContainer.Q(RebotsUIStaticString.TermsBar);
             m_CookieButton = m_FooterContainer.Q<Button>(RebotsUIStaticString.CookieButton);
             m_CookieLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.CookieLabel);
             m_PrivacyButton = m_FooterContainer.Q<Button>(RebotsUIStaticString.PrivacyButton);
             m_PrivacyLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.PrivacyLabel);
-            m_PrivacyBar = m_FooterContainer.Q(RebotsUIStaticString.PrivacyBar);
             m_OperatingButton = m_FooterContainer.Q<Button>(RebotsUIStaticString.OperatingButton);
             m_OperatingLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.OperatingLabel);
             m_TelLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.TelLabel);
+            m_TermsBar = m_FooterContainer.Q(RebotsUIStaticString.TermsBar);
+            m_CookieBar = m_FooterContainer.Q(RebotsUIStaticString.CookieBar);
+            m_FooterLowConatiner = m_FooterContainer.Q(RebotsUIStaticString.FooterLowConatiner);
+            m_PrivacyBar = m_FooterContainer.Q(RebotsUIStaticString.PrivacyBar);
+            m_OperatingBar = m_FooterContainer.Q(RebotsUIStaticString.OperatingBar);
+            m_TelContainer = m_FooterContainer.Q(RebotsUIStaticString.TelContainer);
+            m_TelBar = m_FooterContainer.Q(RebotsUIStaticString.TelBar);
             m_FooterCopyrightConatiner = m_FooterContainer.Q(RebotsUIStaticString.FooterCopyrightConatiner);
             m_CopyrightLabel = m_FooterContainer.Q<Label>(RebotsUIStaticString.CopyrightLabel);
         }
@@ -174,6 +184,9 @@ namespace Rebots.HelpDesk
 
             m_TermsLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.TermsLabel];
             m_CookieLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.CookieLabel];
+            m_PrivacyLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.PrivacyLabel];
+            m_OperatingLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.OperatingLabel];
+
         }
 
         public void SetHelpdeskData(HelpdeskSetting helpdeskSetting)
@@ -183,7 +196,6 @@ namespace Rebots.HelpDesk
 
             m_HelpdeskLayout.styleSheets.Clear();
             m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.GetThemeStyleSheet(helpdeskSetting.theme));
-            m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.GetLanguageStyleSheet(LocalizationManager.language));
 
             #region setting Main Image
             if (helpdeskSetting.useMainImage && helpdeskSetting.mainImageMobileUrl != null && !string.IsNullOrEmpty(helpdeskSetting.mainImageMobileUrl))
@@ -198,6 +210,23 @@ namespace Rebots.HelpDesk
             #endregion
 
             #region setting Footer
+            bool isRow = true;
+            if (Screen.orientation == ScreenOrientation.Portrait)
+            {
+                isRow = false;
+                m_FooterInfoContainer.style.flexDirection = FlexDirection.Column;
+                m_FooterLowConatiner.style.flexDirection = FlexDirection.Column;
+                m_FooterLowConatiner.style.flexGrow = 1;
+                m_TelContainer.style.flexGrow = 1;
+            }
+            else
+            {
+                m_FooterInfoContainer.style.flexDirection = FlexDirection.Row;
+                m_FooterLowConatiner.style.flexDirection = FlexDirection.Row;
+                m_FooterLowConatiner.style.flexGrow = 0;
+                m_TelContainer.style.flexGrow = 0;
+            }
+
             if (helpdeskSetting.useOperatingTime && !string.IsNullOrEmpty(helpdeskSetting.operatingTime))
             {
                 var operatingTime = helpdeskSetting.operatingTime.Split("/");
@@ -215,7 +244,7 @@ namespace Rebots.HelpDesk
             {
                 m_TermsButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.termsServiceUrl));
                 ShowVisualElement(m_TermsButton, true);
-                ShowVisualElement(m_TermsBar, true);
+                ShowVisualElement(m_TermsBar, isRow);
             }
             else
             {
@@ -227,18 +256,19 @@ namespace Rebots.HelpDesk
             {
                 m_CookieButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.cookiePolicyUrl));
                 ShowVisualElement(m_CookieButton, true);
+                ShowVisualElement(m_CookieBar, !(helpdeskSetting.useTermsService == isRow));
             }
             else
             {
                 ShowVisualElement(m_CookieButton, false);
-                ShowVisualElement(m_TermsBar, false);
+                ShowVisualElement(m_CookieBar, false);
             }
 
             if (helpdeskSetting.usePrivacyPolicyURL && !string.IsNullOrEmpty(helpdeskSetting.privacyPolicyURL))
             {
                 m_PrivacyButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.privacyPolicyURL));
                 ShowVisualElement(m_PrivacyButton, true);
-                ShowVisualElement(m_PrivacyBar, true);
+                ShowVisualElement(m_PrivacyBar, isRow);
             }
             else
             {
@@ -246,17 +276,16 @@ namespace Rebots.HelpDesk
                 ShowVisualElement(m_PrivacyBar, false);
             }
 
-            helpdeskSetting.useOperatingPolicy = true;
-            helpdeskSetting.operatingPolicyURL = "https://google.com/";
             if (helpdeskSetting.useOperatingPolicy && !string.IsNullOrEmpty(helpdeskSetting.operatingPolicyURL))
             {
                 m_OperatingButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.operatingPolicyURL));
                 ShowVisualElement(m_OperatingButton, true);
+                ShowVisualElement(m_OperatingBar, !(helpdeskSetting.usePrivacyPolicyURL == isRow));
             }
             else
             {
                 ShowVisualElement(m_OperatingButton, false);
-                ShowVisualElement(m_PrivacyBar, false);
+                ShowVisualElement(m_OperatingBar, false);
             }
 
             if (helpdeskSetting.useCallNumber && !string.IsNullOrEmpty(helpdeskSetting.callNumber))
@@ -264,10 +293,12 @@ namespace Rebots.HelpDesk
                 var telStr = LocalizationManager.translationDic[RebotsUIStaticString.TelLabel];
                 m_TelLabel.text = string.Format(telStr, helpdeskSetting.callNumber);
                 ShowVisualElement(m_TelLabel, true);
+                ShowVisualElement(m_TelBar, isRow);
             }
             else
             {
                 ShowVisualElement(m_TelLabel, false);
+                ShowVisualElement(m_TelBar, false);
             }
 
             if (helpdeskSetting.useCopyright && !string.IsNullOrEmpty(helpdeskSetting.copyrightText))

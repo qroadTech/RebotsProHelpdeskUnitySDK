@@ -2594,7 +2594,8 @@ MonoBehaviour:
     m_Height: 30
   m_FontFeatureTable:
     m_GlyphPairAdjustmentRecords: []
-  m_FallbackFontAssetTable: []
+  m_FallbackFontAssetTable:
+  - {fileID: 11400000, guid: c28c583647627b64d865391aa78955b1, type: 2}
   m_fontAssetCreationEditorSettings:
     sourceFontFileGUID: 160421a06f5b07a4a9d2697be0134ae6
     faceIndex: 0

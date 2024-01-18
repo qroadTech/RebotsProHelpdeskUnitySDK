@@ -30,13 +30,18 @@
     border-top-width: 1px;
     border-bottom-width: 1px;
     -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-background-scale-mode: stretch-to-fill;
+    -unity-slice-left: 1;
+    -unity-slice-top: 1;
+    -unity-slice-right: 1;
+    -unity-slice-bottom: 1;
 }
 
 .rebots-check.unity-toggle > .unity-toggle__input:checked > .unity-toggle__checkmark {
     background-color: rgb(40, 40, 40);
-    border-left-color: rgb(40, 40, 40);
-    border-right-color: rgb(40, 40, 40);
-    border-top-color: rgb(40, 40, 40);
-    border-bottom-color: rgb(40, 40, 40);
+    border-left-color: rgb(85, 85, 85);
+    border-right-color: rgb(85, 85, 85);
+    border-top-color: rgb(85, 85, 85);
+    border-bottom-color: rgb(85, 85, 85);
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }

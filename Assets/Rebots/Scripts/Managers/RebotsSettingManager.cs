@@ -164,7 +164,7 @@ namespace Rebots.HelpDesk
         #region API Call methods
         /// <summary>
         /// If you need to use HelpDesk SDK, you must call initializer methods.
-        /// It will gain additional informations for using Qroad RebostProMax
+        /// It will gain additional informations for using RebostPro
         /// HelpDesk Services.
         /// </summary>
         public void HelpdeskInitialize(string? changeLanguage = "")

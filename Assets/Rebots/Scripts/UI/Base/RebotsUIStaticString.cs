@@ -119,15 +119,20 @@
         public const string OperatingTimeLabel = "rebots-operating-time";
         public const string TermsButton = "rebots-terms-button";
         public const string TermsLabel = "rebots-terms";
-        public const string TermsBar = "rebots-terms-bar";
         public const string CookieButton = "rebots-cookie-button";
         public const string CookieLabel = "rebots-cookie";
         public const string PrivacyButton = "rebots-privacy-button";
         public const string PrivacyLabel = "rebots-privacy";
-        public const string PrivacyBar = "rebots-privacy-bar";
         public const string OperatingButton = "rebots-operating-button";
         public const string OperatingLabel = "rebots-operating";
         public const string TelLabel = "rebots-tel";
+        public const string TermsBar = "rebots-terms-bar";
+        public const string CookieBar = "rebots-cookie-bar";
+        public const string FooterLowConatiner = "rebots-footer-low-container";
+        public const string PrivacyBar = "rebots-privacy-bar";
+        public const string OperatingBar = "rebots-operating-bar";
+        public const string TelContainer = "rebots-tel-container";
+        public const string TelBar = "rebots-tel-bar";
         public const string FooterCopyrightConatiner = "rebots-copyright-container";
         public const string CopyrightLabel = "rebots-copyright";
         #endregion
@@ -150,9 +155,6 @@
         #endregion
 
         #region - - - uss Class Name - - - 
-        public const string RebotsLanguageLabel_Black20 = "rebots-language-label__black20";
-        public const string RebotsLanguageLabel_Bold20 = "rebots-language-label__bold20";
-
         public const string RebotsFontKr_Black = "rebots-font-kr__black";
         public const string RebotsFontJa_Black = "rebots-font-ja__black";
         public const string RebotsFontCn_Black = "rebots-font-cn__black";
@@ -170,6 +172,8 @@
         public const string RebotsBackgroundColor_Grey = "rebots-background-color__grey";
         public const string RebotsBackgroundColor_None = "rebots-background-color__none";
 
+        public const string RebotsLabel_Black20 = "rebots-label__black20";
+        public const string RebotsLabel_Bold20 = "rebots-label__bold20";
         public const string RebotsLabel_Black16 = "rebots-label__black16";
         public const string RebotsLabel_Bold16 = "rebots-label__bold16";
         public const string RebotsLabel_Regular16 = "rebots-label__regular16";
@@ -178,7 +182,7 @@
         public const string RebotsFontColor_Grey = "rebots-font-color__grey";
         public const string RebotsFontColor_Theme = "rebots-font-color__theme";
 
-        public const string RebotsLabelLink = "rebots-label-link";
+        public const string RebotsLabelLink = "rebots-font-color__link";
         #endregion
         #region - - - Theme code - - - 
         public const string ThemeCode1 = "#343A40";

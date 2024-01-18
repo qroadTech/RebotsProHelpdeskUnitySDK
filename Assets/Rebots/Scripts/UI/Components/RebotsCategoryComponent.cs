@@ -17,7 +17,7 @@ namespace Rebots.HelpDesk
         public RebotsCategoryComponent(T category)
         {
             this.category = category;
-        }
+        } 
 
         public void SetVisualElements(TemplateContainer categoryUIElement)
         {

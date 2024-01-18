@@ -3,6 +3,12 @@
     margin-right: 0;
     margin-top: 0;
     margin-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    white-space: normal;
+    -unity-text-align: middle-left;
     -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
     -unity-font: resource('Rebots/NotoSansKR-Regular');
 }
@@ -13,11 +19,11 @@
 }
 
 .unity-base-dropdown__item {
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
     font-size: 20px;
     -unity-text-align: middle-left;
     color: rgb(0, 0, 0);
     height: 55px;
     min-height: 55px;
+    -unity-font: resource('Rebots/NotoSansKR-Regular');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
 }

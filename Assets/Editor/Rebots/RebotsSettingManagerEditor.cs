@@ -12,6 +12,8 @@ namespace Rebots.HelpDesk
             RebotsSettingManager settingScript = (RebotsSettingManager)target;
             if (settingScript != null)
             {
+                settingScript.ProjectMainKey = "Xf37b8ce929Zo1mcQkmqbsM";
+
                 settingScript.ProjectMainKey = EditorGUILayout.TextField("Project Main Key", settingScript.ProjectMainKey);
                 
                 settingScript.translationFile = (TextAsset)EditorGUILayout.ObjectField("Rebots Translation File", settingScript.translationFile, typeof(TextAsset), true);

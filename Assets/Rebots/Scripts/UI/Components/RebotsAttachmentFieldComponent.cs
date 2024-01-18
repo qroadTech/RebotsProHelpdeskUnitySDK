@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 namespace Rebots.HelpDesk
 {
-    public class RebotsAttachmentFieldComponent
+    public class RebotsAttachmentFieldComponent : RebotsFieldBase
     {
         const string FieldLabel = "rebots-field-label";
         const string RequiredFieldLabel = "rebots-required";
@@ -36,7 +36,7 @@ namespace Rebots.HelpDesk
 
         private readonly List<string> ImageType = new List<string>() { "png", "jpeg", "jpg" };
 
-        public RebotsAttachmentFieldComponent(TicketCategoryInputField csCategoryField, VisualTreeAsset fileAsset, string[] validationComment)
+        public RebotsAttachmentFieldComponent(TicketCategoryInputField csCategoryField, VisualTreeAsset fileAsset, string[] validationComment) : base(csCategoryField.isAdvice, csCategoryField.adviceText)
         {
             this.csCategoryField = csCategoryField;
             this.fileAsset = fileAsset;
@@ -44,12 +44,13 @@ namespace Rebots.HelpDesk
             this.validationComment = (validationComment != null) ? validationComment[0] : "";
         }
 
-        public void SetVisualElement(TemplateContainer attachmentFieldUIElement)
+        public override void SetVisualElements(TemplateContainer attachmentFieldUIElement)
         {
             if (attachmentFieldUIElement == null)
             {
                 return;
             }
+            base.SetVisualElements(attachmentFieldUIElement);
 
             this.m_FieldLabel = attachmentFieldUIElement.Q<Label>(FieldLabel);
             this.m_RequiredFieldLabel = attachmentFieldUIElement.Q<Label>(RequiredFieldLabel);
@@ -68,6 +69,7 @@ namespace Rebots.HelpDesk
             {
                 return;
             }
+            base.SetFieldData();
 
             this.m_FieldLabel.text = this.csCategoryField.text;
             this.m_ChooseFileButton?.RegisterCallback<ClickEvent>(evt => ClickChooseFile());

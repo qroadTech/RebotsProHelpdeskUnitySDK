@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 namespace Rebots.HelpDesk
 {
-    public class RebotsButtonGroupFieldComponent
+    public class RebotsButtonGroupFieldComponent : RebotsFieldBase
     {
         const string FieldLabel = "rebots-field-label";
         const string RequiredFieldLabel = "rebots-required";
@@ -28,7 +28,7 @@ namespace Rebots.HelpDesk
         private Dictionary<Toggle, string> checkbuttons = new Dictionary<Toggle, string>();
         private Dictionary<RadioButton, string> radiobuttons = new Dictionary<RadioButton, string>();
 
-        public RebotsButtonGroupFieldComponent(TicketCategoryInputField csCategoryField, VisualTreeAsset buttonAsset, string? parameter, string[] validationComment)
+        public RebotsButtonGroupFieldComponent(TicketCategoryInputField csCategoryField, VisualTreeAsset buttonAsset, string? parameter, string[] validationComment) : base(csCategoryField.isAdvice, csCategoryField.adviceText)
         {
             this.csCategoryField = csCategoryField;
             this.buttonAsset = buttonAsset;
@@ -37,12 +37,13 @@ namespace Rebots.HelpDesk
             this.validationComment = (validationComment != null) ? validationComment[0] : "";
         }
 
-        public void SetVisualElement(TemplateContainer buttonGroupFieldUIElement)
+        public override void SetVisualElements(TemplateContainer buttonGroupFieldUIElement)
         {
             if (buttonGroupFieldUIElement == null)
             {
                 return;
             }
+            base.SetVisualElements(buttonGroupFieldUIElement);
 
             m_Label = buttonGroupFieldUIElement.Q<Label>(FieldLabel);
             m_RequiredFieldLabel = buttonGroupFieldUIElement.Q<Label>(RequiredFieldLabel);
@@ -56,6 +57,7 @@ namespace Rebots.HelpDesk
             {
                 return;
             }
+            base.SetFieldData();
 
             m_Label.text = csCategoryField.text;
 
