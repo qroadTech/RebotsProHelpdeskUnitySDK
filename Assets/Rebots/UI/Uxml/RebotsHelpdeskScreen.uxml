@@ -5,8 +5,8 @@
         <ui:VisualElement name="rebots-helpdesk-layout" style="height: 100%;">
             <ui:VisualElement style="height: 100%;">
                 <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="rebots-scrollview" class="rebots-helpdesk-scrollview" style="height: 100%; margin-top: 62px;">
-                    <ui:VisualElement name="rebots-main-title-container" class="rebots-background-color__theme" style="width: 100%; display: none;">
-                        <ui:VisualElement name="rebots-image-title-background" style="width: 100%; height: 300px; max-height: 300px; min-height: 300px; background-image: none; -unity-background-scale-mode: scale-to-fit; padding-left: 23px; padding-right: 23px; justify-content: space-around; flex-shrink: 0; display: flex; padding-bottom: 26px; align-items: center;">
+                    <ui:VisualElement name="rebots-main-title-container" class="rebots-background-color__theme" style="width: 100%; display: none; -unity-background-scale-mode: scale-and-crop;">
+                        <ui:VisualElement name="rebots-image-title-background" style="width: 100%; height: 300px; max-height: 300px; min-height: 300px; padding-left: 23px; padding-right: 23px; justify-content: space-around; flex-shrink: 0; display: flex; padding-bottom: 26px; align-items: center; -unity-background-scale-mode: scale-and-crop;">
                             <ui:Label text="Welcome to Rebots Pro Help Desk" display-tooltip-when-elided="true" name="rebots-helpdesk-label" class="rebots-label__black28 rebots-font-color__white" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center; -unity-text-align: middle-center;" />
                         </ui:VisualElement>
                     </ui:VisualElement>
