@@ -82,7 +82,6 @@ namespace Rebots.HelpDesk
         public RebotsLocalizationManager LocalizationManager { get; private set; }
         public PrivacySetting TicketPrivacySetting { get; private set; }
         public string Theme { get; private set; }
-        public bool ScreenPortrait { get; private set; } = true;
         public Dictionary<string, string> ParameterDic { get; private set; }
 
         #region Run in 'Awake' call
@@ -176,8 +175,6 @@ namespace Rebots.HelpDesk
         public void SetHelpdeskData(HelpdeskSetting helpdeskSetting)
         {
             Theme = helpdeskSetting.theme;
-
-            ScreenPortrait = (Screen.orientation == ScreenOrientation.Portrait || Screen.orientation == ScreenOrientation.AutoRotation);
         }
 
         public void SetPrivacyData(PrivacySetting ticketPrivacySetting)
@@ -322,7 +319,7 @@ namespace Rebots.HelpDesk
         {
             var categories = response.items;
 
-            if (ScreenPortrait)
+            if (helpdeskScreen.ScreenPortrait)
                 m_FaqCategoryList.style.flexDirection = FlexDirection.Column;
             else
                 m_FaqCategoryList.style.flexDirection = FlexDirection.Row;
@@ -335,7 +332,7 @@ namespace Rebots.HelpDesk
                 TemplateContainer categoryUIElement = null;
                 helpdeskScreen.rebotsUICreater.CreateCategory<Category>(category, RebotsCategoryAssetType.Category, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
 
-                if (ScreenPortrait)
+                if (helpdeskScreen.ScreenPortrait)
                 {
                     categoryUIElement.style.width = Length.Percent(100f);
                 }
@@ -361,7 +358,7 @@ namespace Rebots.HelpDesk
 
             m_PageTitleLabel.text = "Inquiry";
 
-            m_InquiryList.style.flexDirection = ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
+            m_InquiryList.style.flexDirection = helpdeskScreen.ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
 
             var csCategories = (categories != null) ? categories.Where(x => x.use == 1).ToArray() : new Category[0];
             
@@ -372,7 +369,7 @@ namespace Rebots.HelpDesk
                 Action<Category> clickAction = (category.childFieldCount > 0) ? helpdeskScreen.ShowCsSubCategory : helpdeskScreen.ShowTicketCreate;
                 helpdeskScreen.rebotsUICreater.CreateCategory<Category>(category, RebotsCategoryAssetType.Category, clickAction, out categoryUIElement);
 
-                if (ScreenPortrait)
+                if (helpdeskScreen.ScreenPortrait)
                 {
                     categoryUIElement.style.width = Length.Percent(100f);
                 }
@@ -504,7 +501,7 @@ namespace Rebots.HelpDesk
                 m_PageRouteContainer.Add(routeLabel);
             }
 
-            m_InquiryList.style.flexDirection = ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
+            m_InquiryList.style.flexDirection = helpdeskScreen.ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
 
             var subCategories = (csCategory.subCategories != null) ? csCategory.subCategories.Where(x => x.use == 1).ToArray() : new Category[0];
             for (int i = 0; i < subCategories.Count(); i++)
@@ -513,7 +510,7 @@ namespace Rebots.HelpDesk
                 TemplateContainer categoryUIElement = null;
                 Action<Category> clickAction = (category.childFieldCount > 0) ? helpdeskScreen.ShowCsSubCategory : helpdeskScreen.ShowTicketCreate;
                 helpdeskScreen.rebotsUICreater.CreateCategory(category, RebotsCategoryAssetType.Category, clickAction, out categoryUIElement);
-                if (ScreenPortrait)
+                if (helpdeskScreen.ScreenPortrait)
                 {
                     categoryUIElement.style.width = Length.Percent(100f);
                 }
@@ -574,6 +571,8 @@ namespace Rebots.HelpDesk
                         m_ChooseFileButtonLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.ChooseFileButtonLabel];
                         var m_NoFileLabel = fieldUIElement.Q<Label>(RebotsUIStaticString.NoFileLabel);
                         m_NoFileLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.NoFileLabel];
+                        var m_FileValidationLabel = fieldUIElement.Q<Label>(RebotsUIStaticString.FileValidationLabel);
+                        m_FileValidationLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.FileValidationLabel];
                     }
 
                     m_TicketFieldList.Add(fieldUIElement);

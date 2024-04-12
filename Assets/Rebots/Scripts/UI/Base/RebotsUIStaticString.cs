@@ -142,6 +142,7 @@
         public const string SearchPlaceholder = "rebots-search-placeholder";
         public const string ChooseFileButtonLabel = "rebots-choose-file-label";
         public const string NoFileLabel = "rebots-no-file";
+        public const string FileValidationLabel = "rebots-file-validation";
         public const string PrivacyFieldLabel = "rebots-privacy-policy";
         public const string PrivacyPrpose = "rebots-privacy-purpose";
         public const string PrivacyCollection = "rebots-privacy-collection";

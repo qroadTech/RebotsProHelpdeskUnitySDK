@@ -64,7 +64,7 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            if (!ticketPrivacySetting.usePrivacyPolicyURL)
+            if (ticketPrivacySetting.usePrivacyPolicyURL)
             {
                 m_PrivacyTextContainer.style.display = DisplayStyle.None;
                 m_PrivacyLinkContainer.style.display = DisplayStyle.Flex;
@@ -76,7 +76,7 @@ namespace Rebots.HelpDesk
                 m_PrivacyTextContainer.style.display = DisplayStyle.Flex;
                 m_PrivacyLinkContainer.style.display = DisplayStyle.None;
 
-                if (!ticketPrivacySetting.useFormPrivacyPolicy)
+                if (ticketPrivacySetting.useFormPrivacyPolicy)
                 {
                     string formStr = "";
                     

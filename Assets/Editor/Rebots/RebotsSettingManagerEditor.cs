@@ -20,6 +20,8 @@ namespace Rebots.HelpDesk
 
                 settingScript.HelpdeskLanguage = (RebotsLanguage)EditorGUILayout.EnumPopup("Helpdesk Language", settingScript.HelpdeskLanguage);
 
+                settingScript.RebotsScreenOrientation = (RebotsScreenOrientation)EditorGUILayout.EnumPopup("Helpdesk Screen Orientation", settingScript.RebotsScreenOrientation);
+
                 if (GUILayout.Button("Check Language Available"))
                 {
                     settingScript.RebotsHelpdeskInitailize();

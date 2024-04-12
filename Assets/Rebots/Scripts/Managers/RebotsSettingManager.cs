@@ -36,6 +36,8 @@ namespace Rebots.HelpDesk
 
         public RebotsLanguage HelpdeskLanguage;
 
+        public RebotsScreenOrientation RebotsScreenOrientation = RebotsScreenOrientation.Portrait;
+
         public TextAsset translationFile;
 
         [HideInInspector]

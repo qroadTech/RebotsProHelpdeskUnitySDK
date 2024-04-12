@@ -35,6 +35,7 @@ rebots-username,사용자 이름,Username,nombre de usuario,お名前,用户名,
 rebots-required,필수 항목,Required Field,campo requerido,必須フィールド,所需项目,所需項目,Bidang yang Diperlukan,ช่องที่ต้องกรอก
 rebots-email,이메일,Email,correo electrónico,メール,邮箱,郵箱,Surel,อีเมล
 rebots-no-file,선택한 파일이 없습니다,There's no chosen file,No hay archivo elegido,選択したファイルがありません,未选择任何文件,未選擇任何文件,Tidak ada file yang dipilih,ไม่มีไฟล์ที่เลือก
+rebots-file-validation,"JPG, PNG,GIF 파일로 3개, 최대 10MB","Up to 3 files, max 10MB each, JPG, PNG, GIF","Hasta 3 archivos, máx. 10 MB cada uno, JPG, PNG, GIF","JPG、PNG、GIFファイルで3つ、最大10MBまで。","最多 3 个 JPG、PNG、GIF 文件，最大 10MB","JPG、PNG、GIF文件3個，最多10MB","Hingga 3 file, masing-masing maksimal 10MB, JPG, PNG, GIF","แฟ้ม JPG, PNG, GIF จำนวน 3 แฟ้ม สูงสุด 10 MB"
 rebots-privacy-policy,개인정보보호 정책,Privacy Policy,política de privacidad,プライバシー,隐私保护政策,隱私保護政策,Kebijakan pribadi,นโยบายความเป็นส่วนตัว
 rebots-i-agree,개인정보 수집에 동의합니다,I agree to the collection of personal information.,Acepto la recopilación de información personal.,個人情報の取り扱いに同意します。,本人同意收集个人资料,本人同意收集個人資料,Saya setuju dengan pengumpulan informasi pribadi.,ฉันตกลงที่จะรวบรวมข้อมูลส่วนบุคคล
 rebots-submit,제출,Submit,entregar,提出,提交,提交,Serahkan,ส่ง

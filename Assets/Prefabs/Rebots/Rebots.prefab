@@ -72,6 +72,7 @@ MonoBehaviour:
   theme16: {fileID: 7433441132597879392, guid: 5af56766ded5e314180f4f423ce8dd18, type: 3}
   fontAssetEn: {fileID: 12800000, guid: f82eb559747f7c043b12c82745db9575, type: 3}
   fontAssetKr: {fileID: 12800000, guid: 9fd7104f5a86c61408cde0b17a9c43aa, type: 3}
+  OriginScreenOrientation: 0
 --- !u!1 &6512091819863282
 GameObject:
   m_ObjectHideFlags: 0
@@ -232,12 +233,12 @@ MonoBehaviour:
   AttachmentFieldAsset: {fileID: 9197481963319205126, guid: c342f957e92c5a9469deac730a27a824, type: 3}
   AttachmentFileAsset: {fileID: 9197481963319205126, guid: 1581cf5448024f5499df2256f2601047, type: 3}
   ButtonGroupFieldAsset: {fileID: 9197481963319205126, guid: 540e4a464d1ab1941a1103c7efd78456, type: 3}
-  CategoryAsset: {fileID: 9197481963319205126, guid: 1272e3c7c9138394ba493061d2aa8cc5, type: 3}
+  CategoryAsset: {fileID: 9197481963319205126, guid: d4d8565feaa804942b4e8f4fd7391fcb, type: 3}
   CheckAsset: {fileID: 9197481963319205126, guid: 1d51ea6ec4401f341bc7011da3e749dc, type: 3}
   DropdownFieldAsset: {fileID: 9197481963319205126, guid: c17610b18b8166445afd111dcc28c5ce, type: 3}
   FaqAsset: {fileID: 9197481963319205126, guid: 2263351221fd2b94b83e6c2154c253b6, type: 3}
   LanguageAsset: {fileID: 9197481963319205126, guid: 68be2249c7cc09f479e64d88d7dccab6, type: 3}
-  LowerCategoryAsset: {fileID: 9197481963319205126, guid: ef6a1e235e3af0b4ca513ce14d6734c4, type: 3}
+  LowerCategoryAsset: {fileID: 9197481963319205126, guid: 328b84968a117004da1487cef0102f86, type: 3}
   MenuCategoryAsset: {fileID: 9197481963319205126, guid: 03b76c5a7762ec64d9daeff6a14b3eb3, type: 3}
   PagingNavigator: {fileID: 9197481963319205126, guid: 8f92c45678f6d9e438e22af0c0224edc, type: 3}
   PopularFaqAsset: {fileID: 9197481963319205126, guid: ceee0968772d7eb4a9d615d465266170, type: 3}

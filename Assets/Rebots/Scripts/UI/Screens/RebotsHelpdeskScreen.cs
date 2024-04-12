@@ -49,6 +49,9 @@ namespace Rebots.HelpDesk
         public VisualElement m_HelpdeskScreen;
         #endregion
 
+        public ScreenOrientation OriginScreenOrientation;
+        public bool ScreenPortrait { get; private set; } = true;
+
         public Dictionary<TicketCategoryInputField, object> FieldDictionary { get; private set; }
         public List<RebotsPageRecord> PageRecords { get; private set; } = new();
         public int ListPageSize { get; private set; } = 10;
@@ -66,6 +69,9 @@ namespace Rebots.HelpDesk
         #region Show screen
         public override void ShowScreen()
         {
+            Screen.orientation = (ScreenOrientation)rebotsSettingManager.RebotsScreenOrientation;
+            ScreenPortrait = ((ScreenOrientation)rebotsSettingManager.RebotsScreenOrientation == ScreenOrientation.Portrait);
+
             rebotsPageUI.SetParameterData(rebotsSettingManager.rebotsParameterDataManager.ParameterData);
 
             SetLayout();
@@ -96,6 +102,8 @@ namespace Rebots.HelpDesk
         public void ClosePanel()
         {
             HideScreen();
+
+            Screen.orientation = OriginScreenOrientation;
         }
         #endregion
 
@@ -307,6 +315,8 @@ namespace Rebots.HelpDesk
                     ShowVisualElement(rebotsLayoutUI.m_MenuContainer, true);
                     break;
             }
+
+            rebotsLayoutUI.m_ScrollView.verticalScroller.value = 0f;
         }
 
         public void HidePage(RebotsPageType type)

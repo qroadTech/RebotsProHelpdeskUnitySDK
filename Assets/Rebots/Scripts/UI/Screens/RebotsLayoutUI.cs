@@ -200,18 +200,20 @@ namespace Rebots.HelpDesk
             #region setting Main Image
             if (helpdeskSetting.useMainImage && helpdeskSetting.mainImageMobileUrl != null && !string.IsNullOrEmpty(helpdeskSetting.mainImageMobileUrl))
             {
+                m_MainTitleContainer.AddToClassList("rebots-background-color__black");
                 var imgUrl = helpdeskSetting.mainImageMobileUrl.Trim();
                 helpdeskScreen.ImageUrlToTexture2D(OnTitleImageUpdated, new System.Uri(imgUrl), imgUrl);
             }
             else
             {
+                m_MainTitleContainer.AddToClassList("rebots-background-color__theme");
                 m_TitleImageContainer.style.backgroundImage = null;
             }
             #endregion
 
             #region setting Footer
             bool isRow = true;
-            if (Screen.orientation == ScreenOrientation.Portrait)
+            if (helpdeskScreen.ScreenPortrait)
             {
                 isRow = false;
                 m_FooterInfoContainer.style.flexDirection = FlexDirection.Column;
@@ -329,13 +331,22 @@ namespace Rebots.HelpDesk
             }            
         }
         #endregion
-
+        
         #region Set callback data after API
         public void OnTitleImageUpdated(Texture2D texture, string externalLinkUri)
         {
             if (texture != null)
             {
                 Sprite sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(texture.width / 2, texture.height / 2));
+
+                if (texture.width > texture.height)
+                {
+                    m_TitleImageContainer.style.unityBackgroundScaleMode = ScaleMode.ScaleAndCrop;
+                }
+                else
+                {
+                    m_TitleImageContainer.style.unityBackgroundScaleMode = ScaleMode.ScaleToFit;
+                }
                 m_TitleImageContainer.style.backgroundImage = new StyleBackground(sprite);
             }
         }

@@ -58,7 +58,7 @@ namespace Rebots.HelpDesk
                 {
                     m?.HideScreen();
                 }
-            }
+            } 
         }
 
         public void PublicCallCheckEventBanner()
@@ -68,6 +68,8 @@ namespace Rebots.HelpDesk
 
         public void RebotsHelpdeskShow()
         {
+            rebotsHelpdeskScreen.OriginScreenOrientation = Screen.orientation;
+
             ShowModalScreen(rebotsHelpdeskScreen);
         }
 
