@@ -547,6 +547,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6512093571915445, guid: bf7a07804addf994981e29b2f520406a, type: 3}
+      propertyPath: CategoryAsset
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: ce6b55f94fa64a343beafb4ff313edd4, type: 3}
+    - target: {fileID: 6512093571915445, guid: bf7a07804addf994981e29b2f520406a, type: 3}
+      propertyPath: LowerCategoryAsset
+      value: 
+      objectReference: {fileID: 9197481963319205126, guid: 6824c18d050004741a9562629fdbd6e6, type: 3}
     - target: {fileID: 1307173592818080567, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: rebotsSettingManager
       value: 

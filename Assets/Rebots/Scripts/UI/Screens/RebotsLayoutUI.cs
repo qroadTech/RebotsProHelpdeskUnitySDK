@@ -19,6 +19,7 @@ namespace Rebots.HelpDesk
         #endregion
         #region - - - Top Bar UI Element - - - 
         public VisualElement m_TopContainer;
+        public Label m_HelpdeskPhrases;
         public Button m_MenuOpenButton;
         public Button m_TopSearchButton;
         public Button m_TopLanguageButton;
@@ -40,6 +41,7 @@ namespace Rebots.HelpDesk
         public Button m_MenuMainButton;
         public Label m_MainLabel;
         public Button m_MenuMyTicketButton;
+        public Label m_MyTicketLabel;
         public Foldout m_MenuFaqFoldout;
         public VisualElement m_MenuFaqCategoryList;
         public Foldout m_MenuInquiryFoldout;
@@ -94,6 +96,7 @@ namespace Rebots.HelpDesk
             m_BackgroundContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.BackgroundContainer);
 
             m_TopContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.TopContainer);
+            m_HelpdeskPhrases = m_TopContainer.Q<Label>(RebotsUIStaticString.HelpdeskPhrases);
             m_MenuOpenButton = m_TopContainer.Q<Button>(RebotsUIStaticString.MenuOpenButton);
             m_TopSearchButton = m_TopContainer.Q<Button>(RebotsUIStaticString.SearchButton);
             m_TopLanguageButton = m_TopContainer.Q<Button>(RebotsUIStaticString.LanguageButton);
@@ -112,6 +115,7 @@ namespace Rebots.HelpDesk
             m_MenuMainButton = m_MenuContainer.Q<Button>(RebotsUIStaticString.MainButton);
             m_MainLabel = m_MenuContainer.Q<Label>(RebotsUIStaticString.MainLabel);
             m_MenuMyTicketButton = m_MenuContainer.Q<Button>(RebotsUIStaticString.MenuMyTicketButton);
+            m_MyTicketLabel = m_MenuMyTicketButton.Q<Label>(RebotsUIStaticString.MyTicketLabel);
             m_MenuFaqFoldout = m_MenuContainer.Q<Foldout>(RebotsUIStaticString.MenuFaqFoldout);
             m_MenuFaqCategoryList = m_MenuFaqFoldout.Q(RebotsUIStaticString.List);
             m_MenuInquiryFoldout = m_MenuContainer.Q<Foldout>(RebotsUIStaticString.MenuInquiryFoldout);
@@ -171,12 +175,16 @@ namespace Rebots.HelpDesk
         {
             LocalizationManager = helpdeskScreen.rebotsSettingManager.localizationManager;
 
+            m_HelpdeskPhrases.text = LocalizationManager.translationDic[RebotsUIStaticString.HelpdeskPhrases];
+
             m_SearchCaption.text = LocalizationManager.translationDic[RebotsUIStaticString.SearchCaption];
             m_SearchField.UsePlaceholder(LocalizationManager.translationDic[RebotsUIStaticString.SearchPlaceholder]);
             m_SearchField.InitializeTextField();
 
             m_MainLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.MainLabel];
-            m_MenuInquiryFoldout.text = LocalizationManager.translationDic[RebotsUIStaticString.InquiryLabel];
+            m_MyTicketLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.MyTicketLabel];
+            m_MenuFaqFoldout.text = LocalizationManager.translationDic[RebotsUIStaticString.FaqPhrases];
+            m_MenuInquiryFoldout.text = LocalizationManager.translationDic[RebotsUIStaticString.InquiryPhrases];
             m_ExitLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.ExitLabel];
 
             m_NeedMoreLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.NeedMoreLabel];
@@ -194,8 +202,14 @@ namespace Rebots.HelpDesk
             m_MenuHelpdeskLabel.text = helpdeskSetting.helpdeskName;
             m_TitleHelpdeskLabel.text = helpdeskSetting.helpdeskName;
 
+            m_HelpdeskLayout.ClearClassList();
+            string langClass = LocalizationManager.GetCurrentLanguageFont();
+            m_HelpdeskLayout.AddToClassList(langClass);
+
             m_HelpdeskLayout.styleSheets.Clear();
             m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.GetThemeStyleSheet(helpdeskSetting.theme));
+
+
 
             #region setting Main Image
             if (helpdeskSetting.useMainImage && helpdeskSetting.mainImageMobileUrl != null && !string.IsNullOrEmpty(helpdeskSetting.mainImageMobileUrl))

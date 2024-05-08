@@ -199,11 +199,11 @@ namespace Rebots.HelpDesk
             }
         }
 
-        public void CreatePrivacyField(PrivacySetting ticketPrivacySetting, string[] transData, Category category, Action<bool, Category> clickAction, out TemplateContainer uiElement)
+        public void CreatePrivacyField(PrivacySetting ticketPrivacySetting, string[] transData, string validationComment, Category category, Action<bool, Category> clickAction, out TemplateContainer uiElement)
         {
             TemplateContainer PrivacyUIElement = PrivacyFieldAsset.Instantiate();
 
-            RebotsPrivacyComponent privacyComponent = new RebotsPrivacyComponent(ticketPrivacySetting, transData, category);
+            RebotsPrivacyComponent privacyComponent = new RebotsPrivacyComponent(ticketPrivacySetting, transData, validationComment, category);
 
             privacyComponent.SetVisualElements(PrivacyUIElement);
             privacyComponent.SetPrivacyData(PrivacyUIElement);
@@ -212,11 +212,11 @@ namespace Rebots.HelpDesk
             uiElement = PrivacyUIElement;
         }
 
-        public void CreateTicket(HelpdeskTicket ticket, Action<HelpdeskTicket> clickAction, out TemplateContainer uiElement)
+        public void CreateTicket(HelpdeskTicket ticket, string[] transData, Action<HelpdeskTicket> clickAction, out TemplateContainer uiElement)
         {
             TemplateContainer ticketUIElement = TicketAsset.Instantiate();
 
-            RebotsTicketComponent ticketComponent = new RebotsTicketComponent(ticket);
+            RebotsTicketComponent ticketComponent = new RebotsTicketComponent(ticket, transData);
 
             ticketComponent.SetVisualElements(ticketUIElement);
             ticketComponent.SetTicketData(ticketUIElement);
@@ -336,3 +336,4 @@ namespace Rebots.HelpDesk
         }
     }
 }
+        

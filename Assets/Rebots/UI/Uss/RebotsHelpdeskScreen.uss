@@ -6,7 +6,7 @@
 }
 
 #rebots-scrollview .unity-scroll-view__content-container {
-    background-color: rgba(255, 255, 255, 255);
+    background-color: rgb(255, 255, 255);
 }
 
 .unity-scroll-view__vertical-scroller {
@@ -28,12 +28,76 @@
     white-space: nowrap;
 }
 
-.rebots-search-field .unity-text-field__input {
+.rebots-ko-class .rebots-search-field .unity-text-field__input {
     height: 100%;
     min-height: 100%;
     -unity-text-align: middle-left;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular');
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    white-space: nowrap;
+    padding-right: 30px;
+}
+
+.rebots-en-class .rebots-search-field .unity-text-field__input {
+    height: 100%;
+    min-height: 100%;
+    -unity-text-align: middle-left;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    white-space: nowrap;
+    padding-right: 30px;
+}
+
+.rebots-ja-class .rebots-search-field .unity-text-field__input {
+    height: 100%;
+    min-height: 100%;
+    -unity-text-align: middle-left;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    white-space: nowrap;
+    padding-right: 30px;
+}
+
+.rebots-zh-cn-class .rebots-search-field .unity-text-field__input {
+    height: 100%;
+    min-height: 100%;
+    -unity-text-align: middle-left;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+    font-size: 16px;
+    background-color: rgba(255, 255, 255, 0);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    white-space: nowrap;
+    padding-right: 30px;
+}
+
+.rebots-th-class .rebots-search-field .unity-text-field__input {
+    height: 100%;
+    min-height: 100%;
+    -unity-text-align: middle-left;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
     font-size: 16px;
     background-color: rgba(255, 255, 255, 0);
     border-left-width: 0;
@@ -111,10 +175,42 @@
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
-.rebots-menu-foldout .unity-toggle .unity-label {
+.rebots-ko-class .rebots-menu-foldout .unity-toggle .unity-label {
     font-size: 16px;
     color: rgb(255, 255, 255);
     flex-grow: 1;
-    -unity-font: resource('Rebots/NotoSansKR-Black');
-    -unity-font-definition: resource('Rebots/NotoSansKR-Black');
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
+}
+
+.rebots-en-class .rebots-menu-foldout .unity-toggle .unity-label {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    flex-grow: 1;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
+}
+
+.rebots-ja-class .rebots-menu-foldout .unity-toggle .unity-label {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    flex-grow: 1;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
+}
+
+.rebots-zh-cn-class .rebots-menu-foldout .unity-toggle .unity-label {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    flex-grow: 1;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
+}
+
+.rebots-th-class .rebots-menu-foldout .unity-toggle .unity-label {
+    font-size: 16px;
+    color: rgb(255, 255, 255);
+    flex-grow: 1;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
 }

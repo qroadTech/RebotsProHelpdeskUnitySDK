@@ -13,11 +13,13 @@ MonoBehaviour:
   m_Name: UITK Text Settings
   m_EditorClassIdentifier: 
   m_Version: 
-  m_DefaultFontAsset: {fileID: 11400000, guid: 5901112137405e64a9dc8b463ec80f82, type: 2}
+  m_DefaultFontAsset: {fileID: 11400000, guid: 4a1e556bf78c5634f8ce919891af05fc, type: 2}
   m_DefaultFontAssetPath: Rebots/
   m_FallbackFontAssets:
-  - {fileID: 11400000, guid: de341d88482e4d24bbfa7fe3f4a25304, type: 2}
-  - {fileID: 11400000, guid: 744dba9200383754bbae1d997e95bce9, type: 2}
+  - {fileID: 11400000, guid: 7ab823a96b767514dbb24b57013d47ad, type: 2}
+  - {fileID: 11400000, guid: 2581074bc67f63343950f62852458c6d, type: 2}
+  - {fileID: 11400000, guid: 0c84d20d63a2bc24ea76ac8fe519074a, type: 2}
+  - {fileID: 11400000, guid: 7c61794772f6f8e42a293e4731fd2767, type: 2}
   m_MatchMaterialPreset: 0
   m_MissingCharacterUnicode: 0
   m_ClearDynamicDataOnBuild: 1

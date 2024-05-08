@@ -41,14 +41,20 @@ namespace Rebots.HelpDesk
         [SerializeField] public StyleSheet theme16;
 
         [Header("Rebots Language Font Asset")]
-        [SerializeField] public Font fontAssetEn;
-        [SerializeField] public Font fontAssetKr;
+        [SerializeField] public Font fontAssetKR;
+        [SerializeField] public Font fontAssetEN;
+        [SerializeField] public Font fontAssetJP;
+        [SerializeField] public Font fontAssetCN;
+        [SerializeField] public Font fontAssetTH;
         #endregion
 
         #region - - - Helpdesk UI Element - - - 
         public VisualElement m_HelpdeskScreen;
         #endregion
 
+        [HideInInspector]
+        public GameObject? SystemEventGO;
+        [HideInInspector]
         public ScreenOrientation OriginScreenOrientation;
         public bool ScreenPortrait { get; private set; } = true;
 
@@ -83,6 +89,14 @@ namespace Rebots.HelpDesk
 
         public void SetLayout()
         {
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
+            if (SystemEventGO != null)
+            {
+                Debug.Log("UNITY_EDITOR : SystemEventGO.SetActive(false)");
+                SystemEventGO.SetActive(false);
+            }
+#endif
+
             rebotsLayoutUI.SetTranslationText();
             rebotsLayoutUI.SetLanguageUI();
             rebotsLayoutUI.SetHelpdeskData(rebotsSettingManager.helpdeskSetting);
@@ -103,6 +117,13 @@ namespace Rebots.HelpDesk
         {
             HideScreen();
 
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
+            if (SystemEventGO != null)
+            {
+                Debug.Log("UNITY_EDITOR : SystemEventGO.SetActive(true)");
+                SystemEventGO.SetActive(true);
+            }
+#endif
             Screen.orientation = OriginScreenOrientation;
         }
         #endregion
@@ -422,11 +443,6 @@ namespace Rebots.HelpDesk
 
         public void ClickTicketSubmit(bool privacyValue, Category category)
         {
-            if (!privacyValue)
-            {
-                return;
-            }
-
             bool checkValidation = true;
             var ticketInputFields = new DictionaryTicketInputFormData();
             var ticketAddFieldDic = new Dictionary<string, string>();
@@ -499,6 +515,11 @@ namespace Rebots.HelpDesk
                         ticketInputFields.AddAttachment(value.content as FileStream);
                     }
                 }
+            }
+
+            if (!privacyValue)
+            {
+                checkValidation = false;
             }
 
             if (checkValidation)
@@ -638,7 +659,23 @@ namespace Rebots.HelpDesk
 
         public Font GetLanguageFontAsset()
         {
-            return fontAssetKr;
+            switch (rebotsSettingManager.localizationManager.language.ToLower())
+            {
+                case "en":
+                case "es":
+                case "id":
+                    return fontAssetEN;
+                case "ja":
+                    return fontAssetJP;
+                case "zh-cn":
+                case "zh-tw":
+                    return fontAssetCN;
+                case "th":
+                    return fontAssetTH;
+                case "ko":
+                default:
+                    return fontAssetKR;
+            }
         }
         #endregion
 

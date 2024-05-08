@@ -39,7 +39,6 @@
         public const string MenuMyTicketButton = "rebots-my-ticket-button";
         public const string MenuFaqFoldout = "rebots-menu-faq-foldout";
         public const string MenuInquiryFoldout = "rebots-menu-inquiry-foldout";
-        public const string InquiryLabel = "rebots-inquiry";
         public const string ExitButton = "rebots-exit-button";
         public const string ExitLabel = "rebots-exit";
         #endregion
@@ -153,6 +152,14 @@
         public const string TicketSubmitLabel = "rebots-submit";
         public const string ValidRequired = "rebots-valid-required";
         public const string ValidEmail = "rebots-valid-email";
+
+        public const string FaqPhrases = "rebots-faq-phrases";
+        public const string InquiryPhrases = "rebots-inquiry-phrases";
+        public const string MyTicketLabel = "rebots-my-ticket-label";
+        public const string TicketAnswerLabel = "rebots-ticket-answer-label";
+        public const string TicketWaiting = "rebots-ticket-answer";
+        public const string TicketCompleted = "rebots-ticket-completed";
+        public const string HelpdeskPhrases = "rebots-helpdesk-phrases";
         #endregion
 
         #region - - - uss Class Name - - - 

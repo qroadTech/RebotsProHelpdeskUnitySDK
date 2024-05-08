@@ -11,6 +11,10 @@ namespace Rebots.HelpDesk
         [SerializeField] RebotsHelpdeskScreen rebotsHelpdeskScreen;
         [SerializeField] RebotsBannerScreen rebotsBannerScreen;
 
+        [Header("Unity Editor Play (Option)")]
+        [Tooltip("GameObject with Event System")]
+        [SerializeField] GameObject? systemEventGO;
+
         List<RebotsModalScreen> AllModalScreens = new List<RebotsModalScreen>();
 
         UIDocument uiDocument;
@@ -69,6 +73,7 @@ namespace Rebots.HelpDesk
         public void RebotsHelpdeskShow()
         {
             rebotsHelpdeskScreen.OriginScreenOrientation = Screen.orientation;
+            rebotsHelpdeskScreen.SystemEventGO = systemEventGO;
 
             ShowModalScreen(rebotsHelpdeskScreen);
         }

@@ -1,4 +1,4 @@
-.unity-text-field__input {
+.rebots-ko-class .unity-text-field__input {
     height: 100%;
     font-size: 13px;
     background-color: rgb(255, 255, 255);
@@ -23,6 +23,122 @@
     border-top-width: 1px;
     border-bottom-width: 1px;
     -unity-text-align: upper-left;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');
-    -unity-font-definition: none;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
+}
+
+.rebots-en-class .unity-text-field__input {
+    height: 100%;
+    font-size: 13px;
+    background-color: rgb(255, 255, 255);
+    border-left-color: rgb(188, 188, 188);
+    border-right-color: rgb(188, 188, 188);
+    border-top-color: rgb(188, 188, 188);
+    border-bottom-color: rgb(188, 188, 188);
+    margin-top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 100%;
+    white-space: normal;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    min-height: auto;
+    align-items: flex-start;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    -unity-text-align: upper-left;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
+.rebots-ja-class .unity-text-field__input {
+    height: 100%;
+    font-size: 13px;
+    background-color: rgb(255, 255, 255);
+    border-left-color: rgb(188, 188, 188);
+    border-right-color: rgb(188, 188, 188);
+    border-top-color: rgb(188, 188, 188);
+    border-bottom-color: rgb(188, 188, 188);
+    margin-top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 100%;
+    white-space: normal;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    min-height: auto;
+    align-items: flex-start;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    -unity-text-align: upper-left;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
+.rebots-zh-cn-class .unity-text-field__input {
+    height: 100%;
+    font-size: 13px;
+    background-color: rgb(255, 255, 255);
+    border-left-color: rgb(188, 188, 188);
+    border-right-color: rgb(188, 188, 188);
+    border-top-color: rgb(188, 188, 188);
+    border-bottom-color: rgb(188, 188, 188);
+    margin-top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 100%;
+    white-space: normal;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    min-height: auto;
+    align-items: flex-start;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    -unity-text-align: upper-left;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
+.rebots-th-class .unity-text-field__input {
+    height: 100%;
+    font-size: 13px;
+    background-color: rgb(255, 255, 255);
+    border-left-color: rgb(188, 188, 188);
+    border-right-color: rgb(188, 188, 188);
+    border-top-color: rgb(188, 188, 188);
+    border-bottom-color: rgb(188, 188, 188);
+    margin-top: 0;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: 100%;
+    white-space: normal;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    min-height: auto;
+    align-items: flex-start;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    -unity-text-align: upper-left;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
 }

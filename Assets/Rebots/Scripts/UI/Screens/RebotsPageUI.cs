@@ -7,8 +7,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Scripting;
 using UnityEngine.UIElements;
 
 namespace Rebots.HelpDesk
@@ -76,6 +78,7 @@ namespace Rebots.HelpDesk
         public VisualElement m_TicketContainer;
         public VisualElement m_TicketDetailList;
         public Label m_TicketContentsLabel;
+        public Label m_TicketAnswerLabel;
         public VisualElement m_TicketAnswerList;
         #endregion
 
@@ -147,6 +150,7 @@ namespace Rebots.HelpDesk
             m_TicketContainer = m_PageConatiner.Q(RebotsUIStaticString.TicketContainer);
             m_TicketDetailList = m_TicketContainer.Q(RebotsUIStaticString.TicketDetailList);
             m_TicketContentsLabel = m_TicketContainer.Q<Label>(RebotsUIStaticString.TicketContentsLabel);
+            m_TicketAnswerLabel = m_TicketContainer.Q<Label>(RebotsUIStaticString.TicketAnswerLabel);
             m_TicketAnswerList = m_TicketContainer.Q(RebotsUIStaticString.TicketAnswerList);
         }
 
@@ -255,10 +259,10 @@ namespace Rebots.HelpDesk
         {
             var faq = response;
 
-            m_PageTitleLabel.text = "FAQ";
+            m_PageTitleLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.FaqPhrases];
 
             var routeList = faq.categories.Reverse().ToList();
-            routeList.Insert(0, new Category { name = "FAQ", id = 0 });
+            routeList.Insert(0, new Category { name = LocalizationManager.translationDic[RebotsUIStaticString.FaqPhrases], id = 0 });
             foreach (var item in routeList)
             {
                 Action<Category> clickAction = (item.id == 0) ? null : helpdeskScreen.ClickFaqCategory;
@@ -393,11 +397,11 @@ namespace Rebots.HelpDesk
         {
             var faqCategory = response;
 
-            m_PageTitleLabel.text = "FAQ";
+            m_PageTitleLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.FaqPhrases];
 
             Label routeLabel = null;
             var routeList = faqCategory.categories.Reverse().ToList();
-            routeList.Insert(0, new Category { name = "FAQ", id = 0 });
+            routeList.Insert(0, new Category { name = LocalizationManager.translationDic[RebotsUIStaticString.FaqPhrases], id = 0 });
             routeList.Add(faqCategory);
             foreach (var item in routeList)
             {
@@ -596,7 +600,7 @@ namespace Rebots.HelpDesk
                 {
                     inputType = "privacy",
                 };
-                helpdeskScreen.rebotsUICreater.CreatePrivacyField(TicketPrivacySetting, formSectionTransData, csCategory, helpdeskScreen.ClickTicketSubmit, out privacyUIElement);
+                helpdeskScreen.rebotsUICreater.CreatePrivacyField(TicketPrivacySetting, formSectionTransData, validationField, csCategory, helpdeskScreen.ClickTicketSubmit, out privacyUIElement);
 
                 var m_RequiredLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.RequiredLabel);
                 m_RequiredLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.RequiredLabel];
@@ -624,16 +628,21 @@ namespace Rebots.HelpDesk
             var tickets = response.items;
             var count = tickets.Count();
 
-            m_PageTitleLabel.text = "My Tickets";
+            m_PageTitleLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.MyTicketLabel];
 
             if (tickets != null && count > 0)
             {
+                string[] transData = {
+                    LocalizationManager.translationDic[RebotsUIStaticString.TicketCompleted],
+                    LocalizationManager.translationDic[RebotsUIStaticString.TicketWaiting]
+                };
+
                 tickets = tickets.OrderByDescending(x => x.created).ToArray();
                 for (int i = 0; i < count; i++)
                 {
                     var item = tickets[i]; 
                     TemplateContainer ticketUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateTicket(item, helpdeskScreen.ClickTicket, out ticketUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateTicket(item, transData, helpdeskScreen.ClickTicket, out ticketUIElement);
 
                     m_TicketList.Add(ticketUIElement);
                 }
@@ -645,7 +654,8 @@ namespace Rebots.HelpDesk
             var ticketData = response.ticket.data ?? new();
             var answers = response.ticket.answers ?? null;
 
-            m_PageTitleLabel.text = "My Tickets";
+            m_PageTitleLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.MyTicketLabel];
+            m_TicketAnswerLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.TicketAnswerLabel];
 
             var dataDic = JsonConvert.DeserializeObject<Dictionary<string, string>>(ticketData.data).ToArray();
             var dataCount = (dataDic != null) ? dataDic.Count() : 0;

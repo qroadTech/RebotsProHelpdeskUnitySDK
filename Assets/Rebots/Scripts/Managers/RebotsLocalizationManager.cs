@@ -185,7 +185,28 @@ namespace Rebots.HelpDesk
             }
             return translation;
         }
-        
+
+        public string GetCurrentLanguageFont()
+        {
+            switch (language.ToLower())
+            {
+                case "en":
+                case "es":
+                case "id":
+                    return "rebots-en-class";
+                case "ja":
+                    return "rebots-ja-class";
+                case "zh-cn":
+                case "zh-tw":
+                    return "rebots-zh-cn-class";
+                case "th":
+                    return "rebots-th-class";
+                case "ko":
+                default:
+                    return "rebots-ko-class";
+            }
+        }
+
     }
 
     public class RebotsLanguageInfo
