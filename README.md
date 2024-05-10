@@ -20,6 +20,7 @@
     - <code>Project Main Key</code> - *Rebots Pro Workspace에서 설정한 정보입니다.*
     - <code>Rebots Translation File</code> - *<code>Assets/Rebots/Localization/rebots_translation_utf.csv</code> 파일을 필요로 합니다.*
     - <code>Helpdesk Language</code> - *Rebots Pro Workspace에서 설정한 정보입니다.*
+    - <code>Helpdesk Screen Orientation</code> - *헬프데스크 방향을 선택합니다. 세로 혹은 가로(왼쪽, 오른쪽)*
   - <code>Check Language Available</code> 버튼을 클릭하여 콘솔 로그에서 헬프데스크 연결을 확인합니다.
 
 ##### 3. 사용자 초기화 설정 (Unity 라이프사이클의 'Start'에서 실행)
@@ -29,11 +30,9 @@
 
 ##### 4. 헬프데스크 호출 메서드
   - <code>RebotsHelpdeskUIManager.cs</code> 파일의 <code>RebotsHelpdeskShow();</code>.
-    - 헬프데스크 방향을 세로(혹은 가로)로 직접 고정해야하는 경우, 메서드 내에 <code>Screen.orientation</code> 값을 할당해주세요.
 
 ##### 5. 헬프데스크 닫음 메서드
   - <code>RebotsHelpdeskScreen.cs</code> 파일의 <code>ClosePanel();</code>.
-    - 헬프데스크 방향을 직접 고정해둔 경우, 메서드 내에 <code>Screen.orientation</code> 값을 기존 방향으로 재지정해주세요.
 
 ---
 # RebotsProHelpdeskUnitySDK (EN)
@@ -58,6 +57,7 @@ You can test with <code>Assets/Scenes/Rebots.Unity</code> file.
     - <code>Project Main Key</code> - *Information set in Rebots Pro Workspace.*
     - <code>Rebots Translation File</code> - *Requires the <code>Assets/Rebots/Localization/rebots_translation_utf.csv</code> file.*
     - <code>Helpdesk Language</code> - *Information set in Rebots Pro Workspace.*
+    - <code>Helpdesk Screen Orientation</code> - *Select Helpdesk orientation. vertical or horizontal(Left, Right)*
   - Click the <code>Check Language Available</code> button to check the helpdesk connection in the console log.
 
 ##### 3. User Initialize Setting (Running in 'Start' of Unity lifecycle)
@@ -67,8 +67,6 @@ You can test with <code>Assets/Scenes/Rebots.Unity</code> file.
 
 ##### 4. Helpdesk call method
   - <code>RebotsHelpdeskShow();</code> in the <code>RebotsHelpdeskUIManager.cs</code> file.
-    - If you need to manually fix the Helpdesk orientation to vertical (or horizontal), please assign a <code>Screen.orientation</code> value.
 
 ##### 5. Helpdesk close method
   - <code>ClosePanel();</code> in the <code>RebotsHelpdeskScreen.cs</code> file.
-    - If you have fixed the help desk orientation yourself, please reassign the <code>Screen.orientation</code> value within the method to the original direction.
