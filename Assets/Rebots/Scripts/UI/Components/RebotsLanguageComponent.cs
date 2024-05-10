@@ -54,25 +54,23 @@ namespace Rebots.HelpDesk
                 switch (languageInfo.languageValue)
                 {
                     case RebotsLanguage.Korean:
+                    case RebotsLanguage.None:
+                    default:
                         m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontKr_Black);
                         break;
                     case RebotsLanguage.Japanese:
                         m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontJa_Black);
                         break;
                     case RebotsLanguage.SimplifiedChinese:
-                        m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontCn_Black);
-                        break;
                     case RebotsLanguage.TraditionalChinese:
-                        m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontTw_Black);
+                        m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontCn_Black);
                         break;
                     case RebotsLanguage.Thai:
                         m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontTh_Black);
                         break;
-                    case RebotsLanguage.None:
                     case RebotsLanguage.English:
                     case RebotsLanguage.Spanish:
                     case RebotsLanguage.Indonesian:
-                    default:
                         m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontEn_Black);
                         break;
                 }
@@ -85,25 +83,23 @@ namespace Rebots.HelpDesk
                 switch (languageInfo.languageValue)
                 {
                     case RebotsLanguage.Korean:
+                    case RebotsLanguage.None:
+                    default:
                         m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontKr_Regular);
                         break;
                     case RebotsLanguage.Japanese:
                         m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontJa_Regular);
                         break;
                     case RebotsLanguage.SimplifiedChinese:
-                        m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontCn_Regular);
-                        break;
                     case RebotsLanguage.TraditionalChinese:
-                        m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontTw_Regular);
+                        m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontCn_Regular);
                         break;
                     case RebotsLanguage.Thai:
                         m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontTh_Regular);
                         break;
-                    case RebotsLanguage.None:
                     case RebotsLanguage.English:
                     case RebotsLanguage.Spanish:
                     case RebotsLanguage.Indonesian:
-                    default:
                         m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontEn_Regular);
                         break;
                 }

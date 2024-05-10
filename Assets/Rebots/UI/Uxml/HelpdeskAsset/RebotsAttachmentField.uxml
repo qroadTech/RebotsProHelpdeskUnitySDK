@@ -15,6 +15,7 @@
                 <ui:Label text="No file chosen" display-tooltip-when-elided="true" name="rebots-no-file" class="rebots-label__regular16 rebots-font-color__grey" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:Label text="file validation" display-tooltip-when-elided="true" name="rebots-file-validation" class="rebots-label__regular16 rebots-font-color__grey" style="padding-top: 5px;" />
         <ui:VisualElement name="rebots-file-list-container" style="width: 100%; min-width: 100%;" />
         <ui:VisualElement style="height: 25px; max-height: 25px; min-height: 25px;">
             <ui:Label display-tooltip-when-elided="true" name="rebots-validation-label" class="rebots-font-color__red rebots-label__regular12" />

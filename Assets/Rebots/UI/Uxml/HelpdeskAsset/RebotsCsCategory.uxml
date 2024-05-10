@@ -1,5 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:Button display-tooltip-when-elided="true" name="rebots-category-button" style="background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BoxSquare.png?fileID=21300000&amp;guid=b604a33db80ec474abb45defeea4c19d&amp;type=3#BoxSquare&apos;); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(188, 188, 188, 0); margin-left: 0; margin-right: 0; margin-top: 15px; margin-bottom: 15px; padding-left: 35px; padding-right: 35px; padding-top: 16px; padding-bottom: 16px; min-height: 128px; height: 128px; justify-content: center;">
-        <ui:Label text="rebots-category-label" display-tooltip-when-elided="true" name="rebots-category-label" class="rebots-label__black24 rebots-font-color__theme" style="-unity-text-align: middle-center;" />
-    </ui:Button>
-</ui:UXML>

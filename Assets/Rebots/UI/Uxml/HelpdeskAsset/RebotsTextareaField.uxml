@@ -9,7 +9,7 @@
             <ui:Label text="(Required Field)" display-tooltip-when-elided="true" name="rebots-required" class="rebots-label__bold11 rebots-font-color__red" />
         </ui:VisualElement>
         <ui:VisualElement style="margin-top: 10px; width: 100%; min-width: 100%;">
-            <ui:TextField picking-mode="Ignore" text="Ticket Textarea Field Placeholder" name="rebots-text-field" style="width: 100%; height: auto; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; min-height: 139px; -unity-font: resource(&apos;Rebots/NotoSansKR-Regular&apos;);" />
+            <ui:TextField picking-mode="Ignore" text="Ticket Textarea Field Placeholder" name="rebots-text-field" style="width: 100%; height: auto; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; min-height: 139px;" />
         </ui:VisualElement>
         <ui:VisualElement style="height: 25px; max-height: 25px; min-height: 25px; width: 100%; min-width: 100%;">
             <ui:Label display-tooltip-when-elided="true" name="rebots-validation-label" class="rebots-font-color__red rebots-label__regular12" />

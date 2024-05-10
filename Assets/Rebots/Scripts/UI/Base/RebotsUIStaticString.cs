@@ -39,7 +39,6 @@
         public const string MenuMyTicketButton = "rebots-my-ticket-button";
         public const string MenuFaqFoldout = "rebots-menu-faq-foldout";
         public const string MenuInquiryFoldout = "rebots-menu-inquiry-foldout";
-        public const string InquiryLabel = "rebots-inquiry";
         public const string ExitButton = "rebots-exit-button";
         public const string ExitLabel = "rebots-exit";
         #endregion
@@ -142,6 +141,7 @@
         public const string SearchPlaceholder = "rebots-search-placeholder";
         public const string ChooseFileButtonLabel = "rebots-choose-file-label";
         public const string NoFileLabel = "rebots-no-file";
+        public const string FileValidationLabel = "rebots-file-validation";
         public const string PrivacyFieldLabel = "rebots-privacy-policy";
         public const string PrivacyPrpose = "rebots-privacy-purpose";
         public const string PrivacyCollection = "rebots-privacy-collection";
@@ -149,9 +149,19 @@
         public const string PrivacyConsignment = "rebots-privacy-consignment";
         public const string PrivacyProviding = "rebots-privacy-providing";
         public const string PrivacyConsignmentPeriod = "rebots-privacy-consignment-period";
+        public const string PrivacyLinkTitleLabel = "rebots-privacy-link-title-label";
+        public const string PrivacyLinkLabel = "rebots-privacy-link-label";
         public const string TicketSubmitLabel = "rebots-submit";
         public const string ValidRequired = "rebots-valid-required";
         public const string ValidEmail = "rebots-valid-email";
+
+        public const string FaqPhrases = "rebots-faq-phrases";
+        public const string InquiryPhrases = "rebots-inquiry-phrases";
+        public const string MyTicketLabel = "rebots-my-ticket-label";
+        public const string TicketAnswerLabel = "rebots-ticket-answer-label";
+        public const string TicketWaiting = "rebots-ticket-answer";
+        public const string TicketCompleted = "rebots-ticket-completed";
+        public const string HelpdeskPhrases = "rebots-helpdesk-phrases";
         #endregion
 
         #region - - - uss Class Name - - - 

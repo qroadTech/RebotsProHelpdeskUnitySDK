@@ -7,7 +7,7 @@
             <ui:Label text="Faq Title Label" display-tooltip-when-elided="true" name="rebots-faq-title-label" class="rebots-label__black20 rebots-font-color__black" />
         </ui:VisualElement>
         <ui:VisualElement>
-            <ui:Label text="Faq Contents Preview Label" display-tooltip-when-elided="true" name="rebots-contents-label" class="rebots-label__regular16 rebots-font-color__dark-grey" style="-unity-font-definition: none; -unity-font: resource(&apos;Rebots/NotoSansKR-Regular&apos;); max-height: 50px; -unity-text-align: upper-left; overflow: hidden;" />
+            <ui:Label text="Faq Contents Preview Label" display-tooltip-when-elided="true" name="rebots-contents-label" class="rebots-label__regular16 rebots-font-color__dark-grey" style="max-height: 50px; -unity-text-align: upper-left; overflow: hidden;" />
         </ui:VisualElement>
     </ui:Button>
 </ui:UXML>

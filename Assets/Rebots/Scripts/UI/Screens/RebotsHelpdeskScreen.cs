@@ -41,13 +41,22 @@ namespace Rebots.HelpDesk
         [SerializeField] public StyleSheet theme16;
 
         [Header("Rebots Language Font Asset")]
-        [SerializeField] public Font fontAssetEn;
-        [SerializeField] public Font fontAssetKr;
+        [SerializeField] public Font fontAssetKR;
+        [SerializeField] public Font fontAssetEN;
+        [SerializeField] public Font fontAssetJP;
+        [SerializeField] public Font fontAssetCN;
+        [SerializeField] public Font fontAssetTH;
         #endregion
 
         #region - - - Helpdesk UI Element - - - 
         public VisualElement m_HelpdeskScreen;
         #endregion
+
+        [HideInInspector]
+        public GameObject? SystemEventGO;
+        [HideInInspector]
+        public ScreenOrientation OriginScreenOrientation;
+        public bool ScreenPortrait { get; private set; } = true;
 
         public Dictionary<TicketCategoryInputField, object> FieldDictionary { get; private set; }
         public List<RebotsPageRecord> PageRecords { get; private set; } = new();
@@ -66,6 +75,9 @@ namespace Rebots.HelpDesk
         #region Show screen
         public override void ShowScreen()
         {
+            Screen.orientation = (ScreenOrientation)rebotsSettingManager.RebotsScreenOrientation;
+            ScreenPortrait = ((ScreenOrientation)rebotsSettingManager.RebotsScreenOrientation == ScreenOrientation.Portrait);
+
             rebotsPageUI.SetParameterData(rebotsSettingManager.rebotsParameterDataManager.ParameterData);
 
             SetLayout();
@@ -77,6 +89,14 @@ namespace Rebots.HelpDesk
 
         public void SetLayout()
         {
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
+            if (SystemEventGO != null)
+            {
+                Debug.Log("UNITY_EDITOR : SystemEventGO.SetActive(false)");
+                SystemEventGO.SetActive(false);
+            }
+#endif
+
             rebotsLayoutUI.SetTranslationText();
             rebotsLayoutUI.SetLanguageUI();
             rebotsLayoutUI.SetHelpdeskData(rebotsSettingManager.helpdeskSetting);
@@ -96,6 +116,15 @@ namespace Rebots.HelpDesk
         public void ClosePanel()
         {
             HideScreen();
+
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN
+            if (SystemEventGO != null)
+            {
+                Debug.Log("UNITY_EDITOR : SystemEventGO.SetActive(true)");
+                SystemEventGO.SetActive(true);
+            }
+#endif
+            Screen.orientation = OriginScreenOrientation;
         }
         #endregion
 
@@ -307,6 +336,8 @@ namespace Rebots.HelpDesk
                     ShowVisualElement(rebotsLayoutUI.m_MenuContainer, true);
                     break;
             }
+
+            rebotsLayoutUI.m_ScrollView.verticalScroller.value = 0f;
         }
 
         public void HidePage(RebotsPageType type)
@@ -412,11 +443,6 @@ namespace Rebots.HelpDesk
 
         public void ClickTicketSubmit(bool privacyValue, Category category)
         {
-            if (!privacyValue)
-            {
-                return;
-            }
-
             bool checkValidation = true;
             var ticketInputFields = new DictionaryTicketInputFormData();
             var ticketAddFieldDic = new Dictionary<string, string>();
@@ -489,6 +515,11 @@ namespace Rebots.HelpDesk
                         ticketInputFields.AddAttachment(value.content as FileStream);
                     }
                 }
+            }
+
+            if (!privacyValue)
+            {
+                checkValidation = false;
             }
 
             if (checkValidation)
@@ -628,7 +659,23 @@ namespace Rebots.HelpDesk
 
         public Font GetLanguageFontAsset()
         {
-            return fontAssetKr;
+            switch (rebotsSettingManager.localizationManager.language.ToLower())
+            {
+                case "en":
+                case "es":
+                case "id":
+                    return fontAssetEN;
+                case "ja":
+                    return fontAssetJP;
+                case "zh-cn":
+                case "zh-tw":
+                    return fontAssetCN;
+                case "th":
+                    return fontAssetTH;
+                case "ko":
+                default:
+                    return fontAssetKR;
+            }
         }
         #endregion
 

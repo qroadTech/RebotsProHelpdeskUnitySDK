@@ -1,11 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Assets/Rebots/UI/Uss/RebotsHelpdeskScreen.uss?fileID=7433441132597879392&amp;guid=9407434687e1057419f486af0bbbab07&amp;type=3#RebotsHelpdeskScreen" />
     <Style src="project://database/Assets/Rebots/UI/Uss/RebotsCommon.uss?fileID=7433441132597879392&amp;guid=0ce8fc6f13fcf2d4b8f1f0fdcb5ed037&amp;type=3#RebotsCommon" />
+    <Style src="project://database/Assets/Rebots/UI/Uss/Theme/RebotsTheme4.uss?fileID=7433441132597879392&amp;guid=2f459356200da984bb667d86fb50f8b1&amp;type=3#RebotsTheme4" />
     <ui:VisualElement name="rebots-helpdesk-screen" style="scale: 2 2; width: 50%; height: 50%; transform-origin: left top;">
         <ui:VisualElement name="rebots-helpdesk-layout" style="height: 100%;">
             <ui:VisualElement style="height: 100%;">
                 <ui:ScrollView horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="rebots-scrollview" class="rebots-helpdesk-scrollview" style="height: 100%; margin-top: 62px;">
-                    <ui:VisualElement name="rebots-main-title-container" class="rebots-background-color__theme" style="width: 100%; display: none; -unity-background-scale-mode: scale-and-crop;">
+                    <ui:VisualElement name="rebots-main-title-container" style="width: 100%; display: none;">
                         <ui:VisualElement name="rebots-image-title-background" style="width: 100%; height: 300px; max-height: 300px; min-height: 300px; padding-left: 23px; padding-right: 23px; justify-content: space-around; flex-shrink: 0; display: flex; padding-bottom: 26px; align-items: center; -unity-background-scale-mode: scale-and-crop;">
                             <ui:Label text="Welcome to Rebots Pro Help Desk" display-tooltip-when-elided="true" name="rebots-helpdesk-label" class="rebots-label__black28 rebots-font-color__white" style="padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; align-items: center; -unity-text-align: middle-center;" />
                         </ui:VisualElement>
@@ -109,7 +110,7 @@
                         <ui:VisualElement name="rebots-ticket-create-container" style="margin-left: 16px; margin-right: 16px; display: none;">
                             <ui:VisualElement name="rebots-field-list-container" style="flex-shrink: 0; margin-top: 20px; margin-bottom: 20px;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="rebots-ticket-success-container" style="flex-shrink: 0; flex-grow: 1; justify-content: space-around; margin-left: 15px; margin-right: 15px; display: none;">
+                        <ui:VisualElement name="rebots-ticket-success-container" style="flex-shrink: 0; flex-grow: 1; justify-content: space-around; margin-left: 15px; margin-right: 15px; display: flex;">
                             <ui:VisualElement style="align-items: center; width: 100%; margin-top: 150px; margin-bottom: 110px; padding-left: 20px; padding-right: 20px; padding-top: 60px; padding-bottom: 50px; min-width: auto; min-height: auto; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BoxRoundSmall.png?fileID=21300000&amp;guid=4128ef4419de0be41ab4a13b8d319144&amp;type=3#BoxRoundSmall&apos;);">
                                 <ui:VisualElement style="align-items: center; justify-content: center; margin-top: 0; margin-bottom: 25px;">
                                     <ui:Label text="Your inquiry has been received." display-tooltip-when-elided="true" name="rebots-been-received" class="rebots-label__black16 rebots-font-color__black" style="min-height: 22px;" />
@@ -135,7 +136,7 @@
                                 </ui:VisualElement>
                             </ui:VisualElement>
                             <ui:VisualElement style="align-items: flex-start; justify-content: flex-start; margin-bottom: 30px;">
-                                <ui:Label text="Answer" display-tooltip-when-elided="true" class="rebots-label__black16 rebots-font-color__black" />
+                                <ui:Label text="Answer" display-tooltip-when-elided="true" name="rebots-ticket-answer-label" class="rebots-label__black16 rebots-font-color__black" />
                                 <ui:VisualElement name="rebots-ticket-answer-list-container" style="margin-top: 10px; margin-bottom: 10px; width: 100%; min-width: auto; min-height: auto;" />
                             </ui:VisualElement>
                         </ui:VisualElement>
@@ -198,7 +199,7 @@
                     </ui:Button>
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-grow: 1; align-items: flex-start; justify-content: flex-start; flex-shrink: 0; flex-direction: row; flex-wrap: nowrap;">
-                    <ui:Label text="Help Desk" display-tooltip-when-elided="true" name="rebots-helpdesk-label" class="rebots-font-color__white rebots-label__regular24" />
+                    <ui:Label text="Help Desk" display-tooltip-when-elided="true" name="rebots-helpdesk-phrases" class="rebots-font-color__white rebots-label__regular24" />
                 </ui:VisualElement>
                 <ui:VisualElement style="flex-direction: row; justify-content: space-between; width: 78px; height: 100%; max-width: 78px; min-width: 78px; align-items: center; flex-shrink: 0;">
                     <ui:Button display-tooltip-when-elided="true" name="rebots-search-button" style="width: 34px; height: 34px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgba(255, 255, 255, 0); border-top-left-radius: 17px; border-bottom-left-radius: 17px; border-top-right-radius: 17px; border-bottom-right-radius: 17px; border-left-color: rgb(255, 255, 255); border-right-color: rgb(255, 255, 255); border-top-color: rgb(255, 255, 255); border-bottom-color: rgb(255, 255, 255); border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; align-items: center; justify-content: space-around;">
@@ -241,7 +242,7 @@
                         </ui:VisualElement>
                         <ui:VisualElement style="width: 100%; border-bottom-width: 1px; border-left-color: rgba(255, 255, 255, 0.15); border-right-color: rgba(255, 255, 255, 0.15); border-top-color: rgba(255, 255, 255, 0.15); border-bottom-color: rgba(255, 255, 255, 0.15);">
                             <ui:Button display-tooltip-when-elided="true" name="rebots-my-ticket-button" style="flex-direction: row; width: 100%; height: 100%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 9px; padding-bottom: 9px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0);">
-                                <ui:Label text="MY TICKET" display-tooltip-when-elided="true" class="rebots-label__black16 rebots-font-color__white" />
+                                <ui:Label text="MY TICKET" display-tooltip-when-elided="true" name="rebots-my-ticket-label" class="rebots-label__black16 rebots-font-color__white" />
                             </ui:Button>
                         </ui:VisualElement>
                         <ui:Foldout text="FAQ" value="false" name="rebots-menu-faq-foldout" class="rebots-menu-foldout">

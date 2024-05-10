@@ -32,9 +32,11 @@ namespace Rebots.HelpDesk
         /// 이미 할당된 문자열은 샘플 프로젝트의 예입니다.
         /// en) Already filled string is example of sample project.
         /// </summary>
-        public string ProjectMainKey = "Xf37b8ce929Zo1mcQkmqbsM";
+        public string ProjectMainKey;
 
         public RebotsLanguage HelpdeskLanguage;
+
+        public RebotsScreenOrientation RebotsScreenOrientation;
 
         public TextAsset translationFile;
 
@@ -100,7 +102,7 @@ namespace Rebots.HelpDesk
             /// Event builders will manage callbacks during on HTTP transport.
             /// You can use indicator when start or ended, exception captured
             /// or HTTP Status errors caused. 
-            /// (e.g: Bad Request(400) or Internal Server Error(500) and others.)
+            /// (e.g. Bad Request(400) or Internal Server Error(500) and others.)
             /// Event callbacks are using <see cref="UnityEvent"/>.
             helpdeskEvents = new UnityWWWRestApiRequestEventBuilder();
 

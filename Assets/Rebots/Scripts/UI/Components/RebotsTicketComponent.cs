@@ -21,10 +21,12 @@ namespace Rebots.HelpDesk
         Label m_TicketStateLabel;
 
         private HelpdeskTicket ticket;
+        private string[] transData;
 
-        public RebotsTicketComponent(HelpdeskTicket ticket)
+        public RebotsTicketComponent(HelpdeskTicket ticket, string[] transData)
         {
             this.ticket = ticket;
+            this.transData = transData;
         }
 
         public void SetVisualElements(TemplateContainer ticketUIElement)
@@ -50,7 +52,7 @@ namespace Rebots.HelpDesk
             }
 
             m_TicketNoLabel.text = ticket.ticketId;
-
+ 
             var routeCategories = ticket.categories;
             var routeCategoryStr = "";
             foreach (var category in routeCategories)
@@ -66,18 +68,19 @@ namespace Rebots.HelpDesk
             {
                 ticketPreviewStr = ticketPreviewStr.Substring(0, 25);
                 ticketPreviewStr += "...";
+
             }
             m_TicketPreviewLabel.text = ticketPreviewStr;
 
             if (ticket.isAnswers)
             {
                 m_TicketStateContainer.AddToClassList(RebotsUIStaticString.RebotsBackgroundColor_Theme);
-                m_TicketStateLabel.text = "Completed";
+                m_TicketStateLabel.text = transData[0];
             }
             else
             {
                 m_TicketStateContainer.AddToClassList(RebotsUIStaticString.RebotsBackgroundColor_Grey);
-                m_TicketStateLabel.text = "Waiting";
+                m_TicketStateLabel.text = transData[1];
             }
         }
 

@@ -9,12 +9,14 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Noto Sans KR
-  - Noto Sans
+  - Noto Sans SC
+  - Noto Sans JP
   fallbackFontReferences:
+  - {fileID: 12800000, guid: 067e3b10f262c3e4694a8174d47dfbbe, type: 3}
+  - {fileID: 12800000, guid: dd8ff9cbabc9c0645a9b40126d01593b, type: 3}
   - {fileID: 12800000, guid: 9fd7104f5a86c61408cde0b17a9c43aa, type: 3}
-  - {fileID: 12800000, guid: 160421a06f5b07a4a9d2697be0134ae6, type: 3}
-  - {fileID: 12800000, guid: f82eb559747f7c043b12c82745db9575, type: 3}
+  - {fileID: 12800000, guid: cc180a6886e17a446a2cca85c276390e, type: 3}
+  - {fileID: 12800000, guid: 3aa591837d32b42459fbfaf811349a87, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

@@ -7,8 +7,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Scripting;
 using UnityEngine.UIElements;
 
 namespace Rebots.HelpDesk
@@ -76,13 +78,13 @@ namespace Rebots.HelpDesk
         public VisualElement m_TicketContainer;
         public VisualElement m_TicketDetailList;
         public Label m_TicketContentsLabel;
+        public Label m_TicketAnswerLabel;
         public VisualElement m_TicketAnswerList;
         #endregion
 
         public RebotsLocalizationManager LocalizationManager { get; private set; }
         public PrivacySetting TicketPrivacySetting { get; private set; }
         public string Theme { get; private set; }
-        public bool ScreenPortrait { get; private set; } = true;
         public Dictionary<string, string> ParameterDic { get; private set; }
 
         #region Run in 'Awake' call
@@ -148,6 +150,7 @@ namespace Rebots.HelpDesk
             m_TicketContainer = m_PageConatiner.Q(RebotsUIStaticString.TicketContainer);
             m_TicketDetailList = m_TicketContainer.Q(RebotsUIStaticString.TicketDetailList);
             m_TicketContentsLabel = m_TicketContainer.Q<Label>(RebotsUIStaticString.TicketContentsLabel);
+            m_TicketAnswerLabel = m_TicketContainer.Q<Label>(RebotsUIStaticString.TicketAnswerLabel);
             m_TicketAnswerList = m_TicketContainer.Q(RebotsUIStaticString.TicketAnswerList);
         }
 
@@ -176,8 +179,6 @@ namespace Rebots.HelpDesk
         public void SetHelpdeskData(HelpdeskSetting helpdeskSetting)
         {
             Theme = helpdeskSetting.theme;
-
-            ScreenPortrait = (Screen.orientation == ScreenOrientation.Portrait || Screen.orientation == ScreenOrientation.AutoRotation);
         }
 
         public void SetPrivacyData(PrivacySetting ticketPrivacySetting)
@@ -258,10 +259,10 @@ namespace Rebots.HelpDesk
         {
             var faq = response;
 
-            m_PageTitleLabel.text = "FAQ";
+            m_PageTitleLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.FaqPhrases];
 
             var routeList = faq.categories.Reverse().ToList();
-            routeList.Insert(0, new Category { name = "FAQ", id = 0 });
+            routeList.Insert(0, new Category { name = LocalizationManager.translationDic[RebotsUIStaticString.FaqPhrases], id = 0 });
             foreach (var item in routeList)
             {
                 Action<Category> clickAction = (item.id == 0) ? null : helpdeskScreen.ClickFaqCategory;
@@ -322,7 +323,7 @@ namespace Rebots.HelpDesk
         {
             var categories = response.items;
 
-            if (ScreenPortrait)
+            if (helpdeskScreen.ScreenPortrait)
                 m_FaqCategoryList.style.flexDirection = FlexDirection.Column;
             else
                 m_FaqCategoryList.style.flexDirection = FlexDirection.Row;
@@ -335,7 +336,7 @@ namespace Rebots.HelpDesk
                 TemplateContainer categoryUIElement = null;
                 helpdeskScreen.rebotsUICreater.CreateCategory<Category>(category, RebotsCategoryAssetType.Category, helpdeskScreen.ClickFaqCategory, out categoryUIElement);
 
-                if (ScreenPortrait)
+                if (helpdeskScreen.ScreenPortrait)
                 {
                     categoryUIElement.style.width = Length.Percent(100f);
                 }
@@ -361,7 +362,7 @@ namespace Rebots.HelpDesk
 
             m_PageTitleLabel.text = "Inquiry";
 
-            m_InquiryList.style.flexDirection = ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
+            m_InquiryList.style.flexDirection = helpdeskScreen.ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
 
             var csCategories = (categories != null) ? categories.Where(x => x.use == 1).ToArray() : new Category[0];
             
@@ -372,7 +373,7 @@ namespace Rebots.HelpDesk
                 Action<Category> clickAction = (category.childFieldCount > 0) ? helpdeskScreen.ShowCsSubCategory : helpdeskScreen.ShowTicketCreate;
                 helpdeskScreen.rebotsUICreater.CreateCategory<Category>(category, RebotsCategoryAssetType.Category, clickAction, out categoryUIElement);
 
-                if (ScreenPortrait)
+                if (helpdeskScreen.ScreenPortrait)
                 {
                     categoryUIElement.style.width = Length.Percent(100f);
                 }
@@ -396,11 +397,11 @@ namespace Rebots.HelpDesk
         {
             var faqCategory = response;
 
-            m_PageTitleLabel.text = "FAQ";
+            m_PageTitleLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.FaqPhrases];
 
             Label routeLabel = null;
             var routeList = faqCategory.categories.Reverse().ToList();
-            routeList.Insert(0, new Category { name = "FAQ", id = 0 });
+            routeList.Insert(0, new Category { name = LocalizationManager.translationDic[RebotsUIStaticString.FaqPhrases], id = 0 });
             routeList.Add(faqCategory);
             foreach (var item in routeList)
             {
@@ -504,7 +505,7 @@ namespace Rebots.HelpDesk
                 m_PageRouteContainer.Add(routeLabel);
             }
 
-            m_InquiryList.style.flexDirection = ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
+            m_InquiryList.style.flexDirection = helpdeskScreen.ScreenPortrait ? FlexDirection.Column : FlexDirection.Row;
 
             var subCategories = (csCategory.subCategories != null) ? csCategory.subCategories.Where(x => x.use == 1).ToArray() : new Category[0];
             for (int i = 0; i < subCategories.Count(); i++)
@@ -513,7 +514,7 @@ namespace Rebots.HelpDesk
                 TemplateContainer categoryUIElement = null;
                 Action<Category> clickAction = (category.childFieldCount > 0) ? helpdeskScreen.ShowCsSubCategory : helpdeskScreen.ShowTicketCreate;
                 helpdeskScreen.rebotsUICreater.CreateCategory(category, RebotsCategoryAssetType.Category, clickAction, out categoryUIElement);
-                if (ScreenPortrait)
+                if (helpdeskScreen.ScreenPortrait)
                 {
                     categoryUIElement.style.width = Length.Percent(100f);
                 }
@@ -574,6 +575,8 @@ namespace Rebots.HelpDesk
                         m_ChooseFileButtonLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.ChooseFileButtonLabel];
                         var m_NoFileLabel = fieldUIElement.Q<Label>(RebotsUIStaticString.NoFileLabel);
                         m_NoFileLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.NoFileLabel];
+                        var m_FileValidationLabel = fieldUIElement.Q<Label>(RebotsUIStaticString.FileValidationLabel);
+                        m_FileValidationLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.FileValidationLabel];
                     }
 
                     m_TicketFieldList.Add(fieldUIElement);
@@ -597,7 +600,7 @@ namespace Rebots.HelpDesk
                 {
                     inputType = "privacy",
                 };
-                helpdeskScreen.rebotsUICreater.CreatePrivacyField(TicketPrivacySetting, formSectionTransData, csCategory, helpdeskScreen.ClickTicketSubmit, out privacyUIElement);
+                helpdeskScreen.rebotsUICreater.CreatePrivacyField(TicketPrivacySetting, formSectionTransData, validationField, csCategory, helpdeskScreen.ClickTicketSubmit, out privacyUIElement);
 
                 var m_RequiredLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.RequiredLabel);
                 m_RequiredLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.RequiredLabel];
@@ -607,6 +610,12 @@ namespace Rebots.HelpDesk
 
                 var m_PrivacyFieldLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.PrivacyFieldLabel);
                 m_PrivacyFieldLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.PrivacyFieldLabel];
+
+                var m_PrivacyLinkTitleLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.PrivacyLinkTitleLabel);
+                m_PrivacyLinkTitleLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.PrivacyFieldLabel];
+
+                var m_PrivacyLinkLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.PrivacyLinkLabel);
+                m_PrivacyLinkLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.PrivacyLinkLabel];
 
                 var m_TicketSubmitLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.TicketSubmitLabel);
                 m_TicketSubmitLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.TicketSubmitLabel];
@@ -625,16 +634,21 @@ namespace Rebots.HelpDesk
             var tickets = response.items;
             var count = tickets.Count();
 
-            m_PageTitleLabel.text = "My Tickets";
+            m_PageTitleLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.MyTicketLabel];
 
             if (tickets != null && count > 0)
             {
+                string[] transData = {
+                    LocalizationManager.translationDic[RebotsUIStaticString.TicketCompleted],
+                    LocalizationManager.translationDic[RebotsUIStaticString.TicketWaiting]
+                };
+
                 tickets = tickets.OrderByDescending(x => x.created).ToArray();
                 for (int i = 0; i < count; i++)
                 {
                     var item = tickets[i]; 
                     TemplateContainer ticketUIElement = null;
-                    helpdeskScreen.rebotsUICreater.CreateTicket(item, helpdeskScreen.ClickTicket, out ticketUIElement);
+                    helpdeskScreen.rebotsUICreater.CreateTicket(item, transData, helpdeskScreen.ClickTicket, out ticketUIElement);
 
                     m_TicketList.Add(ticketUIElement);
                 }
@@ -646,7 +660,8 @@ namespace Rebots.HelpDesk
             var ticketData = response.ticket.data ?? new();
             var answers = response.ticket.answers ?? null;
 
-            m_PageTitleLabel.text = "My Tickets";
+            m_PageTitleLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.MyTicketLabel];
+            m_TicketAnswerLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.TicketAnswerLabel];
 
             var dataDic = JsonConvert.DeserializeObject<Dictionary<string, string>>(ticketData.data).ToArray();
             var dataCount = (dataDic != null) ? dataDic.Count() : 0;

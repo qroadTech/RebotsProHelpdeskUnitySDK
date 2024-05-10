@@ -11,10 +11,9 @@ namespace Rebots.HelpDesk
         const string PrivacyTextContainer = "rebots-privacy-text-container";
         const string PrivacyTextLabel = "rebots-privacy-text-label";
         const string PrivacyLinkContainer = "rebots-privacy-link-container";
-        const string PrivacyLinkTitleLabel = "rebots-privacy-link-title-label";
         const string PrivacyLinkButton = "rebots-privacy-link-button";
-        const string PrivacyLinkLabel = "rebots-privacy-link-label";
         const string PrivacyCheck = "rebots-privacy-check";
+        const string ValidationLabel = "rebots-validation-label";
         const string TicketSubmitButton = "rebots-submit-button";
 
         const string FormStringFormat = "<b>{0}</b><br>{1}<br>";
@@ -22,22 +21,23 @@ namespace Rebots.HelpDesk
         VisualElement m_PrivacyTextContainer;
         Label m_PrivacyTextLabel;
         VisualElement m_PrivacyLinkContainer;
-        Label m_PrivacyLinkTitleLabel;
         Button m_PrivacyLinkButton;
-        Label m_PrivacyLinkLabel;
-        Toggle m_PrivacyCheck; 
+        Toggle m_PrivacyCheck;
+        Label m_ValidationLabel;
         Button m_TicketSubmitButton;
 
         private Category category = new();
         private PrivacySetting ticketPrivacySetting = new();
         private string[] transData;
+        private string validationComment;
         private bool privacyValue = false;
 
-        public RebotsPrivacyComponent(PrivacySetting ticketPrivacySetting, string[] transData, Category category)
+        public RebotsPrivacyComponent(PrivacySetting ticketPrivacySetting, string[] transData, string validationComment, Category category)
         {
             this.category = category;
             this.ticketPrivacySetting = ticketPrivacySetting;
             this.transData = transData;
+            this.validationComment = validationComment;
         }
 
         public void SetVisualElements(TemplateContainer privacyUIElement)
@@ -50,10 +50,9 @@ namespace Rebots.HelpDesk
             m_PrivacyTextContainer = privacyUIElement.Q(PrivacyTextContainer);
             m_PrivacyTextLabel = privacyUIElement.Q<Label>(PrivacyTextLabel);
             m_PrivacyLinkContainer = privacyUIElement.Q(PrivacyLinkContainer);
-            m_PrivacyLinkTitleLabel = privacyUIElement.Q<Label>(PrivacyLinkTitleLabel);
             m_PrivacyLinkButton = privacyUIElement.Q<Button>(PrivacyLinkButton);
-            m_PrivacyLinkLabel = privacyUIElement.Q<Label>(PrivacyLinkLabel);
             m_PrivacyCheck = privacyUIElement.Q<Toggle>(PrivacyCheck);
+            m_ValidationLabel = privacyUIElement.Q<Label>(ValidationLabel);
             m_TicketSubmitButton = privacyUIElement.Q<Button>(TicketSubmitButton);
         }
 
@@ -64,7 +63,7 @@ namespace Rebots.HelpDesk
                 return;
             }
 
-            if (!ticketPrivacySetting.usePrivacyPolicyURL)
+            if (ticketPrivacySetting.usePrivacyPolicyURL)
             {
                 m_PrivacyTextContainer.style.display = DisplayStyle.None;
                 m_PrivacyLinkContainer.style.display = DisplayStyle.Flex;
@@ -76,7 +75,7 @@ namespace Rebots.HelpDesk
                 m_PrivacyTextContainer.style.display = DisplayStyle.Flex;
                 m_PrivacyLinkContainer.style.display = DisplayStyle.None;
 
-                if (!ticketPrivacySetting.useFormPrivacyPolicy)
+                if (ticketPrivacySetting.useFormPrivacyPolicy)
                 {
                     string formStr = "";
                     
@@ -115,16 +114,22 @@ namespace Rebots.HelpDesk
 
             m_PrivacyCheck.value = false;
 
+            m_ValidationLabel.text = validationComment;
+            m_ValidationLabel.style.display = DisplayStyle.None;
+
             m_PrivacyCheck?.RegisterValueChangedCallback(ChangePrivacyValue);
 
-            m_TicketSubmitButton.style.opacity = 0.6f;
-            m_TicketSubmitButton.RemoveFromClassList(RebotsUIStaticString.RebotsBackgroundColor_None);
-            m_TicketSubmitButton.AddToClassList(RebotsUIStaticString.RebotsBackgroundColor_Grey);
+            m_TicketSubmitButton.style.opacity = 1f;
+            m_TicketSubmitButton.RemoveFromClassList(RebotsUIStaticString.RebotsBackgroundColor_Grey);
+            m_TicketSubmitButton.AddToClassList(RebotsUIStaticString.RebotsBackgroundColor_None);
         }
 
         public void RegisterCallbacks(Action<bool, Category> submitAction)
         {
-            m_TicketSubmitButton?.RegisterCallback<ClickEvent>(evt => submitAction(privacyValue, category));
+            m_TicketSubmitButton?.RegisterCallback<ClickEvent>(evt => {
+                CheckFieldValid();
+                submitAction(privacyValue, category);
+            });
         }
 
         void ChangePrivacyValue(ChangeEvent<bool> evt)
@@ -132,15 +137,18 @@ namespace Rebots.HelpDesk
             privacyValue = evt.newValue;
             if (privacyValue)
             {
-                m_TicketSubmitButton.style.opacity = 1f;
-                m_TicketSubmitButton.RemoveFromClassList(RebotsUIStaticString.RebotsBackgroundColor_Grey);
-                m_TicketSubmitButton.AddToClassList(RebotsUIStaticString.RebotsBackgroundColor_None);
+                m_ValidationLabel.style.display = DisplayStyle.None;
             }
             else
             {
-                m_TicketSubmitButton.style.opacity = 0.6f;
-                m_TicketSubmitButton.RemoveFromClassList(RebotsUIStaticString.RebotsBackgroundColor_None);
-                m_TicketSubmitButton.AddToClassList(RebotsUIStaticString.RebotsBackgroundColor_Grey);
+            }
+        }
+
+        public void CheckFieldValid()
+        {
+            if (m_PrivacyCheck.value == false)
+            {
+                m_ValidationLabel.style.display = DisplayStyle.Flex;
             }
         }
     }
