@@ -11,7 +11,7 @@ namespace Rebots.HelpDesk
         [SerializeField] RebotsHelpdeskScreen rebotsHelpdeskScreen;
         [SerializeField] RebotsBannerScreen rebotsBannerScreen;
 
-        [Header("Unity Editor Play (Option)")]
+        [Header("Unity Editor Play")]
         [Tooltip("GameObject with Event System")]
         [SerializeField] GameObject? systemEventGO;
 

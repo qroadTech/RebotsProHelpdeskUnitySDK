@@ -11,9 +11,7 @@ namespace Rebots.HelpDesk
         const string PrivacyTextContainer = "rebots-privacy-text-container";
         const string PrivacyTextLabel = "rebots-privacy-text-label";
         const string PrivacyLinkContainer = "rebots-privacy-link-container";
-        const string PrivacyLinkTitleLabel = "rebots-privacy-link-title-label";
         const string PrivacyLinkButton = "rebots-privacy-link-button";
-        const string PrivacyLinkLabel = "rebots-privacy-link-label";
         const string PrivacyCheck = "rebots-privacy-check";
         const string ValidationLabel = "rebots-validation-label";
         const string TicketSubmitButton = "rebots-submit-button";
@@ -23,9 +21,7 @@ namespace Rebots.HelpDesk
         VisualElement m_PrivacyTextContainer;
         Label m_PrivacyTextLabel;
         VisualElement m_PrivacyLinkContainer;
-        Label m_PrivacyLinkTitleLabel;
         Button m_PrivacyLinkButton;
-        Label m_PrivacyLinkLabel;
         Toggle m_PrivacyCheck;
         Label m_ValidationLabel;
         Button m_TicketSubmitButton;
@@ -54,9 +50,7 @@ namespace Rebots.HelpDesk
             m_PrivacyTextContainer = privacyUIElement.Q(PrivacyTextContainer);
             m_PrivacyTextLabel = privacyUIElement.Q<Label>(PrivacyTextLabel);
             m_PrivacyLinkContainer = privacyUIElement.Q(PrivacyLinkContainer);
-            m_PrivacyLinkTitleLabel = privacyUIElement.Q<Label>(PrivacyLinkTitleLabel);
             m_PrivacyLinkButton = privacyUIElement.Q<Button>(PrivacyLinkButton);
-            m_PrivacyLinkLabel = privacyUIElement.Q<Label>(PrivacyLinkLabel);
             m_PrivacyCheck = privacyUIElement.Q<Toggle>(PrivacyCheck);
             m_ValidationLabel = privacyUIElement.Q<Label>(ValidationLabel);
             m_TicketSubmitButton = privacyUIElement.Q<Button>(TicketSubmitButton);

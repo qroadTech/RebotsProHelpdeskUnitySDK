@@ -149,6 +149,8 @@
         public const string PrivacyConsignment = "rebots-privacy-consignment";
         public const string PrivacyProviding = "rebots-privacy-providing";
         public const string PrivacyConsignmentPeriod = "rebots-privacy-consignment-period";
+        public const string PrivacyLinkTitleLabel = "rebots-privacy-link-title-label";
+        public const string PrivacyLinkLabel = "rebots-privacy-link-label";
         public const string TicketSubmitLabel = "rebots-submit";
         public const string ValidRequired = "rebots-valid-required";
         public const string ValidEmail = "rebots-valid-email";

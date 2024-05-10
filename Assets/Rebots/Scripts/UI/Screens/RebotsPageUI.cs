@@ -611,6 +611,12 @@ namespace Rebots.HelpDesk
                 var m_PrivacyFieldLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.PrivacyFieldLabel);
                 m_PrivacyFieldLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.PrivacyFieldLabel];
 
+                var m_PrivacyLinkTitleLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.PrivacyLinkTitleLabel);
+                m_PrivacyLinkTitleLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.PrivacyFieldLabel];
+
+                var m_PrivacyLinkLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.PrivacyLinkLabel);
+                m_PrivacyLinkLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.PrivacyLinkLabel];
+
                 var m_TicketSubmitLabel = privacyUIElement.Q<Label>(RebotsUIStaticString.TicketSubmitLabel);
                 m_TicketSubmitLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.TicketSubmitLabel];
 
