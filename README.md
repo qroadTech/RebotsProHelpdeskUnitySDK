@@ -34,6 +34,11 @@
 ##### 5. 헬프데스크 닫음 메서드
   - <code>RebotsHelpdeskScreen.cs</code> 파일의 <code>ClosePanel();</code>.
 
+## FAQ
+##### **Q. 'UNITY_EDITOR', 'UNITY_STANDALONE_WIN' 환경에서 마우스 스크롤이 느립니다.**
+  - <code>Assets/Prefabs/Rebots/Rebots.prefab</code> :
+    - **Inspector** 패널 내에서 <code>Unity Editor Play</code> 항목에 System Event를 가지고 있는 <code>GameObject</code>를 지정합니다.
+
 ---
 # RebotsProHelpdeskUnitySDK (EN)
 
@@ -70,3 +75,8 @@ You can test with <code>Assets/Scenes/Rebots.Unity</code> file.
 
 ##### 5. Helpdesk close method
   - <code>ClosePanel();</code> in the <code>RebotsHelpdeskScreen.cs</code> file.
+
+## FAQ
+##### **Q. Mouse scrolling is slow in 'UNITY_EDITOR', 'UNITY_STANDALONE_WIN' environments.**
+  - <code>Assets/Prefabs/Rebots/Rebots.prefab</code> :
+    - Inside the **Inspector** panel, assign the <code>GameObject</code>with Event System to the <code>Unity Editor Play</code> property.
