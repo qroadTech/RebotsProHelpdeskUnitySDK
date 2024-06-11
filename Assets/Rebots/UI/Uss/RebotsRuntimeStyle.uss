@@ -9,8 +9,6 @@
     padding-bottom: 0;
     white-space: normal;
     -unity-text-align: middle-left;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }
 
 .unity-base-dropdown {
@@ -24,6 +22,4 @@
     color: rgb(0, 0, 0);
     height: 55px;
     min-height: 55px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }

@@ -174,6 +174,22 @@
     -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }
 
+.rebots-ko-class .rebots-label__regular10 {
+    font-size: 10px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
+}
+
+.rebots-ko-class .unity-base-dropdown__item {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
+}
+
+.rebots-ko-class .unity-label {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
+}
+
 
 .rebots-ja-class .rebots-label__black40 {
     font-size: 40px;
@@ -311,6 +327,22 @@
 
 .rebots-ja-class .rebots-label__regular12 {
     font-size: 12px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
+.rebots-ja-class .rebots-label__regular10 {
+    font-size: 10px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
+.rebots-ja-class .unity-base-dropdown__item {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
+.rebots-ja-class .unity-label {
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
 }
@@ -456,6 +488,22 @@
     -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
 }
 
+.rebots-en-class .rebots-label__regular10 {
+    font-size: 10px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
+.rebots-en-class .unity-base-dropdown__item {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
+.rebots-en-class .unity-label {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
 
 .rebots-zh-cn-class .rebots-label__black40 {
     font-size: 40px;
@@ -597,6 +645,22 @@
     -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
 }
 
+.rebots-zh-cn-class .rebots-label__regular10 {
+    font-size: 10px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
+.rebots-zh-cn-class .unity-base-dropdown__item {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
+.rebots-zh-cn-class .unity-label {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
 
 .rebots-th-class .rebots-label__black40 {
     font-size: 40px;
@@ -734,6 +798,22 @@
 
 .rebots-th-class .rebots-label__regular12 {
     font-size: 12px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+}
+
+.rebots-th-class .rebots-label__regular10 {
+    font-size: 10px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+}
+
+.rebots-th-class .unity-base-dropdown__item {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+}
+
+.rebots-th-class .unity-label {
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
 }

@@ -41,11 +41,11 @@ namespace Rebots.HelpDesk
         [SerializeField] public StyleSheet theme16;
 
         [Header("Rebots Language Font Asset")]
-        [SerializeField] public Font fontAssetKR;
-        [SerializeField] public Font fontAssetEN;
-        [SerializeField] public Font fontAssetJP;
-        [SerializeField] public Font fontAssetCN;
-        [SerializeField] public Font fontAssetTH;
+        [SerializeField] public Font? fontAssetKR;
+        [SerializeField] public Font? fontAssetEN;
+        [SerializeField] public Font? fontAssetJP;
+        [SerializeField] public Font? fontAssetCN;
+        [SerializeField] public Font? fontAssetTH;
         #endregion
 
         #region - - - Helpdesk UI Element - - - 
@@ -657,7 +657,7 @@ namespace Rebots.HelpDesk
             }
         }
 
-        public Font GetLanguageFontAsset()
+        public Font? GetLanguageFontAsset()
         {
             switch (rebotsSettingManager.localizationManager.language.ToLower())
             {

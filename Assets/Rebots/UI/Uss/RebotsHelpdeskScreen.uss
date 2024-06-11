@@ -216,51 +216,66 @@
 }
 
 .rebots-font-kr__black {
+    font-size: 20px;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
 }
 
 .rebots-font-en__black {
+    font-size: 20px;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
 }
 
 .rebots-font-ja__black {
+    font-size: 20px;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
 }
 
 .rebots-font-cn__black {
+    font-size: 20px;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
 }
 
 .rebots-font-th__black {
+    font-size: 20px;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
 }
 
 .rebots-font-kr__regular {
+    font-size: 20px;
+    -unity-font-style: bold;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }
 
 .rebots-font-en__regular {
+    font-size: 20px;
+    -unity-font-style: bold;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
 }
 
 .rebots-font-ja__regular {
+    font-size: 20px;
+    -unity-font-style: bold;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
 }
 
 .rebots-font-cn__regular {
+    font-size: 20px;
+    -unity-font-style: bold;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
 }
 
 .rebots-font-th__regular {
+    font-size: 20px;
+    -unity-font-style: bold;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
 }

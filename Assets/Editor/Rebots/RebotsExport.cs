@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RebotsExport : MonoBehaviour
 {
-    [MenuItem("RebotsPackage/RebotsSDK Export")]
+    [MenuItem("RebotsPackage/RebotsSDK Export", false, priority: 1)]
     static void Export()
     {
         var exportedPackageAssetList = new List<string>();
@@ -13,15 +13,10 @@ public class RebotsExport : MonoBehaviour
 
         exportedPackageAssetList.Add("Assets/Plugins/NativeGallery");
         exportedPackageAssetList.Add("Assets/Plugins/Newtonsoft.Json.dll");
-        exportedPackageAssetList.Add("Assets/Plugins/Newtonsoft.Json.pdb");
         exportedPackageAssetList.Add("Assets/Plugins/HtmlAgilityPack.dll");
-        exportedPackageAssetList.Add("Assets/Plugins/HtmlAgilityPack.pdb");
         exportedPackageAssetList.Add("Assets/Plugins/HelpDesk.Sdk.Common.dll");
-        exportedPackageAssetList.Add("Assets/Plugins/HelpDesk.Sdk.Common.pdb");
         exportedPackageAssetList.Add("Assets/Plugins/HelpDesk.Sdk.Library.dll");
-        exportedPackageAssetList.Add("Assets/Plugins/HelpDesk.Sdk.Library.pdb");
         exportedPackageAssetList.Add("Assets/Plugins/HelpDesk.Sdk.Unity.Library.dll");
-        exportedPackageAssetList.Add("Assets/Plugins/HelpDesk.Sdk.Unity.Library.pdb");
 
         exportedPackageAssetList.Add("Assets/Scenes/Rebots.unity");
 
