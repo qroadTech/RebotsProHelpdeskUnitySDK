@@ -5,6 +5,9 @@ using UnityEngine.UIElements;
 using UnityEngine;
 using UnityEngine.Networking;
 using System;
+using System.Text;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 namespace Rebots.HelpDesk
 {
@@ -209,8 +212,6 @@ namespace Rebots.HelpDesk
             m_HelpdeskLayout.styleSheets.Clear();
             m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.GetThemeStyleSheet(helpdeskSetting.theme));
 
-
-
             #region setting Main Image
             if (helpdeskSetting.useMainImage && helpdeskSetting.mainImageMobileUrl != null && !string.IsNullOrEmpty(helpdeskSetting.mainImageMobileUrl))
             {
@@ -227,9 +228,11 @@ namespace Rebots.HelpDesk
 
             #region setting Footer
             bool isRow = true;
+            string bydaySeperator = " ";
             if (helpdeskScreen.ScreenPortrait)
             {
                 isRow = false;
+                bydaySeperator = "\n";
                 m_FooterInfoContainer.style.flexDirection = FlexDirection.Column;
                 m_FooterLowConatiner.style.flexDirection = FlexDirection.Column;
                 m_FooterLowConatiner.style.flexGrow = 1;
@@ -247,9 +250,42 @@ namespace Rebots.HelpDesk
             {
                 var operatingTime = helpdeskSetting.operatingTime.Split("/");
                 var operatingTimeZone = helpdeskSetting.operatingTimezone.ToString();
-                var operatingTimeStr = LocalizationManager.translationDic[RebotsUIStaticString.OperatingTimeLabel];
-                m_OperatingTimeLabel.text = string.Format(operatingTimeStr, operatingTime[0].Trim(), operatingTime[1].Trim(), operatingTimeZone);
-                ShowVisualElement(m_OperatingTimeLabel, true);
+                var operatingTimeTrans = LocalizationManager.translationDic[RebotsUIStaticString.OperatingTimeLabel];
+
+                var operatingDayTrans = " ";
+                switch (helpdeskSetting.operatingData.type.ToLower())
+                {
+                    case "weekday":
+                        operatingDayTrans = operatingDayTrans + LocalizationManager.translationDic[RebotsUIStaticString.OperatingTimeWeekday];
+                        break;
+                    case "always":
+                        operatingDayTrans = operatingDayTrans + LocalizationManager.translationDic[RebotsUIStaticString.OperatingTimeAlways];
+                        break;
+                    case "byday":
+                        List<string> strs = new List<string>();
+                        if (helpdeskSetting.operatingData.mon)
+                            strs.Add(LocalizationManager.translationDic[RebotsUIStaticString.OperatingTimeMon]);
+                        if (helpdeskSetting.operatingData.tue)
+                            strs.Add(LocalizationManager.translationDic[RebotsUIStaticString.OperatingTimeTue]);
+                        if (helpdeskSetting.operatingData.wed)
+                            strs.Add(LocalizationManager.translationDic[RebotsUIStaticString.OperatingTimeWed]);
+                        if (helpdeskSetting.operatingData.thu)
+                            strs.Add(LocalizationManager.translationDic[RebotsUIStaticString.OperatingTimeThu]);
+                        if (helpdeskSetting.operatingData.fri)
+                            strs.Add(LocalizationManager.translationDic[RebotsUIStaticString.OperatingTimeFri]);
+                        if (helpdeskSetting.operatingData.sat)
+                            strs.Add(LocalizationManager.translationDic[RebotsUIStaticString.OperatingTimeSat]);
+                        if (helpdeskSetting.operatingData.sun)
+                            strs.Add(LocalizationManager.translationDic[RebotsUIStaticString.OperatingTimeSun]);
+
+                        operatingDayTrans = bydaySeperator + string.Join(", ", strs);
+                        break;
+                    default:
+                        break;
+                }
+
+                var operatingTimeText = string.Format(operatingTimeTrans, operatingTime[0].Trim(), operatingTime[1].Trim(), operatingTimeZone) + operatingDayTrans;
+                m_OperatingTimeLabel.text = operatingTimeText;
             }
             else
             {
@@ -272,7 +308,7 @@ namespace Rebots.HelpDesk
             {
                 m_CookieButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.cookiePolicyUrl));
                 ShowVisualElement(m_CookieButton, true);
-                ShowVisualElement(m_CookieBar, !(helpdeskSetting.useTermsService == isRow));
+                ShowVisualElement(m_CookieBar, helpdeskSetting.useTermsService ? true : isRow);
             }
             else
             {
@@ -296,7 +332,7 @@ namespace Rebots.HelpDesk
             {
                 m_OperatingButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.operatingPolicyURL));
                 ShowVisualElement(m_OperatingButton, true);
-                ShowVisualElement(m_OperatingBar, !(helpdeskSetting.usePrivacyPolicyURL == isRow));
+                ShowVisualElement(m_OperatingBar, helpdeskSetting.usePrivacyPolicyURL ? true : isRow);
             }
             else
             {
@@ -342,7 +378,7 @@ namespace Rebots.HelpDesk
                 TemplateContainer languageUIElement = null;
                 helpdeskScreen.rebotsUICreater.CreateLanguage(item, lanuageText, helpdeskScreen.ClickLanguage, out languageUIElement);
                 m_LanguageList.Add(languageUIElement);
-            }            
+            }
         }
         #endregion
         

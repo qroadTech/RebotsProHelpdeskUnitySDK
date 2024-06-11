@@ -110,7 +110,7 @@
                         <ui:VisualElement name="rebots-ticket-create-container" style="margin-left: 16px; margin-right: 16px; display: none;">
                             <ui:VisualElement name="rebots-field-list-container" style="flex-shrink: 0; margin-top: 20px; margin-bottom: 20px;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="rebots-ticket-success-container" style="flex-shrink: 0; flex-grow: 1; justify-content: space-around; margin-left: 15px; margin-right: 15px; display: flex;">
+                        <ui:VisualElement name="rebots-ticket-success-container" style="flex-shrink: 0; flex-grow: 1; justify-content: space-around; margin-left: 15px; margin-right: 15px; display: none;">
                             <ui:VisualElement style="align-items: center; width: 100%; margin-top: 150px; margin-bottom: 110px; padding-left: 20px; padding-right: 20px; padding-top: 60px; padding-bottom: 50px; min-width: auto; min-height: auto; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/BoxRoundSmall.png?fileID=21300000&amp;guid=4128ef4419de0be41ab4a13b8d319144&amp;type=3#BoxRoundSmall&apos;);">
                                 <ui:VisualElement style="align-items: center; justify-content: center; margin-top: 0; margin-bottom: 25px;">
                                     <ui:Label text="Your inquiry has been received." display-tooltip-when-elided="true" name="rebots-been-received" class="rebots-label__black16 rebots-font-color__black" style="min-height: 22px;" />
@@ -167,8 +167,8 @@
                                         <ui:Label text="Cookie Policy" display-tooltip-when-elided="true" name="rebots-cookie" class="rebots-label__regular16 rebots-font-color__black" style="padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 5px;" />
                                     </ui:Button>
                                 </ui:VisualElement>
-                                <ui:VisualElement name="rebots-footer-low-container" style="flex-direction: column; align-items: center; justify-content: center; flex-wrap: wrap; display: flex; flex-grow: 1;">
-                                    <ui:VisualElement style="flex-direction: row; align-items: center;">
+                                <ui:VisualElement name="rebots-footer-low-container" style="flex-direction: column; align-items: center; justify-content: center; flex-wrap: nowrap; display: flex; -unity-text-align: upper-center;">
+                                    <ui:VisualElement style="flex-direction: row; align-items: center; flex-grow: 1;">
                                         <ui:VisualElement name="rebots-privacy-bar" style="width: 1px; height: 18px; margin-left: 5px; margin-right: 5px; background-color: rgb(34, 34, 34); display: flex;" />
                                         <ui:Button display-tooltip-when-elided="true" name="rebots-privacy-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0; background-color: rgba(255, 255, 255, 0); display: flex;">
                                             <ui:Label text="Privacy Policy" display-tooltip-when-elided="true" name="rebots-privacy" class="rebots-label__regular16 rebots-font-color__black" style="padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 5px;" />
@@ -180,7 +180,7 @@
                                     </ui:VisualElement>
                                     <ui:VisualElement name="rebots-tel-container" style="flex-direction: row; align-items: center; justify-content: center; flex-grow: 1;">
                                         <ui:VisualElement name="rebots-tel-bar" style="width: 1px; height: 18px; margin-left: 5px; margin-right: 5px; background-color: rgb(34, 34, 34); display: flex;" />
-                                        <ui:Label text="Tel. No. +123-456789" display-tooltip-when-elided="true" name="rebots-tel" class="rebots-label__regular16 rebots-font-color__black" style="padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 5px; display: flex;" />
+                                        <ui:Label text="Tel. No. +123-456789" display-tooltip-when-elided="true" name="rebots-tel" class="rebots-label__regular16 rebots-font-color__black" style="padding-left: 0; padding-right: 0; padding-top: 5px; padding-bottom: 5px; display: flex; -unity-text-align: middle-center;" />
                                     </ui:VisualElement>
                                 </ui:VisualElement>
                             </ui:VisualElement>

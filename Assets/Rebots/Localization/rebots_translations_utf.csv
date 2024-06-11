@@ -1,62 +1,71 @@
 ﻿,ko,en,es,ja,zh-cn,zh-tw,id,th,
-rebots-ko-label,한국어,한국어,한국어,한국어,한국어,한국어,한국어,한국어
-rebots-en-label,English,English,English,English,English,English,English,English
-rebots-es-label,Español,Español,Español,Español,Español,Español,Español,Español
-rebots-ja-label,日本語,日本語,日本語,日本語,日本語,日本語,日本語,日本語
-rebots-zh-cn-label,中文 (简体中文),中文 (简体中文),中文 (简体中文),中文 (简体中文),中文 (简体中文),中文 (简体中文),中文 (简体中文),中文 (简体中文)
-rebots-zh-tw-label,中文 (繁体中文),中文 (繁体中文),中文 (繁体中文),中文 (繁体中文),中文 (繁体中文),中文 (繁体中文),中文 (繁体中文),中文 (繁体中文)
-rebots-id-label,Bahasa Indonesia,Bahasa Indonesia,Bahasa Indonesia,Bahasa Indonesia,Bahasa Indonesia,Bahasa Indonesia,Bahasa Indonesia,Bahasa Indonesia
-rebots-th-label,ภาษาไทย,ภาษาไทย,ภาษาไทย,ภาษาไทย,ภาษาไทย,ภาษาไทย,ภาษาไทย,ภาษาไทย
-rebots-search-caption,검색으로 궁금한 내용을 쉽고 빠르게 해결하세요.,Quickly and easily resolve your inquiries through search.,Resuelve rápida y fácilmente tus consultas a través de la búsqueda.,検索で気になる内容を簡単かつ迅速に解決してください。,快速找要找的內容。,快速找要查找的内容。,Cepat dan mudah menyelesaikan pertanyaan Anda melalui pencarian.,แก้ไขข้อสงสัยของคุณได้อย่างรวดเร็วและง่ายดายด้วยการค้นหา
-rebots-search-placeholder,검색어 입력,Enter words,Introduzca palabras,サーチキーワード,要搜索的内容,要搜索的內容,Masukkan Kata Pencarian,เนื้อหาที่จะค้นหา
-rebots-top-faq,자주 묻는 질문,TOP questions,Preguntas frecuentes,よくある質問,常见问题,熱門問題,TOP questions,คำถามที่พบบ่อย
-rebots-it-was-helpful,도움이 됐어요,It was helpful,fue útil,助けました。,有所帮助,有所幫助,Itu sangat membantu,มันเป็นประโยชน์
-rebots-view-more,더 보기,View More,ver más,詳細を見る,查看更多,查看更多,Lihat Lainnya,ดูเพิ่มเติม
-rebots-need-more,더 궁금하신 점이 있나요?,Need more help?,Necesitas más ayuda?,他に助けが必要ですか。,需要更多帮助？,需要更多幫助？,Butuh bantuan lagi?,ต้องการความช่วยเหลือเพิ่มเติม?
-rebots-submit-ticket,문의하기,Submit Ticket,Enviar ticket,お問い合わせ,提交工单,提交工單,Kirim Tiket,ส่งใบสั่งงาน
-rebots-send-us,내용과 함께 메시지를 보내주세요. 최대한 빠르게 도와 드리겠습니다.,"Send us a message with your issue, and we'll get back to you as soon as we can.",Envíenos un mensaje con su problema y nos pondremos en contacto con usted lo antes posible.,内容とともにメッセージを送ってください。 できるだけ早くお手伝いします。,请将详细信息发送给我们。我们将尽快为您提供帮助。,請將詳細信息發送給我們。我們將盡快為您提供幫助。,"Kirimi kami pesan dengan masalah Anda, dan kami akan menghubungi Anda sesegera mungkin.",ส่งข้อความแจ้งปัญหาของคุณถึงเรา แล้วเราจะติดต่อกลับโดยเร็วที่สุด
-rebots-look-up-faq,빠른 답변을 원하시나요? 자주 묻는 질문과 답변에서 원하는 답변을 찾아보세요,Want Quick Responses? Look Up a Query in Our FAQs.,¿Quieres respuestas rápidas? Busque una consulta en nuestras preguntas frecuentes.,早い返信をお望みですか？ よくある質問と回答から希望する回答を探してみてください,想要快速获得答案？ 请在常见问题中找到您想要的答案,想要快速獲得答案？請在常見問題中找到您想要的答案,Ingin Respons Cepat? Cari Permintaan di FAQ Kami.,ต้องการคำตอบด่วนหรือไม่ ค้นหาคำถามในคำถามที่พบบ่อยของเรา
-rebots-operating-time,운영 시간 {0}~{1} ({2}),Operating hours {0} to {1} ({2}),Horas de funcionamiento {0}~{1} ({2}),営業時間 {0}~{1} ({2}),工作时间 {0} 至 {1} ({2}),工作時間 {0} 至 {1} ({2}),Jam Operasi {0} hingga {1} ({2}),เวลาทำงาน {0} น. ถึง {1} น ({2})
-rebots-terms,이용 약관,Terms of Service,Términos de servicio,利用規約,服务条款,服務條款,Persyaratan Layanan,เงื่อนไขการให้บริการ
-rebots-cookie,쿠키 정책,Cookie Policy,Política de cookies,クッキーポリシー,Cookie政策,Cookie政策,Kebijakan Cookie,นโยบายคุกกี้
-rebots-privacy,개인정보 처리방침,Privacy Policy,Política de privacidad,プライバシーポリシー,隐私政策,隱私政策,Kebijakan Privasi,นโยบายความเป็นส่วนตัว
-rebots-operating,운영 정책,Operation Policy,Política de operación,運営方針,经营政策,營運政策,Kebijakan Operasi,แนวทางการดำเนินงาน
-rebots-tel,대표 전화 {0},Contact {0},Contacto {0},代表電話 {0},联系 {0},聯繫 {0},Kontak {0},ติดต่อ {0}
-rebots-copyright,Copyright(C) {0},Copyright(C) {0},Copyright(C) {0},Copyright(C) {0},Copyright(C) {0},Copyright(C) {0},Copyright(C) {0},Copyright(C) {0}
-rebots-main,메인,Main,Main,メイン,主页,首頁,Main,หน้าหลัก
-rebots-inquiry-phrases,문의,Inquiries,Consultas,お問い合わせ,询问,詢問,penyelidikan,สอบถาม
-rebots-exit,나가기,Exit,Salida,出る,退出,退出,KELUAR,ทางออก
-rebots-search-result,{0} Search results :,{0} Search results:,{0} Resultados de la búsqueda:,{0} 検索結果：,{0} 个搜索结果:,{0} 個搜尋結果:,{0} Hasil penelusuran:,{0} ผลการค้นหาสำหรับ:
-rebots-was-it-helpful,도움이 되었나요?,Was it helpful?,¿Fue útil?,役に立ちましたか?,对您有所帮助吗？,對您有所幫助嗎？,Apakah itu bermanfaat?,มันมีประโยชน์หรือไม่?
-rebots-yes,네,Yes,Sí,はい,是,是,Ya,ใช่
-rebots-no,아니요,No,No,いいえ,不是,不是,TIDAK,ไม่
-rebots-thack-you-opinion,소중한 의견 감사합니다.,Thank you for your valuable opinion.,Gracias por su valiosa opinión.,大切なご意見ありがとうございます。,感谢您的反馈意见。,感謝您的反饋意見。,Terima kasih atas pendapat Anda yang berharga.,ขอบคุณสำหรับความคิดเห็นที่มีค่าของคุณ
-rebots-username,사용자 이름,Username,nombre de usuario,お名前,用户名,用戶名,Nama pengguna,ชื่อผู้ใช้
-rebots-required,필수 항목,Required,Requerido,必須,必填,必填,Diperlukan,จำเป็น
-rebots-email,이메일,Email,correo electrónico,メール,邮箱,郵箱,Surel,อีเมล
-rebots-no-file,파일없음,No file,Ningún archivo,ファイルなし,没有文件,沒有文件,Tidak ada berkas,ไม่มีแฟ้ม
-rebots-file-validation,"JPG, PNG,GIF 파일로 3개, 최대 10MB","Up to 3 files, max 10MB each, JPG, PNG, GIF","Hasta 3 archivos, máximo 10 MB cada uno, JPG, PNG, GIF",JPG、PNG、GIFファイルで3個、最大10MB,最多3个文件，每个文件最大10MB，JPG、PNG、GIF,最多3個文件，每個文件最大10MB，JPG、PNG、GIF,"Sampai 3 berkas, maksimal 10MB setiap, JPG, PNG, GIF","สูงสุด 3 ไฟล์ สูงสุด 10 MB ต่อไฟล์ JPG, PNG, GIF"
-rebots-privacy-policy,개인정보보호 정책,Privacy policy,Política de privacidad,プライバシーポリシー,隐私政策,隱私政策,Kebijakan Privasi,นโยบายความเป็นส่วนตัว
-rebots-privacy-link-label,페이지로 이동,Go to page,Ir a la pagina,ページに移動,转到页面,轉到頁面,Buka halaman,ไปที่หน้า
-rebots-i-agree,개인정보 수집에 동의합니다,I agree to collect the personal information above,Acepto recopilar la información personal anterior,上記の個人情報を収集することに同意します,我同意收集上述个人信息。,我同意收集上述個人資訊。,Saya setuju untuk mengumpulkan informasi pribadi di atas,ฉันยินยอมให้เก็บรวบรวมข้อมูลส่วนบุคคลข้างต้น
-rebots-submit,티켓 제출,Submit,Entregar,チケット提出,提交工單,提交工單,Kirim tiket,การส่งตั๋ว
-rebots-been-received,문의가 접수 되었습니다.,Your inquiry has been received.,Su consulta ha sido recibida.,チケット(お問い合わせ)が受け付けられました。,你的询问已经收到。,你的詢問已經收到。,Permintaan Anda telah diterima.,คำถามของคุณได้รับแล้ว
-rebots-will-reply,답변은 이메일 혹은 내 티켓에서 확인하실 수 있습니다.,We will reply by mail or via 'My ticket'.,Le responderemos por correo o a través de 'Mi ticket'.,私たちはメールや「私の航空券」で返事をします。,我们将通过邮件或“我的机票”进行回复。,我們將透過郵件或「我的機票」回覆。,Kami akan menjawab melalui surat atau melalui 'tiketku' .,"เราจะตอบกลับทางไปรษณีย์หรือ ""ตั๋วเครื่องบินของฉัน"""
-rebots-thank-you,감사합니다.,Thank you.,Gracias.,ありがとうございます。,谢谢,謝謝,Terima kasih.,ขอบคุณ
-rebots-return-main,메인으로,Main,Main,メインへ,主页,首頁,Main,หน้าหลัก
-rebots-privacy-purpose,수집·이용 목적,Purpose of use,Propósito de uso,使用目的,使用目的,使用目的,Tujuan penggunaan,วัตถุประสงค์ในการใช้งาน
-rebots-privacy-collection,수집 항목,Collected Info,Información recopilada,収集された情報,收集信息,收集資訊,Info yang Dikumpulkan,การรวบรวมข้อมูล
-rebots-privacy-period,정보 보유 및 이용기간,Usage Period,Período de uso,使用期間,使用期限,使用期限,Periode Penggunaan,ระยะเวลาการใช้งาน
-rebots-privacy-consignment,수탁사 이름,Entrustee,Fideicomisario,受託者,受托人,受託人,Wali Amanat,ผู้ดูแลผลประโยชน์
-rebots-privacy-providing,수탁 정보,Entrusted Info,Información confiada,受託情報,受托信息,受託訊息,Info yang Dititipkan,ข้อมูลความไว้วางใจ
-rebots-privacy-consignment-period,수탁 기간,Period for entrust,Plazo de encomienda,委託期間,委托期限,委託期限,Masa titipan,ระยะเวลาการมอบอำนาจ
-rebots-choose-file-label,파일선택,Select,Seleccionar,選択,选择文件,選擇文件,Pilih,เลือกไฟล์
-rebots-valid-required,필수 항목을 모두 입력해주세요,Please fill in all required fields,"Por favor, rellene todos los campos obligatorios",必須項目をすべて入力してください,请填写所有必填字段,請填寫所有必填字段,Silakan isi semua medan yang diperlukan,กรุณากรอกข้อมูลให้ครบทุกช่อง
-rebots-valid-email,이메일을 다시 확인해주세요,Please check email address one more,Por favor revisa la dirección de correo electrónico una vez más.,メールをもう一度確認してください,请再检查一次电子邮件地址,請再檢查一次電子郵件地址,Silakan periksa alamat email sekali lagi,กรุณาตรวจสอบที่อยู่อีเมลอีกครั้ง
-rebots-list-result,총 {0}건,Total {0},Totales {0},合計 {0}件,总计{0},總計 {0},Jumlah {0},ทั้งหมด {0}
-rebots-faq-phrases,FAQ,FAQ,FAQ,FAQ,常见问题,常見問題,FAQ,FAQ
-rebots-my-ticket-label,내 티켓,My Tickets,Mi ticket,マイチケット,我的工单,我的工單,Tiket Saya,ตั๋วของฉัน
-rebots-ticket-answer-label,답변 내역,Answer,Respuesta,回答履歴,回答,回答,Menjawab,ตอบ
-rebots-ticket-answer,답변 대기,Waiting,Espera,回答待ち,等待答复,等待答复,Menunggu,รอคำตอบ
-rebots-ticket-completed,답변 완료,Completed,Resuelto,回答完了,回答完毕,回答完畢,Lengkap,ตอบเสร็จแล้ว
-rebots-helpdesk-phrases,헬프데스크,Helpdesk,Mesa de ayuda,ヘルプデスク,帮助中心,幫助中心,Pusat Bantuan,ศูนย์ความช่วยเหลือ
+rebots-ko-label,한국어,한국어,한국어,한국어,한국어,한국어,한국어,한국어,
+rebots-en-label,English,English,English,English,English,English,English,English,
+rebots-es-label,Español,Español,Español,Español,Español,Español,Español,Español,
+rebots-ja-label,日本語,日本語,日本語,日本語,日本語,日本語,日本語,日本語,
+rebots-zh-cn-label,中文 (简体中文),中文 (简体中文),中文 (简体中文),中文 (简体中文),中文 (简体中文),中文 (简体中文),中文 (简体中文),中文 (简体中文),
+rebots-zh-tw-label,中文 (繁体中文),中文 (繁体中文),中文 (繁体中文),中文 (繁体中文),中文 (繁体中文),中文 (繁体中文),中文 (繁体中文),中文 (繁体中文),
+rebots-id-label,Bahasa Indonesia,Bahasa Indonesia,Bahasa Indonesia,Bahasa Indonesia,Bahasa Indonesia,Bahasa Indonesia,Bahasa Indonesia,Bahasa Indonesia,
+rebots-th-label,ภาษาไทย,ภาษาไทย,ภาษาไทย,ภาษาไทย,ภาษาไทย,ภาษาไทย,ภาษาไทย,ภาษาไทย,
+rebots-search-caption,검색으로 궁금한 내용을 쉽고 빠르게 해결하세요.,Quickly and easily resolve your inquiries through search.,Resuelve rápida y fácilmente tus consultas a través de la búsqueda.,検索で気になる内容を簡単かつ迅速に解決してください。,快速找要找的內容。,快速找要查找的内容。,Cepat dan mudah menyelesaikan pertanyaan Anda melalui pencarian.,แก้ไขข้อสงสัยของคุณได้อย่างรวดเร็วและง่ายดายด้วยการค้นหา,
+rebots-search-placeholder,검색어 입력,Enter words,Introduzca palabras,サーチキーワード,要搜索的内容,要搜索的內容,Masukkan Kata Pencarian,เนื้อหาที่จะค้นหา,
+rebots-top-faq,자주 묻는 질문,TOP questions,Preguntas frecuentes,よくある質問,常见问题,熱門問題,TOP questions,คำถามที่พบบ่อย,
+rebots-it-was-helpful,도움이 됐어요,It was helpful,fue útil,助けました。,有所帮助,有所幫助,Itu sangat membantu,มันเป็นประโยชน์,
+rebots-view-more,더 보기,View More,ver más,詳細を見る,查看更多,查看更多,Lihat Lainnya,ดูเพิ่มเติม,
+rebots-need-more,더 궁금하신 점이 있나요?,Need more help?,Necesitas más ayuda?,他に助けが必要ですか。,需要更多帮助？,需要更多幫助？,Butuh bantuan lagi?,ต้องการความช่วยเหลือเพิ่มเติม?,
+rebots-submit-ticket,문의하기,Submit Ticket,Enviar ticket,お問い合わせ,提交工单,提交工單,Kirim Tiket,ส่งใบสั่งงาน,
+rebots-send-us,내용과 함께 메시지를 보내주세요. 최대한 빠르게 도와 드리겠습니다.,"Send us a message with your issue, and we'll get back to you as soon as we can.",Envíenos un mensaje con su problema y nos pondremos en contacto con usted lo antes posible.,内容とともにメッセージを送ってください。 できるだけ早くお手伝いします。,请将详细信息发送给我们。我们将尽快为您提供帮助。,請將詳細信息發送給我們。我們將盡快為您提供幫助。,"Kirimi kami pesan dengan masalah Anda, dan kami akan menghubungi Anda sesegera mungkin.",ส่งข้อความแจ้งปัญหาของคุณถึงเรา แล้วเราจะติดต่อกลับโดยเร็วที่สุด,
+rebots-look-up-faq,빠른 답변을 원하시나요? 자주 묻는 질문과 답변에서 원하는 답변을 찾아보세요,Want Quick Responses? Look Up a Query in Our FAQs.,¿Quieres respuestas rápidas? Busque una consulta en nuestras preguntas frecuentes.,早い返信をお望みですか？ よくある質問と回答から希望する回答を探してみてください,想要快速获得答案？ 请在常见问题中找到您想要的答案,想要快速獲得答案？請在常見問題中找到您想要的答案,Ingin Respons Cepat? Cari Permintaan di FAQ Kami.,ต้องการคำตอบด่วนหรือไม่ ค้นหาคำถามในคำถามที่พบบ่อยของเรา,
+rebots-operating-time,운영 시간 {0}~{1} ({2}),Operating hours {0} to {1} ({2}),Horas de funcionamiento {0}~{1} ({2}),営業時間 {0}~{1} ({2}),工作时间 {0} 至 {1} ({2}),工作時間 {0} 至 {1} ({2}),Jam Operasi {0} hingga {1} ({2}),เวลาทำงาน {0} น. ถึง {1} น ({2}),
+rebots-terms,이용 약관,Terms of Service,Términos de servicio,利用規約,服务条款,服務條款,Persyaratan Layanan,เงื่อนไขการให้บริการ,
+rebots-cookie,쿠키 정책,Cookie Policy,Política de cookies,クッキーポリシー,Cookie政策,Cookie政策,Kebijakan Cookie,นโยบายคุกกี้,
+rebots-privacy,개인정보 처리방침,Privacy Policy,Política de privacidad,プライバシーポリシー,隐私政策,隱私政策,Kebijakan Privasi,นโยบายความเป็นส่วนตัว,
+rebots-operating,운영 정책,Operation Policy,Política de operación,運営方針,经营政策,營運政策,Kebijakan Operasi,แนวทางการดำเนินงาน,
+rebots-tel,대표 전화 {0},Contact {0},Contacto {0},代表電話 {0},联系 {0},聯繫 {0},Kontak {0},ติดต่อ {0},
+rebots-copyright,Copyright(C) {0},Copyright(C) {0},Copyright(C) {0},Copyright(C) {0},Copyright(C) {0},Copyright(C) {0},Copyright(C) {0},Copyright(C) {0},
+rebots-main,메인,Main,Main,メイン,主页,首頁,Main,หน้าหลัก,
+rebots-inquiry-phrases,문의,Inquiries,Consultas,お問い合わせ,询问,詢問,penyelidikan,สอบถาม,
+rebots-exit,나가기,Exit,Salida,出る,退出,退出,KELUAR,ทางออก,
+rebots-search-result,{0} Search results :,{0} Search results:,{0} Resultados de la búsqueda:,{0} 検索結果：,{0} 个搜索结果:,{0} 個搜尋結果:,{0} Hasil penelusuran:,{0} ผลการค้นหาสำหรับ:,
+rebots-was-it-helpful,도움이 되었나요?,Was it helpful?,¿Fue útil?,役に立ちましたか?,对您有所帮助吗？,對您有所幫助嗎？,Apakah itu bermanfaat?,มันมีประโยชน์หรือไม่?,
+rebots-yes,네,Yes,Sí,はい,是,是,Ya,ใช่,
+rebots-no,아니요,No,No,いいえ,不是,不是,TIDAK,ไม่,
+rebots-thack-you-opinion,소중한 의견 감사합니다.,Thank you for your valuable opinion.,Gracias por su valiosa opinión.,大切なご意見ありがとうございます。,感谢您的反馈意见。,感謝您的反饋意見。,Terima kasih atas pendapat Anda yang berharga.,ขอบคุณสำหรับความคิดเห็นที่มีค่าของคุณ,
+rebots-username,사용자 이름,Username,nombre de usuario,お名前,用户名,用戶名,Nama pengguna,ชื่อผู้ใช้,
+rebots-required,필수 항목,Required,Requerido,必須,必填,必填,Diperlukan,จำเป็น,
+rebots-email,이메일,Email,correo electrónico,メール,邮箱,郵箱,Surel,อีเมล,
+rebots-no-file,파일없음,No file,Ningún archivo,ファイルなし,没有文件,沒有文件,Tidak ada berkas,ไม่มีแฟ้ม,
+rebots-file-validation,"JPG, PNG,GIF 파일로 3개, 최대 10MB","Up to 3 files, max 10MB each, JPG, PNG, GIF","Hasta 3 archivos, máximo 10 MB cada uno, JPG, PNG, GIF",JPG、PNG、GIFファイルで3個、最大10MB,最多3个文件，每个文件最大10MB，JPG、PNG、GIF,最多3個文件，每個文件最大10MB，JPG、PNG、GIF,"Sampai 3 berkas, maksimal 10MB setiap, JPG, PNG, GIF","สูงสุด 3 ไฟล์ สูงสุด 10 MB ต่อไฟล์ JPG, PNG, GIF",
+rebots-privacy-policy,개인정보보호 정책,Privacy policy,Política de privacidad,プライバシーポリシー,隐私政策,隱私政策,Kebijakan Privasi,นโยบายความเป็นส่วนตัว,
+rebots-privacy-link-label,페이지로 이동,Go to page,Ir a la pagina,ページに移動,转到页面,轉到頁面,Buka halaman,ไปที่หน้า,
+rebots-i-agree,개인정보 수집에 동의합니다,I agree to collect the personal information above,Acepto recopilar la información personal anterior,上記の個人情報を収集することに同意します,我同意收集上述个人信息。,我同意收集上述個人資訊。,Saya setuju untuk mengumpulkan informasi pribadi di atas,ฉันยินยอมให้เก็บรวบรวมข้อมูลส่วนบุคคลข้างต้น,
+rebots-submit,티켓 제출,Submit,Entregar,チケット提出,提交工單,提交工單,Kirim tiket,การส่งตั๋ว,
+rebots-been-received,문의가 접수 되었습니다.,Your inquiry has been received.,Su consulta ha sido recibida.,チケット(お問い合わせ)が受け付けられました。,你的询问已经收到。,您的諮詢已經提交。,Permintaan Anda telah diterima.,คำถามของคุณได้รับแล้ว,
+rebots-will-reply,답변은 이메일 혹은 내 티켓에서 확인하실 수 있습니다.,We will reply by mail or via 'My ticket'.,Le responderemos por correo o a través de 'Mi ticket'.,私たちはメールや「私の航空券」で返事をします。,我们将通过邮件或“我的机票”进行回复。,我們將透過郵件或「我的諮詢」回覆。,Kami akan menjawab melalui surat atau melalui 'tiketku' .,"เราจะตอบกลับทางไปรษณีย์หรือ ""ตั๋วเครื่องบินของฉัน""",
+rebots-thank-you,감사합니다.,Thank you.,Gracias.,ありがとうございます。,谢谢,謝謝,Terima kasih.,ขอบคุณ,
+rebots-return-main,메인으로,Main,Main,メインへ,主页,首頁,Main,หน้าหลัก,
+rebots-privacy-purpose,수집·이용 목적,Purpose of use,Propósito de uso,使用目的,使用目的,使用目的,Tujuan penggunaan,วัตถุประสงค์ในการใช้งาน,
+rebots-privacy-collection,수집 항목,Collected Info,Información recopilada,収集された情報,收集信息,收集資訊,Info yang Dikumpulkan,การรวบรวมข้อมูล,
+rebots-privacy-period,정보 보유 및 이용기간,Usage Period,Período de uso,使用期間,使用期限,使用期限,Periode Penggunaan,ระยะเวลาการใช้งาน,
+rebots-privacy-consignment,수탁사 이름,Entrustee,Fideicomisario,受託者,受托人,受託人,Wali Amanat,ผู้ดูแลผลประโยชน์,
+rebots-privacy-providing,수탁 정보,Entrusted Info,Información confiada,受託情報,受托信息,受託訊息,Info yang Dititipkan,ข้อมูลความไว้วางใจ,
+rebots-privacy-consignment-period,수탁 기간,Period for entrust,Plazo de encomienda,委託期間,委托期限,委託期限,Masa titipan,ระยะเวลาการมอบอำนาจ,
+rebots-choose-file-label,파일선택,Select,Seleccionar,選択,选择文件,選擇文件,Pilih,เลือกไฟล์,
+rebots-valid-required,필수 항목을 모두 입력해주세요,Please fill in all required fields,"Por favor, rellene todos los campos obligatorios",必須項目をすべて入力してください,请填写所有必填字段,請填寫所有必填字段,Silakan isi semua medan yang diperlukan,กรุณากรอกข้อมูลให้ครบทุกช่อง,
+rebots-valid-email,이메일을 다시 확인해주세요,Please check email address one more,Por favor revisa la dirección de correo electrónico una vez más.,メールをもう一度確認してください,请再检查一次电子邮件地址,請再檢查一次電子郵件地址,Silakan periksa alamat email sekali lagi,กรุณาตรวจสอบที่อยู่อีเมลอีกครั้ง,
+rebots-list-result,총 {0}건,Total {0},Totales {0},合計 {0}件,总计{0},總計 {0},Jumlah {0},ทั้งหมด {0},
+rebots-faq-phrases,FAQ,FAQ,FAQ,FAQ,常见问题,常見問題,FAQ,FAQ,
+rebots-my-ticket-label,내 티켓,My Tickets,Mi ticket,マイチケット,我的工单,我的工單,Tiket Saya,ตั๋วของฉัน,
+rebots-ticket-answer-label,답변 내역,Answer,Respuesta,回答履歴,回答,回答,Menjawab,ตอบ,
+rebots-ticket-answer,답변 대기,Waiting,Espera,回答待ち,等待答复,等待答复,Menunggu,รอคำตอบ,
+rebots-ticket-completed,답변 완료,Completed,Resuelto,回答完了,回答完毕,回答完畢,Lengkap,ตอบเสร็จแล้ว,
+rebots-helpdesk-phrases,헬프데스크,Helpdesk,Mesa de ayuda,ヘルプデスク,帮助中心,幫助中心,Pusat Bantuan,ศูนย์ความช่วยเหลือ,
+rebots-operating-time-weekday,주중,Week days,Días de semana,週日,周天数,周天數,hari biasa,กลางสัปดาห์,
+rebots-operating-time-always,연중무휴,24/7,24/7,年中無休,常年不休息,常年不休息,24/7,24/7,
+rebots-operating-time-mon,월,Mon,Mo,月,周一,週一,Mon,Mon,
+rebots-operating-time-tue,화,Tue,Di,火,周二,週二,Tue,Tue,
+rebots-operating-time-wed,수,Wed,Mi,水,周三,週三,Wed,Wed,
+rebots-operating-time-thu,목,Thu,Do,木,周四,週四,Thu,Thu,
+rebots-operating-time-fri,금,Fri,Fri,金,周五,週五,Fri,Fri,
+rebots-operating-time-sat,토,Sat,Sa,土,周六,週六,Sat,Sat,
+rebots-operating-time-sun,일,Sun,So,日,周日,週日,Sun,Sun,

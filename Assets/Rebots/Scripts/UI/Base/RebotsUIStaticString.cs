@@ -1,4 +1,6 @@
-﻿namespace Rebots.HelpDesk
+﻿using System;
+
+namespace Rebots.HelpDesk
 {
     public class RebotsUIStaticString
     {
@@ -162,6 +164,16 @@
         public const string TicketWaiting = "rebots-ticket-answer";
         public const string TicketCompleted = "rebots-ticket-completed";
         public const string HelpdeskPhrases = "rebots-helpdesk-phrases";
+
+        public const string OperatingTimeWeekday = "rebots-operating-time-weekday";
+        public const string OperatingTimeAlways = "rebots-operating-time-always";
+        public const string OperatingTimeMon = "rebots-operating-time-mon";
+        public const string OperatingTimeTue = "rebots-operating-time-tue";
+        public const string OperatingTimeWed = "rebots-operating-time-wed";
+        public const string OperatingTimeThu = "rebots-operating-time-thu";
+        public const string OperatingTimeFri = "rebots-operating-time-fri";
+        public const string OperatingTimeSat = "rebots-operating-time-sat";
+        public const string OperatingTimeSun = "rebots-operating-time-sun";
         #endregion
 
         #region - - - uss Class Name - - - 
