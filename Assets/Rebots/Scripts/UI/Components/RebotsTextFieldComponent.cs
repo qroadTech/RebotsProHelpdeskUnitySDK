@@ -57,7 +57,8 @@ namespace Rebots.HelpDesk
             m_TextField
                 .UsePlaceholder(csCategoryField.placeholderText)
                 .UseParameter(parameter)
-                .UseReadOnly(!csCategoryField.isEnable)
+                .UseEnable(csCategoryField.isEnable)
+                .AddFocusOut(OnFocusOut)
                 .InitializeTextField();
 
             m_RequiredFieldLabel.style.display = (csCategoryField.isRequire) ? DisplayStyle.Flex : DisplayStyle.None;
@@ -67,6 +68,16 @@ namespace Rebots.HelpDesk
 
             textFieldUIElement.style.display = (csCategoryField.isHidden) ? DisplayStyle.None : DisplayStyle.Flex;
         }
+
+        public void OnFocusOut()
+        {
+            var value = m_TextField.GetValue().Trim();
+            if (csCategoryField.isRequire && !string.IsNullOrEmpty(value))
+            {
+                m_Root.RemoveFromClassList(RebotsUIStaticString.RebotsValidationStyle);
+                m_ValidationLabel.style.display = DisplayStyle.None;
+            }
+        }
         
         public bool CheckFieldValid()
         {
@@ -74,6 +85,7 @@ namespace Rebots.HelpDesk
             if (csCategoryField.isRequire && string.IsNullOrEmpty(value))
             {
                 m_ValidationLabel.text = validationComment;
+                m_Root.AddToClassList(RebotsUIStaticString.RebotsValidationStyle);
                 m_ValidationLabel.style.display = DisplayStyle.Flex;
                 return false;
             }
@@ -85,13 +97,20 @@ namespace Rebots.HelpDesk
                     if (!valid.Success)
                     {
                         m_ValidationLabel.text = validtaionCommentEmail;
+                        m_Root.AddToClassList(RebotsUIStaticString.RebotsValidationStyle);
                         m_ValidationLabel.style.display = DisplayStyle.Flex;
                         return false;
                     }
                 }
+                m_Root.RemoveFromClassList(RebotsUIStaticString.RebotsValidationStyle);
                 m_ValidationLabel.style.display = DisplayStyle.None;
                 return true;
             }
+        }
+
+        public float GetVerticalPsition()
+        {
+            return m_Root.layout.y;
         }
                          
         public string GetFieldValue()

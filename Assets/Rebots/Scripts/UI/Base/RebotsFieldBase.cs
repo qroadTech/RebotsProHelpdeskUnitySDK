@@ -9,6 +9,7 @@ namespace Rebots.HelpDesk
         const string TooltipContainer = "rebots-tooltip-container";
         const string TooltipLabel = "rebots-tooltip-label";
 
+        protected VisualElement m_Root;
         VisualElement m_TooltipButtonContainer;
         Button m_TooltipButton;
         VisualElement m_TooltipContainer;
@@ -25,6 +26,7 @@ namespace Rebots.HelpDesk
 
         public virtual void SetVisualElements(TemplateContainer fieldUIElement)
         {
+            m_Root = fieldUIElement;
             m_TooltipButtonContainer = fieldUIElement.Q<VisualElement>(TooltipButtonContainer);
             m_TooltipButton = fieldUIElement.Q<Button>(TooltipButton);
             m_TooltipContainer = fieldUIElement.Q<VisualElement>(TooltipContainer);

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6512091703982553
+--- !u!1 &436221979402774118
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,57 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6512091703982555}
-  - component: {fileID: 6512091703982552}
+  - component: {fileID: 5780552311626367941}
+  - component: {fileID: 920084204696795741}
+  m_Layer: 0
+  m_Name: BannerScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5780552311626367941
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436221979402774118}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4102010578217516527}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &920084204696795741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 436221979402774118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 446dca2a924462e4c980684ca8760aef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ScreenName: RebotsBannerScreen
+  m_RebotsHelpdeskUIManager: {fileID: 4102010578217516521}
+  m_Document: {fileID: 4102010578217516520}
+  rebotsSettingManager: {fileID: 0}
+  BannerAsset: {fileID: 9197481963319205126, guid: d8d7095c6442f2d4db67e252f4ce103c, type: 3}
+--- !u!1 &1001560393270556685
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3444693393585811794}
+  - component: {fileID: 4253193202058775123}
   m_Layer: 0
   m_Name: HelpdeskScreen
   m_TagString: Untagged
@@ -17,43 +66,43 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6512091703982555
+--- !u!4 &3444693393585811794
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512091703982553}
+  m_GameObject: {fileID: 1001560393270556685}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6512091819863285}
-  - {fileID: 6512093749399021}
-  - {fileID: 6512093571915444}
-  m_Father: {fileID: 6512093179079526}
+  - {fileID: 796811510374602680}
+  - {fileID: 7768988936905050984}
+  - {fileID: 3929764458657086625}
+  m_Father: {fileID: 4102010578217516527}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6512091703982552
+--- !u!114 &4253193202058775123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512091703982553}
+  m_GameObject: {fileID: 1001560393270556685}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf448d49a1579f64bb96d57fc6810fe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ScreenName: RebotsHelpdeskScreen
-  m_RebotsHelpdeskUIManager: {fileID: 8807594975628496268}
-  m_Document: {fileID: 6512093179079527}
+  m_RebotsHelpdeskUIManager: {fileID: 4102010578217516521}
+  m_Document: {fileID: 4102010578217516520}
   rebotsSettingManager: {fileID: 0}
-  rebotsLayoutUI: {fileID: 6512091819863284}
-  rebotsPageUI: {fileID: 6512093749399018}
-  rebotsUICreater: {fileID: 6512093571915445}
+  rebotsLayoutUI: {fileID: 4895395593320905157}
+  rebotsPageUI: {fileID: 8925390129150349926}
+  rebotsUICreater: {fileID: 3249686615563541900}
   theme1: {fileID: 7433441132597879392, guid: a1078b398694e964e832661d402eb4ad, type: 3}
   theme2: {fileID: 7433441132597879392, guid: 0acf83a0b04b99445a4019a0fa8d7a29, type: 3}
   theme3: {fileID: 7433441132597879392, guid: ba56644f9f11adb458646ed78d52c638, type: 3}
@@ -77,7 +126,7 @@ MonoBehaviour:
   fontAssetTH: {fileID: 12800000, guid: 57398deed91e71c4aaa24d0818314861, type: 3}
   SystemEventGO: {fileID: 0}
   OriginScreenOrientation: 0
---- !u!1 &6512091819863282
+--- !u!1 &1068249417725105158
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -85,8 +134,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6512091819863285}
-  - component: {fileID: 6512091819863284}
+  - component: {fileID: 796811510374602680}
+  - component: {fileID: 4895395593320905157}
   m_Layer: 0
   m_Name: LayoutUI
   m_TagString: Untagged
@@ -94,38 +143,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6512091819863285
+--- !u!4 &796811510374602680
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512091819863282}
+  m_GameObject: {fileID: 1068249417725105158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6512091703982555}
+  m_Father: {fileID: 3444693393585811794}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6512091819863284
+--- !u!114 &4895395593320905157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512091819863282}
+  m_GameObject: {fileID: 1068249417725105158}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53b57e682125e054c82c869333cac668, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_ScreenName: RebotsLayoutUI
-  m_RebotsHelpdeskUIManager: {fileID: 8807594975628496268}
-  m_Document: {fileID: 6512093179079527}
-  helpdeskScreen: {fileID: 6512091703982552}
---- !u!1 &6512093179079524
+  m_RebotsHelpdeskUIManager: {fileID: 4102010578217516521}
+  m_Document: {fileID: 4102010578217516520}
+  helpdeskScreen: {fileID: 4253193202058775123}
+--- !u!1 &1416949251887446476
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,65 +182,47 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6512093179079526}
-  - component: {fileID: 6512093179079527}
-  - component: {fileID: 8807594975628496268}
+  - component: {fileID: 7768988936905050984}
+  - component: {fileID: 8925390129150349926}
   m_Layer: 0
-  m_Name: Rebots
+  m_Name: PageUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6512093179079526
+--- !u!4 &7768988936905050984
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512093179079524}
+  m_GameObject: {fileID: 1416949251887446476}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 17423691883398418}
-  - {fileID: 6512091703982555}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_Children: []
+  m_Father: {fileID: 3444693393585811794}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6512093179079527
+--- !u!114 &8925390129150349926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512093179079524}
+  m_GameObject: {fileID: 1416949251887446476}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Script: {fileID: 11500000, guid: 5490d817ca8d495458ef00dada247b0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: fa38d432a8e62a54b9431f7723800c83, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 21b85167330245d4cbe6bad5f6a264e4, type: 3}
-  m_SortingOrder: 1
---- !u!114 &8807594975628496268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512093179079524}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37ea85760dfcfba4387e8dc7dccdb0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rebotsHelpdeskScreen: {fileID: 6512091703982552}
-  rebotsBannerScreen: {fileID: 1487581472455094443}
-  systemEventGO: {fileID: 0}
---- !u!1 &6512093571915442
+  m_ScreenName: RebotsPageUI
+  m_RebotsHelpdeskUIManager: {fileID: 4102010578217516521}
+  m_Document: {fileID: 4102010578217516520}
+  helpdeskScreen: {fileID: 4253193202058775123}
+--- !u!1 &4102010578319006029
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,8 +230,55 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6512093571915444}
-  - component: {fileID: 6512093571915445}
+  - component: {fileID: 4102010578319006028}
+  - component: {fileID: 4102010578319006067}
+  m_Layer: 0
+  m_Name: SpinnerScreen
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4102010578319006028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4102010578319006029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4102010578217516527}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4102010578319006067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4102010578319006029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da5da654bfbab504eb0254d587ea8466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ScreenName: RebotsSpinnerScreen
+  m_RebotsHelpdeskUIManager: {fileID: 4102010578217516521}
+  m_Document: {fileID: 4102010578217516520}
+--- !u!1 &5550170696499157268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3929764458657086625}
+  - component: {fileID: 3249686615563541900}
   m_Layer: 0
   m_Name: UICreater
   m_TagString: Untagged
@@ -208,28 +286,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6512093571915444
+--- !u!4 &3929764458657086625
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512093571915442}
+  m_GameObject: {fileID: 5550170696499157268}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6512091703982555}
+  m_Father: {fileID: 3444693393585811794}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6512093571915445
+--- !u!114 &3249686615563541900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512093571915442}
+  m_GameObject: {fileID: 5550170696499157268}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36437cb7bcd8e0b4780e06e72a6f6b0e, type: 3}
@@ -257,7 +335,7 @@ MonoBehaviour:
   TicketAsset: {fileID: 9197481963319205126, guid: a98c2a96eb8aed14ab3e4801ef91f553, type: 3}
   TicketAnswerAsset: {fileID: 9197481963319205126, guid: cba947ca95b51da4d8f54f5f7c852c6a, type: 3}
   TicketFieldAsset: {fileID: 9197481963319205126, guid: 761a9eb7300dc95418273a71ea9e8925, type: 3}
---- !u!1 &6512093749399019
+--- !u!1 &7147736188410645852
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -265,92 +343,63 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6512093749399021}
-  - component: {fileID: 6512093749399018}
+  - component: {fileID: 4102010578217516527}
+  - component: {fileID: 4102010578217516520}
+  - component: {fileID: 4102010578217516521}
   m_Layer: 0
-  m_Name: PageUI
+  m_Name: Rebots
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6512093749399021
+--- !u!4 &4102010578217516527
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512093749399019}
+  m_GameObject: {fileID: 7147736188410645852}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6512091703982555}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6512093749399018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6512093749399019}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5490d817ca8d495458ef00dada247b0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ScreenName: RebotsPageUI
-  m_RebotsHelpdeskUIManager: {fileID: 8807594975628496268}
-  m_Document: {fileID: 6512093179079527}
-  helpdeskScreen: {fileID: 6512091703982552}
---- !u!1 &2242639866391864291
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 17423691883398418}
-  - component: {fileID: 1487581472455094443}
-  m_Layer: 0
-  m_Name: BannerScreen
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &17423691883398418
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2242639866391864291}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6512093179079526}
+  m_Children:
+  - {fileID: 5780552311626367941}
+  - {fileID: 3444693393585811794}
+  - {fileID: 4102010578319006028}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1487581472455094443
+--- !u!114 &4102010578217516520
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2242639866391864291}
+  m_GameObject: {fileID: 7147736188410645852}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 446dca2a924462e4c980684ca8760aef, type: 3}
+  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ScreenName: RebotsBannerScreen
-  m_RebotsHelpdeskUIManager: {fileID: 8807594975628496268}
-  m_Document: {fileID: 6512093179079527}
-  rebotsSettingManager: {fileID: 0}
-  BannerAsset: {fileID: 9197481963319205126, guid: d8d7095c6442f2d4db67e252f4ce103c, type: 3}
+  m_PanelSettings: {fileID: 11400000, guid: fa38d432a8e62a54b9431f7723800c83, type: 2}
+  m_ParentUI: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: 21b85167330245d4cbe6bad5f6a264e4, type: 3}
+  m_SortingOrder: 1
+--- !u!114 &4102010578217516521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7147736188410645852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37ea85760dfcfba4387e8dc7dccdb0f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rebotsHelpdeskScreen: {fileID: 4253193202058775123}
+  rebotsBannerScreen: {fileID: 920084204696795741}
+  rebotsSpinnerScreen: {fileID: 4102010578319006067}
+  systemEventGO: {fileID: 0}

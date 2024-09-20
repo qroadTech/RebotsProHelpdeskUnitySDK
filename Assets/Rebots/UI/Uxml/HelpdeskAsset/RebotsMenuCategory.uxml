@@ -1,7 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <ui:VisualElement style="width: 100%; border-bottom-width: 1px; border-left-color: rgba(255, 255, 255, 0.15); border-right-color: rgba(255, 255, 255, 0.15); border-top-color: rgba(255, 255, 255, 0.15); border-bottom-color: rgba(255, 255, 255, 0.15);">
-        <ui:Button display-tooltip-when-elided="true" name="rebots-contents-button" style="flex-direction: row; width: 100%; height: 100%; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 20px; padding-top: 9px; padding-bottom: 9px; padding-right: 0; background-color: rgba(255, 255, 255, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-top-right-radius: 0; border-bottom-right-radius: 0;">
-            <ui:Label text="Category Label" display-tooltip-when-elided="true" name="rebots-contents-label" class="rebots-label__regular16 rebots-font-color__white" />
+        <ui:Button display-tooltip-when-elided="true" name="rebots-contents-button" class="rebots-menu" style="flex-direction: row; width: 100%; height: auto; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 20px; padding-top: 8px; padding-bottom: 8px; padding-right: 20px; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; align-items: center; min-height: 42px;">
+            <ui:Label text="Category Label" display-tooltip-when-elided="true" name="rebots-contents-label" class="rebots-font-color__white rebots-label__regular20" />
         </ui:Button>
     </ui:VisualElement>
 </ui:UXML>

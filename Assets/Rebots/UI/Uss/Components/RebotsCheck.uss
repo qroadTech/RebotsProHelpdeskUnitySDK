@@ -45,3 +45,28 @@
     border-bottom-color: rgb(85, 85, 85);
     -unity-background-image-tint-color: rgb(255, 255, 255);
 }
+
+.rebots-check.unity-disabled .unity-toggle__checkmark {
+    opacity: 1;
+    border-left-color: rgb(113, 113, 122);
+    border-right-color: rgb(113, 113, 122);
+    border-top-color: rgb(113, 113, 122);
+    border-bottom-color: rgb(113, 113, 122);
+}
+
+.rebots-check.unity-toggle.unity-disabled > .unity-toggle__input:checked > .unity-toggle__checkmark {
+    opacity: 1;
+    background-color: rgb(161, 161, 170);
+}
+
+.rebots-check.unity-disabled .unity-label {
+    opacity: 1;
+    color: rgb(161, 161, 170);
+}
+
+.rebots-validation .unity-toggle__checkmark {
+    border-left-color: rgb(215, 5, 18);
+    border-right-color: rgb(215, 5, 18);
+    border-top-color: rgb(215, 5, 18);
+    border-bottom-color: rgb(215, 5, 18);
+}

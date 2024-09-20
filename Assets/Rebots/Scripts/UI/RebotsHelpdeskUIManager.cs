@@ -10,6 +10,7 @@ namespace Rebots.HelpDesk
         [Header("Screens")]
         [SerializeField] RebotsHelpdeskScreen rebotsHelpdeskScreen;
         [SerializeField] RebotsBannerScreen rebotsBannerScreen;
+        [SerializeField] RebotsSpinnerScreen rebotsSpinnerScreen;
 
         [Header("Unity Editor Play")]
         [Tooltip("GameObject with Event System")]
@@ -27,11 +28,15 @@ namespace Rebots.HelpDesk
             SetupModalScreens();
 
             RebotsBannerScreen.rebotsBannerShow += RebotsBannerShow;
+            RebotsHelpdeskScreen.RebotsSpinnerShow += RebotsSpinnerShow;
+            RebotsHelpdeskScreen.RebotsSpinnerCancel += RebotsSpinnerHide;
         }
 
         void OnDisable()
         {
             RebotsBannerScreen.rebotsBannerShow -= RebotsBannerShow;
+            RebotsHelpdeskScreen.RebotsSpinnerShow -= RebotsSpinnerShow;
+            RebotsHelpdeskScreen.RebotsSpinnerCancel -= RebotsSpinnerHide;
         }
 
         void Start()
@@ -81,6 +86,16 @@ namespace Rebots.HelpDesk
         public void RebotsBannerShow()
         {
             ShowModalScreen(rebotsBannerScreen);
+        }
+
+        public void RebotsSpinnerShow()
+        {
+            rebotsSpinnerScreen.ShowScreen();
+        }
+
+        public void RebotsSpinnerHide()
+        {
+            rebotsSpinnerScreen.HideScreen();
         }
     }
 }

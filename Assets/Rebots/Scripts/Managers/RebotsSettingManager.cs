@@ -268,7 +268,7 @@ namespace Rebots.HelpDesk
         }
 
         /// <summary>
-        /// You can load cs cateogories what you added from RebotsPro Web solutions(workspace).
+        /// You can load cs categories what you added from RebotsPro Web solutions(workspace).
         /// </summary>
         public void LoadCsCategoryList(UnityAction<HelpdeskTicketCategoriesResponse> listUpdate, bool? isRoot = false)
         {
@@ -279,7 +279,7 @@ namespace Rebots.HelpDesk
         }
 
         /// <summary>
-        /// You can load cs cateogory what you added from RebotsPro Web solutions(workspace).
+        /// You can load cs category what you added from RebotsPro Web solutions(workspace).
         /// </summary>
         public void LoadCsCategory(UnityAction<HelpdeskTicketCategoryResponse> listUpdate, int categoryId)
         {
@@ -501,16 +501,29 @@ namespace Rebots.HelpDesk
 
         public void OnApiCallStart()
         {
-            /// TODO : [UI Feature] 인디케이터 켜는 호출 삽입
-            /// StartCoroutine(IndicatorOn);
             Debug.Log("RebotsPro HelpDeskSdk REST API call start.");
         }
 
         void OnApiCallFinished()
         {
-            /// TODO : [UI Feature] 인디케이터 끄는 호출 삽입
-            /// StartCoroutine(IndicatorOff);
             Debug.Log("RebotsPro HelpDeskSdk REST API call was finished.");
+        }
+
+        public void SetApiCallFinished()
+        {
+            var onFinishedEvent = new UnityEvent();
+            onFinishedEvent.AddListener(OnApiCallFinished);
+
+            helpdeskEvents.UseFinished(onFinishedEvent);
+        }
+
+        public void SetApiCallFinishedWithProgress(Action action)
+        {
+            var actionToUnityAction = new UnityAction(action);
+            var onFinishedEvent = new UnityEvent();
+            onFinishedEvent.AddListener(actionToUnityAction);
+
+            helpdeskEvents.UseFinished(onFinishedEvent);
         }
 
         #region Initialize state

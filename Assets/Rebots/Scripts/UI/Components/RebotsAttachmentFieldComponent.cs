@@ -6,6 +6,8 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
+using SimpleFileBrowser;
+using System.Collections;
 
 namespace Rebots.HelpDesk
 {
@@ -25,6 +27,7 @@ namespace Rebots.HelpDesk
         Label m_FieldLabel;
         Label m_RequiredFieldLabel;
         Button m_ChooseFileButton;
+        Label m_FileValidationLabel;
         VisualElement m_NoFileContainer;
         VisualElement m_FileList;
         Label m_ValidationLabel;
@@ -33,8 +36,11 @@ namespace Rebots.HelpDesk
         private VisualTreeAsset fileAsset;
         private List<RebotsTicketAttachment> attachments;
         private string validationComment;
+        private double allFileSize = 0;
+        private readonly List<string> ImageType = new List<string>() { "png", "jpeg", "jpg", "gif" };
 
-        private readonly List<string> ImageType = new List<string>() { "png", "jpeg", "jpg" };
+        public Action saveVerticalScrollAction;
+        public Action setVerticalScrollAction;
 
         public RebotsAttachmentFieldComponent(TicketCategoryInputField csCategoryField, VisualTreeAsset fileAsset, string[] validationComment) : base(csCategoryField.isAdvice, csCategoryField.adviceText)
         {
@@ -55,6 +61,7 @@ namespace Rebots.HelpDesk
             this.m_FieldLabel = attachmentFieldUIElement.Q<Label>(FieldLabel);
             this.m_RequiredFieldLabel = attachmentFieldUIElement.Q<Label>(RequiredFieldLabel);
             this.m_ChooseFileButton = attachmentFieldUIElement.Q<Button>(ChooseFileButton);
+            this.m_FileValidationLabel = attachmentFieldUIElement.Q<Label>(RebotsUIStaticString.FileValidationLabel);
             this.m_NoFileContainer = attachmentFieldUIElement.Q(NoFileContainer);
             this.m_FileList = attachmentFieldUIElement.Q(FileList);
             this.m_ValidationLabel = attachmentFieldUIElement.Q<Label>(ValidationLabel);
@@ -80,14 +87,28 @@ namespace Rebots.HelpDesk
             this.m_ValidationLabel.style.display = DisplayStyle.None;
         }
 
+        public void SetAction(Action saveAction, Action setAction)
+        {
+            saveVerticalScrollAction = saveAction;
+            setVerticalScrollAction = setAction;
+        }
+
         private void ClickChooseFile()
         {
 #if UNITY_EDITOR
-            string path = EditorUtility.OpenFilePanelWithFilters("", "", new string[] { "Image Files", "png, jpeg, jpg" });
+            string path = EditorUtility.OpenFilePanelWithFilters("", "", new string[] { "Image Files", "png, jpeg, jpg, gif", "All files", "*" });
             if (true)
             {
                 SetAttachmentFile(path);
             }
+#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_WEBGL
+            FileBrowser.SetFilters(true, new FileBrowser.Filter("Images", ".jpg", ".png", ".gif"));
+            FileBrowser.AddQuickLink( "Users", "C:\\Users", null );
+
+            FileBrowser.ShowLoadDialog((paths) => {
+                SetAttachmentFile(paths[0]);
+            }, () => { Debug.Log("Canceled"); },
+            FileBrowser.PickMode.Files, false, null, null, "Select Files", "Select");
 #elif UNITY_IOS || UNITY_ANDROID
             if (NativeGallery.CanSelectMultipleMediaTypesFromGallery())
             {
@@ -98,64 +119,96 @@ namespace Rebots.HelpDesk
                         SetAttachmentFile(path);
                     }
                 }, (NativeGallery.MediaType.Image | NativeGallery.MediaType.Video), "Select an image");
+
+                Debug.Log( "Permission result: " + permission );
             }
 #endif
         }
 
         private void SetAttachmentFile(string path)
         {
+            Debug.Log("Selected: " + path);
+            saveVerticalScrollAction.Invoke();
             if (!string.IsNullOrEmpty(path))
             {
                 if (path.Equals("error"))
                 {
+                    Debug.Log("- SetAttachmentFile: error");
                     return;
                 }
                 if (path.Equals("error_res"))
                 {
+                    Debug.Log("- SetAttachmentFile: error_res");
                     return;
                 }
 
-                var originPathList = this.attachments.Select(x => x.originPath).ToList();
-                if (this.attachments.Count == 0 || !originPathList.Contains(path))
+                // Test (todo: 동일 경로 확인 제거, 기존 파일과 중복이라도 그냥 추가)
+                //var originPathList = this.attachments.Select(x => x.originPath).ToList();
+                //if (this.attachments.Count == 0 || !originPathList.Contains(path))
+                var itemType = Path.GetExtension(path).Replace(".", "");
+                if (ImageType.Contains(itemType))
                 {
-                    var itemType = Path.GetExtension(path).Replace(".", "");
-                    itemType = ImageType.Contains(itemType) ? "image/" + itemType : "";
-                    var file = new FileInfo(path);
+                    itemType = "image/" + itemType;
+                }
+                else
+                {
+                    m_FileValidationLabel.AddToClassList(RebotsUIStaticString.RebotsFontColor_Red);
+                    Debug.Log($"- SetAttachmentFile: {itemType}");
+                    return;
+                }
 
-                    FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
-                    var attachmentInfo = new RebotsTicketAttachment()
-                    {
-                        originPath = path,
-                        filename = Path.GetFileName(path),
-                        content = fileStream,
-                        fileType = itemType,
-                        fileSize = file.Length
-                    };
-                    this.attachments.Add(attachmentInfo);
+                var file = new FileInfo(path);
+                var fileSize = ((double)file.Length / 1024);
+                if (allFileSize + fileSize > 10000)
+                {
+                    m_FileValidationLabel.AddToClassList(RebotsUIStaticString.RebotsFontColor_Red);
+                    Debug.Log($"- SetAttachmentFile: {fileSize}");
+                    return;
+                }
+                else
+                {
+                    this.allFileSize += fileSize;
+                }
 
-                    TemplateContainer fileUIElement = this.fileAsset.Instantiate();
-                    var m_FileNameLabel = fileUIElement.Q<Label>(FileNameLabel);
-                    var m_FileSizeLabel = fileUIElement.Q<Label>(FileSizeLabel);
-                    var m_FileRemoveButton = fileUIElement.Q<Button>(FileRemoveButton);
+                FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read);
+                var attachmentInfo = new RebotsTicketAttachment()
+                {
+                    originPath = path,
+                    filename = Path.GetFileName(path),
+                    content = fileStream,
+                    fileType = itemType,
+                    fileSize = file.Length
+                };
+                this.attachments.Add(attachmentInfo);
 
-                    m_FileNameLabel.text = attachmentInfo.filename;
-                    m_FileSizeLabel.text = string.Format("({0:N2}KB)", (double)attachmentInfo.fileSize / 1024);
-                    m_FileRemoveButton?.RegisterCallback<ClickEvent>(evt => RemoveAttachmentFile(attachmentInfo, fileUIElement));
+                TemplateContainer fileUIElement = this.fileAsset.Instantiate();
+                var m_FileNameLabel = fileUIElement.Q<Label>(FileNameLabel);
+                var m_FileSizeLabel = fileUIElement.Q<Label>(FileSizeLabel);
+                var m_FileRemoveButton = fileUIElement.Q<Button>(FileRemoveButton);
 
-                    this.m_FileList.Add(fileUIElement);
+                m_FileNameLabel.text = attachmentInfo.filename;
+                m_FileSizeLabel.text = string.Format("({0:N2}KB)", (double)attachmentInfo.fileSize / 1024);
+                m_FileRemoveButton?.RegisterCallback<ClickEvent>(evt => RemoveAttachmentFile(attachmentInfo, fileUIElement));
 
-                    this.m_NoFileContainer.style.display = DisplayStyle.None;
+                this.m_FileList.Add(fileUIElement);
 
-                    if (this.attachments.Count > 2 && this.m_FileList.childCount > 2)
-                    {
-                        this.m_ChooseFileButton.SetEnabled(false);
-                    }
+                this.m_NoFileContainer.style.display = DisplayStyle.None;
+
+                if (this.attachments.Count > 2 && this.m_FileList.childCount > 2)
+                {
+                    this.m_ChooseFileButton.SetEnabled(false);
                 }
             }
+            Debug.Log($"- SetAttachmentFile allFileSize: {allFileSize}");
+            CheckFieldValid();
+            setVerticalScrollAction.Invoke();
         }
 
         private void RemoveAttachmentFile(RebotsTicketAttachment attachmentInfo, TemplateContainer fileUIElement)
         {
+            saveVerticalScrollAction.Invoke();
+            this.allFileSize -= ((double)attachmentInfo.fileSize / 1024);
+
             this.attachments.Remove(attachmentInfo);
             this.m_FileList.Remove(fileUIElement);
 
@@ -163,6 +216,7 @@ namespace Rebots.HelpDesk
             {
                 this.m_ChooseFileButton.SetEnabled(true);
             }
+            setVerticalScrollAction.Invoke();
         }
 
         public bool CheckFieldValid()
@@ -174,9 +228,15 @@ namespace Rebots.HelpDesk
             }
             else
             {
+                m_FileValidationLabel.RemoveFromClassList(RebotsUIStaticString.RebotsFontColor_Red);
                 this.m_ValidationLabel.style.display = DisplayStyle.None;
                 return true;
             }
+        }
+
+        public float GetVerticalPsition()
+        {
+            return m_Root.layout.y;
         }
 
         public RebotsTicketAttachment[] GetFieldValue()

@@ -1,5 +1,5 @@
-﻿using Newtonsoft.Json.Bson;
-using UnityEngine.Rendering;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Rebots.HelpDesk
@@ -12,7 +12,8 @@ namespace Rebots.HelpDesk
         private bool m_usePlaceholder = false;
         private string m_parameter = "";
         private bool m_useParameter = false;
-        private bool m_ReadOnly = false;
+        private bool m_UseEnable = true;
+        private Action m_FocusOutAction = null;
 
         public bool m_setPlaceholder { get; private set; }
 
@@ -47,9 +48,15 @@ namespace Rebots.HelpDesk
             return this;
         }
 
-        public RebotsTextField UseReadOnly(bool newReadOnly)
+        public RebotsTextField UseEnable(bool newUseEnable)
         {
-            this.m_ReadOnly = newReadOnly;
+            this.m_UseEnable = newUseEnable;
+            return this;
+        }
+
+        public RebotsTextField AddFocusOut(Action action)
+        {
+            this.m_FocusOutAction = action;
             return this;
         }
 
@@ -58,7 +65,7 @@ namespace Rebots.HelpDesk
             if (m_useParameter)
             {
                 this.textField.SetValueWithoutNotify(m_parameter);
-                this.textField.isReadOnly = m_ReadOnly;
+                this.textField.SetEnabled(m_UseEnable);
             }
             else if (m_usePlaceholder)
             {
@@ -85,6 +92,11 @@ namespace Rebots.HelpDesk
             if (string.IsNullOrEmpty(this.textField.value) && m_usePlaceholder)
             {
                 SetPlaceholderStyle();
+            }
+
+            if (m_FocusOutAction != null)
+            {
+                this.m_FocusOutAction();
             }
         }
 
@@ -116,6 +128,11 @@ namespace Rebots.HelpDesk
             {
                 return "";
             }
+        }
+
+        public void KeyDownEvent(EventCallback<KeyDownEvent> callback) 
+        {
+            this.textField.RegisterCallback<KeyDownEvent>(callback);
         }
     }
 }

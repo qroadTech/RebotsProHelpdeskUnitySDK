@@ -6,6 +6,10 @@
     background-color: rgba(40, 40, 40, 255);
 }
 
+.rebots-background-color__dark-grey {
+    background-color: rgb(161, 161, 170);
+}
+
 .rebots-background-color__grey {
     background-color: rgb(188, 188, 188);
 }
@@ -22,6 +26,14 @@
     color: rgb(85, 85, 85);
 }
 
+.rebots-font-color__semi-grey {
+    color: rgb(107, 114, 128);
+}
+
+.rebots-font-color__semi-grey2 {
+    color: rgb(113, 113, 122);
+}
+
 .rebots-font-color__grey {
     color: rgb(142, 142, 142);
 }
@@ -34,46 +46,57 @@
     color: rgb(215, 5, 18);
 }
 
-.rebots-ko-class .rebots-label__black40 {
-    font-size: 40px;
+/* rebots-ko-class */
+.rebots-ko-class .unity-base-dropdown__item {
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }
 
-.rebots-ko-class .rebots-label__black36 {
-    font-size: 36px;
+.rebots-ko-class .unity-label {
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }
 
-.rebots-ko-class .rebots-label__black28 {
-    font-size: 28px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
-}
-
-.rebots-ko-class .rebots-label__black24 {
+.rebots-ko-class .rebots-label__regular24 {
     font-size: 24px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }
 
-.rebots-ko-class .rebots-label__black20 {
+.rebots-ko-class .rebots-label__regular20 {
     font-size: 20px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }
 
-.rebots-ko-class .rebots-label__black18 {
+.rebots-ko-class .rebots-label__regular18 {
     font-size: 18px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }
 
-.rebots-ko-class .rebots-label__black16 {
+.rebots-ko-class .rebots-label__regular16 {
     font-size: 16px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
+}
+
+.rebots-ko-class .rebots-label__regular14 {
+    font-size: 14px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
+}
+
+.rebots-ko-class .rebots-label__regular12 {
+    font-size: 12px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
+}
+
+.rebots-ko-class .rebots-label__regular10 {
+    font-size: 10px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }
 
 .rebots-ko-class .rebots-label__black14 {
@@ -131,6 +154,13 @@
     -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }
 
+.rebots-ko-class .rebots-label__bold12 {
+    font-size: 12px;
+    -unity-font-style: bold;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
+}
+
 .rebots-ko-class .rebots-label__bold11 {
     font-size: 11px;
     -unity-font-style: bold;
@@ -138,105 +168,99 @@
     -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }
 
-.rebots-ko-class .rebots-label__regular24 {
-    font-size: 24px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
-}
-
-.rebots-ko-class .rebots-label__regular20 {
-    font-size: 20px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
-}
-
-.rebots-ko-class .rebots-label__regular18 {
-    font-size: 18px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
-}
-
-.rebots-ko-class .rebots-label__regular16 {
-    font-size: 16px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
-}
-
-.rebots-ko-class .rebots-label__regular14 {
-    font-size: 14px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
-}
-
-.rebots-ko-class .rebots-label__regular12 {
-    font-size: 12px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
-}
-
-.rebots-ko-class .rebots-label__regular10 {
-    font-size: 10px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
-}
-
-.rebots-ko-class .unity-base-dropdown__item {
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
-}
-
-.rebots-ko-class .unity-label {
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
-}
-
-
-.rebots-ja-class .rebots-label__black40 {
+.rebots-ko-class .rebots-label__black40 {
     font-size: 40px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
 }
 
-.rebots-ja-class .rebots-label__black36 {
+.rebots-ko-class .rebots-label__black36 {
     font-size: 36px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
 }
 
-.rebots-ja-class .rebots-label__black28 {
+.rebots-ko-class .rebots-label__black28 {
     font-size: 28px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
 }
 
-.rebots-ja-class .rebots-label__black24 {
+.rebots-ko-class .rebots-label__black24 {
     font-size: 24px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
 }
 
-.rebots-ja-class .rebots-label__black20 {
+.rebots-ko-class .rebots-label__black20 {
     font-size: 20px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
 }
 
-.rebots-ja-class .rebots-label__black18 {
+.rebots-ko-class .rebots-label__black18 {
     font-size: 18px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
 }
 
-.rebots-ja-class .rebots-label__black16 {
+.rebots-ko-class .rebots-label__black16 {
     font-size: 16px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
 }
 
-.rebots-ja-class .rebots-label__black14 {
+/* rebots-ja-class */
+.rebots-ja-class .unity-base-dropdown__item {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
+.rebots-ja-class .unity-label {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
+.rebots-ja-class .rebots-label__regular24 {
+    font-size: 24px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
+.rebots-ja-class .rebots-label__regular20 {
+    font-size: 20px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
+.rebots-ja-class .rebots-label__regular18 {
+    font-size: 18px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
+.rebots-ja-class .rebots-label__regular16 {
+    font-size: 16px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
+.rebots-ja-class .rebots-label__regular14 {
     font-size: 14px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
+.rebots-ja-class .rebots-label__regular12 {
+    font-size: 12px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
+.rebots-ja-class .rebots-label__regular10 {
+    font-size: 10px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
 }
 
 .rebots-ja-class .rebots-label__bold36 {
@@ -288,6 +312,13 @@
     -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
 }
 
+.rebots-ja-class .rebots-label__bold12 {
+    font-size: 12px;
+    -unity-font-style: bold;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
+}
+
 .rebots-ja-class .rebots-label__bold11 {
     font-size: 11px;
     -unity-font-style: bold;
@@ -295,105 +326,105 @@
     -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
 }
 
-.rebots-ja-class .rebots-label__regular24 {
-    font-size: 24px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
-}
-
-.rebots-ja-class .rebots-label__regular20 {
-    font-size: 20px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
-}
-
-.rebots-ja-class .rebots-label__regular18 {
-    font-size: 18px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
-}
-
-.rebots-ja-class .rebots-label__regular16 {
-    font-size: 16px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
-}
-
-.rebots-ja-class .rebots-label__regular14 {
-    font-size: 14px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
-}
-
-.rebots-ja-class .rebots-label__regular12 {
-    font-size: 12px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
-}
-
-.rebots-ja-class .rebots-label__regular10 {
-    font-size: 10px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
-}
-
-.rebots-ja-class .unity-base-dropdown__item {
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
-}
-
-.rebots-ja-class .unity-label {
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansJP-Regular-as');
-}
-
-
-.rebots-en-class .rebots-label__black40 {
+.rebots-ja-class .rebots-label__black40 {
     font-size: 40px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
 }
 
-.rebots-en-class .rebots-label__black36 {
+.rebots-ja-class .rebots-label__black36 {
     font-size: 36px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
 }
 
-.rebots-en-class .rebots-label__black28 {
+.rebots-ja-class .rebots-label__black28 {
     font-size: 28px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
 }
 
-.rebots-en-class .rebots-label__black24 {
+.rebots-ja-class .rebots-label__black24 {
     font-size: 24px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
 }
 
-.rebots-en-class .rebots-label__black20 {
+.rebots-ja-class .rebots-label__black20 {
     font-size: 20px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
 }
 
-.rebots-en-class .rebots-label__black18 {
+.rebots-ja-class .rebots-label__black18 {
     font-size: 18px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
 }
 
-.rebots-en-class .rebots-label__black16 {
+.rebots-ja-class .rebots-label__black16 {
     font-size: 16px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
 }
 
-.rebots-en-class .rebots-label__black14 {
+.rebots-ja-class .rebots-label__black14 {
     font-size: 14px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
+}
+
+/* rebots-en-class */
+.rebots-en-class .unity-base-dropdown__item {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
+.rebots-en-class .unity-label {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
+.rebots-en-class .rebots-label__regular24 {
+    font-size: 24px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
+.rebots-en-class .rebots-label__regular20 {
+    font-size: 20px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
+.rebots-en-class .rebots-label__regular18 {
+    font-size: 18px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
+.rebots-en-class .rebots-label__regular16 {
+    font-size: 16px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
+.rebots-en-class .rebots-label__regular14 {
+    font-size: 14px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
+.rebots-en-class .rebots-label__regular12 {
+    font-size: 12px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
+.rebots-en-class .rebots-label__regular10 {
+    font-size: 10px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
 }
 
 .rebots-en-class .rebots-label__bold36 {
@@ -445,112 +476,118 @@
     -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
 }
 
+.rebots-en-class .rebots-label__bold12 {
+    font-size: 12px;
+    -unity-font-style: bold;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
+}
+
 .rebots-en-class .rebots-label__bold11 {
     font-size: 11px;
     -unity-font-style: bold;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
 }
-
-.rebots-en-class .rebots-label__regular24 {
-    font-size: 24px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
-}
-
-.rebots-en-class .rebots-label__regular20 {
-    font-size: 20px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
-}
-
-.rebots-en-class .rebots-label__regular18 {
-    font-size: 18px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
-}
-
-.rebots-en-class .rebots-label__regular16 {
-    font-size: 16px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
-}
-
-.rebots-en-class .rebots-label__regular14 {
-    font-size: 14px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
-}
-
-.rebots-en-class .rebots-label__regular12 {
-    font-size: 12px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
-}
-
-.rebots-en-class .rebots-label__regular10 {
-    font-size: 10px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
-}
-
-.rebots-en-class .unity-base-dropdown__item {
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
-}
-
-.rebots-en-class .unity-label {
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansEN-Regular-as');
-}
-
-
-.rebots-zh-cn-class .rebots-label__black40 {
+.rebots-en-class .rebots-label__black40 {
     font-size: 40px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
 }
 
-.rebots-zh-cn-class .rebots-label__black36 {
+.rebots-en-class .rebots-label__black36 {
     font-size: 36px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
 }
 
-.rebots-zh-cn-class .rebots-label__black28 {
+.rebots-en-class .rebots-label__black28 {
     font-size: 28px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
 }
 
-.rebots-zh-cn-class .rebots-label__black24 {
+.rebots-en-class .rebots-label__black24 {
     font-size: 24px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
 }
 
-.rebots-zh-cn-class .rebots-label__black20 {
+.rebots-en-class .rebots-label__black20 {
     font-size: 20px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
 }
 
-.rebots-zh-cn-class .rebots-label__black18 {
+.rebots-en-class .rebots-label__black18 {
     font-size: 18px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
 }
 
-.rebots-zh-cn-class .rebots-label__black16 {
+.rebots-en-class .rebots-label__black16 {
     font-size: 16px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
 }
 
-.rebots-zh-cn-class .rebots-label__black14 {
+.rebots-en-class .rebots-label__black14 {
     font-size: 14px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
+}
+
+/* rebots-zh-cn-class */
+.rebots-zh-cn-class .unity-base-dropdown__item {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
+.rebots-zh-cn-class .unity-label {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
+.rebots-zh-cn-class .rebots-label__regular24 {
+    font-size: 24px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
+.rebots-zh-cn-class .rebots-label__regular20 {
+    font-size: 20px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
+.rebots-zh-cn-class .rebots-label__regular18 {
+    font-size: 18px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
+.rebots-zh-cn-class .rebots-label__regular16 {
+    font-size: 16px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
+.rebots-zh-cn-class .rebots-label__regular14 {
+    font-size: 14px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
+.rebots-zh-cn-class .rebots-label__regular12 {
+    font-size: 12px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
+.rebots-zh-cn-class .rebots-label__regular10 {
+    font-size: 10px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
 }
 
 .rebots-zh-cn-class .rebots-label__bold36 {
@@ -602,112 +639,118 @@
     -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
 }
 
+.rebots-zh-cn-class .rebots-label__bold12 {
+    font-size: 12px;
+    -unity-font-style: bold;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
+}
+
 .rebots-zh-cn-class .rebots-label__bold11 {
     font-size: 11px;
     -unity-font-style: bold;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
 }
-
-.rebots-zh-cn-class .rebots-label__regular24 {
-    font-size: 24px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
-}
-
-.rebots-zh-cn-class .rebots-label__regular20 {
-    font-size: 20px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
-}
-
-.rebots-zh-cn-class .rebots-label__regular18 {
-    font-size: 18px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
-}
-
-.rebots-zh-cn-class .rebots-label__regular16 {
-    font-size: 16px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
-}
-
-.rebots-zh-cn-class .rebots-label__regular14 {
-    font-size: 14px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
-}
-
-.rebots-zh-cn-class .rebots-label__regular12 {
-    font-size: 12px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
-}
-
-.rebots-zh-cn-class .rebots-label__regular10 {
-    font-size: 10px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
-}
-
-.rebots-zh-cn-class .unity-base-dropdown__item {
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
-}
-
-.rebots-zh-cn-class .unity-label {
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansCN-Regular-as');
-}
-
-
-.rebots-th-class .rebots-label__black40 {
+.rebots-zh-cn-class .rebots-label__black40 {
     font-size: 40px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
 }
 
-.rebots-th-class .rebots-label__black36 {
+.rebots-zh-cn-class .rebots-label__black36 {
     font-size: 36px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
 }
 
-.rebots-th-class .rebots-label__black28 {
+.rebots-zh-cn-class .rebots-label__black28 {
     font-size: 28px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
 }
 
-.rebots-th-class .rebots-label__black24 {
+.rebots-zh-cn-class .rebots-label__black24 {
     font-size: 24px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
 }
 
-.rebots-th-class .rebots-label__black20 {
+.rebots-zh-cn-class .rebots-label__black20 {
     font-size: 20px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
 }
 
-.rebots-th-class .rebots-label__black18 {
+.rebots-zh-cn-class .rebots-label__black18 {
     font-size: 18px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
 }
 
-.rebots-th-class .rebots-label__black16 {
+.rebots-zh-cn-class .rebots-label__black16 {
     font-size: 16px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
 }
 
-.rebots-th-class .rebots-label__black14 {
+.rebots-zh-cn-class .rebots-label__black14 {
     font-size: 14px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
+    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
+}
+
+/* rebots-th-class */
+.rebots-th-class .unity-base-dropdown__item {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+}
+
+.rebots-th-class .unity-label {
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+}
+
+.rebots-th-class .rebots-label__regular24 {
+    font-size: 24px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+}
+
+.rebots-th-class .rebots-label__regular20 {
+    font-size: 20px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+}
+
+.rebots-th-class .rebots-label__regular18 {
+    font-size: 18px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+}
+
+.rebots-th-class .rebots-label__regular16 {
+    font-size: 16px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+}
+
+.rebots-th-class .rebots-label__regular14 {
+    font-size: 14px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+}
+
+.rebots-th-class .rebots-label__regular12 {
+    font-size: 12px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+}
+
+.rebots-th-class .rebots-label__regular10 {
+    font-size: 10px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
 }
 
 .rebots-th-class .rebots-label__bold36 {
@@ -759,61 +802,63 @@
     -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
 }
 
+.rebots-th-class .rebots-label__bold12 {
+    font-size: 12px;
+    -unity-font-style: bold;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+}
+
 .rebots-th-class .rebots-label__bold11 {
     font-size: 11px;
     -unity-font-style: bold;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
 }
+.rebots-th-class .rebots-label__black40 {
+    font-size: 40px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
+}
 
-.rebots-th-class .rebots-label__regular24 {
+.rebots-th-class .rebots-label__black36 {
+    font-size: 36px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
+}
+
+.rebots-th-class .rebots-label__black28 {
+    font-size: 28px;
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
+}
+
+.rebots-th-class .rebots-label__black24 {
     font-size: 24px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
 }
 
-.rebots-th-class .rebots-label__regular20 {
+.rebots-th-class .rebots-label__black20 {
     font-size: 20px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
 }
 
-.rebots-th-class .rebots-label__regular18 {
+.rebots-th-class .rebots-label__black18 {
     font-size: 18px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
 }
 
-.rebots-th-class .rebots-label__regular16 {
+.rebots-th-class .rebots-label__black16 {
     font-size: 16px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
 }
 
-.rebots-th-class .rebots-label__regular14 {
+.rebots-th-class .rebots-label__black14 {
     font-size: 14px;
     -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
-}
-
-.rebots-th-class .rebots-label__regular12 {
-    font-size: 12px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
-}
-
-.rebots-th-class .rebots-label__regular10 {
-    font-size: 10px;
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
-}
-
-.rebots-th-class .unity-base-dropdown__item {
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
-}
-
-.rebots-th-class .unity-label {
-    -unity-font: none;
-    -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
+    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
 }

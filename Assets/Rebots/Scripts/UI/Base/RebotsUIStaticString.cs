@@ -17,13 +17,18 @@ namespace Rebots.HelpDesk
         public const string CategoryLabel = "rebots-category-label";
         public const string RouteLabel = "rebots-route-label";
         public const string ContentsLabel = "rebots-contents-label";
+        public const string ContentsButton = "rebots-contents-button";
         public const string MainButton = "rebots-main-button";
+        public const string TicketPreviewLabel = "rebots-ticket-preview-label";
+        public const string ScrollLeftButton = "rebots-scroll-left-button";
+        public const string ScrollRightButton = "rebots-scroll-right-button";
         #endregion
         #region - - - Top Bar UI name - - - 
         public const string TopContainer = "rebots-top-container";
         public const string MenuOpenButton = "rebots-menu-open-button";
         public const string SearchButton = "rebots-search-button";
         public const string LanguageButton = "rebots-language-button";
+        public const string TopExitContainer = "rebots-top-exit-container";
         #endregion
         #region - - - Search Bar UI name - - - 
         public const string SearchContainer = "rebots-search-container";
@@ -55,12 +60,13 @@ namespace Rebots.HelpDesk
         public const string PageBackButton = "rebots-page-back-button";
         public const string PageTitleLabelContainer = "rebots-page-title-label-container";
         public const string PageTitleLabel = "rebots-page-title-label";
-        public const string PageRouteContainer = "rebots-page-route-container";
 
         public const string MainContainer = "rebots-main-container";
         public const string FaqPopularContainer = "rebots-faq-popular-container";
-        public const string PopularFaqCation = "rebots-top-faq";
+        public const string PopularFaqCaption = "rebots-top-faq";
+        public const string PopularScrollview = "rebots-popular-scrollview";
         public const string FaqCategoryContainer = "rebots-faq-category-container";
+        public const string MainCategoryCaption = "rebots-main-category";
 
         public const string FaqSearchContainer = "rebots-faq-search-container";
         public const string SearchResultLabel = "rebots-search-result";
@@ -103,10 +109,25 @@ namespace Rebots.HelpDesk
         public const string TicketListContainer = "rebots-ticket-list-container";
 
         public const string TicketContainer = "rebots-ticket-container";
-        public const string TicketDetailList = "rebots-ticket-detail-list-container";
+        public const string TicketDetailButton = "rebots-ticket-detail-button";
+        public const string TicketAnswerButton = "rebots-ticket-answer-button";
+        public const string TicketDetailContainer = "rebots-ticket-detail-container";
+        public const string TicketCreateLabel = "rebots-ticket-create-label";
+        public const string TicketCategoryRouteLabel = "rebots-category-route-label";
+        public const string TicketEmailLabel = "reobts-ticket-email-label";
+        public const string TicketEmailValue = "reobts-ticket-email-value";
         public const string TicketContentsLabel = "rebots-ticket-contents-label";
-        public const string TicketAnswerList = "rebots-ticket-answer-list-container";
+        public const string TicketContentsValue = "rebots-ticket-contents-value";
+        public const string TicketAttachmentContainer = "rebots-ticket-attachment-container";
+        public const string TicketDetailFoldout = "rebots-ticket-detail-list-foldout";
+        public const string TicketDetailList = "rebots-ticket-detail-list";
+        public const string TicketAnswerContainer = "rebots-ticket-answer-container";
+        public const string TicketAnswerList = "rebots-ticket-answer-list";
         public const string TicketAnswerContentContainer = "rebots-content-container";
+        public const string TicketAnswerNoneContainer = "rebots-ticket-answer-none-container";
+        public const string FileNameLabel = "rebots-file-name-label";
+        public const string FileSizeLabel = "rebots-file-size-label";
+        public const string FileRemoveButton = "rebots-file-remove-button";
         #endregion
         #region - - - Ticket Button UI name - - - 
         public const string TicketButtonContainer = "rebots-ticket-button-container";
@@ -157,13 +178,22 @@ namespace Rebots.HelpDesk
         public const string ValidRequired = "rebots-valid-required";
         public const string ValidEmail = "rebots-valid-email";
 
-        public const string FaqPhrases = "rebots-faq-phrases";
-        public const string InquiryPhrases = "rebots-inquiry-phrases";
+        public const string EmailPhrase = "rebots-email";
+        public const string ContentPhrase = "rebots-content";
+
+        public const string FaqPhrase = "rebots-faq-phrase";
+        public const string InquiryPhrase = "rebots-inquiry-phrase";
+        public const string AnswerPhrase = "rebots-answer-phrase";
         public const string MyTicketLabel = "rebots-my-ticket-label";
-        public const string TicketAnswerLabel = "rebots-ticket-answer-label";
+        public const string AnswerCountPhrase = "rebots-answer-count-phrase";
         public const string TicketWaiting = "rebots-ticket-answer";
         public const string TicketCompleted = "rebots-ticket-completed";
-        public const string HelpdeskPhrases = "rebots-helpdesk-phrases";
+        public const string AnswerNonePhrase = "rebots-answer-none-phrase";
+        public const string AnswerNoticePhrase = "rebots-answer-notice-phrase";
+        public const string TicketDetailFoldoutOpen = "rebots-ticket-detail-foldout-open";
+        public const string TicketDetailFoldoutCollapse = "rebots-ticket-detail-foldout-collapse";
+
+        public const string HelpdeskPhrase = "rebots-helpdesk-phrase";
 
         public const string OperatingTimeWeekday = "rebots-operating-time-weekday";
         public const string OperatingTimeAlways = "rebots-operating-time-always";
@@ -191,6 +221,7 @@ namespace Rebots.HelpDesk
         public const string RebotsFontEn_Regular = "rebots-font-en__regular";
 
         public const string RebotsBackgroundColor_Theme = "rebots-background-color__theme";
+        public const string RebotsBackgroundColor_DarkGrey = "rebots-background-color__dark-grey";
         public const string RebotsBackgroundColor_Grey = "rebots-background-color__grey";
         public const string RebotsBackgroundColor_None = "rebots-background-color__none";
 
@@ -202,9 +233,14 @@ namespace Rebots.HelpDesk
 
         public const string RebotsFontColor_Black = "rebots-font-color__black";
         public const string RebotsFontColor_Grey = "rebots-font-color__grey";
+        public const string RebotsFontColor_Red = "rebots-font-color__red";
         public const string RebotsFontColor_Theme = "rebots-font-color__theme";
 
         public const string RebotsLabelLink = "rebots-font-color__link";
+
+        public const string RebotsValidationStyle = "rebots-validation";
+
+        public const string RebotsTicketMenuSelect = "rebots-ticket-menu__select";
         #endregion
         #region - - - Theme code - - - 
         public const string ThemeCode1 = "#343A40";

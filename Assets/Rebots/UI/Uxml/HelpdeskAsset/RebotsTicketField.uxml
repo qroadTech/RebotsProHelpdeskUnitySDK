@@ -1,10 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement style="padding-bottom: 12px;">
+    <ui:VisualElement style="margin-bottom: 16px;">
         <ui:VisualElement style="justify-content: flex-start; min-height: 22px; align-items: center; flex-direction: row;">
-            <ui:Label text="Ticket Text Field" display-tooltip-when-elided="true" name="rebots-sub-label" class="rebots-font-color__black rebots-label__bold14" />
+            <ui:Label text="Ticket Text Field" display-tooltip-when-elided="true" name="rebots-sub-label" class="rebots-label__regular14 rebots-font-color__semi-grey2" />
         </ui:VisualElement>
-        <ui:VisualElement name="rebots-content-container" style="margin-top: 3px; min-width: auto; border-left-width: 1px; border-right-width: 1px; border-top-width: 1px; border-bottom-width: 1px; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188); min-height: 35px; justify-content: center; padding-left: 5px; padding-right: 5px; padding-top: 5px; padding-bottom: 5px;">
-            <ui:Label text="Label" display-tooltip-when-elided="true" name="rebots-content-label" class="rebots-label__regular14 rebots-font-color__dark-grey" />
+        <ui:VisualElement name="rebots-content-container" style="margin-top: 2px;">
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="rebots-content-label" class="rebots-label__regular14 rebots-font-color__black" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
