@@ -1,0 +1,26 @@
+.rebots-loading-spinner {
+    width: 51px;
+    height: 51px;
+    position: relative;
+    overflow: hidden;
+}
+
+.circular-progress-fill {
+    width: 100%;
+    height: 100%;
+    border-left-width: 8px;
+    border-right-width: 8px;
+    border-top-width: 8px;
+    border-bottom-width: 8px;
+    border-left-color: rgba(188, 188, 188, 0.5);
+    border-right-color: rgba(188, 188, 188, 0.5);
+    border-top-color: rgb(82, 82, 91);
+    border-bottom-color: rgba(188, 188, 188, 0.5);
+    border-top-left-radius: 50%;
+    border-bottom-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    position: absolute;
+    transition-property: rotate;
+    transition-duration: 0.5s;
+}

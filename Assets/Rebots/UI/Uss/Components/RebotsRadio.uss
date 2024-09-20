@@ -65,3 +65,32 @@
     top: auto;
     margin-top: -1px;
 }
+
+.unity-disabled .unity-radio-button__checkmark-background {
+    opacity: 1;
+    border-left-color: rgb(113, 113, 122);
+    border-right-color: rgb(113, 113, 122);
+    border-top-color: rgb(113, 113, 122);
+    border-bottom-color: rgb(113, 113, 122);
+}
+
+.unity-disabled .unity-radio-button__checkmark {
+    opacity: 1;
+    border-left-color: rgb(113, 113, 122);
+    border-right-color: rgb(113, 113, 122);
+    border-top-color: rgb(113, 113, 122);
+    border-bottom-color: rgb(113, 113, 122);
+    background-color: rgb(161, 161, 170);
+}
+
+.rebots-radio-button.unity-disabled .unity-label {
+    opacity: 1;
+    color: rgb(161, 161, 170);
+}
+
+.rebots-validation .unity-radio-button__checkmark-background {
+    border-left-color: rgb(215, 5, 18);
+    border-right-color: rgb(215, 5, 18);
+    border-top-color: rgb(215, 5, 18);
+    border-bottom-color: rgb(215, 5, 18);
+}

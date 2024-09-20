@@ -8,11 +8,16 @@ using System.Collections;
 using UnityEngine.Events;
 using Assets.Rebots;
 using System.Linq;
+using UnityEngine.UIElements.Experimental;
+using UnityEngine.Networking;
 
 namespace Rebots.HelpDesk
 {
     public class RebotsHelpdeskScreen : RebotsModalScreen
     {
+        public static event Action RebotsSpinnerShow;
+        public static event Action RebotsSpinnerCancel;
+
         [Header("Rebots Manager")]
         public RebotsSettingManager rebotsSettingManager;
 
@@ -60,7 +65,13 @@ namespace Rebots.HelpDesk
 
         public Dictionary<TicketCategoryInputField, object> FieldDictionary { get; private set; }
         public List<RebotsPageRecord> PageRecords { get; private set; } = new();
-        public int ListPageSize { get; private set; } = 10;
+
+        private bool openMenu = false;
+        private float verticalScrollValue = 0;
+        private Button oldMenuButton = null;
+
+        public const int ListPageSize = 10;
+        public const string TicketAnswersFile = "rebots.ticket";
 
         #region Run in 'Awake' call
         protected override void SetVisualElements()
@@ -68,7 +79,11 @@ namespace Rebots.HelpDesk
             base.SetVisualElements();
 
             m_HelpdeskScreen = m_Root.Q(RebotsUIStaticString.HelpdeskScreen);
-            ListPageSize = 10;
+
+            rebotsUICreater.SaveVerticalScrollAction = SaveVerticalScroll;
+            rebotsUICreater.SetVerticalScrollAction = SetVerticalScroll;
+            rebotsUICreater.ClickAttachmentLinkAction = ClickAttachmentLink;
+            rebotsUICreater.ClickMenuCategoryAction = ClickMenuCategory;
         }
         #endregion
 
@@ -80,6 +95,8 @@ namespace Rebots.HelpDesk
 
             rebotsPageUI.SetParameterData(rebotsSettingManager.rebotsParameterDataManager.ParameterData);
 
+            rebotsPageUI.LoadMyTicketAnswers(TicketAnswersFile);
+
             SetLayout();
             ShowMain(true);
 
@@ -89,14 +106,12 @@ namespace Rebots.HelpDesk
 
         public void SetLayout()
         {
-#if UNITY_EDITOR || UNITY_STANDALONE_WIN
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN || UNITY_WEBGL
             if (SystemEventGO != null)
             {
-                Debug.Log("UNITY_EDITOR : SystemEventGO.SetActive(false)");
                 SystemEventGO.SetActive(false);
             }
 #endif
-
             rebotsLayoutUI.SetTranslationText();
             rebotsLayoutUI.SetLanguageUI();
             rebotsLayoutUI.SetHelpdeskData(rebotsSettingManager.helpdeskSetting);
@@ -117,10 +132,9 @@ namespace Rebots.HelpDesk
         {
             HideScreen();
 
-#if UNITY_EDITOR || UNITY_STANDALONE_WIN
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN || UNITY_WEBGL
             if (SystemEventGO != null)
             {
-                Debug.Log("UNITY_EDITOR : SystemEventGO.SetActive(true)");
                 SystemEventGO.SetActive(true);
             }
 #endif
@@ -131,8 +145,10 @@ namespace Rebots.HelpDesk
         #region Show page
         public void ShowMain(bool isOpen, bool isLanguageChange = false)
         {
-            HidePage(RebotsPageType.MainTitle);
+            rebotsSettingManager.SetApiCallFinishedWithProgress(RebotsSpinnerCancel);
+
             this.PageRecords = isOpen ? new List<RebotsPageRecord>() : this.PageRecords;
+            HidePage(RebotsPageType.MainTitle);
             ClearData(RebotsPageType.MainTitle, RebotsPageName.Main);
 
             rebotsSettingManager.LoadFaqRecommendList(rebotsPageUI.OnFaqRecommendUpdated);
@@ -166,16 +182,16 @@ namespace Rebots.HelpDesk
 
         public void ShowSearch(RebotsPagingData<string> pagingData)
         {
-            HidePage(RebotsPageType.NoTitleLabel);
-            ClearData(RebotsPageType.NoTitleLabel, RebotsPageName.SearchList);
+            HidePage(RebotsPageType.PageTitle);
+            ClearData(RebotsPageType.PageTitle, RebotsPageName.SearchList);
 
             rebotsSettingManager.LoadFaqSearchList(rebotsPageUI.OnFaqSearchUpdated, pagingData.Data, pagingData.Page);
 
             if (pagingData.Page == 1)
             {
-                AddPageState(RebotsPageType.NoTitleLabel, RebotsPageName.SearchList, pagingData.Data);
+                AddPageState(RebotsPageType.PageTitle, RebotsPageName.SearchList, pagingData.Data);
             }
-            ShowPage(RebotsPageType.NoTitleLabel, RebotsPageName.SearchList);
+            ShowPage(RebotsPageType.PageTitle, RebotsPageName.SearchList);
         }
 
         public void ShowFaqSubCategory(RebotsPagingData<Category> pagingData)
@@ -257,17 +273,14 @@ namespace Rebots.HelpDesk
                 case RebotsPageType.PageTitle:
                     ShowVisualElement(rebotsPageUI.m_PageTitlleContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PageTitleLabelContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_PageRouteContainer, true);
                     break;
                 case RebotsPageType.NoTitleLabel:
                     ShowVisualElement(rebotsPageUI.m_PageTitlleContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PageTitleLabelContainer, false);
-                    ShowVisualElement(rebotsPageUI.m_PageRouteContainer, false);
                     break;
                 case RebotsPageType.NoTitleRoute:
                     ShowVisualElement(rebotsPageUI.m_PageTitlleContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PageTitleLabelContainer, true);
-                    ShowVisualElement(rebotsPageUI.m_PageRouteContainer, false);
                     break;
                 case RebotsPageType.Layout:
                 default:
@@ -315,6 +328,14 @@ namespace Rebots.HelpDesk
                     break;
                 case RebotsPageName.Ticket:
                     ShowVisualElement(rebotsPageUI.m_TicketContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_TicketDetailContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_TicketAnswerContainer, false);
+                    ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
+                    break;
+                case RebotsPageName.Answer:
+                    ShowVisualElement(rebotsPageUI.m_TicketContainer, true);
+                    ShowVisualElement(rebotsPageUI.m_TicketDetailContainer, false);
+                    ShowVisualElement(rebotsPageUI.m_TicketAnswerContainer, true);
                     ShowVisualElement(rebotsPageUI.m_PageConatiner, true);
                     break;
                 case RebotsPageName.Search:
@@ -330,6 +351,7 @@ namespace Rebots.HelpDesk
                     ShowVisualElement(rebotsLayoutUI.m_LanguageContainer, true);
                     break;
                 case RebotsPageName.Menu:
+                    rebotsLayoutUI.m_BackgroundContainer.style.top = 0f;
                     ShowVisualElement(rebotsLayoutUI.m_SearchContainer, false);
                     ShowVisualElement(rebotsLayoutUI.m_LanguageContainer, false);
                     ShowVisualElement(rebotsLayoutUI.m_BackgroundContainer, true);
@@ -342,6 +364,11 @@ namespace Rebots.HelpDesk
 
         public void HidePage(RebotsPageType type)
         {
+            if (PageRecords.Count != 0 && type != RebotsPageType.Layout)
+            {
+                RebotsSpinnerShow.Invoke();
+            }
+
             if (type != RebotsPageType.Layout)
             {
                 ShowVisualElement(rebotsLayoutUI.m_MainTitleContainer, false);
@@ -357,7 +384,13 @@ namespace Rebots.HelpDesk
                 ShowVisualElement(rebotsPageUI.m_TicketSuccessContainer, false);
                 ShowVisualElement(rebotsPageUI.m_TicketListContainer, false);
                 ShowVisualElement(rebotsPageUI.m_TicketContainer, false);
+                ShowVisualElement(rebotsPageUI.m_TicketDetailContainer, false);
+                ShowVisualElement(rebotsPageUI.m_TicketAnswerContainer, false);
                 ShowVisualElement(rebotsPageUI.m_PagingContainer, false);
+            }
+            else
+            {
+                rebotsLayoutUI.m_BackgroundContainer.style.top = 50f;
             }
             ShowVisualElement(rebotsLayoutUI.m_BackgroundContainer, false);
             ShowVisualElement(rebotsLayoutUI.m_MenuContainer, false);
@@ -378,7 +411,6 @@ namespace Rebots.HelpDesk
             switch (type)
             {
                 case RebotsPageType.PageTitle:
-                    rebotsPageUI.m_PageRouteContainer.Clear();
                     break;
             }
 
@@ -412,6 +444,7 @@ namespace Rebots.HelpDesk
                     break;
                 case RebotsPageName.Ticket:
                     rebotsPageUI.m_TicketDetailList.Clear();
+                    rebotsPageUI.m_TicketAttachmentContainer.Clear();
                     rebotsPageUI.m_TicketAnswerList.Clear();
                     break;
             }
@@ -419,8 +452,46 @@ namespace Rebots.HelpDesk
         #endregion
 
         #region Click Action
+        public void MenuOpen()
+        {
+            rebotsLayoutUI.m_MenuContainer.style.left = -300;
+            ShowPage(RebotsPageType.Layout, RebotsPageName.Menu);
+            StartCoroutine(SlideIn(rebotsLayoutUI.m_MenuContainer));
+        }
+
+        public void LayoutClose()
+        {
+            if (openMenu)
+            {
+                StartCoroutine(SlideOut(rebotsLayoutUI.m_MenuContainer));
+            }
+            else
+            {
+                HidePage(RebotsPageType.Layout);
+            }
+        }
+
+        public void ClickTopButton(RebotsPageName page)
+        {
+            if (page == RebotsPageName.Language && rebotsLayoutUI.m_LanguageContainer.style.display == DisplayStyle.None)
+            {
+                ShowPage(RebotsPageType.Layout, RebotsPageName.Language);
+            }
+            else if (page == RebotsPageName.Search && rebotsLayoutUI.m_SearchContainer.style.display == DisplayStyle.None)
+            {
+                ShowPage(RebotsPageType.Layout, RebotsPageName.Search);
+            }
+            else
+            {
+                HidePage(RebotsPageType.Layout);
+            }
+        }
+
         public void ClickLanguage(RebotsLanguageInfo language)
         {
+            RebotsSpinnerShow.Invoke();
+            rebotsSettingManager.SetApiCallFinished();
+
             rebotsSettingManager.HelpdeskInitialize(language.languageCode);
 
             StartCoroutine(LanguageInitialize());
@@ -446,6 +517,7 @@ namespace Rebots.HelpDesk
             bool checkValidation = true;
             var ticketInputFields = new DictionaryTicketInputFormData();
             var ticketAddFieldDic = new Dictionary<string, string>();
+            RebotsTicketAttachment[] ticketAttachments = null;
             ticketInputFields.SelectedCategory = category;
             var fieldDic = FieldDictionary.ToArray();
             var fieldCount = fieldDic.Length;
@@ -458,6 +530,10 @@ namespace Rebots.HelpDesk
                     var component = item.Value as RebotsTextFieldComponent;
                     if (!component.CheckFieldValid())
                     {
+                        if (checkValidation)
+                        {
+                            verticalScrollValue = component.GetVerticalPsition();
+                        }
                         checkValidation = false;
                         continue;
                     }
@@ -481,6 +557,10 @@ namespace Rebots.HelpDesk
                     var component = item.Value as RebotsDropdownFieldComponent;
                     if (!component.CheckFieldValid())
                     {
+                        if (checkValidation)
+                        {
+                            verticalScrollValue = component.GetVerticalPsition();
+                        }
                         checkValidation = false;
                         continue;
                     }
@@ -493,6 +573,10 @@ namespace Rebots.HelpDesk
                     var component = item.Value as RebotsButtonGroupFieldComponent;
                     if (!component.CheckFieldValid())
                     {
+                        if (checkValidation)
+                        {
+                            verticalScrollValue = component.GetVerticalPsition();
+                        }
                         checkValidation = false;
                         continue;
                     }
@@ -505,35 +589,75 @@ namespace Rebots.HelpDesk
                     var component = item.Value as RebotsAttachmentFieldComponent;
                     if (!component.CheckFieldValid())
                     {
+                        if (checkValidation)
+                        {
+                            verticalScrollValue = component.GetVerticalPsition();
+                        }
                         checkValidation = false;
                         continue;
                     }
-                    var fieldValue = component.GetFieldValue();
-
-                    foreach (var value in fieldValue)
-                    {
-                        ticketInputFields.AddAttachment(value.content as FileStream);
-                    }
+                    ticketAttachments = component.GetFieldValue();
                 }
             }
 
             if (!privacyValue)
             {
+                if (!checkValidation)
+                {
+                    SetVerticalScroll();
+                    return;
+                }
                 checkValidation = false;
+                return;
             }
 
             if (checkValidation)
             {
                 ticketInputFields.Data = ticketAddFieldDic;
                 ticketInputFields.Language = rebotsSettingManager.localizationManager.language;
+                if (ticketAttachments != null)
+                {
+                    foreach (var value in ticketAttachments)
+                    {
+                        ticketInputFields.AddAttachment(value.content as FileStream);
+                    }
+                }
 
                 rebotsSettingManager.CreateTicket(rebotsPageUI.OnTicketCreate, ticketInputFields);
             }
+            else
+            {
+                SetVerticalScroll();
+            }
         }
 
-        public void ClickTicket(HelpdeskTicket ticket)
+        public void ClickTicketMenu(RebotsPageName name)
         {
-            ShowTicketDetail(ticket);
+            rebotsPageUI.m_TicketDetailButton.RemoveFromClassList(RebotsUIStaticString.RebotsTicketMenuSelect);
+            rebotsPageUI.m_TicketAnswerButton.RemoveFromClassList(RebotsUIStaticString.RebotsTicketMenuSelect);
+            if (name == RebotsPageName.Ticket)
+            {
+                rebotsPageUI.m_TicketDetailButton.AddToClassList(RebotsUIStaticString.RebotsTicketMenuSelect);
+
+                ShowPage(RebotsPageType.NoTitleRoute, RebotsPageName.Ticket);
+            }
+            else
+            {
+                rebotsPageUI.m_TicketAnswerButton.AddToClassList(RebotsUIStaticString.RebotsTicketMenuSelect);
+
+                ShowPage(RebotsPageType.NoTitleRoute, RebotsPageName.Answer);
+            }
+        }
+
+        public void ClickMenuCategory(Button newMenuButton)
+        {
+            if (oldMenuButton != null)
+            {
+                oldMenuButton.RemoveFromClassList("rebots-menu__select");
+            }
+            newMenuButton.AddToClassList("rebots-menu__select");
+
+            oldMenuButton = newMenuButton;
         }
         #endregion
 
@@ -612,6 +736,27 @@ namespace Rebots.HelpDesk
                     ShowMain(false);
                     break;
             }
+        }
+        #endregion
+
+        #region (public) Page Vertical Scroll
+        public void SaveVerticalScroll()
+        {
+            verticalScrollValue = rebotsLayoutUI.m_ScrollView.verticalScroller.value;
+        }
+
+        public void SetVerticalScroll()
+        {
+            StartCoroutine(ScrollCoroutine());
+        }
+
+        IEnumerator ScrollCoroutine()
+        {
+            yield return null;
+            rebotsLayoutUI.m_ScrollView.schedule.Execute(() =>
+            {
+                rebotsLayoutUI.m_ScrollView.verticalScroller.value = verticalScrollValue;
+            }).ExecuteLater(0);
         }
         #endregion
 
@@ -694,7 +839,7 @@ namespace Rebots.HelpDesk
         #endregion
 
         #region (public) Add space to word-wrap point
-        public string AddSpaceToWordWrapPoint(string text, Rect availableSpace, GUIStyle labelStyle)
+        public string AddSpaceToWordWrapPoint(string text, Rect availableSpace, GUIStyle labelStyle, int setLine = 1)
         {
             string resultStr = "";
             GUIContent content = new GUIContent(text);
@@ -702,9 +847,9 @@ namespace Rebots.HelpDesk
 
             if (contentSize.x > availableSpace.width)
             {
+                int currentLine = 1;
                 float lineWidth = 0f;
                 int breakPoint = -1;
-                bool firstLine = true;
 
                 for (int i = 0; i < text.Length; i++)
                 {
@@ -717,27 +862,52 @@ namespace Rebots.HelpDesk
                     }
                     else
                     {
-                        if (firstLine)
+                        if (setLine == currentLine++)
                         {
-                            text = text.Insert((i - 1), " ");
-                            lineWidth = 0f;
-                            firstLine = false;
+                            //breakPoint = i - 1;
+                            breakPoint = i;
+                            break;
                         }
                         else
                         {
-                            breakPoint = i - 1;
-                            break;
+                            text = text.Insert((i - 1), " ");
+                            lineWidth = 0f;
                         }
                     }
                 }
 
                 if (breakPoint >= 0)
                 {
-                    string wrappedText = text.Substring(0, (breakPoint - 3));
+                    string wrappedText = text.Substring(0, (breakPoint - 2));
                     resultStr =  wrappedText;
                 }
             }
             return resultStr;
+        }
+        #endregion
+
+        #region (private) Menu Slide Snimation
+        private IEnumerator SlideIn(VisualElement element)
+        {
+            yield return null;
+
+            element.experimental.animation.Start(
+                new StyleValues { left = 0 },
+                400
+            ).OnCompleted(() => { openMenu = true; });
+        }
+
+        private IEnumerator SlideOut(VisualElement element)
+        {
+            element.experimental.animation.Start(
+                new StyleValues { left = -300 },
+                400
+            ).OnCompleted(() => {
+                openMenu = false;
+                HidePage(RebotsPageType.Layout);
+            });
+
+            yield return null;
         }
         #endregion
 
@@ -763,6 +933,66 @@ namespace Rebots.HelpDesk
             else
             {
                 ClosePanel();
+            }
+        }
+        #endregion
+
+        #region (public) Download And Save Attachment Image
+        public void ClickAttachmentLink(string imageUrl, string fileName)
+        {
+            // Start the coroutine to download and save the image
+            StartCoroutine(DownloadAndSaveImage(imageUrl, fileName));
+        }
+
+        IEnumerator DownloadAndSaveImage(string url, string fileName)
+        {
+            UnityWebRequest request = UnityWebRequestTexture.GetTexture(url);
+
+            yield return request.SendWebRequest();
+
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Error downloading image: " + request.error);
+            }
+            else
+            {
+                Texture2D texture = ((DownloadHandlerTexture)request.downloadHandler).texture;
+                SaveTextureToFile(texture, fileName);
+            }
+        }
+
+        private void SaveTextureToFile(Texture2D texture, string fileName)
+        {
+            byte[] bytes = texture.EncodeToPNG(); // Or use EncodeToJPG() for JPG format
+
+            string filePath = "";
+#if UNITY_EDITOR || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_WEBGL
+            filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", fileName);
+#elif UNITY_ANDROID
+            filePath = Path.Combine("/storage/emulated/0/Download/", fileName);
+#endif
+
+            // Write the byte array to a file
+            try
+            {
+#if UNITY_IOS
+                NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(texture, "MyGallery", fileName);
+                if (permission == NativeGallery.Permission.Granted)
+                {
+                    Debug.Log("Image saved to gallery successfully!");
+                }
+                else
+                {
+                    Debug.LogError("Failed to save image to gallery.");
+                }
+#else
+                System.IO.File.WriteAllBytes(filePath, bytes);
+                Debug.Log("Image saved to: " + filePath);
+#endif
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError("Failed to save image: " + e.Message);
             }
         }
         #endregion

@@ -9,7 +9,6 @@ namespace Rebots.HelpDesk
 
         public void SetParameterData()
         {
-            Debug.Log("Game data is loaded and starting user login.");
             ParameterData = new();
 
             /// ---필수(Required)--------------------------------------------------
@@ -31,9 +30,11 @@ namespace Rebots.HelpDesk
             /// 
             /// en) Inquiry Parameter Key-Value Dictionary.
             /// The value is automatically assigned to the parameter item for which the key-value is set in the inquiry create page.
-            /// Key: This is the parameter key of 'inquiry items' added in the 'CS Ticket Settings > Common Category' menu of RebotsPro Web Solution (Workspace).
+            /// Key: This is the param eter key of 'inquiry items' added in the 'CS Ticket Settings > Common Category' menu of RebotsPro Web Solution (Workspace).
             /// Already added collection is example of sample project.
-            ParameterData.parameters.Add("p2myxpm3ff5yx7jr", "v1.2.08");
+            ParameterData.parameters.Add("server_id", "server1");
+            ParameterData.parameters.Add("device_info", "To Be Filled By O.E.M. (To Be Filled By O.E.M.)");
+            ParameterData.parameters.Add("device_os_ver", "Windows 10 (10.0.19045) 64bit");
 #if UNITY_ANDROID
             ParameterData.parameters.Add("9f4qnlta9h07zxzv", "Google Play");
 #elif UNITY_IOS

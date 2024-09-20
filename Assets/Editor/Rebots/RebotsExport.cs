@@ -12,6 +12,7 @@ public class RebotsExport : MonoBehaviour
         exportedPackageAssetList.Add("Assets/Editor/Rebots");
 
         exportedPackageAssetList.Add("Assets/Plugins/NativeGallery");
+        exportedPackageAssetList.Add("Assets/Plugins/SimpleFileBrowser");
         exportedPackageAssetList.Add("Assets/Plugins/Newtonsoft.Json.dll");
         exportedPackageAssetList.Add("Assets/Plugins/HtmlAgilityPack.dll");
         exportedPackageAssetList.Add("Assets/Plugins/HelpDesk.Sdk.Common.dll");

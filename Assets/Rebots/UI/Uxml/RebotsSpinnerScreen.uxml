@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/Rebots/UI/Uss/RebotsSpinnerScreen.uss?fileID=7433441132597879392&amp;guid=5f961f5116fcf8c46a049b42c68ab82a&amp;type=3#RebotsSpinnerScreen" />
+    <ui:VisualElement name="rebots-loading-spinner-container" style="position: absolute; top: 100px; width: 50%; height: 50%; background-color: rgb(255, 255, 255); display: flex; scale: 2 2; transform-origin: left top; align-items: center; justify-content: center;">
+        <ui:VisualElement name="rebots-loading-spinner" class="rebots-loading-spinner">
+            <ui:VisualElement class="circular-progress-fill" />
+        </ui:VisualElement>
+        <ui:VisualElement style="margin-top: 8px;">
+            <ui:Label text="Loading..." display-tooltip-when-elided="true" style="font-size: 18px; -unity-font-style: bold; color: rgba(113, 113, 122, 255);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

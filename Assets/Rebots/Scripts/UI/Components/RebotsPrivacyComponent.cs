@@ -18,6 +18,7 @@ namespace Rebots.HelpDesk
 
         const string FormStringFormat = "<b>{0}</b><br>{1}<br>";
 
+        VisualElement m_Root;
         VisualElement m_PrivacyTextContainer;
         Label m_PrivacyTextLabel;
         VisualElement m_PrivacyLinkContainer;
@@ -47,6 +48,7 @@ namespace Rebots.HelpDesk
                 return;
             }
 
+            m_Root = privacyUIElement;
             m_PrivacyTextContainer = privacyUIElement.Q(PrivacyTextContainer);
             m_PrivacyTextLabel = privacyUIElement.Q<Label>(PrivacyTextLabel);
             m_PrivacyLinkContainer = privacyUIElement.Q(PrivacyLinkContainer);
@@ -118,10 +120,6 @@ namespace Rebots.HelpDesk
             m_ValidationLabel.style.display = DisplayStyle.None;
 
             m_PrivacyCheck?.RegisterValueChangedCallback(ChangePrivacyValue);
-
-            m_TicketSubmitButton.style.opacity = 1f;
-            m_TicketSubmitButton.RemoveFromClassList(RebotsUIStaticString.RebotsBackgroundColor_Grey);
-            m_TicketSubmitButton.AddToClassList(RebotsUIStaticString.RebotsBackgroundColor_None);
         }
 
         public void RegisterCallbacks(Action<bool, Category> submitAction)
@@ -137,6 +135,7 @@ namespace Rebots.HelpDesk
             privacyValue = evt.newValue;
             if (privacyValue)
             {
+                m_Root.RemoveFromClassList(RebotsUIStaticString.RebotsValidationStyle);
                 m_ValidationLabel.style.display = DisplayStyle.None;
             }
             else
@@ -148,7 +147,13 @@ namespace Rebots.HelpDesk
         {
             if (m_PrivacyCheck.value == false)
             {
+                m_Root.AddToClassList(RebotsUIStaticString.RebotsValidationStyle);
                 m_ValidationLabel.style.display = DisplayStyle.Flex;
+            }
+            else
+            {
+                m_Root.RemoveFromClassList(RebotsUIStaticString.RebotsValidationStyle);
+                m_ValidationLabel.style.display = DisplayStyle.None;
             }
         }
     }

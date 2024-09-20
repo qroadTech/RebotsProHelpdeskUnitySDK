@@ -77,30 +77,6 @@ namespace Rebots.HelpDesk
             else
             {
                 m_LanguageSelectedContainer.style.display = DisplayStyle.None;
-
-                switch (languageInfo.languageValue)
-                {
-                    case RebotsLanguage.Korean:
-                    case RebotsLanguage.None:
-                    default:
-                        m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontKr_Regular);
-                        break;
-                    case RebotsLanguage.Japanese:
-                        m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontJa_Regular);
-                        break;
-                    case RebotsLanguage.SimplifiedChinese:
-                    case RebotsLanguage.TraditionalChinese:
-                        m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontCn_Regular);
-                        break;
-                    case RebotsLanguage.Thai:
-                        m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontTh_Regular);
-                        break;
-                    case RebotsLanguage.English:
-                    case RebotsLanguage.Spanish:
-                    case RebotsLanguage.Indonesian:
-                        m_LanguageLabel.AddToClassList(RebotsUIStaticString.RebotsFontEn_Regular);
-                        break;
-                }
             }
         }
 

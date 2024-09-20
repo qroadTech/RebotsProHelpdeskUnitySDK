@@ -60,6 +60,7 @@ namespace Rebots.HelpDesk
             base.SetFieldData();
 
             m_Label.text = csCategoryField.text;
+            var isEnable = csCategoryField.isEnable;
 
             for (int i = 0; i < answers.Count(); i++)
             {
@@ -72,6 +73,11 @@ namespace Rebots.HelpDesk
                 {
                     var m_Check = buttonUIElement.Q<Toggle>(Check);
                     m_Check.value = (item.ToLower() == parameter) ? true : false;
+                    if (parameter != "")
+                    {                                                                           
+                        m_Check.SetEnabled(isEnable);
+                    }
+                    m_Check.RegisterValueChangedCallback(OnValueChanged);
 
                     checkbuttons.Add(m_Check, item);
                 }
@@ -79,6 +85,11 @@ namespace Rebots.HelpDesk
                 {
                     var m_Radio = buttonUIElement.Q<RadioButton>(Radio);
                     m_Radio.value = (item.ToLower() == parameter) ? true : false;
+                    if (parameter != "")
+                    {
+                        m_Radio.SetEnabled(isEnable);
+                    }
+                    m_Radio.RegisterValueChangedCallback(OnValueChanged);
 
                     radiobuttons.Add(m_Radio, item);
                 }
@@ -93,19 +104,36 @@ namespace Rebots.HelpDesk
             buttonGroupFieldUIElement.style.display = (csCategoryField.isHidden) ? DisplayStyle.None : DisplayStyle.Flex;
         }
 
+        public void OnValueChanged(ChangeEvent<bool> evt)
+        {
+            var value = evt.newValue;
+            if (csCategoryField.isRequire && value)
+            {
+                m_ValidationLabel.style.display = DisplayStyle.None;
+                m_Root.RemoveFromClassList(RebotsUIStaticString.RebotsValidationStyle);
+            }
+        }
+
         public bool CheckFieldValid()
         {
             var value = GetFieldValue();
             if (csCategoryField.isRequire && string.IsNullOrEmpty(value))
             {
+                m_Root.AddToClassList(RebotsUIStaticString.RebotsValidationStyle);
                 m_ValidationLabel.style.display = DisplayStyle.Flex;
                 return false;
             }
             else
             {
+                m_Root.RemoveFromClassList(RebotsUIStaticString.RebotsValidationStyle);
                 m_ValidationLabel.style.display = DisplayStyle.None;
                 return true;
             }
+        }
+
+        public float GetVerticalPsition()
+        {
+            return m_Root.layout.y;
         }
 
         public string GetFieldValue()

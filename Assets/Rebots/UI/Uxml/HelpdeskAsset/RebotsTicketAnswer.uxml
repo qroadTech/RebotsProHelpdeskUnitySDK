@@ -1,8 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement style="border-bottom-width: 1px; border-left-color: rgb(188, 188, 188); border-right-color: rgb(188, 188, 188); border-top-color: rgb(188, 188, 188); border-bottom-color: rgb(188, 188, 188); padding-top: 10px; padding-bottom: 10px; width: 100%;">
-        <ui:Label text="0000.00.00" display-tooltip-when-elided="true" name="rebots-sub-label" class="rebots-label__regualr14 rebots-font-color__dark-grey" style="margin-bottom: 8px;" />
-        <ui:VisualElement name="rebots-content-container" style="width: 100%;">
-            <ui:Label text="문의에 관한 응대가 모두 완료되었습니다문의에 관한 응대가 모두 완료되었습니다문의에 관한 응대가 모두 완료되었습니다문의에 관한 응대가 모두 완료되었습니다문의에 관한 응대가 모두 완료되었습니다문의에 관한 응대가 모두 완료되었습니다" display-tooltip-when-elided="true" name="rebots-content-label" class="rebots-label__regular14 rebots-font-color__black" />
+    <ui:VisualElement style="padding-bottom: 20px; border-bottom-width: 1px; border-left-color: rgb(212, 212, 216); border-right-color: rgb(212, 212, 216); border-top-color: rgb(212, 212, 216); border-bottom-color: rgb(212, 212, 216); margin-bottom: 16px;">
+        <ui:VisualElement style="flex-direction: row; align-items: center;">
+            <ui:Label display-tooltip-when-elided="true" name="rebots-sub-label" class="rebots-font-color__semi-grey2 rebots-label__bold14" style="margin-right: 8px;" />
+            <ui:VisualElement name="rebots-ticket-new-answer" style="width: 14px; height: 14px; min-width: 14px; min-height: 14px; max-width: 14px; max-height: 14px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/New.png?fileID=21300000&amp;guid=ad88fa0c0885ece4db1f1d0ace529315&amp;type=3#New&apos;); -unity-background-scale-mode: scale-to-fit; display: none;" />
         </ui:VisualElement>
+        <ui:VisualElement name="rebots-content-container" style="width: 100%; margin-top: 8px;" />
+        <ui:VisualElement name="rebots-ticket-attachment-container" style="margin-bottom: 9px;" />
     </ui:VisualElement>
 </ui:UXML>

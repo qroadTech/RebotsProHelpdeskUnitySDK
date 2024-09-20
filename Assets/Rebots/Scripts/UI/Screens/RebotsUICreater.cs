@@ -33,6 +33,12 @@ namespace Rebots.HelpDesk
         [SerializeField] VisualTreeAsset TicketAnswerAsset;
         [SerializeField] VisualTreeAsset TicketFieldAsset;
 
+        [HideInInspector]
+        public Action SaveVerticalScrollAction;
+        public Action SetVerticalScrollAction;
+        public Action<string, string> ClickAttachmentLinkAction;
+        public Action<Button> ClickMenuCategoryAction;
+
         public void CreateLanguage(RebotsLanguageInfo settinglanguage, string lanuageText, Action<RebotsLanguageInfo> clickAction, out TemplateContainer uiElement)
         {
             TemplateContainer languageUIElement = LanguageAsset.Instantiate();
@@ -100,12 +106,23 @@ namespace Rebots.HelpDesk
 
             categoryComponent.SetVisualElements(categoryUIElement);
             categoryComponent.SetCategoryData(categoryUIElement);
+
+            // Test SideMenuClick
+            //if (type == RebotsCategoryAssetType.Menu)
+            //{
+            //    categoryComponent.RegisterCallbacksAtMenu(ClickMenuCategoryAction, clickAction);
+            //}
+            //else
+            //{
+            //    categoryComponent.RegisterCallbacks(clickAction);
+            //}
             categoryComponent.RegisterCallbacks(clickAction);
 
             if (type == RebotsCategoryAssetType.Sibling || type == RebotsCategoryAssetType.Selected || type == RebotsCategoryAssetType.Lower)
             {
                 categoryUIElement.style.flexGrow = 0;
                 categoryUIElement.style.flexShrink = 0;
+                categoryUIElement.style.maxWidth = new StyleLength(Length.Percent(50));
                 uiElement = categoryUIElement;
             }
             else
@@ -188,6 +205,7 @@ namespace Rebots.HelpDesk
                 RebotsAttachmentFieldComponent attachmentComponent = new RebotsAttachmentFieldComponent(csCategoryField, AttachmentFileAsset, validationComment);
                 attachmentComponent.SetVisualElements(attachmentFieldUIElement);
                 attachmentComponent.SetFieldData(attachmentFieldUIElement);
+                attachmentComponent.SetAction(SaveVerticalScrollAction, SetVerticalScrollAction);
 
                 uiElement = attachmentFieldUIElement;
                 uiComponent = attachmentComponent;
@@ -212,11 +230,11 @@ namespace Rebots.HelpDesk
             uiElement = PrivacyUIElement;
         }
 
-        public void CreateTicket(HelpdeskTicket ticket, string[] transData, Action<HelpdeskTicket> clickAction, out TemplateContainer uiElement)
+        public void CreateTicket(HelpdeskTicket ticket, bool isNewAnswer, string[] transData, Action<HelpdeskTicket> clickAction, out TemplateContainer uiElement)
         {
             TemplateContainer ticketUIElement = TicketAsset.Instantiate();
 
-            RebotsTicketComponent ticketComponent = new RebotsTicketComponent(ticket, transData);
+            RebotsTicketComponent ticketComponent = new RebotsTicketComponent(ticket, isNewAnswer, transData);
 
             ticketComponent.SetVisualElements(ticketUIElement);
             ticketComponent.SetTicketData(ticketUIElement);
@@ -225,25 +243,44 @@ namespace Rebots.HelpDesk
             uiElement = ticketUIElement;
         }
 
-        public void CreateTicketDetail(string sub, string content, RebotsTicketDetailAssetType type, out TemplateContainer uiElement)
+        public void CreateTicketDetail(string sub, string content, RebotsTicketDetailAssetType type, out TemplateContainer uiElement, bool isNewAnswer = false)
         {
             VisualTreeAsset asset = TicketFieldAsset;
-            switch (type)
+            TemplateContainer DetailUIElement = null;
+
+            if (type == RebotsTicketDetailAssetType.Attachment)
             {
-                case RebotsTicketDetailAssetType.Field:
-                    asset = TicketFieldAsset;
-                    break;
-                case RebotsTicketDetailAssetType.Answer:
-                    asset = TicketAnswerAsset;
-                    break;
+                asset = AttachmentFileAsset;
+                DetailUIElement = asset.Instantiate();
+
+                var m_FileNameLabel = DetailUIElement.Q<Label>(RebotsUIStaticString.FileNameLabel);
+                var m_FileSizeLabel = DetailUIElement.Q<Label>(RebotsUIStaticString.FileSizeLabel);
+                var m_FileRemoveButton = DetailUIElement.Q<Button>(RebotsUIStaticString.FileRemoveButton);
+
+                m_FileNameLabel.text = sub;
+                m_FileSizeLabel.style.display = DisplayStyle.None;
+                m_FileRemoveButton.style.display = DisplayStyle.None;
+
+                DetailUIElement?.RegisterCallback<ClickEvent>(evt => ClickAttachmentLinkAction(content, sub));
             }
+            else
+            {
+                switch (type)
+                {
+                    case RebotsTicketDetailAssetType.Field:
+                        asset = TicketFieldAsset;
+                        break;
+                    case RebotsTicketDetailAssetType.Answer:
+                        asset = TicketAnswerAsset;
+                        break;
+                }
+                DetailUIElement = asset.Instantiate();
 
-            TemplateContainer DetailUIElement = asset.Instantiate();
+                RebotsTicketDetailComponent detailComponent = new RebotsTicketDetailComponent(sub, content, isNewAnswer);
 
-            RebotsTicketDetailComponent detailComponent = new RebotsTicketDetailComponent(sub, content);
-
-            detailComponent.SetVisualElements(DetailUIElement);
-            detailComponent.SetTicketDetailData(DetailUIElement);
+                detailComponent.SetVisualElements(DetailUIElement);
+                detailComponent.SetTicketDetailData(DetailUIElement);
+            }
 
             uiElement = DetailUIElement;
         }
@@ -285,8 +322,8 @@ namespace Rebots.HelpDesk
             Button nextNavigator = pagingNavigatorUIElement.Q<Button>(RebotsUIStaticString.PagingNextButton);
             Button endNavigator = pagingNavigatorUIElement.Q<Button>(RebotsUIStaticString.PagingEndButton);
 
-            var startIndex = (pagingData.SelectedPage / 5) * 5;
-            var endIndex = ((pagingData.SelectedPage / 5) + 1) * 5;
+            var startIndex = (pagingData.SelectedPage % 5 == 0) ? pagingData.SelectedPage - 5 : (pagingData.SelectedPage / 5) * 5;
+            var endIndex = (pagingData.SelectedPage % 5 == 0) ? pagingData.SelectedPage : ((pagingData.SelectedPage / 5) + 1) * 5;
             endIndex = (pagingData.TotalPage < endIndex) ? pagingData.TotalPage : endIndex;
 
             while (startIndex++ < endIndex)
@@ -299,8 +336,10 @@ namespace Rebots.HelpDesk
                 pageUIElement.style.width = 22f;
                 pageUIElement.style.paddingBottom = 0;
                 pageUIElement.style.paddingTop = 0;
-                pageUIElement.style.paddingRight = 5;
-                pageUIElement.style.paddingLeft = 5;
+                pageUIElement.style.paddingRight = 0;
+                pageUIElement.style.paddingLeft = 0;
+                pageUIElement.style.marginRight = 5;
+                pageUIElement.style.marginLeft = 5;
 
                 if (data.IsClickAction)
                 {

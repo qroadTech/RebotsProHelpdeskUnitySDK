@@ -1,10 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:Button display-tooltip-when-elided="true" name="rebots-contents-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 28px; padding-bottom: 28px; width: 100%; min-width: 100%; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-left-color: rgb(189, 189, 189); border-right-color: rgb(189, 189, 189); border-top-color: rgb(189, 189, 189); border-bottom-color: rgb(189, 189, 189); background-color: rgb(255, 255, 255); flex-direction: row;">
-        <ui:VisualElement style="align-items: center; width: 42px; min-width: 2px; flex-shrink: 0;">
-            <ui:Label text="Q" display-tooltip-when-elided="true" class="rebots-font-color__grey rebots-label__regular20" />
+    <ui:Button display-tooltip-when-elided="true" name="rebots-contents-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 20px; padding-bottom: 20px; width: 100%; min-width: 100%; border-left-width: 0; border-right-width: 0; border-top-width: 0; border-left-color: rgb(189, 189, 189); border-right-color: rgb(189, 189, 189); border-top-color: rgb(189, 189, 189); border-bottom-color: rgb(189, 189, 189); background-color: rgb(255, 255, 255); flex-direction: row;">
+        <ui:VisualElement style="align-items: center; width: 42px; min-width: 2px; flex-shrink: 0; justify-content: flex-start;">
+            <ui:Label text="Q" display-tooltip-when-elided="true" class="rebots-font-color__grey rebots-label__regular20" style="-unity-text-align: upper-center;" />
         </ui:VisualElement>
-        <ui:VisualElement style="padding-left: 20px; width: 100%; flex-shrink: 1;">
-            <ui:Label text="Label" display-tooltip-when-elided="true" name="rebots-contents-label" class="rebots-label__regular20 rebots-font-color__black" />
+        <ui:VisualElement style="padding-left: 20px; width: 100%; flex-shrink: 1; justify-content: center;">
+            <ui:Label text="Label" display-tooltip-when-elided="true" name="rebots-contents-label" class="rebots-font-color__black rebots-label__regular16" />
         </ui:VisualElement>
     </ui:Button>
 </ui:UXML>

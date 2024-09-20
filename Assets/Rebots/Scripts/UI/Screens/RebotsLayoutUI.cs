@@ -3,11 +3,8 @@ using HelpDesk.Sdk.Common.Protocols.Responses;
 using System.Linq;
 using UnityEngine.UIElements;
 using UnityEngine;
-using UnityEngine.Networking;
 using System;
-using System.Text;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 namespace Rebots.HelpDesk
 {
@@ -22,10 +19,12 @@ namespace Rebots.HelpDesk
         #endregion
         #region - - - Top Bar UI Element - - - 
         public VisualElement m_TopContainer;
-        public Label m_HelpdeskPhrases;
+        public Label m_HelpdeskPhrase;
         public Button m_MenuOpenButton;
         public Button m_TopSearchButton;
         public Button m_TopLanguageButton;
+        public VisualElement m_TopExitContainer;
+        public Button m_TopExitButton;
         #endregion
         #region - - - Search Bar UI Element - - - 
         public VisualElement m_SearchContainer;
@@ -40,7 +39,6 @@ namespace Rebots.HelpDesk
         #region - - - Side Menu UI Element - - - 
         public VisualElement m_MenuContainer;
         public Button m_MenuCloseButton;
-        public Label m_MenuHelpdeskLabel;
         public Button m_MenuMainButton;
         public Label m_MainLabel;
         public Button m_MenuMyTicketButton;
@@ -89,6 +87,11 @@ namespace Rebots.HelpDesk
 
         public RebotsLocalizationManager LocalizationManager { get; private set; }
 
+        private EventCallback<ClickEvent> termsButtonCallback;
+        private EventCallback<ClickEvent> cookieButtonCallback;
+        private EventCallback<ClickEvent> privacyButtonCallback;
+        private EventCallback<ClickEvent> operatingButtonCallback;
+
         #region Run in 'Awake' call
         protected override void SetVisualElements()
         {
@@ -99,10 +102,12 @@ namespace Rebots.HelpDesk
             m_BackgroundContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.BackgroundContainer);
 
             m_TopContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.TopContainer);
-            m_HelpdeskPhrases = m_TopContainer.Q<Label>(RebotsUIStaticString.HelpdeskPhrases);
+            m_HelpdeskPhrase = m_TopContainer.Q<Label>(RebotsUIStaticString.HelpdeskPhrase);
             m_MenuOpenButton = m_TopContainer.Q<Button>(RebotsUIStaticString.MenuOpenButton);
             m_TopSearchButton = m_TopContainer.Q<Button>(RebotsUIStaticString.SearchButton);
             m_TopLanguageButton = m_TopContainer.Q<Button>(RebotsUIStaticString.LanguageButton);
+            m_TopExitContainer = m_TopContainer.Q(RebotsUIStaticString.TopExitContainer);
+            m_TopExitButton = m_TopExitContainer.Q<Button>(RebotsUIStaticString.ExitButton);
 
             m_SearchContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.SearchContainer);
             m_SearchCaption = m_SearchContainer.Q<Label>(RebotsUIStaticString.SearchCaption);
@@ -114,7 +119,6 @@ namespace Rebots.HelpDesk
 
             m_MenuContainer = m_HelpdeskLayout.Q(RebotsUIStaticString.MenuContainer);
             m_MenuCloseButton = m_MenuContainer.Q<Button>(RebotsUIStaticString.MenuCloseButton);
-            m_MenuHelpdeskLabel = m_MenuContainer.Q<Label>(RebotsUIStaticString.HelpdeskLabel);
             m_MenuMainButton = m_MenuContainer.Q<Button>(RebotsUIStaticString.MainButton);
             m_MainLabel = m_MenuContainer.Q<Label>(RebotsUIStaticString.MainLabel);
             m_MenuMyTicketButton = m_MenuContainer.Q<Button>(RebotsUIStaticString.MenuMyTicketButton);
@@ -160,13 +164,15 @@ namespace Rebots.HelpDesk
 
         protected override void RegisterButtonCallbacks()
         {
-            m_TopSearchButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ShowPage(RebotsPageType.Layout, RebotsPageName.Search));
-            m_TopLanguageButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ShowPage(RebotsPageType.Layout, RebotsPageName.Language));
-            m_MenuOpenButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ShowPage(RebotsPageType.Layout, RebotsPageName.Menu));
-            m_MenuCloseButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.HidePage(RebotsPageType.Layout));
-            m_BackgroundContainer?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.HidePage(RebotsPageType.Layout));
+            m_TopSearchButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ClickTopButton(RebotsPageName.Search));
+            m_TopLanguageButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ClickTopButton(RebotsPageName.Language));
+            m_TopExitButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ClosePanel());
+            m_MenuOpenButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.MenuOpen());
+            m_MenuCloseButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.LayoutClose());
+            m_BackgroundContainer?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.LayoutClose());
             m_MenuMainButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ShowMain(false));
             m_MenuMyTicketButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ShowMyTicket());
+            m_SearchField.KeyDownEvent(OnEnterKeyDown);
             m_SearchInputButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ClickSearch());
             m_ExitButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ClosePanel());
             m_TicketButton?.RegisterCallback<ClickEvent>(evt => helpdeskScreen.ShowCsCategory());
@@ -178,7 +184,7 @@ namespace Rebots.HelpDesk
         {
             LocalizationManager = helpdeskScreen.rebotsSettingManager.localizationManager;
 
-            m_HelpdeskPhrases.text = LocalizationManager.translationDic[RebotsUIStaticString.HelpdeskPhrases];
+            m_HelpdeskPhrase.text = LocalizationManager.translationDic[RebotsUIStaticString.HelpdeskPhrase];
 
             m_SearchCaption.text = LocalizationManager.translationDic[RebotsUIStaticString.SearchCaption];
             m_SearchField.UsePlaceholder(LocalizationManager.translationDic[RebotsUIStaticString.SearchPlaceholder]);
@@ -186,8 +192,8 @@ namespace Rebots.HelpDesk
 
             m_MainLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.MainLabel];
             m_MyTicketLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.MyTicketLabel];
-            m_MenuFaqFoldout.text = LocalizationManager.translationDic[RebotsUIStaticString.FaqPhrases];
-            m_MenuInquiryFoldout.text = LocalizationManager.translationDic[RebotsUIStaticString.InquiryPhrases];
+            m_MenuFaqFoldout.text = LocalizationManager.translationDic[RebotsUIStaticString.FaqPhrase];
+            m_MenuInquiryFoldout.text = LocalizationManager.translationDic[RebotsUIStaticString.InquiryPhrase];
             m_ExitLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.ExitLabel];
 
             m_NeedMoreLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.NeedMoreLabel];
@@ -197,12 +203,10 @@ namespace Rebots.HelpDesk
             m_CookieLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.CookieLabel];
             m_PrivacyLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.PrivacyLabel];
             m_OperatingLabel.text = LocalizationManager.translationDic[RebotsUIStaticString.OperatingLabel];
-
         }
 
         public void SetHelpdeskData(HelpdeskSetting helpdeskSetting)
         {
-            m_MenuHelpdeskLabel.text = helpdeskSetting.helpdeskName;
             m_TitleHelpdeskLabel.text = helpdeskSetting.helpdeskName;
 
             m_HelpdeskLayout.ClearClassList();
@@ -211,6 +215,21 @@ namespace Rebots.HelpDesk
 
             m_HelpdeskLayout.styleSheets.Clear();
             m_HelpdeskLayout.styleSheets.Add(helpdeskScreen.GetThemeStyleSheet(helpdeskSetting.theme));
+
+            #region setting Top Exit Button
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN || UNITY_WEBGL
+            ShowVisualElement(m_TopExitContainer, true);
+#else
+            if (helpdeskScreen.ScreenPortrait)
+            {
+                ShowVisualElement(m_TopExitContainer, false);
+            }
+            else
+            {
+                ShowVisualElement(m_TopExitContainer, true);
+            }
+#endif
+            #endregion
 
             #region setting Main Image
             if (helpdeskSetting.useMainImage && helpdeskSetting.mainImageMobileUrl != null && !string.IsNullOrEmpty(helpdeskSetting.mainImageMobileUrl))
@@ -229,6 +248,12 @@ namespace Rebots.HelpDesk
             #region setting Footer
             bool isRow = true;
             string bydaySeperator = " ";
+#if UNITY_EDITOR || UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN || UNITY_WEBGL
+            m_FooterInfoContainer.style.flexDirection = FlexDirection.Row;
+            m_FooterLowConatiner.style.flexDirection = FlexDirection.Row;
+            m_FooterLowConatiner.style.flexGrow = 0;
+            m_TelContainer.style.flexGrow = 0;
+#else
             if (helpdeskScreen.ScreenPortrait)
             {
                 isRow = false;
@@ -245,6 +270,7 @@ namespace Rebots.HelpDesk
                 m_FooterLowConatiner.style.flexGrow = 0;
                 m_TelContainer.style.flexGrow = 0;
             }
+#endif
 
             if (helpdeskSetting.useOperatingTime && !string.IsNullOrEmpty(helpdeskSetting.operatingTime))
             {
@@ -294,7 +320,9 @@ namespace Rebots.HelpDesk
 
             if (helpdeskSetting.useTermsService && !string.IsNullOrEmpty(helpdeskSetting.termsServiceUrl))
             {
-                m_TermsButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.termsServiceUrl));
+                m_TermsButton?.UnregisterCallback(termsButtonCallback);
+                termsButtonCallback = evt => OpenURL(helpdeskSetting.termsServiceUrl);
+                m_TermsButton?.RegisterCallback(termsButtonCallback);
                 ShowVisualElement(m_TermsButton, true);
                 ShowVisualElement(m_TermsBar, isRow);
             }
@@ -306,7 +334,9 @@ namespace Rebots.HelpDesk
 
             if (helpdeskSetting.useCookiePolicy && !string.IsNullOrEmpty(helpdeskSetting.cookiePolicyUrl))
             {
-                m_CookieButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.cookiePolicyUrl));
+                m_CookieButton?.UnregisterCallback(cookieButtonCallback);
+                cookieButtonCallback = evt => OpenURL(helpdeskSetting.cookiePolicyUrl);
+                m_CookieButton?.RegisterCallback(cookieButtonCallback);
                 ShowVisualElement(m_CookieButton, true);
                 ShowVisualElement(m_CookieBar, helpdeskSetting.useTermsService ? true : isRow);
             }
@@ -318,7 +348,9 @@ namespace Rebots.HelpDesk
 
             if (helpdeskSetting.usePrivacyPolicyURL && !string.IsNullOrEmpty(helpdeskSetting.privacyPolicyURL))
             {
-                m_PrivacyButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.privacyPolicyURL));
+                m_PrivacyButton?.UnregisterCallback(privacyButtonCallback);
+                privacyButtonCallback = evt => OpenURL(helpdeskSetting.privacyPolicyURL);
+                m_PrivacyButton?.RegisterCallback(privacyButtonCallback);
                 ShowVisualElement(m_PrivacyButton, true);
                 ShowVisualElement(m_PrivacyBar, isRow);
             }
@@ -330,7 +362,9 @@ namespace Rebots.HelpDesk
 
             if (helpdeskSetting.useOperatingPolicy && !string.IsNullOrEmpty(helpdeskSetting.operatingPolicyURL))
             {
-                m_OperatingButton?.RegisterCallback<ClickEvent>(evt => Application.OpenURL(helpdeskSetting.operatingPolicyURL));
+                m_OperatingButton?.UnregisterCallback(operatingButtonCallback);
+                operatingButtonCallback = evt => OpenURL(helpdeskSetting.operatingPolicyURL);
+                m_OperatingButton?.RegisterCallback(operatingButtonCallback);
                 ShowVisualElement(m_OperatingButton, true);
                 ShowVisualElement(m_OperatingBar, helpdeskSetting.usePrivacyPolicyURL ? true : isRow);
             }
@@ -436,6 +470,26 @@ namespace Rebots.HelpDesk
                 }
             }
             m_MenuInquiryFoldout.value = false;
+        }
+        #endregion
+
+        #region On Key Event
+        public void OnEnterKeyDown(KeyDownEvent evt)
+        {
+            if (m_SearchContainer.style.display == DisplayStyle.Flex)
+            {
+                if (evt.keyCode == KeyCode.Return || evt.keyCode == KeyCode.KeypadEnter)
+                {
+                    helpdeskScreen.ClickSearch();
+                }
+            }
+        }
+        #endregion
+
+        #region 
+        public void OpenURL(string url)
+        {
+            Application.OpenURL(url);
         }
         #endregion
     }

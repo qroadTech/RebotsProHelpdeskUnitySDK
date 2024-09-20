@@ -51,5 +51,13 @@ namespace Rebots.HelpDesk
         {
             m_CategoryButton?.RegisterCallback<ClickEvent>(evt => categoryAction(category));
         }
+
+        public void RegisterCallbacksAtMenu(Action<Button> menuAction, Action<T> categoryAction)
+        {
+            m_CategoryButton?.RegisterCallback<ClickEvent>(evt => {
+                menuAction(m_CategoryButton);
+                categoryAction(category);
+            });
+        }
     }
 }

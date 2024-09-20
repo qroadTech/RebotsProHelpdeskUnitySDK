@@ -1,3 +1,6 @@
+#rebots-helpdesk-screen {
+}
+
 .unity-scroll-view__content-container {
     height: auto;
     justify-content: space-between;
@@ -114,13 +117,15 @@
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;
-    padding-top: 9px;
-    padding-bottom: 9px;
+    padding-top: 0;
+    padding-bottom: 0;
     border-left-color: rgba(255, 255, 255, 0.15);
     border-right-color: rgba(255, 255, 255, 0.15);
     border-top-color: rgba(255, 255, 255, 0.15);
     border-bottom-color: rgba(255, 255, 255, 0.15);
     border-bottom-width: 1px;
+    padding-right: 0;
+    height: 50px;
 }
 
 .rebots-menu-foldout .unity-toggle .unity-toggle__input {
@@ -176,7 +181,7 @@
 }
 
 .rebots-ko-class .rebots-menu-foldout .unity-toggle .unity-label {
-    font-size: 16px;
+    font-size: 20px;
     color: rgb(255, 255, 255);
     flex-grow: 1;
     -unity-font: none;
@@ -184,7 +189,7 @@
 }
 
 .rebots-en-class .rebots-menu-foldout .unity-toggle .unity-label {
-    font-size: 16px;
+    font-size: 20px;
     color: rgb(255, 255, 255);
     flex-grow: 1;
     -unity-font: none;
@@ -192,7 +197,7 @@
 }
 
 .rebots-ja-class .rebots-menu-foldout .unity-toggle .unity-label {
-    font-size: 16px;
+    font-size: 20px;
     color: rgb(255, 255, 255);
     flex-grow: 1;
     -unity-font: none;
@@ -200,7 +205,7 @@
 }
 
 .rebots-zh-cn-class .rebots-menu-foldout .unity-toggle .unity-label {
-    font-size: 16px;
+    font-size: 20px;
     color: rgb(255, 255, 255);
     flex-grow: 1;
     -unity-font: none;
@@ -208,38 +213,38 @@
 }
 
 .rebots-th-class .rebots-menu-foldout .unity-toggle .unity-label {
-    font-size: 16px;
+    font-size: 20px;
     color: rgb(255, 255, 255);
     flex-grow: 1;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
 }
 
-.rebots-font-kr__black {
+#rebots-language-label.rebots-font-kr__black {
     font-size: 20px;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
 }
 
-.rebots-font-en__black {
+#rebots-language-label.rebots-font-en__black {
     font-size: 20px;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
 }
 
-.rebots-font-ja__black {
+#rebots-language-label.rebots-font-ja__black {
     font-size: 20px;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
 }
 
-.rebots-font-cn__black {
+#rebots-language-label.rebots-font-cn__black {
     font-size: 20px;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
 }
 
-.rebots-font-th__black {
+#rebots-language-label.rebots-font-th__black {
     font-size: 20px;
     -unity-font: none;
     -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
@@ -280,3 +285,160 @@
     -unity-font-definition: resource('Rebots/NotoSansTH-Regular-as');
 }
 
+.rebots-ticket-foldout .unity-toggle {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-left-color: rgb(212, 212, 216);
+    border-right-color: rgb(212, 212, 216);
+    border-top-color: rgb(212, 212, 216);
+    border-bottom-color: rgb(212, 212, 216);
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.rebots-ticket-foldout .unity-toggle .unity-toggle__input {
+    align-items: center;
+    flex-direction: row-reverse;
+    justify-content: center;
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.rebots-ko-class .rebots-ticket-foldout .unity-toggle .unity-label {
+    font-size: 14px;
+    color: rgb(30, 35, 41);
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansKR-Black-as');
+}
+
+.rebots-en-class .rebots-ticket-foldout .unity-toggle .unity-label {
+    font-size: 14px;
+    color: rgb(30, 35, 41);
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansEN-Black-as');
+}
+
+.rebots-ja-class .rebots-ticket-foldout .unity-toggle .unity-label {
+    font-size: 14px;
+    color: rgb(30, 35, 41);
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansJP-Black-as');
+}
+
+.rebots-zh-cn-class .rebots-ticket-foldout .unity-toggle .unity-label {
+    font-size: 14px;
+    color: rgb(30, 35, 41);
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansCN-Black-as');
+}
+
+.rebots-th-class .rebots-ticket-foldout .unity-toggle .unity-label {
+    font-size: 14px;
+    color: rgb(30, 35, 41);
+    -unity-font: none;
+    -unity-font-definition: resource('Rebots/NotoSansTH-Black-as');
+}
+
+.rebots-ticket-foldout .unity-toggle__checkmark {
+    margin-left: 4px;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-image: url('project://database/Assets/Rebots/UI/Textures/DownArrow.png?fileID=2800000&guid=a367cc7a68837a1409c1124b1b279ed2&type=3#DownArrow');
+    -unity-background-scale-mode: scale-to-fit;
+    width: 14px;
+}
+
+.rebots-ticket-foldout .unity-toggle__input:checked .unity-toggle__checkmark {
+    background-image: url('project://database/Assets/Rebots/UI/Textures/UpArrow.png?fileID=2800000&guid=6ae31e70b2cb41943ac97666eff42869&type=3#UpArrow');
+}
+
+.rebots-ticket-menu {
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.rebots-ticket-menu__select {
+    border-bottom-width: 2px;
+    border-left-color: rgb(40, 40, 40);
+    border-right-color: rgb(40, 40, 40);
+    border-top-color: rgb(40, 40, 40);
+    border-bottom-color: rgb(40, 40, 40);
+}
+
+.rebots-ticket-menu__select .unity-label {
+    -unity-font-style: bold;
+    font-size: 16px;
+    color: rgb(40, 40, 40);
+}
+
+#rebots-page-list .unity-label {
+    -unity-text-align: middle-center;
+}
+
+#rebots-menu-container .unity-scroll-view__vertical-scroller {
+    opacity: 1;
+    width: 27px;
+}
+
+#rebots-menu-container .unity-scroll-view__vertical-scroller .unity-scroller__low-button {
+    display: none;
+}
+
+#rebots-menu-container .unity-scroll-view__vertical-scroller .unity-scroller__high-button {
+    display: none;
+}
+
+#rebots-menu-container .unity-scroll-view__vertical-scroller #unity-slider {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+    align-items: flex-end;
+}
+
+#rebots-menu-container .unity-scroll-view__vertical-scroller #unity-tracker {
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+#rebots-menu-container .unity-scroll-view__vertical-scroller #unity-dragger {
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 6px;
+    min-width: 6px;
+    max-width: 6px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    left: auto;
+    right: 0;
+}
+
+#rebots-menu-container .rebots-menu {
+    background-color: rgba(255, 255, 255, 0);
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+}
+
+#rebots-menu-container .rebots-menu__select {
+    background-color: rgba(255, 255, 255, 0.1);
+}
