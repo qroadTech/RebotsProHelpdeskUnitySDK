@@ -128,6 +128,7 @@ namespace Rebots.HelpDesk
         public const string FileNameLabel = "rebots-file-name-label";
         public const string FileSizeLabel = "rebots-file-size-label";
         public const string FileRemoveButton = "rebots-file-remove-button";
+        public const string FileDownloadButton = "rebots-file-download-button";
         #endregion
         #region - - - Ticket Button UI name - - - 
         public const string TicketButtonContainer = "rebots-ticket-button-container";

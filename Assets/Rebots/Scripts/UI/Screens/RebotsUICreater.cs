@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using HelpDesk.Sdk.Common.Protocols.Responses;
 using Assets.Rebots;
+using UnityEditor;
 
 namespace Rebots.HelpDesk
 {
@@ -229,7 +230,7 @@ namespace Rebots.HelpDesk
 
             uiElement = PrivacyUIElement;
         }
-
+        
         public void CreateTicket(HelpdeskTicket ticket, bool isNewAnswer, string[] transData, Action<HelpdeskTicket> clickAction, out TemplateContainer uiElement)
         {
             TemplateContainer ticketUIElement = TicketAsset.Instantiate();
@@ -256,11 +257,12 @@ namespace Rebots.HelpDesk
                 var m_FileNameLabel = DetailUIElement.Q<Label>(RebotsUIStaticString.FileNameLabel);
                 var m_FileSizeLabel = DetailUIElement.Q<Label>(RebotsUIStaticString.FileSizeLabel);
                 var m_FileRemoveButton = DetailUIElement.Q<Button>(RebotsUIStaticString.FileRemoveButton);
+                var m_FileDownloadButton = DetailUIElement.Q<Button>(RebotsUIStaticString.FileDownloadButton);
 
                 m_FileNameLabel.text = sub;
                 m_FileSizeLabel.style.display = DisplayStyle.None;
                 m_FileRemoveButton.style.display = DisplayStyle.None;
-
+                m_FileDownloadButton.style.display = DisplayStyle.Flex;
                 DetailUIElement?.RegisterCallback<ClickEvent>(evt => ClickAttachmentLinkAction(content, sub));
             }
             else

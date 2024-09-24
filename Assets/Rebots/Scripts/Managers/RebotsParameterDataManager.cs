@@ -30,7 +30,7 @@ namespace Rebots.HelpDesk
             /// 
             /// en) Inquiry Parameter Key-Value Dictionary.
             /// The value is automatically assigned to the parameter item for which the key-value is set in the inquiry create page.
-            /// Key: This is the param eter key of 'inquiry items' added in the 'CS Ticket Settings > Common Category' menu of RebotsPro Web Solution (Workspace).
+            /// Key: This is the parameter key of 'inquiry items' added in the 'CS Ticket Settings > Common Category' menu of RebotsPro Web Solution (Workspace).
             /// Already added collection is example of sample project.
             ParameterData.parameters.Add("server_id", "server1");
             ParameterData.parameters.Add("device_info", "To Be Filled By O.E.M. (To Be Filled By O.E.M.)");
