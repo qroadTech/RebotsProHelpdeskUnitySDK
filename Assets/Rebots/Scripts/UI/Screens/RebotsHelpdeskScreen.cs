@@ -10,6 +10,7 @@ using Assets.Rebots;
 using System.Linq;
 using UnityEngine.UIElements.Experimental;
 using UnityEngine.Networking;
+using SFB;
 
 namespace Rebots.HelpDesk
 {
@@ -940,7 +941,6 @@ namespace Rebots.HelpDesk
         #region (public) Download And Save Attachment Image
         public void ClickAttachmentLink(string imageUrl, string fileName)
         {
-            // Start the coroutine to download and save the image
             StartCoroutine(DownloadAndSaveImage(imageUrl, fileName));
         }
 
@@ -963,16 +963,28 @@ namespace Rebots.HelpDesk
 
         private void SaveTextureToFile(Texture2D texture, string fileName)
         {
-            byte[] bytes = texture.EncodeToPNG(); // Or use EncodeToJPG() for JPG format
+            byte[] bytes = texture.EncodeToPNG(); 
 
             string filePath = "";
 #if UNITY_EDITOR || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_WEBGL
-            filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", fileName);
+            string folderPath = "";
+            var paths = StandaloneFileBrowser.OpenFolderPanel("Select Document Folder", "", false);
+            if (paths.Length > 0 && !string.IsNullOrEmpty(paths[0]))
+            {
+                Debug.Log("Selected folder: " + paths[0]);
+                folderPath = paths[0];
+
+                filePath = Path.Combine(folderPath, fileName);
+            }
+            else
+            {
+                Debug.Log("No folder selected");
+                filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", fileName);
+            }
 #elif UNITY_ANDROID
             filePath = Path.Combine("/storage/emulated/0/Download/", fileName);
 #endif
 
-            // Write the byte array to a file
             try
             {
 #if UNITY_IOS

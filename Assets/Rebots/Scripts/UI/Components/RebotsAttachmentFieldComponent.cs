@@ -2,12 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
-using SimpleFileBrowser;
-using System.Collections;
+using SFB;
 
 namespace Rebots.HelpDesk
 {
@@ -23,6 +20,7 @@ namespace Rebots.HelpDesk
         const string FileNameLabel = "rebots-file-name-label";
         const string FileSizeLabel = "rebots-file-size-label";
         const string FileRemoveButton = "rebots-file-remove-button";
+        const string FileDownloadButton = "rebots-file-download-button";
 
         Label m_FieldLabel;
         Label m_RequiredFieldLabel;
@@ -95,20 +93,19 @@ namespace Rebots.HelpDesk
 
         private void ClickChooseFile()
         {
-#if UNITY_EDITOR
-            string path = EditorUtility.OpenFilePanelWithFilters("", "", new string[] { "Image Files", "png, jpeg, jpg, gif", "All files", "*" });
-            if (true)
+#if UNITY_EDITOR || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_WEBGL
+            var extensions = new[] {
+                new ExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif"),
+                new ExtensionFilter("All Files", "*" ),
+            };
+
+            string[] paths = StandaloneFileBrowser.OpenFilePanel("Select Image File", "", extensions, false);
+
+            if (paths.Length > 0 && !string.IsNullOrEmpty(paths[0]))
             {
+                string path = paths[0];
                 SetAttachmentFile(path);
             }
-#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_WEBGL
-            FileBrowser.SetFilters(true, new FileBrowser.Filter("Images", ".jpg", ".png", ".gif"));
-            FileBrowser.AddQuickLink( "Users", "C:\\Users", null );
-
-            FileBrowser.ShowLoadDialog((paths) => {
-                SetAttachmentFile(paths[0]);
-            }, () => { Debug.Log("Canceled"); },
-            FileBrowser.PickMode.Files, false, null, null, "Select Files", "Select");
 #elif UNITY_IOS || UNITY_ANDROID
             if (NativeGallery.CanSelectMultipleMediaTypesFromGallery())
             {
@@ -185,9 +182,12 @@ namespace Rebots.HelpDesk
                 var m_FileNameLabel = fileUIElement.Q<Label>(FileNameLabel);
                 var m_FileSizeLabel = fileUIElement.Q<Label>(FileSizeLabel);
                 var m_FileRemoveButton = fileUIElement.Q<Button>(FileRemoveButton);
+                var m_FileDownloadButton = fileUIElement.Q<Button>(FileDownloadButton);
 
                 m_FileNameLabel.text = attachmentInfo.filename;
                 m_FileSizeLabel.text = string.Format("({0:N2}KB)", (double)attachmentInfo.fileSize / 1024);
+                m_FileDownloadButton.style.display = DisplayStyle.None;
+                m_FileRemoveButton.style.display = DisplayStyle.Flex;
                 m_FileRemoveButton?.RegisterCallback<ClickEvent>(evt => RemoveAttachmentFile(attachmentInfo, fileUIElement));
 
                 this.m_FileList.Add(fileUIElement);

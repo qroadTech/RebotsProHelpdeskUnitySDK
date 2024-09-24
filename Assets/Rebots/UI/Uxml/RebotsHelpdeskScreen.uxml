@@ -22,7 +22,7 @@
                                 </ui:VisualElement>
                             </ui:VisualElement>
                         </ui:VisualElement>
-                        <ui:VisualElement name="rebots-main-container" style="display: flex;">
+                        <ui:VisualElement name="rebots-main-container" style="display: none;">
                             <ui:VisualElement name="rebots-faq-popular-container" style="display: flex;">
                                 <ui:VisualElement style="flex-direction: row; flex-shrink: 0; margin-left: 16px; margin-right: 16px; margin-top: 45px; margin-bottom: 35px;">
                                     <ui:VisualElement style="justify-content: space-around;">
@@ -39,8 +39,8 @@
                                     <ui:ScrollView mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="rebots-popular-scrollview" style="flex-grow: 1;">
                                         <ui:VisualElement name="rebots-list-container" style="flex-direction: row; height: 100%; margin-left: 6px; margin-right: 6px;" />
                                     </ui:ScrollView>
-                                    <ui:Button display-tooltip-when-elided="true" name="rebots-scroll-left-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgba(255, 255, 255, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; width: 36px; height: 36px; position: absolute; bottom: 98px; left: 2px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/CarouselLeft.png?fileID=2800000&amp;guid=cb177b9c06a167244a43094c09b9039b&amp;type=3#CarouselLeft&apos;);" />
-                                    <ui:Button display-tooltip-when-elided="true" name="rebots-scroll-right-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; background-color: rgba(188, 188, 188, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; width: 36px; height: 36px; position: absolute; bottom: 98px; right: 2px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/CarouselRight.png?fileID=2800000&amp;guid=2ff369a723de5b84e8acd12419652781&amp;type=3#CarouselRight&apos;); padding-bottom: 0;" />
+                                    <ui:Button display-tooltip-when-elided="true" name="rebots-scroll-left-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgba(255, 255, 255, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; width: 41px; height: 41px; position: absolute; bottom: 98px; left: 2px; display: none; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/CarouselLeftPC.png?fileID=21300000&amp;guid=a1e1f04045c6a7143ae95db0d496e421&amp;type=3#CarouselLeftPC&apos;);" />
+                                    <ui:Button display-tooltip-when-elided="true" name="rebots-scroll-right-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; background-color: rgba(188, 188, 188, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; width: 41px; height: 41px; position: absolute; bottom: 98px; right: 2px; padding-bottom: 0; display: none; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/CarouselRightPC.png?fileID=21300000&amp;guid=a50ba828843dbbb4ca5d5475f3dafb45&amp;type=3#CarouselRightPC&apos;);" />
                                 </ui:VisualElement>
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-faq-category-container" style="margin-bottom: 20px; display: flex;">
@@ -70,7 +70,7 @@
                         <ui:VisualElement name="rebots-inquiry-list-container" style="display: none; margin-left: 13px; margin-right: 13px; margin-bottom: 25px;">
                             <ui:VisualElement name="rebots-list-container" style="flex-wrap: wrap; flex-direction: column;" />
                         </ui:VisualElement>
-                        <ui:VisualElement name="rebots-faq-list-container" style="margin-left: 16px; margin-right: 16px; display: none;">
+                        <ui:VisualElement name="rebots-faq-list-container" style="margin-left: 16px; margin-right: 16px; display: flex;">
                             <ui:VisualElement name="rebots-sibling-category-container" style="width: 100%; height: auto; display: flex;">
                                 <ui:ScrollView mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="rebots-sibling-category-scrollview" style="width: 100%; height: 100%;">
                                     <ui:VisualElement name="rebots-category-list-container" style="flex-direction: row; width: 100%; min-width: 100%;" />
@@ -80,7 +80,7 @@
                             </ui:VisualElement>
                             <ui:VisualElement name="rebots-lower-category-container" style="width: 100%; height: auto; display: flex;">
                                 <ui:ScrollView mode="Horizontal" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden" name="rebots-lower-category-scrollview" style="width: 100%; height: 100%;">
-                                    <ui:VisualElement name="rebots-category-list-container" style="flex-direction: row; width: 100%; min-width: 100%;" />
+                                    <ui:VisualElement name="rebots-category-list-container" style="flex-direction: row; width: 100%; min-width: 100%; background-color: rgb(244, 244, 245);" />
                                 </ui:ScrollView>
                                 <ui:Button display-tooltip-when-elided="true" name="rebots-scroll-left-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; background-color: rgba(255, 255, 255, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; width: 36px; height: 36px; position: absolute; bottom: 4px; left: -14px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/CarouselLeft.png?fileID=2800000&amp;guid=cb177b9c06a167244a43094c09b9039b&amp;type=3#CarouselLeft&apos;);" />
                                 <ui:Button display-tooltip-when-elided="true" name="rebots-scroll-right-button" style="margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; background-color: rgba(188, 188, 188, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; width: 36px; height: 36px; position: absolute; bottom: 4px; right: -14px; background-image: url(&apos;project://database/Assets/Rebots/UI/Textures/CarouselRight.png?fileID=2800000&amp;guid=2ff369a723de5b84e8acd12419652781&amp;type=3#CarouselRight&apos;); padding-bottom: 0;" />
