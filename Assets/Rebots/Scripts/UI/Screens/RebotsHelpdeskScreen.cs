@@ -1,16 +1,15 @@
-﻿using System.Collections.Generic;
-using UnityEngine.UIElements;
-using UnityEngine;
+﻿using Assets.Rebots;
 using HelpDesk.Sdk.Common.Objects;
-using System.IO;
 using System;
 using System.Collections;
-using UnityEngine.Events;
-using Assets.Rebots;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using UnityEngine.UIElements.Experimental;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Networking;
-using SFB;
+using UnityEngine.UIElements;
+using UnityEngine.UIElements.Experimental;
 
 namespace Rebots.HelpDesk
 {
@@ -967,36 +966,18 @@ namespace Rebots.HelpDesk
 
             string filePath = "";
 #if UNITY_EDITOR || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_WEBGL
-            string folderPath = "";
-            var paths = StandaloneFileBrowser.OpenFolderPanel("Select Document Folder", "", false);
-            if (paths.Length > 0 && !string.IsNullOrEmpty(paths[0]))
-            {
-                Debug.Log("Selected folder: " + paths[0]);
-                folderPath = paths[0];
-
-                filePath = Path.Combine(folderPath, fileName);
-            }
-            else
-            {
-                Debug.Log("No folder selected");
-                filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", fileName);
-            }
-#elif UNITY_ANDROID
-            filePath = Path.Combine("/storage/emulated/0/Download/", fileName);
+            filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads", fileName);
 #endif
 
             try
             {
-#if UNITY_IOS
-                NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(texture, "MyGallery", fileName);
-                if (permission == NativeGallery.Permission.Granted)
-                {
-                    Debug.Log("Image saved to gallery successfully!");
-                }
-                else
+#if UNITY_IOS || UNITY_ANDROID
+                NativeGallery.Permission permission = NativeGallery.SaveImageToGallery(texture, "Helpdesk", fileName, (success, path) => Debug.Log("Media save result: " + success + " " + path));
+                if (permission != NativeGallery.Permission.Granted)
                 {
                     Debug.LogError("Failed to save image to gallery.");
                 }
+                Destroy(texture);
 #else
                 System.IO.File.WriteAllBytes(filePath, bytes);
                 Debug.Log("Image saved to: " + filePath);
@@ -1007,6 +988,6 @@ namespace Rebots.HelpDesk
                 Debug.LogError("Failed to save image: " + e.Message);
             }
         }
-        #endregion
+#endregion
     }
 }

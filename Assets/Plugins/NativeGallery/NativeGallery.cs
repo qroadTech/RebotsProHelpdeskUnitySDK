@@ -503,7 +503,7 @@ public static class NativeGallery
 					filename += originalExtension;
 			}
 
-			string path = GetTemporarySavePath( filename );
+            string path = GetTemporarySavePath( filename );
 #if UNITY_EDITOR
 			Debug.Log( "SaveToGallery called successfully in the Editor" );
 #else

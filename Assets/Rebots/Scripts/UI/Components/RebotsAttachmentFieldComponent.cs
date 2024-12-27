@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using UnityEngine.UIElements;
-using SFB;
+using SimpleFileBrowser;
+using UnityEditor;
 
 namespace Rebots.HelpDesk
 {
@@ -93,19 +94,20 @@ namespace Rebots.HelpDesk
 
         private void ClickChooseFile()
         {
-#if UNITY_EDITOR || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_WEBGL
-            var extensions = new[] {
-                new ExtensionFilter("Image Files", "png", "jpg", "jpeg", "gif"),
-                new ExtensionFilter("All Files", "*" ),
-            };
-
-            string[] paths = StandaloneFileBrowser.OpenFilePanel("Select Image File", "", extensions, false);
-
-            if (paths.Length > 0 && !string.IsNullOrEmpty(paths[0]))
+#if UNITY_EDITOR
+            string path = EditorUtility.OpenFilePanelWithFilters("", "", new string[] { "Image Files", "png, jpeg, jpg, gif", "All files", "*" });
+            if (true)
             {
-                string path = paths[0];
                 SetAttachmentFile(path);
             }
+#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_WEBGL
+            FileBrowser.SetFilters(true, new FileBrowser.Filter("Images", ".jpg", ".png", ".gif"));
+            FileBrowser.AddQuickLink( "Users", "C:\\Users", null );
+
+            FileBrowser.ShowLoadDialog((paths) => {
+                SetAttachmentFile(paths[0]);
+            }, () => { Debug.Log("Canceled"); },
+            FileBrowser.PickMode.Files, false, null, null, "Select Files", "Select");
 #elif UNITY_IOS || UNITY_ANDROID
             if (NativeGallery.CanSelectMultipleMediaTypesFromGallery())
             {
