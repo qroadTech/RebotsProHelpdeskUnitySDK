@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &530094024
+--- !u!1001 &107936269
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -180,26 +180,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
---- !u!114 &1336138205 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1175946604819721044, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
-  m_PrefabInstance: {fileID: 530094024}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2c53ae6596aece4a9cad0bd55e85c50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1336138206 stripped
+--- !u!114 &107936270 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5048724410558172861, guid: 71faff9909d4d924b9034306bf48a8b5, type: 3}
-  m_PrefabInstance: {fileID: 530094024}
+  m_PrefabInstance: {fileID: 107936269}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37707eaea6c5c224dad0e10b9ac0002a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1052153649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4102010578217516521, guid: bf7a07804addf994981e29b2f520406a, type: 3}
+  m_PrefabInstance: {fileID: 1307173591112795907}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37ea85760dfcfba4387e8dc7dccdb0f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1370696861
@@ -361,27 +361,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 1
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
 --- !u!1 &1966910371
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,7 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aab085edcebb9a42bdf290156d581ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rebotsHelpdeskUIManager: {fileID: 1307173591112795908}
+  rebotsHelpdeskUIManager: {fileID: 1052153649}
 --- !u!1001 &2014752611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -511,11 +490,11 @@ PrefabInstance:
     - target: {fileID: 6512091703982552, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: rebotsSettingManager
       value: 
-      objectReference: {fileID: 1336138206}
+      objectReference: {fileID: 0}
     - target: {fileID: 6512091703982552, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: rebotsParameterDataManager
       value: 
-      objectReference: {fileID: 1336138205}
+      objectReference: {fileID: 0}
     - target: {fileID: 6512093179079524, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: m_Name
       value: Rebots
@@ -567,7 +546,7 @@ PrefabInstance:
     - target: {fileID: 920084204696795741, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: rebotsSettingManager
       value: 
-      objectReference: {fileID: 1336138206}
+      objectReference: {fileID: 107936270}
     - target: {fileID: 1307173592818080567, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: rebotsSettingManager
       value: 
@@ -575,21 +554,18 @@ PrefabInstance:
     - target: {fileID: 1487581472455094443, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: rebotsSettingManager
       value: 
-      objectReference: {fileID: 1336138206}
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102010578217516521, guid: bf7a07804addf994981e29b2f520406a, type: 3}
+      propertyPath: systemEventGO
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4102010578217516527, guid: bf7a07804addf994981e29b2f520406a, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4253193202058775123, guid: bf7a07804addf994981e29b2f520406a, type: 3}
       propertyPath: rebotsSettingManager
       value: 
-      objectReference: {fileID: 1336138206}
+      objectReference: {fileID: 107936270}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf7a07804addf994981e29b2f520406a, type: 3}
---- !u!114 &1307173591112795908 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4102010578217516521, guid: bf7a07804addf994981e29b2f520406a, type: 3}
-  m_PrefabInstance: {fileID: 1307173591112795907}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 37ea85760dfcfba4387e8dc7dccdb0f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
