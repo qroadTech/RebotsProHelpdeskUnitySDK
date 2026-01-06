@@ -70,7 +70,7 @@
 .rebots-label__bold20 {
     font-size: 20px;
     -unity-font-style: bold;
-    -unity-font: resource('Rebots/NotoSansKR-Regular');<
+    -unity-font: resource('Rebots/NotoSansKR-Regular');
     -unity-font-definition: resource('Rebots/NotoSansKR-Regular-as');
 }
 
